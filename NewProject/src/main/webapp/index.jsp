@@ -7,7 +7,7 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 <!--===============================================================================================-->	
-	<link rel="icon" type="image/png" href="resources/images/icons/favicon.png"/>
+	<link rel="icon" type="image/png" href="resources/resources/images/icons/favicon.png"/>
 <!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="resources/bootstrap/css/bootstrap.min.css">
 <!--===============================================================================================-->
@@ -75,7 +75,7 @@
 					
 					<!-- Logo desktop -->		
 					<a href="#" class="logo">
-						<img src="resources/images/icons/logo-01.png" alt="IMG-LOGO">
+						<img src="resources/resources/images/icons/logo-01.png" alt="IMG-LOGO">
 					</a>
 
 					<!-- Menu desktop -->
@@ -134,7 +134,7 @@
 		<div class="wrap-header-mobile">
 			<!-- Logo moblie -->		
 			<div class="logo-mobile">
-				<a href="index.html"><img src="resources/images/icons/logo-01.png" alt="IMG-LOGO"></a>
+				<a href="index.html"><img src="resources/resources/images/icons/logo-01.png" alt="IMG-LOGO"></a>
 			</div>
 
 			<!-- Icon header -->
@@ -230,7 +230,7 @@
 		<div class="modal-search-header flex-c-m trans-04 js-hide-modal-search">
 			<div class="container-search-header">
 				<button class="flex-c-m btn-hide-modal-search trans-04 js-hide-modal-search">
-					<img src="resources/images/icons/icon-close2.png" alt="CLOSE">
+					<img src="resources/resources/images/icons/icon-close2.png" alt="CLOSE">
 				</button>
 
 				<form class="wrap-search-header flex-w p-l-15">
@@ -262,7 +262,7 @@
 				<ul class="header-cart-wrapitem w-full">
 					<li class="header-cart-item flex-w flex-t m-b-12">
 						<div class="header-cart-item-img">
-							<img src="resources/images/item-cart-01.jpg" alt="IMG">
+							<img src="resources/resources/images/item-cart-01.jpg" alt="IMG">
 						</div>
 
 						<div class="header-cart-item-txt p-t-8">
@@ -278,7 +278,7 @@
 
 					<li class="header-cart-item flex-w flex-t m-b-12">
 						<div class="header-cart-item-img">
-							<img src="resources/images/item-cart-02.jpg" alt="IMG">
+							<img src="resources/resources/images/item-cart-02.jpg" alt="IMG">
 						</div>
 
 						<div class="header-cart-item-txt p-t-8">
@@ -294,7 +294,7 @@
 
 					<li class="header-cart-item flex-w flex-t m-b-12">
 						<div class="header-cart-item-img">
-							<img src="resources/images/item-cart-03.jpg" alt="IMG">
+							<img src="resources/resources/images/item-cart-03.jpg" alt="IMG">
 						</div>
 
 						<div class="header-cart-item-txt p-t-8">
@@ -334,7 +334,7 @@
 	<section class="section-slide">
 		<div class="wrap-slick1">
 			<div class="slick1">
-				<div class="item-slick1" style="background-image: url(images/slide-01.jpg);">
+				<div class="item-slick1" style="background-image: url(resources/images/slide-01.jpg);">
 					<div class="container h-full">
 						<div class="flex-col-l-m h-full p-t-100 p-b-30 respon5">
 							<div class="layer-slick1 animated visible-false" data-appear="fadeInDown" data-delay="0">
@@ -358,7 +358,7 @@
 					</div>
 				</div>
 
-				<div class="item-slick1" style="background-image: url(images/slide-02.jpg);">
+				<div class="item-slick1" style="background-image: url(resources/images/slide-02.jpg);">
 					<div class="container h-full">
 						<div class="flex-col-l-m h-full p-t-100 p-b-30 respon5">
 							<div class="layer-slick1 animated visible-false" data-appear="rollIn" data-delay="0">
@@ -382,7 +382,7 @@
 					</div>
 				</div>
 
-				<div class="item-slick1" style="background-image: url(images/slide-03.jpg);">
+				<div class="item-slick1" style="background-image: url(resources/images/slide-03.jpg);">
 					<div class="container h-full">
 						<div class="flex-col-l-m h-full p-t-100 p-b-30 respon5">
 							<div class="layer-slick1 animated visible-false" data-appear="rotateInDownLeft" data-delay="0">
@@ -417,7 +417,7 @@
 				<div class="col-md-6 col-xl-4 p-b-30 m-lr-auto">
 					<!-- Block1 -->
 					<div class="block1 wrap-pic-w">
-						<img src="resources/images/banner-01.jpg" alt="IMG-BANNER">
+						<img src="resources/resources/images/banner-01.jpg" alt="IMG-BANNER">
 
 						<a href="product.html" class="block1-txt ab-t-l s-full flex-col-l-sb p-lr-38 p-tb-34 trans-03 respon3">
 							<div class="block1-txt-child1 flex-col-l">
@@ -442,7 +442,7 @@
 				<div class="col-md-6 col-xl-4 p-b-30 m-lr-auto">
 					<!-- Block1 -->
 					<div class="block1 wrap-pic-w">
-						<img src="images/banner-02.jpg" alt="IMG-BANNER">
+						<img src="resources/resources/images/banner-02.jpg" alt="IMG-BANNER">
 
 						<a href="product.html" class="block1-txt ab-t-l s-full flex-col-l-sb p-lr-38 p-tb-34 trans-03 respon3">
 							<div class="block1-txt-child1 flex-col-l">
@@ -467,7 +467,7 @@
 				<div class="col-md-6 col-xl-4 p-b-30 m-lr-auto">
 					<!-- Block1 -->
 					<div class="block1 wrap-pic-w">
-						<img src="images/banner-03.jpg" alt="IMG-BANNER">
+						<img src="resources/resources/images/banner-03.jpg" alt="IMG-BANNER">
 
 						<a href="product.html" class="block1-txt ab-t-l s-full flex-col-l-sb p-lr-38 p-tb-34 trans-03 respon3">
 							<div class="block1-txt-child1 flex-col-l">
@@ -749,7 +749,7 @@
 					<!-- Block2 -->
 					<div class="block2">
 						<div class="block2-pic hov-img0">
-							<img src="images/product-01.jpg" alt="IMG-PRODUCT">
+							<img src="resources/resources/images/product-01.jpg" alt="IMG-PRODUCT">
 
 							<a href="#" class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1">
 								Quick View
@@ -769,8 +769,8 @@
 
 							<div class="block2-txt-child2 flex-r p-t-3">
 								<a href="#" class="btn-addwish-b2 dis-block pos-relative js-addwish-b2">
-									<img class="icon-heart1 dis-block trans-04" src="images/icons/icon-heart-01.png" alt="ICON">
-									<img class="icon-heart2 dis-block trans-04 ab-t-l" src="images/icons/icon-heart-02.png" alt="ICON">
+									<img class="icon-heart1 dis-block trans-04" src="resources/resources/images/icons/icon-heart-01.png" alt="ICON">
+									<img class="icon-heart2 dis-block trans-04 ab-t-l" src="resources/resources/images/icons/icon-heart-02.png" alt="ICON">
 								</a>
 							</div>
 						</div>
@@ -781,7 +781,7 @@
 					<!-- Block2 -->
 					<div class="block2">
 						<div class="block2-pic hov-img0">
-							<img src="images/product-02.jpg" alt="IMG-PRODUCT">
+							<img src="resources/resources/images/product-02.jpg" alt="IMG-PRODUCT">
 
 							<a href="#" class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1">
 								Quick View
@@ -801,8 +801,8 @@
 
 							<div class="block2-txt-child2 flex-r p-t-3">
 								<a href="#" class="btn-addwish-b2 dis-block pos-relative js-addwish-b2">
-									<img class="icon-heart1 dis-block trans-04" src="images/icons/icon-heart-01.png" alt="ICON">
-									<img class="icon-heart2 dis-block trans-04 ab-t-l" src="images/icons/icon-heart-02.png" alt="ICON">
+									<img class="icon-heart1 dis-block trans-04" src="resources/resources/images/icons/icon-heart-01.png" alt="ICON">
+									<img class="icon-heart2 dis-block trans-04 ab-t-l" src="resources/resources/images/icons/icon-heart-02.png" alt="ICON">
 								</a>
 							</div>
 						</div>
@@ -813,7 +813,7 @@
 					<!-- Block2 -->
 					<div class="block2">
 						<div class="block2-pic hov-img0">
-							<img src="images/product-03.jpg" alt="IMG-PRODUCT">
+							<img src="resources/resources/images/product-03.jpg" alt="IMG-PRODUCT">
 
 							<a href="#" class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1">
 								Quick View
@@ -833,8 +833,8 @@
 
 							<div class="block2-txt-child2 flex-r p-t-3">
 								<a href="#" class="btn-addwish-b2 dis-block pos-relative js-addwish-b2">
-									<img class="icon-heart1 dis-block trans-04" src="images/icons/icon-heart-01.png" alt="ICON">
-									<img class="icon-heart2 dis-block trans-04 ab-t-l" src="images/icons/icon-heart-02.png" alt="ICON">
+									<img class="icon-heart1 dis-block trans-04" src="resources/resources/images/icons/icon-heart-01.png" alt="ICON">
+									<img class="icon-heart2 dis-block trans-04 ab-t-l" src="resources/resources/images/icons/icon-heart-02.png" alt="ICON">
 								</a>
 							</div>
 						</div>
@@ -845,7 +845,7 @@
 					<!-- Block2 -->
 					<div class="block2">
 						<div class="block2-pic hov-img0">
-							<img src="images/product-04.jpg" alt="IMG-PRODUCT">
+							<img src="resources/resources/images/product-04.jpg" alt="IMG-PRODUCT">
 
 							<a href="#" class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1">
 								Quick View
@@ -865,8 +865,8 @@
 
 							<div class="block2-txt-child2 flex-r p-t-3">
 								<a href="#" class="btn-addwish-b2 dis-block pos-relative js-addwish-b2">
-									<img class="icon-heart1 dis-block trans-04" src="images/icons/icon-heart-01.png" alt="ICON">
-									<img class="icon-heart2 dis-block trans-04 ab-t-l" src="images/icons/icon-heart-02.png" alt="ICON">
+									<img class="icon-heart1 dis-block trans-04" src="resources/resources/images/icons/icon-heart-01.png" alt="ICON">
+									<img class="icon-heart2 dis-block trans-04 ab-t-l" src="resources/resources/images/icons/icon-heart-02.png" alt="ICON">
 								</a>
 							</div>
 						</div>
@@ -877,7 +877,7 @@
 					<!-- Block2 -->
 					<div class="block2">
 						<div class="block2-pic hov-img0">
-							<img src="images/product-05.jpg" alt="IMG-PRODUCT">
+							<img src="resources/resources/images/product-05.jpg" alt="IMG-PRODUCT">
 
 							<a href="#" class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1">
 								Quick View
@@ -897,8 +897,8 @@
 
 							<div class="block2-txt-child2 flex-r p-t-3">
 								<a href="#" class="btn-addwish-b2 dis-block pos-relative js-addwish-b2">
-									<img class="icon-heart1 dis-block trans-04" src="images/icons/icon-heart-01.png" alt="ICON">
-									<img class="icon-heart2 dis-block trans-04 ab-t-l" src="images/icons/icon-heart-02.png" alt="ICON">
+									<img class="icon-heart1 dis-block trans-04" src="resources/resources/images/icons/icon-heart-01.png" alt="ICON">
+									<img class="icon-heart2 dis-block trans-04 ab-t-l" src="resources/resources/images/icons/icon-heart-02.png" alt="ICON">
 								</a>
 							</div>
 						</div>
@@ -909,7 +909,7 @@
 					<!-- Block2 -->
 					<div class="block2">
 						<div class="block2-pic hov-img0">
-							<img src="images/product-06.jpg" alt="IMG-PRODUCT">
+							<img src="resources/resources/images/product-06.jpg" alt="IMG-PRODUCT">
 
 							<a href="#" class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1">
 								Quick View
@@ -929,8 +929,8 @@
 
 							<div class="block2-txt-child2 flex-r p-t-3">
 								<a href="#" class="btn-addwish-b2 dis-block pos-relative js-addwish-b2">
-									<img class="icon-heart1 dis-block trans-04" src="images/icons/icon-heart-01.png" alt="ICON">
-									<img class="icon-heart2 dis-block trans-04 ab-t-l" src="images/icons/icon-heart-02.png" alt="ICON">
+									<img class="icon-heart1 dis-block trans-04" src="resources/resources/images/icons/icon-heart-01.png" alt="ICON">
+									<img class="icon-heart2 dis-block trans-04 ab-t-l" src="resources/resources/images/icons/icon-heart-02.png" alt="ICON">
 								</a>
 							</div>
 						</div>
@@ -941,7 +941,7 @@
 					<!-- Block2 -->
 					<div class="block2">
 						<div class="block2-pic hov-img0">
-							<img src="images/product-07.jpg" alt="IMG-PRODUCT">
+							<img src="resources/resources/images/product-07.jpg" alt="IMG-PRODUCT">
 
 							<a href="#" class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1">
 								Quick View
@@ -961,8 +961,8 @@
 
 							<div class="block2-txt-child2 flex-r p-t-3">
 								<a href="#" class="btn-addwish-b2 dis-block pos-relative js-addwish-b2">
-									<img class="icon-heart1 dis-block trans-04" src="images/icons/icon-heart-01.png" alt="ICON">
-									<img class="icon-heart2 dis-block trans-04 ab-t-l" src="images/icons/icon-heart-02.png" alt="ICON">
+									<img class="icon-heart1 dis-block trans-04" src="resources/resources/images/icons/icon-heart-01.png" alt="ICON">
+									<img class="icon-heart2 dis-block trans-04 ab-t-l" src="resources/resources/images/icons/icon-heart-02.png" alt="ICON">
 								</a>
 							</div>
 						</div>
@@ -973,7 +973,7 @@
 					<!-- Block2 -->
 					<div class="block2">
 						<div class="block2-pic hov-img0">
-							<img src="images/product-08.jpg" alt="IMG-PRODUCT">
+							<img src="resources/resources/images/product-08.jpg" alt="IMG-PRODUCT">
 
 							<a href="#" class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1">
 								Quick View
@@ -993,8 +993,8 @@
 
 							<div class="block2-txt-child2 flex-r p-t-3">
 								<a href="#" class="btn-addwish-b2 dis-block pos-relative js-addwish-b2">
-									<img class="icon-heart1 dis-block trans-04" src="images/icons/icon-heart-01.png" alt="ICON">
-									<img class="icon-heart2 dis-block trans-04 ab-t-l" src="images/icons/icon-heart-02.png" alt="ICON">
+									<img class="icon-heart1 dis-block trans-04" src="resources/images/icons/icon-heart-01.png" alt="ICON">
+									<img class="icon-heart2 dis-block trans-04 ab-t-l" src="resources/images/icons/icon-heart-02.png" alt="ICON">
 								</a>
 							</div>
 						</div>
@@ -1005,7 +1005,7 @@
 					<!-- Block2 -->
 					<div class="block2">
 						<div class="block2-pic hov-img0">
-							<img src="images/product-09.jpg" alt="IMG-PRODUCT">
+							<img src="resources/images/product-09.jpg" alt="IMG-PRODUCT">
 
 							<a href="#" class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1">
 								Quick View
@@ -1025,8 +1025,8 @@
 
 							<div class="block2-txt-child2 flex-r p-t-3">
 								<a href="#" class="btn-addwish-b2 dis-block pos-relative js-addwish-b2">
-									<img class="icon-heart1 dis-block trans-04" src="images/icons/icon-heart-01.png" alt="ICON">
-									<img class="icon-heart2 dis-block trans-04 ab-t-l" src="images/icons/icon-heart-02.png" alt="ICON">
+									<img class="icon-heart1 dis-block trans-04" src="resources/images/icons/icon-heart-01.png" alt="ICON">
+									<img class="icon-heart2 dis-block trans-04 ab-t-l" src="resources/images/icons/icon-heart-02.png" alt="ICON">
 								</a>
 							</div>
 						</div>
@@ -1037,7 +1037,7 @@
 					<!-- Block2 -->
 					<div class="block2">
 						<div class="block2-pic hov-img0">
-							<img src="images/product-10.jpg" alt="IMG-PRODUCT">
+							<img src="resources/images/product-10.jpg" alt="IMG-PRODUCT">
 
 							<a href="#" class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1">
 								Quick View
@@ -1057,8 +1057,8 @@
 
 							<div class="block2-txt-child2 flex-r p-t-3">
 								<a href="#" class="btn-addwish-b2 dis-block pos-relative js-addwish-b2">
-									<img class="icon-heart1 dis-block trans-04" src="images/icons/icon-heart-01.png" alt="ICON">
-									<img class="icon-heart2 dis-block trans-04 ab-t-l" src="images/icons/icon-heart-02.png" alt="ICON">
+									<img class="icon-heart1 dis-block trans-04" src="resources/images/icons/icon-heart-01.png" alt="ICON">
+									<img class="icon-heart2 dis-block trans-04 ab-t-l" src="resources/images/icons/icon-heart-02.png" alt="ICON">
 								</a>
 							</div>
 						</div>
@@ -1069,7 +1069,7 @@
 					<!-- Block2 -->
 					<div class="block2">
 						<div class="block2-pic hov-img0">
-							<img src="images/product-11.jpg" alt="IMG-PRODUCT">
+							<img src="resources/images/product-11.jpg" alt="IMG-PRODUCT">
 
 							<a href="#" class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1">
 								Quick View
@@ -1089,8 +1089,8 @@
 
 							<div class="block2-txt-child2 flex-r p-t-3">
 								<a href="#" class="btn-addwish-b2 dis-block pos-relative js-addwish-b2">
-									<img class="icon-heart1 dis-block trans-04" src="images/icons/icon-heart-01.png" alt="ICON">
-									<img class="icon-heart2 dis-block trans-04 ab-t-l" src="images/icons/icon-heart-02.png" alt="ICON">
+									<img class="icon-heart1 dis-block trans-04" src="resources/images/icons/icon-heart-01.png" alt="ICON">
+									<img class="icon-heart2 dis-block trans-04 ab-t-l" src="resources/images/icons/icon-heart-02.png" alt="ICON">
 								</a>
 							</div>
 						</div>
@@ -1101,7 +1101,7 @@
 					<!-- Block2 -->
 					<div class="block2">
 						<div class="block2-pic hov-img0">
-							<img src="images/product-12.jpg" alt="IMG-PRODUCT">
+							<img src="resources/images/product-12.jpg" alt="IMG-PRODUCT">
 
 							<a href="#" class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1">
 								Quick View
@@ -1121,8 +1121,8 @@
 
 							<div class="block2-txt-child2 flex-r p-t-3">
 								<a href="#" class="btn-addwish-b2 dis-block pos-relative js-addwish-b2">
-									<img class="icon-heart1 dis-block trans-04" src="images/icons/icon-heart-01.png" alt="ICON">
-									<img class="icon-heart2 dis-block trans-04 ab-t-l" src="images/icons/icon-heart-02.png" alt="ICON">
+									<img class="icon-heart1 dis-block trans-04" src="resources/images/icons/icon-heart-01.png" alt="ICON">
+									<img class="icon-heart2 dis-block trans-04 ab-t-l" src="resources/images/icons/icon-heart-02.png" alt="ICON">
 								</a>
 							</div>
 						</div>
@@ -1133,7 +1133,7 @@
 					<!-- Block2 -->
 					<div class="block2">
 						<div class="block2-pic hov-img0">
-							<img src="images/product-13.jpg" alt="IMG-PRODUCT">
+							<img src="resources/images/product-13.jpg" alt="IMG-PRODUCT">
 
 							<a href="#" class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1">
 								Quick View
@@ -1153,8 +1153,8 @@
 
 							<div class="block2-txt-child2 flex-r p-t-3">
 								<a href="#" class="btn-addwish-b2 dis-block pos-relative js-addwish-b2">
-									<img class="icon-heart1 dis-block trans-04" src="images/icons/icon-heart-01.png" alt="ICON">
-									<img class="icon-heart2 dis-block trans-04 ab-t-l" src="images/icons/icon-heart-02.png" alt="ICON">
+									<img class="icon-heart1 dis-block trans-04" src="resources/images/icons/icon-heart-01.png" alt="ICON">
+									<img class="icon-heart2 dis-block trans-04 ab-t-l" src="resources/images/icons/icon-heart-02.png" alt="ICON">
 								</a>
 							</div>
 						</div>
@@ -1165,7 +1165,7 @@
 					<!-- Block2 -->
 					<div class="block2">
 						<div class="block2-pic hov-img0">
-							<img src="images/product-14.jpg" alt="IMG-PRODUCT">
+							<img src="resources/images/product-14.jpg" alt="IMG-PRODUCT">
 
 							<a href="#" class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1">
 								Quick View
@@ -1185,8 +1185,8 @@
 
 							<div class="block2-txt-child2 flex-r p-t-3">
 								<a href="#" class="btn-addwish-b2 dis-block pos-relative js-addwish-b2">
-									<img class="icon-heart1 dis-block trans-04" src="images/icons/icon-heart-01.png" alt="ICON">
-									<img class="icon-heart2 dis-block trans-04 ab-t-l" src="images/icons/icon-heart-02.png" alt="ICON">
+									<img class="icon-heart1 dis-block trans-04" src="resources/images/icons/icon-heart-01.png" alt="ICON">
+									<img class="icon-heart2 dis-block trans-04 ab-t-l" src="resources/images/icons/icon-heart-02.png" alt="ICON">
 								</a>
 							</div>
 						</div>
@@ -1197,7 +1197,7 @@
 					<!-- Block2 -->
 					<div class="block2">
 						<div class="block2-pic hov-img0">
-							<img src="images/product-15.jpg" alt="IMG-PRODUCT">
+							<img src="resources/images/product-15.jpg" alt="IMG-PRODUCT">
 
 							<a href="#" class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1">
 								Quick View
@@ -1217,8 +1217,8 @@
 
 							<div class="block2-txt-child2 flex-r p-t-3">
 								<a href="#" class="btn-addwish-b2 dis-block pos-relative js-addwish-b2">
-									<img class="icon-heart1 dis-block trans-04" src="images/icons/icon-heart-01.png" alt="ICON">
-									<img class="icon-heart2 dis-block trans-04 ab-t-l" src="images/icons/icon-heart-02.png" alt="ICON">
+									<img class="icon-heart1 dis-block trans-04" src="resources/images/icons/icon-heart-01.png" alt="ICON">
+									<img class="icon-heart2 dis-block trans-04 ab-t-l" src="resources/images/icons/icon-heart-02.png" alt="ICON">
 								</a>
 							</div>
 						</div>
@@ -1229,7 +1229,7 @@
 					<!-- Block2 -->
 					<div class="block2">
 						<div class="block2-pic hov-img0">
-							<img src="images/product-16.jpg" alt="IMG-PRODUCT">
+							<img src="resources/images/product-16.jpg" alt="IMG-PRODUCT">
 
 							<a href="#" class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1">
 								Quick View
@@ -1249,8 +1249,8 @@
 
 							<div class="block2-txt-child2 flex-r p-t-3">
 								<a href="#" class="btn-addwish-b2 dis-block pos-relative js-addwish-b2">
-									<img class="icon-heart1 dis-block trans-04" src="images/icons/icon-heart-01.png" alt="ICON">
-									<img class="icon-heart2 dis-block trans-04 ab-t-l" src="images/icons/icon-heart-02.png" alt="ICON">
+									<img class="icon-heart1 dis-block trans-04" src="resources/images/icons/icon-heart-01.png" alt="ICON">
+									<img class="icon-heart2 dis-block trans-04 ab-t-l" src="resources/images/icons/icon-heart-02.png" alt="ICON">
 								</a>
 							</div>
 						</div>
@@ -1383,23 +1383,23 @@
 			<div class="p-t-40">
 				<div class="flex-c-m flex-w p-b-18">
 					<a href="#" class="m-all-1">
-						<img src="images/icons/icon-pay-01.png" alt="ICON-PAY">
+						<img src="resources/images/icons/icon-pay-01.png" alt="ICON-PAY">
 					</a>
 
 					<a href="#" class="m-all-1">
-						<img src="images/icons/icon-pay-02.png" alt="ICON-PAY">
+						<img src="resources/images/icons/icon-pay-02.png" alt="ICON-PAY">
 					</a>
 
 					<a href="#" class="m-all-1">
-						<img src="images/icons/icon-pay-03.png" alt="ICON-PAY">
+						<img src="resources/images/icons/icon-pay-03.png" alt="ICON-PAY">
 					</a>
 
 					<a href="#" class="m-all-1">
-						<img src="images/icons/icon-pay-04.png" alt="ICON-PAY">
+						<img src="resources/images/icons/icon-pay-04.png" alt="ICON-PAY">
 					</a>
 
 					<a href="#" class="m-all-1">
-						<img src="images/icons/icon-pay-05.png" alt="ICON-PAY">
+						<img src="resources/images/icons/icon-pay-05.png" alt="ICON-PAY">
 					</a>
 				</div>
 
@@ -1428,7 +1428,7 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 		<div class="container">
 			<div class="bg0 p-t-60 p-b-30 p-lr-15-lg how-pos3-parent">
 				<button class="how-pos3 hov3 trans-04 js-hide-modal1">
-					<img src="images/icons/icon-close.png" alt="CLOSE">
+					<img src="resources/images/icons/icon-close.png" alt="CLOSE">
 				</button>
 
 				<div class="row">
@@ -1439,31 +1439,31 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 								<div class="wrap-slick3-arrows flex-sb-m flex-w"></div>
 
 								<div class="slick3 gallery-lb">
-									<div class="item-slick3" data-thumb="images/product-detail-01.jpg">
+									<div class="item-slick3" data-thumb="resources/images/product-detail-01.jpg">
 										<div class="wrap-pic-w pos-relative">
-											<img src="images/product-detail-01.jpg" alt="IMG-PRODUCT">
+											<img src="resources/images/product-detail-01.jpg" alt="IMG-PRODUCT">
 
-											<a class="flex-c-m size-108 how-pos1 bor0 fs-16 cl10 bg0 hov-btn3 trans-04" href="images/product-detail-01.jpg">
+											<a class="flex-c-m size-108 how-pos1 bor0 fs-16 cl10 bg0 hov-btn3 trans-04" href="resources/images/product-detail-01.jpg">
 												<i class="fa fa-expand"></i>
 											</a>
 										</div>
 									</div>
 
-									<div class="item-slick3" data-thumb="images/product-detail-02.jpg">
+									<div class="item-slick3" data-thumb="resources/images/product-detail-02.jpg">
 										<div class="wrap-pic-w pos-relative">
-											<img src="images/product-detail-02.jpg" alt="IMG-PRODUCT">
+											<img src="resources/images/product-detail-02.jpg" alt="IMG-PRODUCT">
 
-											<a class="flex-c-m size-108 how-pos1 bor0 fs-16 cl10 bg0 hov-btn3 trans-04" href="images/product-detail-02.jpg">
+											<a class="flex-c-m size-108 how-pos1 bor0 fs-16 cl10 bg0 hov-btn3 trans-04" href="resources/images/product-detail-02.jpg">
 												<i class="fa fa-expand"></i>
 											</a>
 										</div>
 									</div>
 
-									<div class="item-slick3" data-thumb="images/product-detail-03.jpg">
+									<div class="item-slick3" data-thumb="resources/images/product-detail-03.jpg">
 										<div class="wrap-pic-w pos-relative">
-											<img src="images/product-detail-03.jpg" alt="IMG-PRODUCT">
+											<img src="resources/images/product-detail-03.jpg" alt="IMG-PRODUCT">
 
-											<a class="flex-c-m size-108 how-pos1 bor0 fs-16 cl10 bg0 hov-btn3 trans-04" href="images/product-detail-03.jpg">
+											<a class="flex-c-m size-108 how-pos1 bor0 fs-16 cl10 bg0 hov-btn3 trans-04" href="resources/images/product-detail-03.jpg">
 												<i class="fa fa-expand"></i>
 											</a>
 										</div>
