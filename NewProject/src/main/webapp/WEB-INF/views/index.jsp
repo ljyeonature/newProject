@@ -36,16 +36,7 @@
 	<link rel="stylesheet" type="text/css" href="resources/main/css/util.css">
 	<link rel="stylesheet" type="text/css" href="resources/main/css/main.css">
 <!--===============================================================================================-->
-<script>
-$(function(){
-	
-	$('.join').click(function(){
-		
-	});
-	
-})
 
-</script>
 </head>
 <body class="animsition">
 	
