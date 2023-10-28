@@ -69,8 +69,8 @@ $(function(){
 							My Account(로그인)
 						</a>
 
-						<a href="#" class="flex-c-m trans-04 p-lr-25">
-							EN
+						<a href="admin-index" class="flex-c-m trans-04 p-lr-25">
+							관리자
 						</a>
 
 						<a href="#" class="flex-c-m trans-04 p-lr-25">

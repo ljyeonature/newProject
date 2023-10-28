@@ -53,7 +53,7 @@
 							</div>
 							<div class="col-md-12 form-group">
 								<button type="submit" value="submit" class="button button-login w-100">Log In</button>
-								<a href="#">Forgot Password?</a>
+								<a href="forgot-password">Forgot Password?</a>
 							</div>
 						</form>
 					</div>
