@@ -7,6 +7,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-<% response.sendRedirect("/NewProject/views/index"); %>
+<% response.sendRedirect("/NewProject/home"); %>
 </body>
 </html>

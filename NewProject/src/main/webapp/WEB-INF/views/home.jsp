@@ -83,11 +83,11 @@
 					<div class="menu-desktop">
 						<ul class="main-menu">
 							<li class="active-menu">
-								<a href="index.html">Home</a>
+								<a href="home">Home</a>
 								<ul class="sub-menu">
-									<li><a href="index.html">Homepage 1</a></li>
-									<li><a href="home-02.html">Homepage 2</a></li>
-									<li><a href="home-03.html">Homepage 3</a></li>
+									<li><a href="home">Homepage 1</a></li>
+									<li><a href="home-02">Homepage 2</a></li>
+									<li><a href="home-03">Homepage 3</a></li>
 								</ul>
 							</li>
 
@@ -96,19 +96,19 @@
 							</li>
 
 							<li class="label1" data-label1="hot">
-								<a href="shoping-cart.html">Features</a>
+								<a href="shoping-cart">Features</a>
 							</li>
 
 							<li>
-								<a href="blog.html">Blog</a>
+								<a href="blog">Blog</a>
 							</li>
 
 							<li>
-								<a href="about.html">About</a>
+								<a href="about">About</a>
 							</li>
 
 							<li>
-								<a href="contact.html">Contact</a>
+								<a href="contact">Contact</a>
 							</li>
 						</ul>
 					</div>	
@@ -136,7 +136,7 @@
 		<div class="wrap-header-mobile">
 			<!-- Logo moblie -->		
 			<div class="logo-mobile">
-				<a href="index.html"><img src="resources/main/images/icons/logo-01.png" alt="IMG-LOGO"></a>
+				<a href="home"><img src="resources/main/images/icons/logo-01.png" alt="IMG-LOGO"></a>
 			</div>
 
 			<!-- Icon header -->
@@ -195,11 +195,11 @@
 
 			<ul class="main-menu-m">
 				<li>
-					<a href="index.html">Home</a>
+					<a href="home">Home</a>
 					<ul class="sub-menu-m">
-						<li><a href="index.html">Homepage 1</a></li>
-						<li><a href="home-02.html">Homepage 2</a></li>
-						<li><a href="home-03.html">Homepage 3</a></li>
+						<li><a href="home">Homepage 1</a></li>
+						<li><a href="home-02">Homepage 2</a></li>
+						<li><a href="home-03">Homepage 3</a></li>
 					</ul>
 					<span class="arrow-main-menu-m">
 						<i class="fa fa-angle-right" aria-hidden="true"></i>
@@ -207,23 +207,23 @@
 				</li>
 
 				<li>
-					<a href="product.html">Shop</a>
+					<a href="product">Shop</a>
 				</li>
 
 				<li>
-					<a href="shoping-cart.html" class="label1 rs1" data-label1="hot">Features</a>
+					<a href="shoping-cart" class="label1 rs1" data-label1="hot">Features</a>
 				</li>
 
 				<li>
-					<a href="blog.html">Blog</a>
+					<a href="blog">Blog</a>
 				</li>
 
 				<li>
-					<a href="about.html">About</a>
+					<a href="about">About</a>
 				</li>
 
 				<li>
-					<a href="contact.html">Contact</a>
+					<a href="contact">Contact</a>
 				</li>
 			</ul>
 		</div>
