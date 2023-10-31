@@ -12,6 +12,5 @@ public interface MemberDAO {
 	public boolean checkId(MemberVO vo);
 	// 회원가입
 	public List<MemberVO> member_all(MemberVO vo);
-	// 관리자 체크
-	public MemberVO adminCheck(MemberVO vo);
+	
 }

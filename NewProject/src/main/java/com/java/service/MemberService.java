@@ -13,6 +13,5 @@ public interface MemberService {
 //	회원 목록 보기
 	public List<MemberVO> member_all(MemberVO vo);
 	
-	// 관리자 체크
-	public MemberVO adminCheck(MemberVO vo);
+	
 }

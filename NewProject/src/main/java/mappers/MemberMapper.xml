@@ -25,10 +25,5 @@
 	<select id='member_all' parameterType="com.java.domain.MemberVO" resultType="com.java.domain.MemberVO">
 		SELECT * FROM m_member LIMIT 3;
 	</select>
-	
-	<!-- 관리자 아이디 비번일 때 -->
-	<select id='adminCheck' parameterType="com.java.domain.MemberVO" resultType="com.java.domain.MemberVO">
-		SELECT * FROM m_member WHERE m_id='admin' AND m_pass='admin1234'
-		
-	</select>
+
 </mapper>

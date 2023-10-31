@@ -48,7 +48,7 @@
 							<div class="col-md-12 form-group">
 								<div class="creat_account">
 									<input type="checkbox" id="f-option2" name="selector">
-									<label for="f-option2">Keep me logged in</label>
+									<label for="f-option2">약관을 읽었습니다.</label>
 								</div>
 							</div>
 							<div class="col-md-12 form-group">

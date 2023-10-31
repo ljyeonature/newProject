@@ -38,11 +38,6 @@ public class MemberServiceImpl implements MemberService{
 		return result;
 	}
 
-	// 관리자 체크
-	@Override
-	public MemberVO adminCheck(MemberVO vo) {
-		System.out.println("로그인 : " + vo.getM_id() +"/" +vo.getM_pass());
-		return memberDAOImpl.adminCheck(vo);
-	}
+	
 	
 }

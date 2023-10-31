@@ -54,10 +54,5 @@ public class MemberDAOImpl implements MemberDAO{
 	}
 
 
-	@Override
-	public MemberVO adminCheck(MemberVO vo) {
-		MemberVO result = sqlSession.selectOne("org.java.MemberMapper.adminCheck", vo);
-		System.out.println(result.getM_id());
-		return result;
-	}
+	
 }

@@ -47,24 +47,24 @@ public class MemberController {
 	}
 	
 	// 로그인 확인 후 정보 없으면 login 페이지 / 있으면 세션에 logname으로 아이디 저장
-	// 관리자 로그인 : admin / admin1234 일 때만	
+	// 관리자 로그인 : m_rol이 manager인 경우
+	// redirect를 해야 아래 회원 목록을 불러오는 페이지로 갔다 올 수 있음.
 	@RequestMapping("/login_do")
 	public String loginCheck(MemberVO vo, HttpSession session) {
 		MemberVO result = memberService.loginCheck(vo);
-		MemberVO adminResult = memberService.adminCheck(vo);
-		System.out.println("Controller : " + adminResult);
-		System.out.println(result.getM_name());
+//		MemberVO adminResult = memberService.adminCheck(vo);
+//		System.out.println("admin Controller : " + adminResult);
+//		System.out.println(result.getM_name());
+//		System.out.println(result.getM_rol());
+		if (result == null) {
+	        return "login";
+	    } else if ("manager".equals(result.getM_rol())) {
+	        return "redirect:/admin-index";
+	    } else {
+	        session.setAttribute("logname", result.getM_name());
+	        return "home";
+	    }
 		
-		if(result == null) {
-			return "login";
-		} else if(result != null && adminResult != null) { 
-			session.setAttribute("logname", result.getM_name());
-			return "admin-index";
-		}
-		else {
-			session.setAttribute("logname", result.getM_name());
-			return "home";
-		}
 	}
 	
 	
@@ -83,6 +83,7 @@ public class MemberController {
 	public void memeber_all(MemberVO vo, Model model) {
 		System.out.println("Controller : " + vo.toString());
 		System.out.println("controller : " + memberService.member_all(vo));
+		
 		model.addAttribute("memberList", memberService.member_all(vo));
 		
 	}
