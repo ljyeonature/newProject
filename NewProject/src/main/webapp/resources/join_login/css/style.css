@@ -412,9 +412,13 @@ label.error {
     cursor: pointer;
 }
 
-label#duplicateMessage {
+div#duplicateMessage {
     font-size: 10px;
     color: #007bff;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
 }
 
 

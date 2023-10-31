@@ -154,8 +154,8 @@
 									placeholder="Id" onfocus="this.placeholder = ''"
 									onblur="this.placeholder = 'Id'" required>
 								<button id="checkDuplicateButton" type="submit">중복 체크</button>
+								<div class="message" id="duplicateMessage"></div>
 							</div>
-							<label class="message" id="duplicateMessage"></label>
 							<div class="col-md-12 form-group">
 								<input type="password" class="form-control" id="m_pass"
 									name="m_pass" placeholder="Password"
