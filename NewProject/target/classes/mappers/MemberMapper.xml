@@ -16,10 +16,10 @@
 	</select>
 
 	<!-- 로그인 확인 -->
-	<select id='loginCheck' resultType="com.java.domain.MemberVO">
+	<!-- <select id='loginCheck' resultType="com.java.domain.MemberVO">
 		SELECT * FROM member
 		<where>
 			m_id=#{m_id} AND m_pass=#{m_pass}
 		</where>
-	</select>
+	</select> -->
 </mapper>
