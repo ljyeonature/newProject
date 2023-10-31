@@ -14,6 +14,7 @@ import com.java.domain.MemberVO;
 import com.java.service.MemberServiceImpl;
 
 @Controller
+@RequestMapping("/member")
 public class MemberController {
 	
 	@Autowired
@@ -22,14 +23,14 @@ public class MemberController {
 	// 단순 페이지 이동
 	@RequestMapping("/{step}")
 	public String viewPage(@PathVariable String step) {
-		return step;
+		return "member/" +step;
 	}
 	
 	// 회원가입 하고 login 페이지로 이동
 	@RequestMapping("/join_do")
 	public String join(MemberVO vo) {
 		memberService.insertMember(vo);
-		return "login";
+		return "member/login";
 	}
 	
 	// 아이디 중복확인
@@ -57,12 +58,13 @@ public class MemberController {
 //		System.out.println(result.getM_name());
 //		System.out.println(result.getM_rol());
 		if (result == null) {
-	        return "login";
+	        return "member/login";
 	    } else if ("manager".equals(result.getM_rol())) {
-	        return "redirect:/admin-index";
+	    	session.setAttribute("logname", result.getM_name());
+	        return "redirect:/admin/admin-index";
 	    } else {
 	        session.setAttribute("logname", result.getM_name());
-	        return "home";
+	        return "redirect:/main/home";
 	    }
 		
 	}
@@ -75,18 +77,9 @@ public class MemberController {
 		
 		session.invalidate();
 		
-		return "home";
+		return "/main/home";
 	}
-	
-	// 관리자 홈에서 회원 정보 불러오기
-	@RequestMapping("/admin-index")
-	public void memeber_all(MemberVO vo, Model model) {
-		System.out.println("Controller : " + vo.toString());
-		System.out.println("controller : " + memberService.member_all(vo));
-		
-		model.addAttribute("memberList", memberService.member_all(vo));
-		
-	}
+
 	
 	
 	

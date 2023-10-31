@@ -8,16 +8,16 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>AQU I CITY 로그인</title>
 	<link rel="icon" href="img/Fevicon.png" type="image/png">
-  <link rel="stylesheet" href="resources/join_login/vendors/bootstrap/bootstrap.min.css">
-  <link rel="stylesheet" href="resources/join_login/vendors/fontawesome/css/all.min.css">
-	<link rel="stylesheet" href="resources/join_login/vendors/themify-icons/themify-icons.css">
-	<link rel="stylesheet" href="resources/join_login/vendors/linericon/style.css">
-  <link rel="stylesheet" href="resources/join_login/vendors/owl-carousel/owl.theme.default.min.css">
-  <link rel="stylesheet" href="resources/join_login/vendors/owl-carousel/owl.carousel.min.css">
-  <link rel="stylesheet" href="resources/join_login/vendors/nice-select/nice-select.css">
-  <link rel="stylesheet" href="resources/join_login/vendors/nouislider/nouislider.min.css">
+  <link rel="stylesheet" href="../resources/join_login/vendors/bootstrap/bootstrap.min.css">
+  <link rel="stylesheet" href="../resources/join_login/vendors/fontawesome/css/all.min.css">
+	<link rel="stylesheet" href="../resources/join_login/vendors/themify-icons/themify-icons.css">
+	<link rel="stylesheet" href="../resources/join_login/vendors/linericon/style.css">
+  <link rel="stylesheet" href="../resources/join_login/vendors/owl-carousel/owl.theme.default.min.css">
+  <link rel="stylesheet" href="../resources/join_login/vendors/owl-carousel/owl.carousel.min.css">
+  <link rel="stylesheet" href="../resources/join_login/vendors/nice-select/nice-select.css">
+  <link rel="stylesheet" href="../resources/join_login/vendors/nouislider/nouislider.min.css">
 
-  <link rel="stylesheet" href="resources/join_login/css/style.css">
+  <link rel="stylesheet" href="../resources/join_login/css/style.css">
 </head>
 <body>
 	
@@ -64,13 +64,13 @@
 	<!--================End Login Box Area =================-->
 
 
-  <script src="resources/join_login/vendors/jquery/jquery-3.2.1.min.js"></script>
-  <script src="resources/join_login/vendors/bootstrap/bootstrap.bundle.min.js"></script>
-  <script src="resources/join_login/vendors/skrollr.min.js"></script>
-  <script src="resources/join_login/vendors/owl-carousel/owl.carousel.min.js"></script>
-  <script src="resources/join_login/vendors/nice-select/jquery.nice-select.min.js"></script>
-  <script src="resources/join_login/vendors/jquery.ajaxchimp.min.js"></script>
-  <script src="resources/join_login/vendors/mail-script.js"></script>
-  <script src="resources/join_login/js/main.js"></script>
+  <script src="../resources/join_login/vendors/jquery/jquery-3.2.1.min.js"></script>
+  <script src="../resources/join_login/vendors/bootstrap/bootstrap.bundle.min.js"></script>
+  <script src="../resources/join_login/vendors/skrollr.min.js"></script>
+  <script src="../resources/join_login/vendors/owl-carousel/owl.carousel.min.js"></script>
+  <script src="../resources/join_login/vendors/nice-select/jquery.nice-select.min.js"></script>
+  <script src="../resources/join_login/vendors/jquery.ajaxchimp.min.js"></script>
+  <script src="../resources/join_login/vendors/mail-script.js"></script>
+  <script src="../resources/join_login/js/main.js"></script>
 </body>
 </html>

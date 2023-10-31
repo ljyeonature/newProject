@@ -9,31 +9,31 @@
 <title>AQU I CITY 회원가입</title>
 <link rel="icon" href="img/Fevicon.png" type="image/png">
 <link rel="stylesheet"
-	href="resources/join_login/vendors/bootstrap/bootstrap.min.css">
+	href="../resources/join_login/vendors/bootstrap/bootstrap.min.css">
 <link rel="stylesheet"
-	href="resources/join_login/vendors/fontawesome/css/all.min.css">
+	href="../resources/join_login/vendors/fontawesome/css/all.min.css">
 <link rel="stylesheet"
-	href="resources/join_login/vendors/themify-icons/themify-icons.css">
+	href="../resources/join_login/vendors/themify-icons/themify-icons.css">
 <link rel="stylesheet"
-	href="resources/join_login/vendors/linericon/style.css">
+	href="../resources/join_login/vendors/linericon/style.css">
 <link rel="stylesheet"
-	href="resources/join_login/vendors/owl-carousel/owl.theme.default.min.css">
+	href="../resources/join_login/vendors/owl-carousel/owl.theme.default.min.css">
 <link rel="stylesheet"
-	href="resources/join_login/vendors/owl-carousel/owl.carousel.min.css">
+	href="../resources/join_login/vendors/owl-carousel/owl.carousel.min.css">
 <link rel="stylesheet"
-	href="resources/join_login/vendors/nice-select/nice-select.css">
+	href="../resources/join_login/vendors/nice-select/nice-select.css">
 <link rel="stylesheet"
-	href="resources/join_login/vendors/nouislider/nouislider.min.css">
+	href="../resources/join_login/vendors/nouislider/nouislider.min.css">
 
-<link rel="stylesheet" href="resources/join_login/css/style.css">
+<link rel="stylesheet" href="../resources/join_login/css/style.css">
 
 <script
 	src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 
 
 <!-- 폼 유효성 검사 -->
-<script src="resources/join_login/vendors/jquery/jquery-3.2.1.min.js"></script>
-<script src="resources/join_login/vendors/jquery.ajaxchimp.min.js"></script>
+<script src="../resources/join_login/vendors/jquery/jquery-3.2.1.min.js"></script>
+<script src="../resources/join_login/vendors/jquery.ajaxchimp.min.js"></script>
 <script
 	src="https://cdn.jsdelivr.net/npm/jquery-validation@1.17.0/dist/jquery.validate.min.js"></script>
 <script type="text/javascript">
@@ -213,14 +213,14 @@
 
 
 	<script
-		src="resources/join_login/vendors/bootstrap/bootstrap.bundle.min.js"></script>
-	<script src="resources/join_login/vendors/skrollr.min.js"></script>
+		src="../resources/join_login/vendors/bootstrap/bootstrap.bundle.min.js"></script>
+	<script src="../resources/join_login/vendors/skrollr.min.js"></script>
 	<script
-		src="resources/join_login/vendors/owl-carousel/owl.carousel.min.js"></script>
+		src="../resources/join_login/vendors/owl-carousel/owl.carousel.min.js"></script>
 	<script
-		src="resources/join_login/vendors/nice-select/jquery.nice-select.min.js"></script>
-	<script src="resources/join_login/vendors/mail-script.js"></script>
-	<script src="resources/join_login/js/main.js"></script>
+		src="../resources/join_login/vendors/nice-select/jquery.nice-select.min.js"></script>
+	<script src="../resources/join_login/vendors/mail-script.js"></script>
+	<script src="../resources/join_login/js/main.js"></script>
 
 
 

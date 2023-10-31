@@ -15,9 +15,6 @@ public class MemberVO {
 	private String m_point;
 	private String m_rol;
 	
-	
-	
-	
-	
+
 	
 }

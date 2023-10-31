@@ -7,132 +7,47 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 <!--===============================================================================================-->	
-	<link rel="icon" type="image/png" href="resources/main/images/icons/favicon.png"/>
+	<link rel="icon" type="image/png" href="../resources/main/images/icons/favicon.png"/>
 <!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="resources/main/vendor/bootstrap/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="../resources/main/vendor/bootstrap/css/bootstrap.min.css">
 <!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="resources/main/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+	<link rel="stylesheet" type="text/css" href="../resources/main/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
 <!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="resources/main/fonts/iconic/css/material-design-iconic-font.min.css">
+	<link rel="stylesheet" type="text/css" href="../resources/main/fonts/iconic/css/material-design-iconic-font.min.css">
 <!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="resources/main/fonts/linearicons-v1.0.0/icon-font.min.css">
+	<link rel="stylesheet" type="text/css" href="../resources/main/fonts/linearicons-v1.0.0/icon-font.min.css">
 <!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="resources/main/vendor/animate/animate.css">
+	<link rel="stylesheet" type="text/css" href="../resources/main/vendor/animate/animate.css">
 <!--===============================================================================================-->	
-	<link rel="stylesheet" type="text/css" href="resources/main/vendor/css-hamburgers/hamburgers.min.css">
+	<link rel="stylesheet" type="text/css" href="../resources/main/vendor/css-hamburgers/hamburgers.min.css">
 <!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="resources/main/vendor/animsition/css/animsition.min.css">
+	<link rel="stylesheet" type="text/css" href="../resources/main/vendor/animsition/css/animsition.min.css">
 <!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="resources/main/vendor/select2/select2.min.css">
+	<link rel="stylesheet" type="text/css" href="../resources/main/vendor/select2/select2.min.css">
 <!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="resources/main/vendor/perfect-scrollbar/perfect-scrollbar.css">
+	<link rel="stylesheet" type="text/css" href="../resources/main/vendor/perfect-scrollbar/perfect-scrollbar.css">
 <!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="resources/main/css/util.css">
-	<link rel="stylesheet" type="text/css" href="resources/main/css/main.css">
+	<link rel="stylesheet" type="text/css" href="../resources/main/css/util.css">
+	<link rel="stylesheet" type="text/css" href="../resources/main/css/main.css">
 <!--===============================================================================================-->
 </head>
 <body class="animsition">
 	
 	<!-- Header -->
-	<header class="header-v4">
-		<!-- Header desktop -->
+	<header>
+		<!-- Header -->
 		<div class="container-menu-desktop">
-			<!-- Topbar -->
-			<div class="top-bar">
-				<div class="content-topbar flex-sb-m h-full container">
-					<div class="left-top-bar">
-						Free shipping for standard order over $100
-					</div>
+			<!-- Header desktop -->
+			<%@include file="top-bar.jsp"%>
+			<%@include file="main-header.jsp"%>
 
-					<div class="right-top-bar flex-w h-full">
-						<a href="#" class="flex-c-m trans-04 p-lr-25">
-							Help & FAQs
-						</a>
-
-						<a href="login" class="flex-c-m trans-04 p-lr-25">
-							My Account
-						</a>
-
-						<a href="#" class="flex-c-m trans-04 p-lr-25">
-							EN
-						</a>
-
-						<a href="#" class="flex-c-m trans-04 p-lr-25">
-							USD
-						</a>
-					</div>
-				</div>
-			</div>
-
-			<div class="wrap-menu-desktop how-shadow1">
-				<nav class="limiter-menu-desktop container">
-					
-					<!-- Logo desktop -->		
-					<a href="#" class="logo">
-						<img src="resources/main/images/icons/logo-01.png" alt="IMG-LOGO">
-					</a>
-
-					<!-- Menu desktop -->
-					<div class="menu-desktop">
-						<ul class="main-menu">
-							<li>
-								<a href="home">Home</a>
-								<ul class="sub-menu">
-									<li><a href="home">Homepage 1</a></li>
-									<li><a href="home-02">Homepage 2</a></li>
-									<li><a href="home-03">Homepage 3</a></li>
-								</ul>
-							</li>
-
-							<li>
-								<a href="product">Shop</a>
-							</li>
-
-							<li class="label1" data-label1="hot">
-								<a href="shoping-cart">Features</a>
-							</li>
-
-							<li class="active-menu">
-								<a href="blog">Blog</a>
-							</li>
-
-							<li>
-								<a href="about">About</a>
-							</li>
-
-							<li>
-								<a href="contact">Contact</a>
-							</li>
-						</ul>
-					</div>	
-
-					<!-- Icon header -->
-					<div class="wrap-icon-header flex-w flex-r-m">
-						<div class="icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11 js-show-modal-search">
-							<i class="zmdi zmdi-search"></i>
-						</div>
-
-						<div
-							class="icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11 icon-header-noti js-show-cart"
-							data-notify="2">
-							<i class="zmdi zmdi-favorite-outline"></i>
-							<!-- <i class="zmdi zmdi-shopping-cart"></i> -->
-						</div>
-
-						<a href="shoping-cart"
-							class="dis-block icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11 icon-header-noti"
-							data-notify="0"> <i class="zmdi zmdi-shopping-cart"></i>
-						</a>
-					</div>
-				</nav>
-			</div>	
 		</div>
 
 		<!-- Header Mobile -->
 		<div class="wrap-header-mobile">
 			<!-- Logo moblie -->		
 			<div class="logo-mobile">
-				<a href="home"><img src="resources/main/images/icons/logo-01.png" alt="IMG-LOGO"></a>
+				<a href="home"><img src="../resources/main/images/icons/logo-01.png" alt="IMG-LOGO"></a>
 			</div>
 
 			<!-- Icon header -->
@@ -232,7 +147,7 @@
 		<div class="modal-search-header flex-c-m trans-04 js-hide-modal-search">
 			<div class="container-search-header">
 				<button class="flex-c-m btn-hide-modal-search trans-04 js-hide-modal-search">
-					<img src="resources/main/images/icons/icon-close2.png" alt="CLOSE">
+					<img src="../resources/main/images/icons/icon-close2.png" alt="CLOSE">
 				</button>
 
 				<form class="wrap-search-header flex-w p-l-15">
@@ -264,7 +179,7 @@
 				<ul class="header-cart-wrapitem w-full">
 					<li class="header-cart-item flex-w flex-t m-b-12">
 						<div class="header-cart-item-img">
-							<img src="resources/main/images/item-cart-01.jpg" alt="IMG">
+							<img src="../resources/main/images/item-cart-01.jpg" alt="IMG">
 						</div>
 
 						<div class="header-cart-item-txt p-t-8">
@@ -280,7 +195,7 @@
 
 					<li class="header-cart-item flex-w flex-t m-b-12">
 						<div class="header-cart-item-img">
-							<img src="resources/main/images/item-cart-02.jpg" alt="IMG">
+							<img src="../resources/main/images/item-cart-02.jpg" alt="IMG">
 						</div>
 
 						<div class="header-cart-item-txt p-t-8">
@@ -296,7 +211,7 @@
 
 					<li class="header-cart-item flex-w flex-t m-b-12">
 						<div class="header-cart-item-img">
-							<img src="resources/main/images/item-cart-03.jpg" alt="IMG">
+							<img src="../resources/main/images/item-cart-03.jpg" alt="IMG">
 						</div>
 
 						<div class="header-cart-item-txt p-t-8">
@@ -348,7 +263,7 @@
 						<!-- item blog -->
 						<div class="p-b-63">
 							<a href="blog-detail" class="hov-img0 how-pos5-parent">
-								<img src="resources/main/images/blog-04.jpg" alt="IMG-BLOG">
+								<img src="../resources/main/images/blog-04.jpg" alt="IMG-BLOG">
 
 								<div class="flex-col-c-m size-123 bg9 how-pos5">
 									<span class="ltext-107 cl2 txt-center">
@@ -401,7 +316,7 @@
 						<!-- item blog -->
 						<div class="p-b-63">
 							<a href="blog-detail" class="hov-img0 how-pos5-parent">
-								<img src="resources/main/images/blog-05.jpg" alt="IMG-BLOG">
+								<img src="../resources/main/images/blog-05.jpg" alt="IMG-BLOG">
 
 								<div class="flex-col-c-m size-123 bg9 how-pos5">
 									<span class="ltext-107 cl2 txt-center">
@@ -454,7 +369,7 @@
 						<!-- item blog -->
 						<div class="p-b-63">
 							<a href="blog-detail" class="hov-img0 how-pos5-parent">
-								<img src="resources/main/images/blog-06.jpg" alt="IMG-BLOG">
+								<img src="../resources/main/images/blog-06.jpg" alt="IMG-BLOG">
 
 								<div class="flex-col-c-m size-123 bg9 how-pos5">
 									<span class="ltext-107 cl2 txt-center">
@@ -573,7 +488,7 @@
 							<ul>
 								<li class="flex-w flex-t p-b-30">
 									<a href="#" class="wrao-pic-w size-214 hov-ovelay1 m-r-20">
-										<img src="resources/main/images/product-min-01.jpg" alt="PRODUCT">
+										<img src="../resources/main/images/product-min-01.jpg" alt="PRODUCT">
 									</a>
 
 									<div class="size-215 flex-col-t p-t-8">
@@ -589,7 +504,7 @@
 
 								<li class="flex-w flex-t p-b-30">
 									<a href="#" class="wrao-pic-w size-214 hov-ovelay1 m-r-20">
-										<img src="resources/main/images/product-min-02.jpg" alt="PRODUCT">
+										<img src="../resources/main/images/product-min-02.jpg" alt="PRODUCT">
 									</a>
 
 									<div class="size-215 flex-col-t p-t-8">
@@ -605,7 +520,7 @@
 
 								<li class="flex-w flex-t p-b-30">
 									<a href="#" class="wrao-pic-w size-214 hov-ovelay1 m-r-20">
-										<img src="resources/main/images/product-min-03.jpg" alt="PRODUCT">
+										<img src="../resources/main/images/product-min-03.jpg" alt="PRODUCT">
 									</a>
 
 									<div class="size-215 flex-col-t p-t-8">
@@ -875,23 +790,23 @@
 			<div class="p-t-40">
 				<div class="flex-c-m flex-w p-b-18">
 					<a href="#" class="m-all-1">
-						<img src="resources/main/images/icons/icon-pay-01.png" alt="ICON-PAY">
+						<img src="../resources/main/images/icons/icon-pay-01.png" alt="ICON-PAY">
 					</a>
 
 					<a href="#" class="m-all-1">
-						<img src="resources/main/images/icons/icon-pay-02.png" alt="ICON-PAY">
+						<img src="../resources/main/images/icons/icon-pay-02.png" alt="ICON-PAY">
 					</a>
 
 					<a href="#" class="m-all-1">
-						<img src="resources/main/images/icons/icon-pay-03.png" alt="ICON-PAY">
+						<img src="../resources/main/images/icons/icon-pay-03.png" alt="ICON-PAY">
 					</a>
 
 					<a href="#" class="m-all-1">
-						<img src="resources/main/images/icons/icon-pay-04.png" alt="ICON-PAY">
+						<img src="../resources/main/images/icons/icon-pay-04.png" alt="ICON-PAY">
 					</a>
 
 					<a href="#" class="m-all-1">
-						<img src="resources/main/images/icons/icon-pay-05.png" alt="ICON-PAY">
+						<img src="../resources/main/images/icons/icon-pay-05.png" alt="ICON-PAY">
 					</a>
 				</div>
 
@@ -914,14 +829,14 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 	</div>
 
 <!--===============================================================================================-->	
-	<script src="resources/main/vendor/jquery/jquery-3.2.1.min.js"></script>
+	<script src="../resources/main/vendor/jquery/jquery-3.2.1.min.js"></script>
 <!--===============================================================================================-->
-	<script src="resources/main/vendor/animsition/js/animsition.min.js"></script>
+	<script src="../resources/main/vendor/animsition/js/animsition.min.js"></script>
 <!--===============================================================================================-->
-	<script src="resources/main/vendor/bootstrap/js/popper.js"></script>
-	<script src="resources/main/vendor/bootstrap/js/bootstrap.min.js"></script>
+	<script src="../resources/main/vendor/bootstrap/js/popper.js"></script>
+	<script src="../resources/main/vendor/bootstrap/js/bootstrap.min.js"></script>
 <!--===============================================================================================-->
-	<script src="resources/main/vendor/select2/select2.min.js"></script>
+	<script src="../resources/main/vendor/select2/select2.min.js"></script>
 	<script>
 		$(".js-select2").each(function(){
 			$(this).select2({
@@ -931,9 +846,9 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 		})
 	</script>
 <!--===============================================================================================-->
-	<script src="resources/main/vendor/MagnificPopup/jquery.magnific-popup.min.js"></script>
+	<script src="../resources/main/vendor/MagnificPopup/jquery.magnific-popup.min.js"></script>
 <!--===============================================================================================-->
-	<script src="resources/main/vendor/perfect-scrollbar/perfect-scrollbar.min.js"></script>
+	<script src="../resources/main/vendor/perfect-scrollbar/perfect-scrollbar.min.js"></script>
 	<script>
 		$('.js-pscroll').each(function(){
 			$(this).css('position','relative');
@@ -950,7 +865,10 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 		});
 	</script>
 <!--===============================================================================================-->
-	<script src="resources/main/js/main.js"></script>
-
+	<script src="../resources/main/js/main.js"></script>
+<script>
+		$('.main-menu > li').removeClass('active-menu');
+		$('.main-menu > li:eq(2)').addClass('active-menu');
+	</script>
 </body>
 </html>

@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ taglib prefix='c' uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix='c' uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -16,14 +16,14 @@
 <title>관리자페이지</title>
 
 <!-- Custom fonts for this template-->
-<link href="resources/admin/vendor/fontawesome-free/css/all.min.css"
+<link href="../resources/admin/vendor/fontawesome-free/css/all.min.css"
 	rel="stylesheet" type="text/css">
 <link
 	href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
 	rel="stylesheet">
 
 <!-- Custom styles for this template-->
-<link href="resources/admin/css/sb-admin-2.min.css" rel="stylesheet">
+<link href="../resources/admin/css/sb-admin-2.min.css" rel="stylesheet">
 
 </head>
 
@@ -40,7 +40,7 @@
 			<!-- Sidebar - Brand -->
 			<a
 				class="sidebar-brand d-flex align-items-center justify-content-center"
-				href="index.html">
+				href="../main/home">
 				<div class="sidebar-brand-icon rotate-n-15">
 					<i class="fas fa-laugh-wink"></i>
 				</div> <!-- 제목  -->
@@ -54,8 +54,8 @@
 
 			<!-- Nav Item - Dashboard -->
 			<li class="nav-item active"><a class="nav-link"
-				href="home"> <i class="fas fa-fw fa-tachometer-alt"></i> <span>Dashboard</span></a>
-			</li>
+				href="admin-index"> <i class="fas fa-fw fa-tachometer-alt"></i>
+					<span>Dashboard</span></a></li>
 
 			<!-- Divider -->
 			<hr class="sidebar-divider">
@@ -276,8 +276,8 @@
 								<h6 class="dropdown-header">Message Center</h6>
 								<a class="dropdown-item d-flex align-items-center" href="#">
 									<div class="dropdown-list-image mr-3">
-										<img class="rounded-circle" src="img/undraw_profile_1.svg"
-											alt="...">
+										<img class="rounded-circle"
+											src="../resources/admin/img/undraw_profile_1.svg" alt="...">
 										<div class="status-indicator bg-success"></div>
 									</div>
 									<div class="font-weight-bold">
@@ -287,8 +287,8 @@
 									</div>
 								</a> <a class="dropdown-item d-flex align-items-center" href="#">
 									<div class="dropdown-list-image mr-3">
-										<img class="rounded-circle" src="img/undraw_profile_2.svg"
-											alt="...">
+										<img class="rounded-circle"
+											src="../resources/admin/img/undraw_profile_2.svg" alt="...">
 										<div class="status-indicator"></div>
 									</div>
 									<div>
@@ -298,8 +298,8 @@
 									</div>
 								</a> <a class="dropdown-item d-flex align-items-center" href="#">
 									<div class="dropdown-list-image mr-3">
-										<img class="rounded-circle" src="img/undraw_profile_3.svg"
-											alt="...">
+										<img class="rounded-circle"
+											src="../resources/admin/img/undraw_profile_3.svg" alt="...">
 										<div class="status-indicator bg-warning"></div>
 									</div>
 									<div>
@@ -333,7 +333,7 @@
 							aria-expanded="false"> <span
 								class="mr-2 d-none d-lg-inline text-gray-600 small">Douglas
 									McGee</span> <img class="img-profile rounded-circle"
-								src="img/undraw_profile.svg">
+								src="../resources/admin/img/undraw_profile.svg">
 						</a> <!-- Dropdown - User Information -->
 							<div
 								class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
@@ -393,145 +393,159 @@
 									</div>
 								</div>
 							</div>
+						</div>
 
-							<!-- Pie Chart -->
-							<div class="col-xl-4 col-lg-5">
-								<div class="card shadow mb-4">
-									<!-- Card Header - Dropdown -->
-									<div
-										class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-										<h6 class="m-0 font-weight-bold text-primary">Revenue
-											Sources</h6>
-										<div class="dropdown no-arrow">
-											<a class="dropdown-toggle" href="#" role="button"
-												id="dropdownMenuLink" data-toggle="dropdown"
-												aria-haspopup="true" aria-expanded="false"> <i
-												class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
-											</a>
-											<div
-												class="dropdown-menu dropdown-menu-right shadow animated--fade-in"
-												aria-labelledby="dropdownMenuLink">
-												<div class="dropdown-header">Dropdown Header:</div>
-												<a class="dropdown-item" href="#">Action</a> <a
-													class="dropdown-item" href="#">Another action</a>
-												<div class="dropdown-divider"></div>
-												<a class="dropdown-item" href="#">Something else here</a>
-											</div>
+						<!-- Pie Chart -->
+						<div class="col-xl-4 col-lg-5">
+							<div class="card shadow mb-4">
+								<!-- Card Header - Dropdown -->
+								<div
+									class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+									<h6 class="m-0 font-weight-bold text-primary">Revenue
+										Sources</h6>
+									<div class="dropdown no-arrow">
+										<a class="dropdown-toggle" href="#" role="button"
+											id="dropdownMenuLink" data-toggle="dropdown"
+											aria-haspopup="true" aria-expanded="false"> <i
+											class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
+										</a>
+										<div
+											class="dropdown-menu dropdown-menu-right shadow animated--fade-in"
+											aria-labelledby="dropdownMenuLink">
+											<div class="dropdown-header">Dropdown Header:</div>
+											<a class="dropdown-item" href="#">Action</a> <a
+												class="dropdown-item" href="#">Another action</a>
+											<div class="dropdown-divider"></div>
+											<a class="dropdown-item" href="#">Something else here</a>
 										</div>
 									</div>
-									<!-- Card Body -->
-									<div class="card-body">
-										<div class="chart-pie pt-4 pb-2">
-											<canvas id="myPieChart"></canvas>
-										</div>
-										<div class="mt-4 text-center small">
-											<span class="mr-2"> <i
-												class="fas fa-circle text-primary"></i> Direct
-											</span> <span class="mr-2"> <i
-												class="fas fa-circle text-success"></i> Social
-											</span> <span class="mr-2"> <i
-												class="fas fa-circle text-info"></i> Referral
-											</span>
-										</div>
+								</div>
+								<!-- Card Body -->
+								<div class="card-body">
+									<div class="chart-pie pt-4 pb-2">
+										<canvas id="myPieChart"></canvas>
+									</div>
+									<div class="mt-4 text-center small">
+										<span class="mr-2"> <i
+											class="fas fa-circle text-primary"></i> Direct
+										</span> <span class="mr-2"> <i
+											class="fas fa-circle text-success"></i> Social
+										</span> <span class="mr-2"> <i class="fas fa-circle text-info"></i>
+											Referral
+										</span>
 									</div>
 								</div>
 							</div>
 						</div>
+					</div>
 
-						<!-- Content Row -->
-
-
-						<!-- Content Column -->
+					<!-- Content Row -->
 
 
-						<!-- Project Card Example -->
+					<!-- Content Column -->
 
 
-						<div class="card shadow mb-4" style="width: 100%;">
-							<div class="card-header py-3">
-								<h6 class="m-0 font-weight-bold text-primary">최근 회원가입</h6>
-							</div>
-							<div class="col-sm-12" width = "100%"><table class="table table-bordered dataTable" id="dataTable" width="100%" cellspacing="0" role="grid" aria-describedby="dataTable_info" style="width: 100%;">
-                                    <thead>
-                                      <tr role="row">
-                                        <tr role="row"><th class="sorting sorting_asc" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Name: activate to sort column descending" style="width: 130px;">이름</th>
-                                        <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" style="width: 130px;">이메일</th>
-                                        <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" style="width: 130px;">아이디</th>
-	                                    <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" style="width: 130px;">비밀번호</th>
-                                        <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" style="width: 130px;">주소</th></tr>
-                                   	</tr>
-                                    </thead>
-                                    <tbody>
-                                    <c:forEach items="${memberList}" var="member">
-                                    
+					<!-- Project Card Example -->
+
+
+					<div class="card shadow mb-4" style="width: 100%;">
+						<div class="card-header py-3">
+							<h6 class="m-0 font-weight-bold text-primary">최근 회원가입</h6>
+						</div>
+						<div class="col-sm-12" width="100%">
+							<table class="table table-bordered dataTable" id="dataTable"
+								width="100%" cellspacing="0" role="grid"
+								aria-describedby="dataTable_info" style="width: 100%;">
+								<thead>
+									<tr role="row">
+									<tr role="row">
+										<th class="sorting sorting_asc" tabindex="0"
+											aria-controls="dataTable" rowspan="1" colspan="1"
+											aria-sort="ascending"
+											aria-label="Name: activate to sort column descending"
+											style="width: 130px;">이름</th>
+										<th class="sorting" tabindex="0" aria-controls="dataTable"
+											rowspan="1" colspan="1" style="width: 130px;">이메일</th>
+										<th class="sorting" tabindex="0" aria-controls="dataTable"
+											rowspan="1" colspan="1" style="width: 130px;">아이디</th>
+										<th class="sorting" tabindex="0" aria-controls="dataTable"
+											rowspan="1" colspan="1" style="width: 130px;">비밀번호</th>
+										<th class="sorting" tabindex="0" aria-controls="dataTable"
+											rowspan="1" colspan="1" style="width: 130px;">주소</th>
+									</tr>
+								</thead>
+								<tbody>
+									<c:forEach items="${memberList}" var="member">
+
 										<tr>
 											<td>${member.m_name}</td>
 											<td>${member.m_email}</td>
 											<td>${member.m_id}</td>
 											<td>${member.m_pass}</td>
 											<td>${member.m_addr}</td>
-		
+
 										</tr>
 
-                                    </c:forEach>
-                                    
-                                    
-                                    
-                                    </tbody>
-                                 
-                                  
-                                  </table>
+									</c:forEach>
 
+
+
+								</tbody>
+
+
+							</table>
+
+						</div>
+					</div>
+				</div>
+				<!-- Scroll to Top Button-->
+				<a class="scroll-to-top rounded" href="#page-top"> <i
+					class="fas fa-angle-up"></i>
+				</a>
+
+				<!-- Logout Modal-->
+				<div class="modal fade" id="logoutModal" tabindex="-1" role="dialog"
+					aria-labelledby="exampleModalLabel" aria-hidden="true">
+					<div class="modal-dialog" role="document">
+						<div class="modal-content">
+							<div class="modal-header">
+								<h5 class="modal-title" id="exampleModalLabel">Ready to
+									Leave?</h5>
+								<button class="close" type="button" data-dismiss="modal"
+									aria-label="Close">
+									<span aria-hidden="true">×</span>
+								</button>
 							</div>
+							<div class="modal-body">Select "Logout" below if you are
+								ready to end your current session.</div>
+							<div class="modal-footer">
+								<button class="btn btn-secondary" type="button"
+									data-dismiss="modal">Cancel</button>
+								<a class="btn btn-primary" href="logout_do">Logout</a>
 							</div>
-							<!-- Scroll to Top Button-->
-							<a class="scroll-to-top rounded" href="#page-top"> 
-							<i class="fas fa-angle-up"></i>
-							</a>
+						</div>
+					</div>
+				</div>
 
-							<!-- Logout Modal-->
-							<div class="modal fade" id="logoutModal" tabindex="-1"
-								role="dialog" aria-labelledby="exampleModalLabel"
-								aria-hidden="true">
-								<div class="modal-dialog" role="document">
-									<div class="modal-content">
-										<div class="modal-header">
-											<h5 class="modal-title" id="exampleModalLabel">Ready to
-												Leave?</h5>
-											<button class="close" type="button" data-dismiss="modal"
-												aria-label="Close">
-												<span aria-hidden="true">×</span>
-											</button>
-										</div>
-										<div class="modal-body">Select "Logout" below if you are
-											ready to end your current session.</div>
-										<div class="modal-footer">
-											<button class="btn btn-secondary" type="button"
-												data-dismiss="modal">Cancel</button>
-											<a class="btn btn-primary" href="logout_do">Logout</a>
-										</div>
-									</div>
-								</div>
-							</div>
 
-							<!-- Bootstrap core JavaScript-->
-							<script src="resources/admin/vendor/jquery/jquery.min.js"></script>
-							<script
-								src="resources/admin/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+				<!-- Bootstrap core JavaScript-->
+				<script src="../resources/admin/vendor/jquery/jquery.min.js"></script>
+				<script
+					src="../resources/admin/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
-							<!-- Core plugin JavaScript-->
-							<script
-								src="resources/admin/vendor/jquery-easing/jquery.easing.min.js"></script>
+				<!-- Core plugin JavaScript-->
+				<script
+					src="../resources/admin/vendor/jquery-easing/jquery.easing.min.js"></script>
 
-							<!— Custom scripts for all pages—>
-							<script src="resources/admin/js/sb-admin-2.min.js"></script>
+				<!-- Custom scripts for all pages -->
+				<script src="../resources/admin/js/sb-admin-2.min.js"></script>
 
-							<!— Page level plugins —>
-							<script src="resources/admin/vendor/chart.js/Chart.min.js"></script>
+				<!-- Page level plugins -->
+				<script src="../resources/admin/vendor/chart.js/Chart.min.js"></script>
 
-							<!— Page level custom scripts —>
-							<script src="resources/admin/js/demo/chart-area-demo.js"></script>
-							<script src="resources/admin/js/demo/chart-pie-demo.js"></script>
+				<!-- Page level custom scripts -->
+				<script src="../resources/admin/js/demo/chart-area-demo.js"></script>
+				<script src="../resources/admin/js/demo/chart-pie-demo.js"></script>
 </body>
 
 </html>
