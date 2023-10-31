@@ -1,5 +1,7 @@
 package com.java.repository;
 
+import java.util.List;
+
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -13,31 +15,17 @@ public class MemberDAOImpl implements MemberDAO{
 	//### (2) 해당 어노테이션 지정
 	@Autowired
 	private SqlSessionTemplate sqlSession;
-	
-	/*
-	 * public void insertMember(MemberVO vo) {
-	 * sqlSession.insert("org.java.MemberMapper.insertMember", vo); }
-	 */
-	
-	/*
-	 * //--------------------------------------------- public MemberVO
-	 * loginCheck(MemberVO vo) { return
-	 * sqlSession.selectOne("org.javassem.MemberMapper.loginCheck", vo); }
-	 */
 
+	// 회원가입
 	@Override
-	public void insertMember(com.java.domain.MemberVO vo) {
+	public void insertMember(MemberVO vo) {
 		System.out.println(vo.toString());
 		int result = sqlSession.insert("org.java.MemberMapper.insertMember", vo);
 		System.out.println("insert : " + result);
 	}
 
-	@Override
-	public com.java.domain.MemberVO loginCheck(com.java.domain.MemberVO vo) {
-		// TODO Auto-generated method stub
-		return null;
-	}
 
+	// 회원가입 id 체크
 	@Override
 	public boolean checkId(MemberVO vo) {
 		//System.out.println(vo.toString());
@@ -49,5 +37,27 @@ public class MemberDAOImpl implements MemberDAO{
 		}
 			
 		return false;
+	}
+	// 로그인 체크
+	@Override
+	public MemberVO loginCheck(MemberVO vo) {
+		System.out.println("memberDAO : "+vo.toString());
+		return sqlSession.selectOne("org.java.MemberMapper.loginCheck", vo);
+		
+	}
+
+
+	@Override
+	public List<MemberVO> member_all(MemberVO vo) {
+		System.out.println("MemberDAO : " + vo.toString());
+		return sqlSession.selectList("org.java.MemberMapper.member_all", vo);
+	}
+
+
+	@Override
+	public MemberVO adminCheck(MemberVO vo) {
+		MemberVO result = sqlSession.selectOne("org.java.MemberMapper.adminCheck", vo);
+		System.out.println(result.getM_id());
+		return result;
 	}
 }

@@ -38,12 +38,12 @@
 				<div class="col-lg-6">
 					<div class="login_form_inner">
 						<h3>Log in to enter</h3>
-						<form class="row login_form login" action="login_do" id="contactForm" >
+						<form class="row login_form login" action="login_do" id="contactForm" method="post">
 							<div class="col-md-12 form-group">
-								<input type="text" class="form-control" id="id" name="m_id" placeholder=Id onfocus="this.placeholder = ''" onblur="this.placeholder = 'Id'">
+								<input type="text" class="form-control" id="m_id" name="m_id" placeholder=Id onfocus="this.placeholder = ''" onblur="this.placeholder = 'Id'">
 							</div>
 							<div class="col-md-12 form-group">
-								<input type="text" class="form-control" id="pass" name="m_pass" placeholder="Password" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Password'">
+								<input type="password" class="form-control" id="m_pass" name="m_pass" placeholder="Password" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Password'">
 							</div>
 							<div class="col-md-12 form-group">
 								<div class="creat_account">

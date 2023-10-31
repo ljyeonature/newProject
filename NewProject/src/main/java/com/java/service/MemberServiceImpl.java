@@ -1,5 +1,7 @@
 package com.java.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -19,12 +21,28 @@ public class MemberServiceImpl implements MemberService{
 	}
 	
 	public MemberVO loginCheck(MemberVO vo) {
+		// System.out.println("로그인 : " + vo.getM_id() +"/" +vo.getM_pass());
 		return memberDAOImpl.loginCheck(vo);
 	}
 	
 	public boolean checkId(MemberVO vo) {
 		//System.out.println(memberDAOImpl.checkId(vo));
 		return memberDAOImpl.checkId(vo);
+	}
+
+	@Override
+	public List<MemberVO> member_all(MemberVO vo) {
+		System.out.println("MemberService: "+ vo.toString());
+		List<MemberVO> result = memberDAOImpl.member_all(vo);
+		System.out.println(result);
+		return result;
+	}
+
+	// 관리자 체크
+	@Override
+	public MemberVO adminCheck(MemberVO vo) {
+		System.out.println("로그인 : " + vo.getM_id() +"/" +vo.getM_pass());
+		return memberDAOImpl.adminCheck(vo);
 	}
 	
 }
