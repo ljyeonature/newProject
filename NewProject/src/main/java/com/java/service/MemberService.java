@@ -13,5 +13,10 @@ public interface MemberService {
 //	회원 목록 보기
 	public List<MemberVO> member_all(MemberVO vo);
 	
+	// 포인트
+	public MemberVO member_point_detail(MemberVO vo);
+	
+	// 포인트
+	public int member_point_content(MemberVO vo);
 	
 }
