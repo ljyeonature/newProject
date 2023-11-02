@@ -257,19 +257,22 @@
 				<div class="col-md-7 col-lg-8">
 					<div class="p-t-7 p-r-85 p-r-15-lg p-r-0-md">
 						<h3 class="mtext-111 cl2 p-b-16">
-							Our Story
+							A Small Seaside Town on the Desk
 						</h3>
 
 						<p class="stext-113 cl6 p-b-26">
-							Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris consequat consequat enim, non auctor massa ultrices non. Morbi sed odio massa. Quisque at vehicula tellus, sed tincidunt augue. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Maecenas varius egestas diam, eu sodales metus scelerisque congue. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Maecenas gravida justo eu arcu egestas convallis. Nullam eu erat bibendum, tempus ipsum eget, dictum enim. Donec non neque ut enim dapibus tincidunt vitae nec augue. Suspendisse potenti. Proin ut est diam. Donec condimentum euismod tortor, eget facilisis diam faucibus et. Morbi a tempor elit.
-						</p>
-
-						<p class="stext-113 cl6 p-b-26">
-							Donec gravida lorem elit, quis condimentum ex semper sit amet. Fusce eget ligula magna. Aliquam aliquam imperdiet sodales. Ut fringilla turpis in vehicula vehicula. Pellentesque congue ac orci ut gravida. Aliquam erat volutpat. Donec iaculis lectus a arcu facilisis, eu sodales lectus sagittis. Etiam pellentesque, magna vel dictum rutrum, neque justo eleifend elit, vel tincidunt erat arcu ut sem. Sed rutrum, turpis ut commodo efficitur, quam velit convallis ipsum, et maximus enim ligula ac ligula. 
-						</p>
-
-						<p class="stext-113 cl6 p-b-26">
-							Any questions? Let us know in store at 8th floor, 379 Hudson St, New York, NY 10018 or call us on (+1) 96 716 6879
+							우리 아쿠아이씨티는<br/>
+							고객들의 삶의 긍정적인 변화를 가져오고자 하는 방향성에서 탄생되었습니다.<br/>
+							현대 사회에서의 스트레스와 우울증은 날이 갈수록 극심해지고 있습니다.<br/>
+							<br/>
+							"애완동물과의 상호작용은 스트레스를 감소시키고 사회적 연결성을 높이는 데에 큰 효과가 있다."<br/>
+							<br/>
+							열대어와 아름다운 수족관은 자연적인 환경을 연상시킵니다.<br/>
+							이러한 환경은 사람들에게 평화로운 느낌을 줄 수 있으며<br/>
+							스트레스를 감소시키고 긴장을 풀 수 있다는 연구결과도 있습니다.<br/>
+							<br/>
+							아름답고 평온한 작은 바다도시를 보는 것이<br/>
+							이를 완화할 수 있는 좋은 방법이라고 확신했습니다.<br/>
 						</p>
 					</div>
 				</div>
@@ -287,20 +290,25 @@
 				<div class="order-md-2 col-md-7 col-lg-8 p-b-30">
 					<div class="p-t-7 p-l-85 p-l-15-lg p-l-0-md">
 						<h3 class="mtext-111 cl2 p-b-16">
-							Our Mission
+							Happy Today, and even Happier Tomorrow
 						</h3>
 
 						<p class="stext-113 cl6 p-b-26">
-							Mauris non lacinia magna. Sed nec lobortis dolor. Vestibulum rhoncus dignissim risus, sed consectetur erat. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Nullam maximus mauris sit amet odio convallis, in pharetra magna gravida. Praesent sed nunc fermentum mi molestie tempor. Morbi vitae viverra odio. Pellentesque ac velit egestas, luctus arcu non, laoreet mauris. Sed in ipsum tempor, consequat odio in, porttitor ante. Ut mauris ligula, volutpat in sodales in, porta non odio. Pellentesque tempor urna vitae mi vestibulum, nec venenatis nulla lobortis. Proin at gravida ante. Mauris auctor purus at lacus maximus euismod. Pellentesque vulputate massa ut nisl hendrerit, eget elementum libero iaculis.
+							아쿠아이씨티를 통해<br/>
+							현대인들에게 기쁨과 감동을 매일 선사하고자 합니다.<br/>
+							<br/>
+							"행복한 오늘, 그리고 더 행복할 내일"<br/>
+							<br/>
+							당신의 행복할 나날엔 늘 아쿠아이씨티가 함께할 겁니다.
 						</p>
 
 						<div class="bor16 p-l-29 p-b-9 m-t-22">
 							<p class="stext-114 cl6 p-r-40 p-b-11">
-								Creativity is just connecting things. When you ask creative people how they did something, they feel a little guilty because they didn't really do it, they just saw something. It seemed obvious to them after a while.
+								"잘 키운 물고기 한 마리, 열 아들 안 부럽다."
 							</p>
 
 							<span class="stext-111 cl8">
-								- Steve Job’s 
+								대표이사 이상철 
 							</span>
 						</div>
 					</div>

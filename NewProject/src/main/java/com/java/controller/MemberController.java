@@ -62,12 +62,17 @@ public class MemberController {
 	    } else if ("manager".equals(result.getM_rol())) {
 	    	session.setAttribute("logname", result.getM_name());
 	        return "redirect:/admin/admin-index";
-	    } else {
+	        
+	    } 
+	    else {
 	        session.setAttribute("logname", result.getM_name());
-	        return "redirect:/main/home";
+	        return "redirect:/member/home";
 	    }
 		
 	}
+	
+	// 아이디 저장하기(로그인시)
+	
 	
 	
 	
