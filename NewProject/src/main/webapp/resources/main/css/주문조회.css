@@ -1,0 +1,254 @@
+/* 768px 미만일 때 */
+@media (min-width: 1530px) {
+    .addcontainer {
+        width: 40%;
+    }  
+}
+@media (max-width: 1530px) {
+    .addcontainer {
+        width: 75%;
+    }  
+}
+
+*{
+    margin: 0;
+    padding: 0;
+}
+html{
+    font-size: 10px;
+}
+a{
+    text-decoration: none;
+    color: inherit;
+}
+.board_wrap{
+    width: 1000px;
+    margin: 100px auto;
+}
+
+/*제목, 부제목 설정*/
+.board_title{
+    margin-bottom: 30px;
+}
+.board_title h1{
+    font-size: 3rem;
+}
+.board_title p{
+    margin-top: 5px;
+    font-size: 1.4rem;
+}
+
+/*검색*/
+.search-wrap{
+    margin-left: 697px;
+    margin-bottom: 12px;
+}
+
+#search_btn{
+    background-color: #000;
+    color: #fff;
+    font-size: 12.5px;
+    padding: 6.5px 9px;
+    border-radius: 5px;
+    
+    
+}
+
+#sltfilter {
+    width: 73px;
+    padding: 5px;
+    background-color: #333;
+    color: #fff;
+    border-radius: 5px;
+}
+
+#search {
+    width: 175px;
+    padding: 5px;
+    background-color: #fff;
+    color: #333;
+    border-radius: 5px;
+}
+
+/*버튼 설정*/
+.bt_wrap{
+    margin-top: 30px;
+    text-align: center;
+    font-size: 0;
+}
+.bt_wrap a{
+    display: inline-block;
+    min-width: 80px;
+    margin-left: 10px;
+    padding: 10px;
+    border: 1px solid #000;
+    font-size: 1.4rem;
+    border-radius: 20px;
+}
+.bt_wrap a.on{
+    background-color: #000;
+    color: #fff;
+    border-radius: 20px;
+}
+.bt_wrap a:nth-child(1){
+    margin-left: 0;
+}
+
+/*리스트 블록 설정*/
+.board_list{
+    width: 100%;
+    border-top: 2px solid #000;
+}
+.board_list > div{
+    border-bottom: 1px solid #ddd;
+    text-align: center;
+}
+.board_list > div.top{
+    border-bottom: 1px solid #999;
+}
+.board_list > div:last-child{
+    border-bottom: 2px solid #000;
+}
+.board_list > div >div{
+    display: inline-block;
+    vertical-align: middle;
+    padding: 15px 0;
+    font-size: 1.4rem;
+}
+.board_list > div.top > div{
+    font-weight: 600;
+}
+
+/*공백 영역 설정*/
+.board_list .date{ /*date*/
+    width: 10%;
+    text-align: center;
+}
+.board_list .product{ /*product*/
+    width: 60%;
+    text-align: center;
+}
+.board_list .top .title{ 
+    text-align: center;
+}
+.board_list .count{ /*count*/
+    width: 10%;
+    text-align: center;
+}
+.board_list .price{ /*price*/
+    width: 10%;
+    text-align: center;
+}
+.board_list .status{ /*status*/
+    width: 8%;
+    text-align: center;
+}
+
+/*페이지 설정*/
+.board_page{
+    margin-top: 30px;
+    text-align: center;
+    font-size: 0;
+}
+.board_page a{
+    display: inline-block;
+    width: 30px;
+    height: 30px;
+    box-sizing: border-box;
+    vertical-align: middle;
+    border: 1px solid #ddd;
+    border-left: 0;
+    line-height: 100%;
+    border-radius: 15px;
+}
+.board_page a.btn{
+    padding-top: 7px;
+    font-size: 1.2rem;
+    letter-spacing: -3px;
+}
+.board_page a.num{
+    padding-top: 6px;
+    font-size: 1.4rem;
+}
+.board_page a.num.selected{
+    background-color: #000;
+    border-color: #000;
+    color: #fff;
+}
+.board_page a.frist{
+    border-left: 1px solid #ddd;
+}
+        
+        h1 {
+            margin: 100px 0px 0;
+            text-align: center;
+            font-family: Arial, sans-serif;
+        }
+        h2 {
+            margin: 0 10px 10px 0;
+            font-family: Arial, sans-serif;
+        }
+        
+        p {
+            margin: 5px 0px;
+            text-align: center;
+            font-family: Arial, sans-serif;
+        }
+        
+        .addcontainer {
+            padding: 20px;
+            border: 2px solid black;
+            margin: 20px auto 40px;
+        }
+ 
+        form {
+            margin-top: 20px;
+        }
+
+        input, textarea, select {
+            display: block;
+            margin-bottom: 8px;
+        }
+        
+        label {
+            font-weight: bold;
+            font-size: 15px;
+        }
+
+        input[type="text"], textarea{
+            width: 97%;
+            padding: 10px;
+            border: 1px solid black;
+            font-family: Arial, sans-serif;
+        }
+        #import_name{
+            width: 10%;
+            text-align: center;
+            
+        }
+        #import_tel{
+            width: 15%;
+            text-align: center;
+        }
+        
+        #import_postcode{
+            width: 10%;
+            text-align: center;
+            margin-left: 30px;
+        }
+        
+        #import_addr {
+            width: 25%;
+            text-align: center;
+        }
+        #import_pay {
+            width: 10%;
+            text-align: center;
+            background-color: black;
+            color: white
+            
+        }
+        #import_price{
+            width: 8%;
+            text-align: center;
+        }
