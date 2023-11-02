@@ -6,6 +6,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.java.domain.MemberVO;
 import com.java.service.MemberServiceImpl;
@@ -45,18 +47,27 @@ public class AdminController {
 	
 	@RequestMapping("/point-detail")
 	public void member_point_detail(MemberVO vo, Model model) {
-//		System.out.println("controller : " + memberService.member_point_detail(vo));
+		System.out.println("controller : " + vo);
+//		System.out.println("포인트 수정 p_point : " + vo.getM_point());
 		model.addAttribute("memberPoint", memberService.member_point_detail(vo));
 		
 	}
 	
+//	ajax로 보내면 해당 결과값을 얘가 반환해줘야함
 	@RequestMapping("/member-point-content")
-	public String member_point_content(@PathVariable String m_point, @RequestBody MemberVO vo, Model model) {
-		System.out.println("포인트 수정 m_point : " + m_point);
-		System.out.println(vo.getM_point());
+	@ResponseBody
+	public String member_point_content(MemberVO vo) {
 		int result = memberService.member_point_content(vo);
-		System.out.println("포인트 수정 : " + result );
-		return "redirect:/point-detail/{m_id}";
+		MemberVO point = memberService.member_point_detail(vo);
+		System.out.println("포인트 수정 p_point : " + point.getM_point());
+		System.out.println("포인트 수정 결과: " + result);
+		if(result == 1) {
+//			return point.getM_point();
+			return point.getM_point();
+		}
+		else {
+			return "error";
+		}
 	}
 	
 	

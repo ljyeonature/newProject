@@ -30,7 +30,56 @@
 
 <!-- Custom styles for this template-->
 <link href="../resources/admin/css/sb-admin-2.min.css" rel="stylesheet">
+<!-- Bootstrap core JavaScript-->
+	<script src="../resources/admin/vendor/jquery/jquery.min.js"></script>
+	<script
+		src="../resources/admin/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
+	<!-- Core plugin JavaScript-->
+	<script
+		src="../resources/admin/vendor/jquery-easing/jquery.easing.min.js"></script>
+
+	<!-- Custom scripts for all pages-->
+	<script src="../resources/admin/js/sb-admin-2.min.js"></script>
+
+	<!-- Page level plugins -->
+	<script
+		src="../resources/admin/vendor/datatables/jquery.dataTables.min.js"></script>
+	<script
+		src="../resources/admin/vendor/datatables/dataTables.bootstrap4.min.js"></script>
+
+	<!-- Page level custom scripts -->
+	<script src="../resources/admin/js/demo/datatables-demo.js"></script>
+<script>
+$(function(){
+	$('.btn_medium').click(function(event){
+		event.preventDefault();
+		
+		var params = { m_id:$('#m_id').val(), m_point:$('#m_point').val() }
+		$.ajax({
+			type:"get",
+			data: params,
+			url:"member-point-content",
+			success:function(result){
+				if(result === "error"){
+					console.log(result)
+				} else {
+					location.reload();
+					console.log("#point").text();
+					$('#point').text(memberPoint.m_point);
+				}
+				
+			},
+			error : function(err) {
+				console.log(err);
+			}
+		});
+	});
+	
+})
+	
+
+</script>
 
 </head>
 
@@ -59,7 +108,7 @@
 				<div class="table-responsive">
 					<table class="table table-bordered" id="dataTable" width="100%"
 						cellspacing="0">
-						<form name="point" id="point" method="get" action="/member-point-content">
+						<form name="point" id="point" method="get" action="member-point-content">
 							<div class="tbl_frm01">
 								<table>
 									<colgroup>
@@ -70,10 +119,18 @@
 										
 										<tr>
 											<th scope="row"><label for="m_point">포인트</label></th>
-											<td><input type="text" name="m_point" id="m_point"
+											<td>
+											<input type="text" name="m_point" id="m_point"
 												class="required frm_input" size="10"
 												style="background-position: right top; background-repeat: no-repeat;">
-												<em>포인트 차감시 예) -3000</em></td>
+												<em>포인트 차감시 예) -3000</em>
+											</td>
+											
+											<td>
+											<input type="hidden" name="m_id" id="m_id"
+												class="required frm_input" size="10" value="${memberPoint.m_id}"
+												style="background-position: right top; background-repeat: no-repeat;">
+											</td>
 										</tr>
 										
 										<!-- <tr>
@@ -138,7 +195,7 @@
 								<tr>
 									<td>1</td>
 									<td>${memberPoint.m_name}</td>
-									<td id="m_id">${memberPoint.m_id}</td>
+									<td>${memberPoint.m_id}</td>
 									<td>${memberPoint.m_email}</td>
 									<td>${memberPoint.m_tel}</td>
 									<td id="point">${memberPoint.m_point}</td>
@@ -172,26 +229,8 @@
 	<!-- Scroll to Top Button-->
 
 
-	<!-- Bootstrap core JavaScript-->
-	<script src="../resources/admin/vendor/jquery/jquery.min.js"></script>
-	<script
-		src="../resources/admin/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+	
 
-	<!-- Core plugin JavaScript-->
-	<script
-		src="../resources/admin/vendor/jquery-easing/jquery.easing.min.js"></script>
-
-	<!-- Custom scripts for all pages-->
-	<script src="../resources/admin/js/sb-admin-2.min.js"></script>
-
-	<!-- Page level plugins -->
-	<script
-		src="../resources/admin/vendor/datatables/jquery.dataTables.min.js"></script>
-	<script
-		src="../resources/admin/vendor/datatables/dataTables.bootstrap4.min.js"></script>
-
-	<!-- Page level custom scripts -->
-	<script src="../resources/admin/js/demo/datatables-demo.js"></script>
 
 
 

@@ -31,7 +31,7 @@
 	</select>
 	
 	<update id='member_point_content' parameterType="com.java.domain.MemberVO">
-		UPDATE m_member SET  m_point=#{m_point}-#{p_point_minus} WHERE m_id=#{m_id}
+		UPDATE m_member SET  m_point=m_point-#{m_point} WHERE m_id=#{m_id}
 	</update>
 	
 

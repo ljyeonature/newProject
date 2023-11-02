@@ -8,6 +8,6 @@
 </head>
 
 <body>
-<% response.sendRedirect("/NewProject/main/home"); %>
+	<% response.sendRedirect("/NewProject/main/home"); %>
 </body>
 </html>
