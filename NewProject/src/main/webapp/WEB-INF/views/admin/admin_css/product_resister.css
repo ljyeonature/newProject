@@ -1,0 +1,67 @@
+
+
+
+tbody {
+    display: table-row-group;
+    vertical-align: middle;
+    border-color: inherit;
+}
+
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+body, div, table, th, td, pre, blockquote, em {
+    font-weight: normal;
+    font-style: normal;
+    color: #454545;
+}
+
+html, body, div, p, h1, h2, h3, h4, h5, h6, ul, ol, li, dl, dt, dd, table, th, td, pre, blockquote, thead, tfoot, form, fieldset, legend, input, textarea, button, select {
+    margin: 0;
+    padding: 0;
+}
+
+div {
+    display: block;
+}
+body, div, table, th, td, pre, blockquote {
+    font-size: 12px;
+}
+
+body, div, table, th, td, pre, blockquote, em {
+    font-weight: normal;
+    font-style: normal;
+    color: #454545;
+}
+
+.compare_wrap section {
+    margin: 0;
+    padding: 2%;
+    background: #f8f8f8;
+}
+.compare_left {
+    float: left;
+    width: 45%;
+}
+
+.compare_wrap {
+    margin: 0 0 10px;
+    zoom: 1;
+}
+html, body, div, p, h1, h2, h3, h4, h5, h6, ul, ol, li, dl, dt, dd, table, th, td, pre, blockquote, thead, tfoot, form, fieldset, legend, input, textarea, button, select {
+    margin: 0;
+    padding: 0;
+}
+
+
+.compare_wrap {
+    display: flex;
+    justify-content: space-between;
+}
+
+.compare_left, .compare_right {
+    width: 48%; /* 두 개의 요소를 조금 작게 설정하여 간격을 만듭니다. */
+    box-sizing: border-box;
+}

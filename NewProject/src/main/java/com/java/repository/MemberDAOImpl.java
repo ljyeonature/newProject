@@ -46,13 +46,41 @@ public class MemberDAOImpl implements MemberDAO{
 		
 	}
 
-
+	//대시보드에서 회원가입 리스트
 	@Override
-	public List<MemberVO> member_all(MemberVO vo) {
+	public List<MemberVO> member_dash(MemberVO vo) {
 		System.out.println("MemberDAO : " + vo.toString());
-		return sqlSession.selectList("org.java.MemberMapper.member_all", vo);
+		return sqlSession.selectList("org.java.MemberMapper.member_dash", vo);// 결과값을 리스트로 불러옴
 	}
 
+	//회원정보관리에서 회원가입리스트
+	@Override
+	public List<MemberVO> member_all(MemberVO vo){
+		
+		return sqlSession.selectList("org.java.MemberMapper.member_all",vo);
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 
 	
 }

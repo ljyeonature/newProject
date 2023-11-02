@@ -22,8 +22,13 @@
 	</select>
 	
 	<!-- 회원목록 리스트 -->
-	<select id='member_all' parameterType="com.java.domain.MemberVO" resultType="com.java.domain.MemberVO">
+	<select id='member_dash' parameterType="com.java.domain.MemberVO" resultType="com.java.domain.MemberVO">
 		SELECT * FROM m_member LIMIT 3;
+	</select>
+	
+	<!-- 전체회원관리에서 총 회원수 리스 -->
+	<select id="member_all" parameterType="com.java.domain.MemberVO" resultType="com.java.domain.MemberVO">
+		SELECT * FROM m_member
 	</select>
 
 </mapper>

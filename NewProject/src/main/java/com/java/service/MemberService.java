@@ -11,7 +11,7 @@ public interface MemberService {
 	public boolean checkId(MemberVO vo);
 	
 //	회원 목록 보기
+	public List<MemberVO> member_dash(MemberVO vo); //dao 에 있는걸 정의
+	
 	public List<MemberVO> member_all(MemberVO vo);
-	
-	
 }

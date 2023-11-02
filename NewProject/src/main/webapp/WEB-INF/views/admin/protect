@@ -1,0 +1,105 @@
+col {
+	display: table-column;
+}
+
+colgroup {
+	display: table-column-group;
+}
+
+ th, td, pre, blockquote, em {
+	font-weight: normal;
+	font-style: normal;
+	color: #454545;
+    border: 1px solid #e4e5e7;
+    text-align: left;
+
+}
+
+
+
+div#tb1_frm02 th, div#tb1_frm02 td {
+	padding: 8px 14px;
+	height: 22px;
+	border: 1px solid #cbdbe8;
+	text-align: left;
+	vertical-align: middle;
+}
+
+
+
+table th {
+	background-color: #f8f8f8;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	line-height: 1.3em;
+}
+
+#sit_option_frm fieldset, #sit_option_addfrm fieldset {
+    margin-top: 20px;
+    padding: 10px !important;
+    border: 1px solid #cbdbe8;
+    background: #f6fbff;
+    text-align: center;
+    font-weight: 400;
+}
+
+legend {
+    position: absolute;
+    width: 0;
+    height: 0;
+    font-size: 0;
+    line-height: 0;
+    text-indent: -9999em;
+    overflow: hidden;
+}
+button {
+    text-align: center;
+}
+
+
+}
+
+
+
+tbody {
+    display: table-row-group;
+    vertical-align: middle;
+    border-color: inherit;
+}
+
+.btn_confirm {
+	text-align: center;
+	margin-top: 20px;
+}
+/* 옵션정보 */
+.w180 {
+	width: 180px !important;
+}
+
+
+
+
+
+
+
+#sit_option_frm fieldset, #sit_option_addfrm fieldset {
+    margin-top: 20px;
+    padding: 10px !important;
+    border: 1px solid #cbdbe8;
+    background: #f6fbff;
+    text-align: center;
+    font-weight: 400;
+}
+
+legend {
+    position: absolute;
+    width: 0;
+    height: 0;
+    font-size: 0;
+    line-height: 0;
+    text-indent: -9999em;
+    overflow: hidden;
+}
+    button {
+    text-align: center;
+}

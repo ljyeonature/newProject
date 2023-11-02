@@ -31,10 +31,16 @@ public class MemberServiceImpl implements MemberService{
 	}
 
 	@Override
-	public List<MemberVO> member_all(MemberVO vo) {
+	public List<MemberVO> member_dash(MemberVO vo) {
 		System.out.println("MemberService: "+ vo.toString());
-		List<MemberVO> result = memberDAOImpl.member_all(vo);
+		List<MemberVO> result = memberDAOImpl.member_dash(vo);
 		System.out.println(result);
+		return result;
+	}
+	
+	@Override
+	public List<MemberVO> member_all(MemberVO vo){
+		List<MemberVO> result = memberDAOImpl.member_all(vo);
 		return result;
 	}
 
