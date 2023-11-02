@@ -87,19 +87,14 @@
 			<li class="nav-item"><a class="nav-link collapsed" href="#"
 				data-toggle="collapse" data-target="#collapsePages"
 				aria-expanded="true" aria-controls="collapsePages"> <i
-					class="fas fa-fw fa-folder"></i> <span>상품관리</span>
+					class="fas fa-fw fa-folder" ></i> <span>상품관리</span>
 			</a>
 				<div id="collapsePages" class="collapse"
 					aria-labelledby="headingPages" data-parent="#accordionSidebar">
 					<div class="bg-white py-2 collapse-inner rounded">
 						<!--     <h6 class="collapse-header">Login Screens:</h6> -->
-						<a class="collapse-item" href="login.html">전체 상품관리</a> <a
-							class="collapse-item" href="register.html">카테고리</a> <a
-							class="collapse-item" href="forgot-password.html"></a>
-						<div class="collapse-divider"></div>
-						<h6 class="collapse-header">Other Pages:</h6>
-						<a class="collapse-item" href="404.html">404 Page</a> <a
-							class="collapse-item" href="blank.html">Blank Page</a>
+						<a class="collapse-item" href="product_all">전체상품관리</a> <a
+							class="collapse-item" href="product_stock">상품재고관리</a> 
 					</div>
 				</div></li>
 			<hr class="sidebar-divider">

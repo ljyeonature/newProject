@@ -19,7 +19,7 @@
 <meta name="description" content="">
 <meta name="author" content="">
 
-<title>전체회원관리</title>
+<title>상품재고관리</title>
 
 <!-- Custom fonts for this template-->
 <link href="../resources/admin/vendor/fontawesome-free/css/all.min.css"
@@ -44,7 +44,7 @@
 				<div class="container-fluid">
 
 					<!-- Page Heading -->
-					<h1 class="h3 mb-2 text-gray-800">전체회원관리</h1>
+					<h1 class="h3 mb-2 text-gray-800">상품재고관리</h1>
 
 					<div class="card shadow mb-4">
 						<div class="card-header py-3">
@@ -64,15 +64,59 @@
 												</colgroup>
 												<tbody>
 													<tr>
-														<th scope="row">검색어</th>
-														<td><select name="sfl">
-																<option value="id">이름</option>
-																<option value="name">이메일</option>
-																<option value="pt_id">아이디</option>
+		<th scope="row">검색어</th>
+		<td colspan="3">
+			<select name="sfl">
+				<option value="gname" selected="selected">상품명</option>
+				<option value="gcode">상품코드</option>
+				
+			</select>
+			<input type="text" name="stx" value="" class="frm_input" size="30">
+		</td>
+	</tr>
+	<tr>
+		<th scope="row">카테고리</th>
+		<td colspan="3">
+			<select id="sel_ca1" name="sel_ca1">
+<option value="">=카테고리선택=</option>
+<option value="002">물고기</option>
+<option value="004">조경용품</option>
+<option value="008">기타용품</option>
+</select>
 
-														</select> <input type="text" name="stx" value="" class="frm_input"
-															size="30"></td>
-													</tr>
+<select id="sel_ca2" name="sel_ca2">
+<option value="">=카테고리선택=</option>
+<option value="002001">구피,난태생송사리과</option>
+<option value="002002">금붕어,잉어과</option>
+<option value="002003">디스커스,시클리드과</option>
+<option value="002004">베타,구라미,기수어</option>
+<option value="002005">테트라,카라신과</option>
+<option value="004001">구</option>
+</select>
+
+
+			<select id="sel_ca3" name="sel_ca3">
+<option value="">=카테고리선택=</option>
+<option value="00100"></option>
+</select>
+			<select id="sel_ca4" name="sel_ca4">
+<option value="">=카테고리선택=</option>
+</select>
+			<select id="sel_ca5" name="sel_ca5">
+<option value="">=카테고리선택=</option>
+</select>
+
+			<script>
+			$(function() {
+				$("#sel_ca1").multi_select_box("#sel_ca",5,tb_admin_url+"/ajax.category_select_json.php","=카테고리선택=");
+				$("#sel_ca2").multi_select_box("#sel_ca",5,tb_admin_url+"/ajax.category_select_json.php","=카테고리선택=");
+				$("#sel_ca3").multi_select_box("#sel_ca",5,tb_admin_url+"/ajax.category_select_json.php","=카테고리선택=");
+				$("#sel_ca4").multi_select_box("#sel_ca",5,tb_admin_url+"/ajax.category_select_json.php","=카테고리선택=");
+				$("#sel_ca5").multi_select_box("#sel_ca",5,"","=카테고리선택=");
+			});
+			</script>
+		</td>
+	</tr>
 
 
 												</tbody>

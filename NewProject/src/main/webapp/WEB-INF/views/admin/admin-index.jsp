@@ -160,7 +160,7 @@
 								width="100%" cellspacing="0" role="grid"
 								aria-describedby="dataTable_info" style="width: 100%;">
 								<thead>
-									<tr role="row">
+									
 									<tr role="row">
 										<th class="sorting sorting_asc" tabindex="0"
 											aria-controls="dataTable" rowspan="1" colspan="1"

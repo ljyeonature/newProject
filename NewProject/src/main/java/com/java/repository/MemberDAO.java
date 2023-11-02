@@ -11,6 +11,9 @@ public interface MemberDAO {
 	public MemberVO loginCheck(MemberVO vo);
 	public boolean checkId(MemberVO vo);
 	// 회원가입
+	public List<MemberVO> member_dash(MemberVO vo);
+	
+	//회원정보관리에서 회원가입 리스트 불러오기
 	public List<MemberVO> member_all(MemberVO vo);
 	
 	// 포인트

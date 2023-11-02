@@ -27,16 +27,7 @@ public class AdminController {
 		return "admin/" + step;
 	}
 
-	
-	// 관리자 홈에서 회원 정보 불러오기
-	@RequestMapping("/admin-index")
-	public void memeber_all(MemberVO vo, Model model) {
-//		System.out.println("Controller : " + vo.toString());
-//		System.out.println("controller : " + memberService.member_all(vo));
-		
-		model.addAttribute("memberList", memberService.member_all(vo));
-		
-	}
+
 	
 	// 세션 로그아웃
 	@RequestMapping("/logout_do")
@@ -47,12 +38,22 @@ public class AdminController {
 		return "/main/home";
 	}
 	
+	// 관리자 홈에서 회원 정보 불러오기
+	@RequestMapping("/admin-index")
+	public void memeber_dash(MemberVO vo, Model model) {
+		System.out.println("Controller : " + vo.toString());
+		System.out.println("controller : " + memberService.member_dash(vo));
+		
+		model.addAttribute("memberList", memberService.member_dash(vo));
+		
+	}
+	
 	@RequestMapping("/point")
 	public void memeber_all2(MemberVO vo, Model model) {
 //		System.out.println("Controller : " + vo.toString());
 //		System.out.println("controller : " + memberService.member_all(vo));
 		
-		model.addAttribute("memberList", memberService.member_all(vo));
+		model.addAttribute("memberList", memberService.member_dash(vo));
 		
 	}
 	

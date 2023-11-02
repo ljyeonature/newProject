@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-	<%@ taglib prefix='c' uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -10,6 +9,8 @@
 	text-align: center;
 	margin-top: 20px;
 }
+
+
 </style>
 
 <meta charset="utf-8">
@@ -19,7 +20,7 @@
 <meta name="description" content="">
 <meta name="author" content="">
 
-<title>전체회원관리</title>
+<title>전체상품관리</title>
 
 <!-- Custom fonts for this template-->
 <link href="../resources/admin/vendor/fontawesome-free/css/all.min.css"
@@ -34,17 +35,21 @@
 </head>
 
 <body id="page-top">
+
+
+
 <!-- 사이드바  -->
 <%@ include file="/WEB-INF/views/admin/sidebar.jsp" %>
 <!-- TOP  -->
 <%@ include file="/WEB-INF/views/admin/top.jsp" %>
 
+			
 
-				<!-- Begin Page Content -->
+
 				<div class="container-fluid">
 
 					<!-- Page Heading -->
-					<h1 class="h3 mb-2 text-gray-800">전체회원관리</h1>
+					<h1 class="h3 mb-2 text-gray-800">전체상품관리</h1>
 
 					<div class="card shadow mb-4">
 						<div class="card-header py-3">
@@ -63,19 +68,71 @@
 													<col>
 												</colgroup>
 												<tbody>
-													<tr>
-														<th scope="row">검색어</th>
-														<td><select name="sfl">
-																<option value="id">이름</option>
-																<option value="name">이메일</option>
-																<option value="pt_id">아이디</option>
+	<tr>
+		<th scope="row">검색어</th>
+		<td colspan="3">
+			<select name="sfl">
+				<option value="gname" selected="selected">상품명</option>
+				<option value="gcode">상품코드</option>
+				
+			</select>
+			<input type="text" name="stx" value="" class="frm_input" size="30">
+		</td>
+	</tr>
+	<tr>
+		<th scope="row">카테고리</th>
+		<td colspan="3">
+			<select id="sel_ca1" name="sel_ca1">
+<option value="">=카테고리선택=</option>
+<option value="002">물고기</option>
+<option value="004">조경용품</option>
+<option value="008">기타용품</option>
+</select>
 
-														</select> <input type="text" name="stx" value="" class="frm_input"
-															size="30"></td>
-													</tr>
+<select id="sel_ca2" name="sel_ca2">
+<option value="">=카테고리선택=</option>
+<option value="002001">구피,난태생송사리과</option>
+<option value="002002">금붕어,잉어과</option>
+<option value="002003">디스커스,시클리드과</option>
+<option value="002004">베타,구라미,기수어</option>
+<option value="002005">테트라,카라신과</option>
+<option value="004001">구</option>
+</select>
 
 
-												</tbody>
+			<select id="sel_ca3" name="sel_ca3">
+<option value="">=카테고리선택=</option>
+<option value="00100"></option>
+</select>
+			<select id="sel_ca4" name="sel_ca4">
+<option value="">=카테고리선택=</option>
+</select>
+			<select id="sel_ca5" name="sel_ca5">
+<option value="">=카테고리선택=</option>
+</select>
+
+			<script>
+			$(function() {
+				$("#sel_ca1").multi_select_box("#sel_ca",5,tb_admin_url+"/ajax.category_select_json.php","=카테고리선택=");
+				$("#sel_ca2").multi_select_box("#sel_ca",5,tb_admin_url+"/ajax.category_select_json.php","=카테고리선택=");
+				$("#sel_ca3").multi_select_box("#sel_ca",5,tb_admin_url+"/ajax.category_select_json.php","=카테고리선택=");
+				$("#sel_ca4").multi_select_box("#sel_ca",5,tb_admin_url+"/ajax.category_select_json.php","=카테고리선택=");
+				$("#sel_ca5").multi_select_box("#sel_ca",5,"","=카테고리선택=");
+			});
+			</script>
+		</td>
+	</tr>
+	
+
+		<th scope="row">판매여부</th>
+		<td>
+			<label><input type="radio" name="q_isopen" value="" checked="checked"> 전체</label>
+			<label><input type="radio" name="q_isopen" value="1"> 진열</label>
+			<label><input type="radio" name="q_isopen" value="2"> 품절</label>
+		</td>
+		
+	
+	</tbody> 
 											</table>
 										</div>
 										<div class="btn_confirm">
@@ -94,7 +151,7 @@
 						<div class="card shadow mb-4">
 							<div class="card-header py-3">
 							
-								<h6 class="m-0 font-weight-bold text-primary">총 회원수</h6>
+								<h6 class="m-0 font-weight-bold text-primary">데이터 불러오기</h6>
 								
 							</div>
 							<div class="card-body">
@@ -102,44 +159,42 @@
 									<table class="table table-bordered" id="dataTable" width="100%"
 										cellspacing="0">
 										<thead>
-										<label>Show <select name="dataTable_length" aria-controls="dataTable" class="custom-select custom-select-sm form-control form-control-sm">
+										<label> <select name="dataTable_length" aria-controls="dataTable" class="custom-select custom-select-sm form-control form-control-sm">
 								<option value="10">10</option>
 								<option value="25">25</option>
 								<option value="50">50</option>
 								<option value="100">100</option>
-								</select> </label>
+								</select> 
+								</label>
+								<a  class="fr btn_lsmall red" href="product_resister">
+								<i class="ionicons ion-android-add"></i> 상품등록</a>
 											<tr role="row">
+											<th scope="col" rowspan="2" style="width: 8px;">
+											<input type="checkbox" name="chkall" value="1" onclick="check_all(this.form);" >
+											</th>
 										<th class="sorting sorting_asc" tabindex="0"
 											aria-controls="dataTable" rowspan="1" colspan="1"
 											aria-sort="ascending"
 											aria-label="Name: activate to sort column descending"
-											style="width: 130px;">이름</th>
+											style="width: 130px;">번호</th>
 										<th class="sorting" tabindex="0" aria-controls="dataTable"
-											rowspan="1" colspan="1" style="width: 130px;">이메일</th>
+											rowspan="1" colspan="1" style="width: 130px;">상품코드</th>
 										<th class="sorting" tabindex="0" aria-controls="dataTable"
-											rowspan="1" colspan="1" style="width: 130px;">아이디</th>
+											rowspan="1" colspan="1" style="width: 130px;">상품명</th>
 										<th class="sorting" tabindex="0" aria-controls="dataTable"
-											rowspan="1" colspan="1" style="width: 130px;">비밀번호</th>
+											rowspan="1" colspan="1" style="width: 130px;">재고</th>
 										<th class="sorting" tabindex="0" aria-controls="dataTable"
-											rowspan="1" colspan="1" style="width: 130px;">주소</th>
+											rowspan="1" colspan="1" style="width: 130px;">가격</th>
+											<th class="sorting" tabindex="0" aria-controls="dataTable"
+											rowspan="1" colspan="1" style="width: 130px;">관리</th>
+											
 									</tr>
 										</thead>
 
 										<tbody>
-											<c:forEach items="${memberList}" var="memberr">
 
-										<tr>
-											<td>${memberr.m_name}</td>
-											<td>${memberr.m_email}</td>
-											<td>${memberr.m_id}</td>
-											<td>${memberr.m_pass}</td>
-											<td>${memberr.m_addr}</td>
-
-										</tr>
-
-									</c:forEach>
-										
-
+<td rowspan="2">
+											<a href="./goods.php?code=form&amp;w=u&amp;gs_id=21&amp;page=1&amp;bak=list" class="btn_small">수정</a></td>
 										</tbody>
 									</table>
 								</div>
@@ -164,8 +219,6 @@
 		<!-- Scroll to Top Button-->
 
 
-
-
 		<!-- Bootstrap core JavaScript-->
 		<script src="../resources/admin/vendor/jquery/jquery.min.js"></script>
 		<script
@@ -186,6 +239,7 @@
 
 		<!-- Page level custom scripts -->
 		<script src="../resources/admin/js/demo/datatables-demo.js"></script>
-</body>
 
+
+</body>
 </html>
