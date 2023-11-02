@@ -1,0 +1,138 @@
+        
+        h1 {
+            margin: 100px 0px 0;
+            text-align: center;
+            font-family: Arial, sans-serif;
+        }
+        
+        p {
+            margin: 5px 0px;
+            text-align: center;
+            font-family: Arial, sans-serif;
+        }
+
+        @media (min-width: 1530px) {
+            .addcontainer {
+                width: 40%; /* 화면 너비가 768px 미만일 때는 100%로 설정 */
+            }  
+        }
+        @media (max-width: 1530px) {
+            .addcontainer {
+                width: 75%; /* 화면 너비가 768px 미만일 때는 100%로 설정 */
+            }  
+        }
+        
+        .addcontainer {
+            margin: 0 auto;
+            padding: 20px;
+            border: 2px solid black;
+            margin: 20px auto 40px;
+        }
+ 
+        form {
+            margin-top: 20px;
+        }
+
+        label, input, textarea, select {
+            display: block;
+            margin-bottom: 8px;
+        }
+        
+        label {
+            font-weight: bold;
+        }
+
+        input[type="text"], textarea{
+            width: 97%;
+            padding: 10px;
+            border: 1px solid black;
+            font-family: Arial, sans-serif;
+        }
+        
+        #inquiry_type {
+            width: 110px;
+            margin: 0 auto;
+            padding: 10px;
+            border: 1px solid black;
+        }
+
+        #q_import_inquiry {
+            margin: 0 auto;
+            text-align: center;
+            width: 85px;
+        }
+        
+        #product_type {
+            width: 30%;
+            padding: 10px;
+            border: 1px solid black;
+        }
+        #q_import_product{
+            width: 27.5%;
+        }
+        
+
+        input[type="file"] {
+            width: 100%;
+            margin-top: 10px;
+        }
+        
+        #q_pass,#r_pass {
+        	border: 1px solid black;
+        }
+
+        input[type="submit"] {
+            background-color: black;
+            color: #ffffff;
+            padding: 10px 10px;
+            border: none;
+            cursor: pointer;
+            margin-left: auto;
+            border-radius: 20px 0 0 20px;
+        }
+        
+        .list-button {
+            background-color: black;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 20px;
+            cursor: pointer;
+            border: 1px solid black;
+        }
+        
+        .cancel-button {
+            background-color: #fff;
+            color: black;
+            padding: 10px 8px;
+            border: none;
+            cursor: pointer;
+            border: 1px solid black;
+            border-radius: 0 20px 20px 0;
+        }
+
+        .edit-button{
+            background-color: white;
+            color: black;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 20px;
+            cursor: pointer;
+            border: 1px solid black;
+            margin-left: auto;
+        }
+
+        .button-container {
+            display: flex;
+            margin-top: 20px;
+        }
+
+        input[type="submit"]:hover{
+            background-color: lightgray;
+            color: black;
+        }
+
+        .edit-button:hover{
+            background-color: lightgray;
+            color: black;
+        }
