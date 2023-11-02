@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+
 	<%@ taglib prefix='c' uri="http://java.sun.com/jsp/jstl/core"%>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -108,6 +110,7 @@
 								<option value="50">50</option>
 								<option value="100">100</option>
 								</select> </label>
+
 											<tr role="row">
 										<th class="sorting sorting_asc" tabindex="0"
 											aria-controls="dataTable" rowspan="1" colspan="1"
@@ -139,6 +142,19 @@
 
 									</c:forEach>
 										
+
+											<tr>
+												<th>이름</th>
+												<th>이메일</th>
+												<th>아이디</th>
+												<th>비밀번호</th>
+												<th>주소</th>
+
+											</tr>
+										</thead>
+
+										<tbody>
+
 
 										</tbody>
 									</table>
@@ -185,7 +201,11 @@
 			src="../resources/admin/vendor/datatables/dataTables.bootstrap4.min.js"></script>
 
 		<!-- Page level custom scripts -->
+
 		<script src="../resources/admin/js/demo/datatables-demo.js"></script>
+
+		
+
 </body>
 
 </html>

@@ -19,7 +19,7 @@ public class MemberDAOImpl implements MemberDAO{
 	// 회원가입
 	@Override
 	public void insertMember(MemberVO vo) {
-		System.out.println(vo.toString());
+//		System.out.println(vo.toString());
 		int result = sqlSession.insert("org.java.MemberMapper.insertMember", vo);
 		System.out.println("insert : " + result);
 	}
@@ -41,17 +41,18 @@ public class MemberDAOImpl implements MemberDAO{
 	// 로그인 체크
 	@Override
 	public MemberVO loginCheck(MemberVO vo) {
-		System.out.println("memberDAO : "+vo.toString());
+//		System.out.println("memberDAO : "+vo.toString());
 		return sqlSession.selectOne("org.java.MemberMapper.loginCheck", vo);
 		
 	}
 
 	//대시보드에서 회원가입 리스트
 	@Override
+
 	public List<MemberVO> member_dash(MemberVO vo) {
 		System.out.println("MemberDAO : " + vo.toString());
 		return sqlSession.selectList("org.java.MemberMapper.member_dash", vo);// 결과값을 리스트로 불러옴
-	}
+
 
 	//회원정보관리에서 회원가입리스트
 	@Override
@@ -81,6 +82,22 @@ public class MemberDAOImpl implements MemberDAO{
 	
 	
 	
+
+	@Override
+	public MemberVO member_point_detail(MemberVO vo) {
+//		System.out.println("MemberDAO m_id: " + vo.getM_id());
+		return sqlSession.selectOne("org.java.MemberMapper.member_point_detail", vo);
+	}
+
+
+	@Override
+	public int member_point_content(MemberVO vo) {
+		System.out.println("MemberPoint : " + vo.getM_point());
+		int result=sqlSession.update("org.java.MemberMapper.member_point_content", vo);
+		System.out.println("DAO : " + result);
+		return result;
+	}
+
 
 	
 }

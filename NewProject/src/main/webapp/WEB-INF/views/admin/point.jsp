@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -97,7 +99,11 @@
 						<div class="card shadow mb-4">
 							<div class="card-header py-3">
 							
+
 								<h6 class="m-0 font-weight-bold text-primary">총 회원수</h6>
+
+								<h6 class="m-0 font-weight-bold text-primary">회원</h6>
+
 								
 							</div>
 							<div class="card-body">
@@ -110,6 +116,7 @@
 								<option value="25">25</option>
 								<option value="50">50</option>
 								<option value="100">100</option>
+
 								</select> </label>
 											<tr>
 												<th>이름</th>
@@ -118,10 +125,38 @@
 												<th>비밀번호</th>
 												<th>주소</th>
 
+								</select> 
+								</label>
+											<tr>
+												<th>번호</th>
+												<th>회원명</th>
+												<th>아이디</th>
+												<th>포인트 내용</th>
+												<th>날짜</th>
+												<th>포인트</th>
+												<th>포인트 합</th>
+
 											</tr>
 										</thead>
 
 										<tbody>
+
+
+
+											<c:forEach items="${memberList}" var="member">
+
+										<tr>
+											<td>1</td>
+											<td>${member.m_name}</td>
+											<td><a href="point-detail?m_id=${member.m_id}">${member.m_id}</a></td>
+											<td>${member.m_email}</td>
+											<td>${member.m_pass}</td>
+											<td>${member.m_point}</td>
+											<td>${member.m_point}</td>
+
+										</tr>
+
+									</c:forEach>
 
 										</tbody>
 									</table>
@@ -166,7 +201,9 @@
 			src="../resources/admin/vendor/datatables/dataTables.bootstrap4.min.js"></script>
 
 		<!-- Page level custom scripts -->
-		<script src="resources/admin/js/demo/datatables-demo.js"></script>
+
+		<script src="../resources/admin/js/demo/datatables-demo.js"></script>
+
 
 
 </body>

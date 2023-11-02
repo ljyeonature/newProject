@@ -26,9 +26,20 @@
 		SELECT * FROM m_member LIMIT 3;
 	</select>
 	
+
 	<!-- 전체회원관리에서 총 회원수 리스 -->
 	<select id="member_all" parameterType="com.java.domain.MemberVO" resultType="com.java.domain.MemberVO">
 		SELECT * FROM m_member
 	</select>
+
+	<select id='member_point_detail' parameterType="com.java.domain.MemberVO" resultType="com.java.domain.MemberVO">
+		SELECT * FROM m_member WHERE m_id=#{m_id};
+	</select>
+	
+	<update id='member_point_content' parameterType="com.java.domain.MemberVO">
+		UPDATE m_member SET  m_point=m_point-#{m_point} WHERE m_id=#{m_id}
+	</update>
+	
+
 
 </mapper>

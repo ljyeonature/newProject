@@ -19,4 +19,11 @@ public interface MemberDAO {
 	public List<MemberVO> member_all(MemberVO vo);
 
 	
+	// 포인트
+	public MemberVO member_point_detail(MemberVO vo);
+	
+	public int member_point_content(MemberVO vo);
+	
+	
+	
 }
