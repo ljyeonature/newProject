@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<!-- ========> -->
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -55,8 +57,7 @@
 			</div>
 			<div class="card-body">
 				<div class="table-responsive">
-					<table class="table table-bordered" id="dataTable" width="100%"
-						cellspacing="0">
+					<table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
 						<form name="fsearch" id="fsearch" method="get">
 							<input type="hidden" name="code" value="list">
 							<div class="tbl_frm01">
@@ -77,27 +78,32 @@
 										</tr>
 										<tr>
 											<th scope="row">카테고리</th>
-											<td colspan="3"><select id="sel_ca1" name="sel_ca1">
+											<td colspan="3">
+											<select id="sel_ca1" name="sel_ca1">
 													<option value="">=카테고리선택=</option>
 													<option value="002">물고기</option>
 													<option value="004">조경용품</option>
 													<option value="008">기타용품</option>
-											</select> <select id="sel_ca2" name="sel_ca2">
+											</select> 
+											<select id="sel_ca2" name="sel_ca2">
 													<option value="">=카테고리선택=</option>
 													<option value="002001">구피,난태생송사리과</option>
 													<option value="002002">금붕어,잉어과</option>
 													<option value="002003">디스커스,시클리드과</option>
 													<option value="002004">베타,구라미,기수어</option>
 													<option value="002005">테트라,카라신과</option>
-													<option value="004001">구</option>
-											</select> <select id="sel_ca3" name="sel_ca3">
+											</select> 
+											
+											<select id="sel_ca3" name="sel_ca3">
 													<option value="">=카테고리선택=</option>
 													<option value="00100"></option>
 											</select> <select id="sel_ca4" name="sel_ca4">
 													<option value="">=카테고리선택=</option>
-											</select> <select id="sel_ca5" name="sel_ca5">
+											</select> 
+											<select id="sel_ca5" name="sel_ca5">
 													<option value="">=카테고리선택=</option>
-											</select> <script>
+											</select> 
+											<script>
 												$(function() {
 													$("#sel_ca1")
 															.multi_select_box(
@@ -133,17 +139,23 @@
 																	5, "",
 																	"=카테고리선택=");
 												});
-											</script></td>
+											</script>
+											</td>
 										</tr>
 
 
 										<th scope="row">판매여부</th>
-										<td><label><input type="radio" name="q_isopen"
-												value="" checked="checked"> 전체</label> <label><input
-												type="radio" name="q_isopen" value="1"> 진열</label> <label><input
-												type="radio" name="q_isopen" value="2"> 품절</label></td>
-
-
+										<td>
+											<label>
+												<input type="radio" name="q_isopen" value="" checked="checked"> 전체
+											</label> 
+											<label>
+												<input type="radio" name="q_isopen" value="1"> 진열
+											</label>
+											<label>
+												<input type="radio" name="q_isopen" value="2"> 품절
+											</label>
+										</td>
 									</tbody>
 								</table>
 							</div>
@@ -179,6 +191,7 @@
 										<option value="100">100</option>
 								</select>
 								</label>
+								<!-- =========> -->
 								<a class="fr btn_lsmall red" href="product_resister"> <i
 									class="ionicons ion-android-add"></i> 상품등록
 								</a>

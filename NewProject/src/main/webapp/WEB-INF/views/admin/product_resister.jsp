@@ -7,21 +7,12 @@
 <head>
 <link rel="stylesheet" type="text/css"
 	href="../resources/admin/css/product_resister.css">
-	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-  <meta http-equiv="Content-Script-Type" content="text/javascript">
-  <meta http-equiv="Content-Style-Type" content="text/css">
-  <title>네이버 :: Smart Editor 2 ™</title>
-  <link href="../resources/admin/static/css/ko_KR/smart_editor2.css" rel="stylesheet" type="text/css">
-  <style type="text/css">
-    body { margin: 10px; }
-  </style>
-  <script type="text/javascript" src="../resources/admin/static/js/lib/jindo2.all.js" charset="utf-8"></script>
-  <script type="text/javascript" src="../resources/admin/static/js/lib/jindo_component.js" charset="utf-8"></script>
-  <script type="text/javascript" src="../resources/admin/static/js/service/SE2M_Configuration.js" charset="utf-8"></script>   <!-- 설정 파일 -->
-  <script type="text/javascript" src="../resources/admin/static/js/service/SE2BasicCreator.js" charset="utf-8"></script>
-  <script type="text/javascript" src="../resources/admin/static/js/smarteditor2.js" charset="utf-8"></script>
-  
-  <link type="text/css" rel="stylesheet" href="../resources/admin/static/css/ko_KR/smart_editor2_items.css">
+<style type="text/css">
+body {
+	margin: 10px;
+}
+</style>
+
 
 
 
@@ -44,7 +35,47 @@
 <!-- Custom styles for this template-->
 <link href="../resources/admin/css/sb-admin-2.min.css" rel="stylesheet">
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="../resources/static/js/service/HuskyEZCreator.js"></script>
+<!-- 카테고리 대분류 선택 시 중분류 내용 각각 나오게 설정 -->
+ <script>
+    $(document).ready(function() {
+      var sel_ca1 = $('#sel_ca1');
+      var sel_ca2 = $('#sel_ca2');
 
+      sel_ca1.on('change', function() {
+        var selectedValue = sel_ca1.val();
+        // 기본 옵션을 선택했을 때, 두 번째 select를 초기화
+		if (selectedValue === 'F') {
+          // 물고기 카테고리를 선택한 경우
+          sel_ca2.empty().append(`
+            <option value="F1">구피,난태생송사리과</option>
+            <option value="F2">금붕어,잉어과</option>
+            <option value="F3">디스커스,시클리드과</option>
+            <option value="F4">베타,구라미,기수어</option>
+            <option value="F5">테트라,카라신과</option>
+          `);
+        } else if (selectedValue === 'D') {
+          // 조경용품 카테고리를 선택한 경우
+          // sel_ca2의 내용을 조경용품에 맞게 업데이트
+        	sel_ca2.empty().append(`
+               <option value="D1">바닥제</option>
+               <option value="D2">수초</option>
+               <option value="D3">어항</option>
+             `);
+        } else if (selectedValue === 'E') {
+          // 기타용품 카테고리를 선택한 경우
+          // sel_ca2의 내용을 기타용품에 맞게 업데이트
+        	sel_ca2.empty().append(`
+               <option value="E1">뜰채</option>
+               <option value="E2">사료</option>
+               <option value="E3">산소기</option>
+               <option value="E4">수중돌</option>
+               <option value="E5">온도계</option>
+             `);
+        }
+      });
+    });
+  </script>
 </head>
 
 <body id="page-top">
@@ -107,37 +138,24 @@
 																		<tbody>
 																			<tr>
 																				<td class="w20p bg1"><select id="sel_ca1"
-																					name="sel_ca1" size="5" class="multiple-select">
-																						<option value="">=카테고리선택=</option>
-																						<option value="00F">물고기</option>
-																						<option value="00D">조경용품</option>
-																						<option value="00E">기타용품</option>
-																				</select></td>
-																				<td class="w20p bg1"><select id="sel_ca2"
-																					name="sel_ca2" size="5" class="multiple-select">
-																						<option value="">=카테고리선택=</option>
-																						<option value="00F001">구피,난태생송사리과</option>
-																						<option value="00F002">금붕어,잉어과</option>
-																						<option value="00F003">디스커스,시클리드과</option>
-																						<option value="00F004">베타,구라미,기수어</option>
-																						<option value="00F005">테트라,카라신과</option>
-																				</select></td>
-																				<td class="w20p bg1"><select id="sel_ca3"
-																					name="sel_ca3" size="5" class="multiple-select">
-																						<option value="">=카테고리선택=</option>
-																				</select></td>
-																				<td class="w20p bg1"><select id="sel_ca4"
-																					name="sel_ca4" size="5" class="multiple-select">
-																						<option value="">=카테고리선택=</option>
-																				</select></td>
-																				<td class="w20p bg1"><select id="sel_ca5"
-																					name="sel_ca5" size="5" class="multiple-select">
-																						<option value="">=카테고리선택=</option>
+																					name="sel_ca1" size="5" class="multiple-select" style="width:200px">
+																						<option value="F">물고기</option>
+																						<option value="D">조경용품</option>
+																						<option value="E">기타용품</option>
+																				</select>
+																				</td>
+																				<td class="w20p bg1">
+																				<select id="sel_ca2" name="sel_ca2" size="5" class="multiple-select" style="width:200px">
+																						<option value="F1">구피,난태생송사리과</option>
+																						<option value="F2">금붕어,잉어과</option>
+																						<option value="F3">디스커스,시클리드과</option>
+																						<option value="F4">베타,구라미,기수어</option>
+																						<option value="F5">테트라,카라신과</option>
 																				</select></td>
 																			</tr>
 																		</tbody>
 																	</table>
-																</div> <script>
+																</div> <!-- <script>
 																	$(function() {
 																		$(
 																				"#sel_ca1")
@@ -179,7 +197,7 @@
 																						"",
 																						"=카테고리선택=");
 																	});
-																</script>
+																</script> -->
 															</td>
 														</tr>
 
@@ -1103,17 +1121,16 @@
 																			</tr>
 																			<tr>
 																				<th scope="row">상세설명</th>
-																				<td><span class="sound_only">웹에디터 시작</span> 
-																						
-																					
-																					<textarea name="ir1" id="ir1" rows="10" cols="100"
-																						style="width: 100%;"></textarea> <script>
-																							var tw_editor_url = "../resources/admin/static/SmartEditor2.html", oEditors = [];
+																				<td><span class="sound_only">웹에디터 시작</span> <textarea
+																						name="ir1" id="ir1" rows="10" cols="100"
+																						style="width: 100%;"></textarea> 
+																						<script>
+																							oEditors = [];
 																							nhn.husky.EZCreator
 																									.createInIFrame({
 																										oAppRef : oEditors,
 																										elPlaceHolder : "ir1",
-																										sSkinURI : "../resources/admin/static/SmartEditor2Skin.html",
+																										sSkinURI : "../resources/static/SmartEditor2Skin.html",
 																										fCreator : "createSEditor2"
 																									});
 																						</script> <span class="sound_only">웹 에디터 끝</span></td>

@@ -92,8 +92,9 @@
 					aria-labelledby="headingPages" data-parent="#accordionSidebar">
 					<div class="bg-white py-2 collapse-inner rounded">
 						<!--     <h6 class="collapse-header">Login Screens:</h6> -->
-						<a class="collapse-item" href="product_all">전체상품관리</a> <a
-							class="collapse-item" href="product_stock">상품재고관리</a> 
+						<a class="collapse-item" href="product_all">전체상품관리</a> 
+						<a class="collapse-item" href="product_resister">상품등록</a> 
+						<a class="collapse-item" href="product_stock">상품재고관리</a> 
 					</div>
 				</div></li>
 			<hr class="sidebar-divider">
