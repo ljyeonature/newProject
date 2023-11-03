@@ -11,7 +11,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>SB Admin 2 - Forgot Password</title>
+    <title>Forgot Password</title>
 
     <!-- Custom fonts for this template-->
     <link href="../resources/admin/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -45,15 +45,13 @@
                                         <p class="mb-4">We get it, stuff happens. Just enter your email address below
                                             and we'll send you a link to reset your password!</p>
                                     </div>
-                                    <form class="user">
+                                    <form class="user" action="pw_auth">
                                         <div class="form-group">
                                             <input type="email" class="form-control form-control-user"
                                                 id="exampleInputEmail" aria-describedby="emailHelp"
-                                                placeholder="Enter Email Address...">
+                                                placeholder="Enter Email Address..." name="m_email">
                                         </div>
-                                        <a href="login" class="btn btn-primary btn-user btn-block">
-                                            Reset Password
-                                        </a>
+                                        <input type="submit" class="btn btn-primary btn-user btn-block" value="비밀번호 초기화"/>
                                     </form>
                                     <hr>
                                     <div class="text-center">

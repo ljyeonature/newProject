@@ -30,6 +30,7 @@ public class MemberServiceImpl implements MemberService{
 		return memberDAOImpl.checkId(vo);
 	}
 
+	// 관리자 홈에서 회원 목록
 	@Override
 	public List<MemberVO> member_dash(MemberVO vo) {
 //		System.out.println("MemberService: "+ vo.toString());
@@ -38,12 +39,14 @@ public class MemberServiceImpl implements MemberService{
 		return result;
 	}
 	
+	// 전체 회원목록에서 전체 회원 목록
 	@Override
 	public List<MemberVO> member_all(MemberVO vo){
 		List<MemberVO> result = memberDAOImpl.member_all(vo);
 		return result;
 	}
 
+	// 포인트 관리에서 회원 목록 보이기
 	@Override
 	public MemberVO member_point_detail(MemberVO vo) {
 //		System.out.println(vo.getM_id());
@@ -51,11 +54,29 @@ public class MemberServiceImpl implements MemberService{
 		return result;
 	}
 
+	// 포인트 내역 - 차감 업데이트
 	@Override
 	public int member_point_content(MemberVO vo) {
-		System.out.println(vo.getM_pass());
+//		System.out.println(vo.getM_pass());
 		int result = memberDAOImpl.member_point_content(vo);
+//		System.out.println("Service : " + result);
+		return result;
+	}
+
+	// 비밀번호 찾기 - 이메일
+	@Override
+	public MemberVO selectMember(String m_email) {
+		System.out.println("Password Service : " + m_email);
+		MemberVO result = memberDAOImpl.selectMember(m_email);
 		System.out.println("Service : " + result);
+		return result;
+	}
+
+	// 비밀번호 변경
+	@Override
+	public int pwUpdate_M(MemberVO vo) {
+		int result = memberDAOImpl.pwUpdate_M(vo);
+		System.out.println("비번 변경 : " + result);
 		return result;
 	}
 

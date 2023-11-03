@@ -54,7 +54,7 @@
 		<div class="wrap-header-mobile">
 			<!-- Logo moblie -->		
 			<div class="logo-mobile">
-				<a href="home"><img src="../resources/main/images/icons/logo-01.png" alt="IMG-LOGO"></a>
+				<a href="member/home"><img src="../resources/main/images/icons/logo-01.png" alt="IMG-LOGO"></a>
 			</div>
 
 			<!-- Icon header -->

@@ -30,6 +30,7 @@
 	<link rel="stylesheet" type="text/css" href="../resources/main/css/util.css">
 	<link rel="stylesheet" type="text/css" href="../resources/main/css/main.css">
 <!--===============================================================================================-->
+<script src="../resources/main/vendor/jquery/jquery-3.2.1.min.js"></script>
 </head>
 <body class="animsition">
 	
@@ -243,7 +244,7 @@
 
 
 	<!-- Title page -->
-	<section class="bg-img1 txt-center p-lr-15 p-tb-92" style="background-image: url('images/bg-01.jpg');">
+	<section class="bg-img1 txt-center p-lr-15 p-tb-92" style="background-image: url('../resources/main/images/bg-01.jpg');">
 		<h2 class="ltext-105 cl0 txt-center">
 			About
 		</h2>

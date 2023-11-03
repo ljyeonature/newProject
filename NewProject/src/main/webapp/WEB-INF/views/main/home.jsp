@@ -37,7 +37,7 @@
 	<link rel="stylesheet" type="text/css" href="../resources/main/css/util.css">
 	<link rel="stylesheet" type="text/css" href="../resources/main/css/main.css">
 <!--===============================================================================================-->
-
+<script src="../resources/main/jquery/jquery-3.2.1.min.js"></script>
 </head>
 <body class="animsition">
 	

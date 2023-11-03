@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -9,7 +10,7 @@
 		<nav class="limiter-menu-desktop container">
 
 			<!-- Logo desktop -->
-			<a href="#" class="logo"> <img
+			<a href="home" class="logo"> <img
 				src="../resources/main/images/icons/슬로건 로고.png" alt="IMG-LOGO">
 			</a>
 
@@ -39,18 +40,35 @@
 						class="icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11 js-show-modal-search">
 						<i class="zmdi zmdi-search"></i>
 					</div>
-
-					<div
-						class="icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11 icon-header-noti js-show-cart"
-						data-notify="2">
+					<div class="icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11 icon-header-noti js-show-cart"
+						data-notify="2" id="wishlist">
 						<i class="zmdi zmdi-favorite-outline"></i>
 						<!-- <i class="zmdi zmdi-shopping-cart"></i> -->
 					</div>
-
+					
 					<a href="shoping-cart"
 						class="dis-block icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11 icon-header-noti"
-						data-notify="0"> <i class="zmdi zmdi-shopping-cart"></i>
+						data-notify="0" id="shopping-cart"> <i class="zmdi zmdi-shopping-cart"></i>
 					</a>
+					<c:if test="${ empty sessionScope.logname }">
+					
+						<script type="text/javascript">
+							$(function(){
+								$('#shopping-cart').click(function(event){
+									 event.preventDefault();
+									alert("로그인 후 이용해주세요.");
+								});
+								
+								$('#wishlist').click(function(event){
+									 event.preventDefault();
+									alert("로그인 후 이용해주세요.")
+								});
+									
+							});
+							
+						</script>
+					
+					</c:if>
 				</div>
 		</nav>
 	</div>
