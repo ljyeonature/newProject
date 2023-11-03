@@ -52,8 +52,7 @@
 					data-parent="#accordionSidebar">
 					<div class="bg-white py-2 collapse-inner rounded">
 
-						<a class="collapse-item" href="buttons.html">총주문관리</a> <a
-							class="collapse-item" href="cards.html">주문내역수정</a> <a
+						<a class="collapse-item" href="order_all">총주문관리</a> <a
 							class="collapse-item" href="">주문 취소/교환/반품/환불</a>
 
 					</div>

@@ -7,6 +7,22 @@
 <head>
 <link rel="stylesheet" type="text/css"
 	href="../resources/admin/css/product_resister.css">
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta http-equiv="Content-Script-Type" content="text/javascript">
+  <meta http-equiv="Content-Style-Type" content="text/css">
+  <title>네이버 :: Smart Editor 2 ™</title>
+  <link href="../resources/admin/static/css/ko_KR/smart_editor2.css" rel="stylesheet" type="text/css">
+  <style type="text/css">
+    body { margin: 10px; }
+  </style>
+  <script type="text/javascript" src="../resources/admin/static/js/lib/jindo2.all.js" charset="utf-8"></script>
+  <script type="text/javascript" src="../resources/admin/static/js/lib/jindo_component.js" charset="utf-8"></script>
+  <script type="text/javascript" src="../resources/admin/static/js/service/SE2M_Configuration.js" charset="utf-8"></script>   <!-- 설정 파일 -->
+  <script type="text/javascript" src="../resources/admin/static/js/service/SE2BasicCreator.js" charset="utf-8"></script>
+  <script type="text/javascript" src="../resources/admin/static/js/smarteditor2.js" charset="utf-8"></script>
+  
+  <link type="text/css" rel="stylesheet" href="../resources/admin/static/css/ko_KR/smart_editor2_items.css">
+
 
 
 <meta charset="utf-8">
@@ -93,18 +109,18 @@
 																				<td class="w20p bg1"><select id="sel_ca1"
 																					name="sel_ca1" size="5" class="multiple-select">
 																						<option value="">=카테고리선택=</option>
-																						<option value="001">패션의류/잡화/뷰티</option>
-																						<option value="002">식품/생필품</option>
-																						<option value="004">생활/건강</option>
-																						<option value="008">도서/여행/e쿠폰/취미</option>
-																						<option value="005">가구/인테리어</option>
-																						<option value="003">출산/유아동</option>
-																						<option value="006">가전/디지털/컴퓨터</option>
-																						<option value="007">스포츠/레저/자동차/공구</option>
+																						<option value="00F">물고기</option>
+																						<option value="00D">조경용품</option>
+																						<option value="00E">기타용품</option>
 																				</select></td>
 																				<td class="w20p bg1"><select id="sel_ca2"
 																					name="sel_ca2" size="5" class="multiple-select">
 																						<option value="">=카테고리선택=</option>
+																						<option value="00F001">구피,난태생송사리과</option>
+																						<option value="00F002">금붕어,잉어과</option>
+																						<option value="00F003">디스커스,시클리드과</option>
+																						<option value="00F004">베타,구라미,기수어</option>
+																						<option value="00F005">테트라,카라신과</option>
 																				</select></td>
 																				<td class="w20p bg1"><select id="sel_ca3"
 																					name="sel_ca3" size="5" class="multiple-select">
@@ -794,7 +810,7 @@
 															<div class="srel">
 																<div class="compare_wrap">
 																	<section class="compare_left" id='compare_left'>
-																		<h3>등록된 전체상품 목록</h3>
+																		<h5>등록된 전체상품 목록</h5>
 																		<label for="sch_relation" class="sound_only">카테고리</label>
 																		<span class="srel_pad"> <select
 																			id="sch_relation" name="sch_relation">
@@ -943,7 +959,7 @@
 																	</section>
 
 																	<section class="compare_right" id='compare_right'>
-																		<h3>선택된 관련상품 목록</h3>
+																		<h5>선택된 관련상품 목록</h5>
 																		<span class="srel_pad"></span>
 																		<div id="reg_relation" class="srel_sel">
 																			<p>선택된 상품이 없습니다.</p>
@@ -968,7 +984,164 @@
 								</div>
 							</div>
 
+							<div class="container-fluid">
 
+								<!-- Page Heading -->
+								<div class="card shadow mb-4">
+									<div class="card-header py-3">
+										<h6 class="m-0 font-weight-bold text-primary">상품이미지 및
+											상세정보</h6>
+									</div>
+									<div class="card-body">
+										<div class="table-responsive">
+											<table class="table table-bordered" id="dataTable"
+												width="100%" cellspacing="0">
+												<form name="fsearch" id="fsearch" method="get">
+													<input type="hidden" name="code" value="list">
+													<div class="tbl_frm01">
+														<table>
+															<colgroup>
+																<col class="w100">
+																<col>
+															</colgroup>
+															<tbody>
+
+																<div class="tbl_frm02">
+																	<table style="width: 100%;">
+																		<colgroup>
+																			<col class="w180">
+																			<col>
+																		</colgroup>
+																		<tbody>
+																			<tr>
+																				<th scope="row">이미지 등록방식</th>
+																				<td class="td_label"><input type="radio"
+																					name="simg_type" id="simg_type_1" value="0"
+																					checked="checked" onclick="chk_simg_type(0);">
+																					<label for="simg_type_1">직접 업로드</label> <input
+																					type="radio" name="simg_type" id="simg_type_2"
+																					value="1" onclick="chk_simg_type(1);"> <label
+																					for="simg_type_2">URL 입력</label></td>
+																			</tr>
+																			<tr class="item_img_fld">
+																				<th scope="row">이미지1 <span class="fc_197">(400
+																						* 400)</span> <strong class="fc_red">[필수]</strong></th>
+																				<td>
+																					<div class="item_file_fld">
+																						<input type="file" name="simg1">
+																					</div>
+																					<div class="item_url_fld" style="display: none;">
+																						<input type="text" name="simg1" value=""
+																							class="frm_input" size="80" placeholder="http://">
+																					</div>
+																				</td>
+																			</tr>
+																			<tr class="item_img_fld">
+																				<th scope="row">이미지2 <span class="fc_197">(400
+																						* 400)</span> <strong class="fc_red">[필수]</strong></th>
+																				<td>
+																					<div class="item_file_fld">
+																						<input type="file" name="simg2">
+																					</div>
+																					<div class="item_url_fld" style="display: none;">
+																						<input type="text" name="simg2" value=""
+																							class="frm_input" size="80" placeholder="http://">
+																					</div>
+																				</td>
+																			</tr>
+																			<tr class="item_img_fld">
+																				<th scope="row">이미지3 <span class="fc_197">(400
+																						* 400)</span></th>
+																				<td>
+																					<div class="item_file_fld">
+																						<input type="file" name="simg3">
+																					</div>
+																					<div class="item_url_fld" style="display: none;">
+																						<input type="text" name="simg3" value=""
+																							class="frm_input" size="80" placeholder="http://">
+																					</div>
+																				</td>
+																			</tr>
+																			<tr class="item_img_fld">
+																				<th scope="row">이미지4 <span class="fc_197">(400
+																						* 400)</span></th>
+																				<td>
+																					<div class="item_file_fld">
+																						<input type="file" name="simg4">
+																					</div>
+																					<div class="item_url_fld" style="display: none;">
+																						<input type="text" name="simg4" value=""
+																							class="frm_input" size="80" placeholder="http://">
+																					</div>
+																				</td>
+																			</tr>
+																			<tr class="item_img_fld">
+																				<th scope="row">이미지5 <span class="fc_197">(400
+																						* 400)</span></th>
+																				<td>
+																					<div class="item_file_fld">
+																						<input type="file" name="simg5">
+																					</div>
+																					<div class="item_url_fld" style="display: none;">
+																						<input type="text" name="simg5" value=""
+																							class="frm_input" size="80" placeholder="http://">
+																					</div>
+																				</td>
+																			</tr>
+																			<tr class="item_img_fld">
+																				<th scope="row">이미지6 <span class="fc_197">(400
+																						* 400)</span></th>
+																				<td>
+																					<div class="item_file_fld">
+																						<input type="file" name="simg6">
+																					</div>
+																					<div class="item_url_fld" style="display: none;">
+																						<input type="text" name="simg6" value=""
+																							class="frm_input" size="80" placeholder="http://">
+																					</div>
+																				</td>
+																			</tr>
+																			<tr>
+																				<th scope="row">상세설명</th>
+																				<td><span class="sound_only">웹에디터 시작</span> 
+																						
+																					
+																					<textarea name="ir1" id="ir1" rows="10" cols="100"
+																						style="width: 100%;"></textarea> <script>
+																							var tw_editor_url = "../resources/admin/static/SmartEditor2.html", oEditors = [];
+																							nhn.husky.EZCreator
+																									.createInIFrame({
+																										oAppRef : oEditors,
+																										elPlaceHolder : "ir1",
+																										sSkinURI : "../resources/admin/static/SmartEditor2Skin.html",
+																										fCreator : "createSEditor2"
+																									});
+																						</script> <span class="sound_only">웹 에디터 끝</span></td>
+																			</tr>
+																			<tr>
+																				<th scope="row">관리자메모</th>
+																				<td><textarea name="admin_memo"
+																						class="frm_textbox"></textarea></td>
+																			</tr>
+																		</tbody>
+																	</table>
+																</div>
+
+															</tbody>
+														</table>
+													</div>
+											</table>
+										</div>
+										</section>
+										<div class="btn_confirm">
+											<input type="submit" value="등록" class="btn_medium">
+
+										</div>
+									</div>
+								</div>
+
+
+							</div>
 						</div>
 
 					</div>
