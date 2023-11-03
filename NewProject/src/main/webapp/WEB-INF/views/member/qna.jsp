@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<title>Blog</title>
+	<title>Q&A</title>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 <!--===============================================================================================-->	
@@ -215,7 +215,7 @@
 	<!-- Title page -->
 	<section class="bg-img1 txt-center p-lr-15 p-tb-92"
 		style="background-image: url('../resources/main/images/bg-02.jpg');">
-		<h2 class="ltext-105 cl0 txt-center">Blog</h2>
+		<h2 class="ltext-105 cl0 txt-center">Q&A</h2>
 	</section>
 
 <div class="board_wrap">

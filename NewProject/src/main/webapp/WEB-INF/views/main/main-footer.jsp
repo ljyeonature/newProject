@@ -5,7 +5,7 @@
 <head>
 </head>
 <body>
-	<footer class="bg3 p-t-75 p-b-32">
+	<footer class="bg3 p-t-50 p-b-32">
 		<div class="container">
 			<div class="row">
 				<div class="col-sm-6 col-lg-3 p-b-50">
@@ -29,7 +29,7 @@
 
 				<div class="col-sm-6 col-lg-3 p-b-50">
 					<h4 class="stext-301 cl0 p-b-30">
-						우리은행 채무지급보증안내<br/>고객님이 결제한 금액에 대해<br/>우리은행 채무지급보증 계약을 미체결해<br/>안전거래를 미보장하고 있습니다.
+						우리은행 채무지급보증안내<br/>고객님이 결제한 금액에 대해<br/>채무지급보증 계약을 미체결해<br/>안전거래를 미보장하고 있습니다.
 					</h4>
 				</div>
 			</div>
