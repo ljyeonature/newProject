@@ -77,6 +77,7 @@ public class MemberController {
 	        
 	    } 
 	    else {
+	    	System.out.println(result);
 	        session.setAttribute("logname", result.getM_name());
 	        return "redirect:/member/home";
 	    }
