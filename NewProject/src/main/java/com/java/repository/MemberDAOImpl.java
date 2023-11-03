@@ -60,19 +60,36 @@ public class MemberDAOImpl implements MemberDAO{
 		return sqlSession.selectList("org.java.MemberMapper.member_all",vo);
 	}
 
-
+	// 포인트 관리 페이지에서 회원 목록 보이기
 	@Override
 	public MemberVO member_point_detail(MemberVO vo) {
 //		System.out.println("MemberDAO m_id: " + vo.getM_id());
 		return sqlSession.selectOne("org.java.MemberMapper.member_point_detail", vo);
 	}
 
-
+	// 포인트 차감
 	@Override
 	public int member_point_content(MemberVO vo) {
-		System.out.println("MemberPoint : " + vo.getM_point());
+//		System.out.println("MemberPoint : " + vo.getM_point());
 		int result=sqlSession.update("org.java.MemberMapper.member_point_content", vo);
-		System.out.println("DAO : " + result);
+//		System.out.println("DAO : " + result);
+		return result;
+	}
+
+
+	// 비밀번호 찾기 : 이메일 인증 - 이메일 찾기
+	@Override
+	public MemberVO selectMember(String m_email) {
+		MemberVO result = sqlSession.selectOne("org.java.MemberMapper.selectMember", m_email);
+		System.out.println("selectMember DAO : " + result);
+		return result;
+	}
+
+
+	@Override
+	public int pwUpdate_M(MemberVO vo) {
+		int result=sqlSession.update("org.java.MemberMapper.pwUpdate_M", vo);
+		System.out.println("pwUpdate_M DAO : " + result);
 		return result;
 	}
 

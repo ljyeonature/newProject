@@ -59,6 +59,9 @@
 				m_tel : {
 					required : true,
 					phoneKR : true
+				},
+				agree : {
+					required : true
 				}
 			},
 			messages : {
@@ -81,6 +84,9 @@
 				m_tel : {
 					required : "전화번호는 필수 입력입니다.",
 					phoneKR : "올바른 전화번호 형식이 아닙니다. (예: 02-1234-5678)"
+				},
+				agree : {
+					required : "약관 동의를 해야 가입이 완료됩니다."
 				}
 
 			},
@@ -109,9 +115,11 @@
 				url : 'check_Id',
 				success : function(response) {
 					if (response === "duplicate") {
-						$("#duplicateMessage").text("이미 사용 중인 아이디입니다.");
+						// $("#duplicateMessage").text("이미 사용 중인 아이디입니다.");
+						alert("이미 사용 중인 아이디입니다.")
 					} else if (response === "available") {
-						$("#duplicateMessage").text("사용 가능한 아이디입니다.");
+						// $("#duplicateMessage").text("사용 가능한 아이디입니다.");
+						alert("사용 가능한 아이디입니다.")
 					}
 				},
 				error : function(err) {
@@ -194,8 +202,8 @@
 							</div>
 							<div class="col-md-12 form-group">
 								<div class="creat_account">
-									<input type="checkbox" id="f-option2" name="selector">
-									<label for="f-option2">약관을 읽었습니다.</label>
+									<input type="checkbox" id="agree" name="agree">
+									<label for="agree">약관을 읽었습니다.</label>
 								</div>
 							</div>
 							<div class="col-md-12 form-group">
