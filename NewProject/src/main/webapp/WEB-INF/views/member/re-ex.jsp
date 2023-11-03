@@ -47,21 +47,24 @@
 .container > .row > .wrap-table-shopping-cart > table {
 	  border-collapse: collapse;
 	  width: 100%;
-	  min-width: 300px;
-	  height:300px;
-}
+	  min-width: 430px;
+  	  height:600px;
+    }
     
 .container > .row > .wrap-table-shopping-cart > table .column-1 {
-  width: 150px;
-  padding-left : 100px;
+  width: 133px;
+  padding-left: 176px;
 }
 form {
     display: inline-block; /* 인라인 블록 요소로 표시하여 가로로 정렬 */
     margin: 0 20px; /* 요소 사이의 간격을 조절 */
 }
 
-form#first{
-	padding-left : 250px
+form#re{
+	padding-left : 400px
+}
+form#ex {
+	padding-left : 100px
 }
 
 div#point {
@@ -82,6 +85,71 @@ h4, h6 {
 	align-content: center;
 }
 
+
+
+#title {
+    position:  absolute;
+    top: 300px;
+}
+
+#small-title {
+	position:  relative;
+    top: 82px;
+    left:-55px;
+    width:210px
+}
+
+#content {
+	position:  relative;
+    bottom: -128px;
+    
+}
+
+td.column-1 {
+	width: 10px;
+}
+
+#content {
+    text-align: center; /* 가운데 정렬 */
+    margin: 0 auto; /* 수평 가운데 위치 */
+    max-width: 600px; /* 최대 너비 지정 (원하는 값으로 조절) */
+    position: relative; /* 위치 지정을 위해 상대 위치로 설정 */
+    top: 134px; /* 위로 조절 (원하는 값으로 조절) */
+}
+
+#content {
+    text-align: left; /* 텍스트를 왼쪽 정렬 */
+    margin-left: -163px; /* 왼쪽 여백을 조절 (원하는 값으로 조절) */
+}
+
+a#ex {
+	position:relative;
+	top:179px;
+	left:-31px
+}
+
+a#re {
+	position:relative;
+	top:179px;
+	left:-31px
+}
+
+td.column-1 a {
+	text-decoration : none;
+	color : white;
+	font-size : 20px;
+	border : none;
+	width : 200px;
+	height : 50px;
+	border-radius : 10px;
+	padding : 10px 50px;
+	background-color : black;
+}
+
+td.column-1 a:hover {
+	color : white;
+	background-color : gray;
+}
  
 </style>
 
@@ -203,23 +271,20 @@ h4, h6 {
 	<!-- breadcrumb -->
 	<div class="container">
 		<div class="bread-crumb flex-w p-l-25 p-r-15 p-t-30 p-lr-0-lg">
-			<a href="home" class="stext-109 cl8 hov-cl1 trans-04"> Home <i
-				class="fa fa-angle-right m-l-9 m-r-10" aria-hidden="true"></i>
-			</a> <span class="stext-109 cl4"> MyPage </span>
+			<a href="home" class="stext-109 cl8 hov-cl1 trans-04"> Home 
+			<i class="fa fa-angle-right m-l-9 m-r-10" aria-hidden="true"></i>
+			</a> 
+			<a href="home" class="stext-109 cl8 hov-cl1 trans-04"> MyPAge 
+			<i class="fa fa-angle-right m-l-9 m-r-10" aria-hidden="true"></i>
+			</a>
+			<span class="stext-109 cl4"> RE/EX </span>
 		</div>
 	</div>
 
-	<div class="flex-w flex-m m-r-20 m-tb-5" id="point">
-		<input class="stext-104 cl2 plh4 size-117 bor13 p-lr-20 m-r-10 m-tb-5"
-			type="text" name="coupon" placeholder="POINT">
 
-		<div
-			class="flex-c-m stext-101 cl2 size-118 bg8 bor13 hov-btn3 p-lr-15 trans-04 pointer m-tb-5">
-			Your Point</div>
-	</div>
 
 	<!-- Shoping Cart -->
-	<form class="bg0 p-t-75 p-b-85" id="first">
+	<form class="bg0 p-t-75 p-b-85" id="re">
 		<div class="container">
 			<div class="row">
 
@@ -229,12 +294,12 @@ h4, h6 {
 							
 							<tr class="table_row">
 								<td class="column-1">
-									<a href="member-update">
-										<img src="../resources/main/images/member.png" alt="IMG">
-										<h4>MEMBER</h4>
-										<h6>회원정보</h6>
-									</a>
+									<h1 id="title">교환</h1>
+									<h4 id="small-title">교환 처리 시</h4>
+									<p id="content">아래 교환 버튼을 누르면 Q&A 게시판에 자동으로 제목으로 <br/> <span>‘교환입니다’</span>의 게시물 등록 페이지로 넘어감</p>
+									<a href="qna" id="ex"> 교환 </a>
 								</td>
+								
 
 							</tr>
 						</tbody>
@@ -244,7 +309,7 @@ h4, h6 {
 			</div>
 		</div>
 	</form>
-	<form class="bg0 p-t-75 p-b-85">
+	<form class="bg0 p-t-75 p-b-85" id="ex">
 		<div class="container">
 			<div class="row">
 
@@ -255,10 +320,10 @@ h4, h6 {
 
 							<tr class="table_row">
 								<td class="column-1">
-									<a href="member-order">
-										<img src="../resources/main/images/order.png" alt="IMG">
-										<h4>ORDER</h4>
-										<h6>주문정보</h6>
+								<h1 id="title">환불</h1>
+									<h4 id="small-title">환불 처리 시</h4>
+									<p id="content">아래 환불 버튼을 누르면 Q&A 게시판에 자동으로 제목으로 <br/> <span>‘환불입니다’</span>의 게시물 등록 페이지로 넘어감</p>
+									<a href="qna" id="re"> 환불 
 									</a>
 									
 								</td>
@@ -271,60 +336,7 @@ h4, h6 {
 			</div>
 		</div>
 	</form>
-	<form class="bg0 p-t-75 p-b-85">
-		<div class="container">
-			<div class="row">
-
-				<div class="wrap-table-shopping-cart">
-					<table class="table-shopping-cart">
-						<tbody id="mypage_menu">
-							
-
-							<tr class="table_row">
-								<td class="column-1">
-									<a href="qna">
-										<img src="../resources/main/images/qna.png" alt="IMG">
-										<h4>Q&A</h4>
-										<h6>게시판</h6>
-									</a>
-								
-								</td>
-
-							</tr>
-						</tbody>
-					</table>
-				</div>
-
-			</div>
-		</div>
-	</form>
-	<form class="bg0 p-t-75 p-b-85">
-		<div class="container">
-			<div class="row">
-
-				<div class="wrap-table-shopping-cart">
-					<table class="table-shopping-cart">
-						<tbody id="mypage_menu">
-							
-							<tr class="table_row">
-								<td class="column-1">
-									<a href="re-ex">
-										<img src="../resources/main/images/re-ex.png" alt="IMG">
-										<h4>RE/EX</h4>
-										<h6>교환/환불</h6>
-									</a>
-									
-								
-								</td>
-
-							</tr>
-						</tbody>
-					</table>
-				</div>
-
-			</div>
-		</div>
-	</form>
+	
 
 
 
