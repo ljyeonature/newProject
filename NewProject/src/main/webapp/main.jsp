@@ -6,7 +6,8 @@
 <meta charset="UTF-8">
 <title>Insert title 테스트</title>
 </head>
+
 <body>
-<% response.sendRedirect("/NewProject/main/home"); %>
+	<% response.sendRedirect("/NewProject/main/home"); %>
 </body>
 </html>

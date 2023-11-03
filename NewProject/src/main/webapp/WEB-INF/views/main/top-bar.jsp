@@ -34,6 +34,12 @@
 								로그아웃
 							</a>
 						</c:if>
+						
+						<c:if test="${ not empty sessionScope.logname }">
+							<a href="../member/mypage" class="flex-c-m trans-04 p-lr-25">
+								마이페이지
+							</a>
+						</c:if>
 
 						<a href="../admin/admin-index" class="flex-c-m trans-04 p-lr-25">
 							관리자
