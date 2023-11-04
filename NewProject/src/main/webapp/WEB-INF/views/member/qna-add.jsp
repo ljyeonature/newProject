@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<title>About</title>
+	<title>Q&A작성</title>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 <!--===============================================================================================-->	
@@ -29,10 +29,36 @@
 <!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="../resources/main/css/util.css">
 	<link rel="stylesheet" type="text/css" href="../resources/main/css/main.css">
+	<link rel="stylesheet" type="text/css" href="../resources/main/css/QnA게시판글.css">
 <!--===============================================================================================-->
+
+<!-- 제이쿼리CDN -->
+<script src="https://code.jquery.com/jquery-latest.min.js"></script>
+<!-- JS -->
+<script type="text/javascript">
+	$(document).ready(function() {
+		
+		//문의유형 변경
+		$("#inquiry_type").change(function(){
+			if($(this).val() === "일반문의") {
+				$("#product_type").prop("disabled",true);
+			}else {
+				$("#product_type").prop("disabled",false);
+			}
+		});
+		
+ 	    $('.submit-button').click(function(event){
+	        if($('#sltid').text() === "문의유형") {
+	            event.preventDefault();
+	            alert("문의유형은 필수 입력값입니다.");
+	        }
+	    });
+	});
+	
+</script>
 </head>
 <body class="animsition">
-	
+
 	<!-- Header -->
 	<header>
 		<!-- Header -->
@@ -45,30 +71,35 @@
 
 		<!-- Header Mobile -->
 		<div class="wrap-header-mobile">
-			<!-- Logo moblie -->		
+			<!-- Logo moblie -->
 			<div class="logo-mobile">
-				<a href="home"><img src="../resources/main/images/icons/logo-01.png" alt="IMG-LOGO"></a>
+				<a href="home"><img
+					src="../resources/main/images/icons/logo-01.png" alt="IMG-LOGO"></a>
 			</div>
 
 			<!-- Icon header -->
 			<div class="wrap-icon-header flex-w flex-r-m m-r-15">
-				<div class="icon-header-item cl2 hov-cl1 trans-04 p-r-11 js-show-modal-search">
+				<div
+					class="icon-header-item cl2 hov-cl1 trans-04 p-r-11 js-show-modal-search">
 					<i class="zmdi zmdi-search"></i>
 				</div>
 
-				<div class="icon-header-item cl2 hov-cl1 trans-04 p-r-11 p-l-10 icon-header-noti js-show-cart" data-notify="2">
-					<i class="zmdi zmdi-shopping-cart"></i>
+				<div
+					class="icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11 icon-header-noti js-show-cart"
+					data-notify="2">
+					<i class="zmdi zmdi-favorite-outline"></i>
+					<!-- <i class="zmdi zmdi-shopping-cart"></i> -->
 				</div>
 
-				<a href="#" class="dis-block icon-header-item cl2 hov-cl1 trans-04 p-r-11 p-l-10 icon-header-noti" data-notify="0">
-					<i class="zmdi zmdi-favorite-outline"></i>
+				<a href="shoping-cart"
+					class="dis-block icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11 icon-header-noti"
+					data-notify="0"> <i class="zmdi zmdi-shopping-cart"></i>
 				</a>
 			</div>
 
 			<!-- Button show menu -->
 			<div class="btn-show-menu-mobile hamburger hamburger--squeeze">
-				<span class="hamburger-box">
-					<span class="hamburger-inner"></span>
+				<span class="hamburger-box"> <span class="hamburger-inner"></span>
 				</span>
 			</div>
 		</div>
@@ -78,80 +109,60 @@
 		<div class="menu-mobile">
 			<ul class="topbar-mobile">
 				<li>
-					<div class="left-top-bar">
-						Free shipping for standard order over $100
-					</div>
+					<div class="left-top-bar">Free shipping for standard order
+						over $100</div>
 				</li>
 
 				<li>
 					<div class="right-top-bar flex-w h-full">
-						<a href="#" class="flex-c-m p-lr-10 trans-04">
-							Help & FAQs
-						</a>
-
-						<a href="#" class="flex-c-m p-lr-10 trans-04">
-							My Account
-						</a>
-
-						<a href="#" class="flex-c-m p-lr-10 trans-04">
-							EN
-						</a>
-
-						<a href="#" class="flex-c-m p-lr-10 trans-04">
-							USD
-						</a>
+						<a href="#" class="flex-c-m p-lr-10 trans-04"> Help & FAQs </a> <a
+							href="login" class="flex-c-m p-lr-10 trans-04"> My Account </a> <a
+							href="#" class="flex-c-m p-lr-10 trans-04"> EN </a> <a href="#"
+							class="flex-c-m p-lr-10 trans-04"> USD </a>
 					</div>
 				</li>
 			</ul>
 
 			<ul class="main-menu-m">
-				<li>
-					<a href="home">Home</a>
+				<li><a href="home">Home</a>
 					<ul class="sub-menu-m">
 						<li><a href="home">Homepage 1</a></li>
 						<li><a href="home-02">Homepage 2</a></li>
 						<li><a href="home-03">Homepage 3</a></li>
-					</ul>
-					<span class="arrow-main-menu-m">
-						<i class="fa fa-angle-right" aria-hidden="true"></i>
-					</span>
+					</ul> <span class="arrow-main-menu-m"> <i
+						class="fa fa-angle-right" aria-hidden="true"></i>
+				</span></li>
+
+				<li><a href="product">Shop</a></li>
+
+				<li><a href="shoping-cart" class="label1 rs1" data-label1="hot">Features</a>
 				</li>
 
-				<li>
-					<a href="product">Shop</a>
-				</li>
+				<li><a href="blog">Blog</a></li>
 
-				<li>
-					<a href="shoping-cart" class="label1 rs1" data-label1="hot">Features</a>
-				</li>
+				<li><a href="about">About</a></li>
 
-				<li>
-					<a href="blog">Blog</a>
-				</li>
-
-				<li>
-					<a href="about">About</a>
-				</li>
-
-				<li>
-					<a href="contact">Contact</a>
-				</li>
+				<li><a href="contact">Contact</a></li>
 			</ul>
 		</div>
 
 		<!-- Modal Search -->
-		<div class="modal-search-header flex-c-m trans-04 js-hide-modal-search">
+		<div
+			class="modal-search-header flex-c-m trans-04 js-hide-modal-search">
 			<div class="container-search-header">
-				<button class="flex-c-m btn-hide-modal-search trans-04 js-hide-modal-search">
-					<img src="../resources/main/images/icons/icon-close2.png" alt="CLOSE">
+				<button
+					class="flex-c-m btn-hide-modal-search trans-04 js-hide-modal-search">
+					<img src="../resources/main/images/icons/icon-close2.png"
+						alt="CLOSE">
 				</button>
 
-				<form class="wrap-search-header flex-w p-l-15">
+<!-- 				<form class="wrap-search-header flex-w p-l-15">
 					<button class="flex-c-m trans-04">
 						<i class="zmdi zmdi-search"></i>
 					</button>
-					<input class="plh3" type="text" name="search" placeholder="Search...">
-				</form>
+					<input class="plh3" type="text" name="search"
+						placeholder="Search...">
+				</form> -->
 			</div>
 		</div>
 	</header>
@@ -162,15 +173,14 @@
 
 		<div class="header-cart flex-col-l p-l-65 p-r-25">
 			<div class="header-cart-title flex-w flex-sb-m p-b-8">
-				<span class="mtext-103 cl2">
-					Your Cart
-				</span>
+				<span class="mtext-103 cl2"> Your Cart </span>
 
-				<div class="fs-35 lh-10 cl2 p-lr-5 pointer hov-cl1 trans-04 js-hide-cart">
+				<div
+					class="fs-35 lh-10 cl2 p-lr-5 pointer hov-cl1 trans-04 js-hide-cart">
 					<i class="zmdi zmdi-close"></i>
 				</div>
 			</div>
-			
+
 			<div class="header-cart-content flex-w js-pscroll">
 				<ul class="header-cart-wrapitem w-full">
 					<li class="header-cart-item flex-w flex-t m-b-12">
@@ -180,12 +190,8 @@
 
 						<div class="header-cart-item-txt p-t-8">
 							<a href="#" class="header-cart-item-name m-b-18 hov-cl1 trans-04">
-								White Shirt Pleat
-							</a>
-
-							<span class="header-cart-item-info">
-								1 x $19.00
-							</span>
+								White Shirt Pleat </a> <span class="header-cart-item-info"> 1
+								x $19.00 </span>
 						</div>
 					</li>
 
@@ -196,12 +202,8 @@
 
 						<div class="header-cart-item-txt p-t-8">
 							<a href="#" class="header-cart-item-name m-b-18 hov-cl1 trans-04">
-								Converse All Star
-							</a>
-
-							<span class="header-cart-item-info">
-								1 x $39.00
-							</span>
+								Converse All Star </a> <span class="header-cart-item-info"> 1
+								x $39.00 </span>
 						</div>
 					</li>
 
@@ -212,120 +214,74 @@
 
 						<div class="header-cart-item-txt p-t-8">
 							<a href="#" class="header-cart-item-name m-b-18 hov-cl1 trans-04">
-								Nixon Porter Leather
-							</a>
-
-							<span class="header-cart-item-info">
-								1 x $17.00
-							</span>
+								Nixon Porter Leather </a> <span class="header-cart-item-info">
+								1 x $17.00 </span>
 						</div>
 					</li>
 				</ul>
-				
+
 				<div class="w-full">
-					<div class="header-cart-total w-full p-tb-40">
-						Total: $75.00
-					</div>
+					<div class="header-cart-total w-full p-tb-40">Total: $75.00</div>
 
 					<div class="header-cart-buttons flex-w w-full">
-						<a href="shoping-cart" class="flex-c-m stext-101 cl0 size-107 bg3 bor2 hov-btn3 p-lr-15 trans-04 m-r-8 m-b-10">
-							View Cart
-						</a>
-
-						<a href="shoping-cart" class="flex-c-m stext-101 cl0 size-107 bg3 bor2 hov-btn3 p-lr-15 trans-04 m-b-10">
-							Check Out
-						</a>
+						<a href="shoping-cart"
+							class="flex-c-m stext-101 cl0 size-107 bg3 bor2 hov-btn3 p-lr-15 trans-04 m-r-8 m-b-10">
+							View Cart </a> <a href="shoping-cart"
+							class="flex-c-m stext-101 cl0 size-107 bg3 bor2 hov-btn3 p-lr-15 trans-04 m-b-10">
+							Check Out </a>
 					</div>
 				</div>
 			</div>
 		</div>
 	</div>
 
+	
 
 	<!-- Title page -->
-	<section class="bg-img1 txt-center p-lr-15 p-tb-92" style="background-image: url('../resources/main/images/bg-01.jpg');">
-		<h2 class="ltext-105 cl0 txt-center">
-			About
-		</h2>
-	</section>	
+	<section class="bg-img1 txt-center p-lr-15 p-tb-92"
+		style="background-image: url('../resources/main/images/bg-02.jpg');">
+		<h2 class="ltext-105 cl0 txt-center">Q&A</h2>
+	</section>
+
+    <h1>QnA 글</h1>
+    <p>궁금하신 모든것을 물어보세요.</p>
+    <form action="qna-add_do" method="get">
+        <select id="inquiry_type" name="q_inquiry" required>
+            <option selected disabled id="sltid">문의유형</option>
+            <option value="일반문의">일반문의</option>
+            <option value="상품문의">상품문의</option>
+        </select>
+    <br/>
+    <div class="addcontainer">
+            <label for="type_select">제품선택</label>
+
+            <select id="product_type">
+                <option selected disabled>제품선택</option>
+                <option>구매상품1</option>
+                <option>구매상품2</option>
+            </select>
+            
+            <label for="title">제목</label>
+            <input type="text" id="q_title" name="q_title" required>
+            
+            <label for="content">내용</label>
+            <textarea id="q_content" name="q_content" rows="13" required></textarea>
+            
+            <label for="image">이미지</label>
+            <input type="file" id="q_image" name="image">
+            
+            <label>게시글 비밀번호</label>
+            <input type="password" id="q_pass" name="q_pass" required>
+        
+        <div class="button-container">
+            <a class="list-button" href="qna">목록</a>
+            <input class="submit-button" type="submit" value="작성완료">
+            <a class="cancel-button" href="qna">취소</a>
+        </div>					
+          </form>  
+    </div>
 
 
-	<!-- Content page -->
-	<section class="bg0 p-t-75 p-b-120">
-		<div class="container">
-			<div class="row p-b-148">
-				<div class="col-md-7 col-lg-8">
-					<div class="p-t-7 p-r-85 p-r-15-lg p-r-0-md">
-						<h3 class="mtext-111 cl2 p-b-16">
-							A Small Seaside Town on the Desk
-						</h3>
-
-						<p class="stext-113 cl6 p-b-26">
-							우리 아쿠아이씨티는<br/>
-							고객들의 삶의 긍정적인 변화를 가져오고자 하는 방향성에서 탄생되었습니다.<br/>
-							현대 사회에서의 스트레스와 우울증은 날이 갈수록 극심해지고 있습니다.<br/>
-							<br/>
-							"애완동물과의 상호작용은 스트레스를 감소시키고 사회적 연결성을 높이는 데에 큰 효과가 있다."<br/>
-							<br/>
-							열대어와 아름다운 수족관은 자연적인 환경을 연상시킵니다.<br/>
-							이러한 환경은 사람들에게 평화로운 느낌을 줄 수 있으며<br/>
-							스트레스를 감소시키고 긴장을 풀 수 있다는 연구결과도 있습니다.<br/>
-							<br/>
-							아름답고 평온한 작은 바다도시를 보는 것이<br/>
-							이를 완화할 수 있는 좋은 방법이라고 확신했습니다.<br/>
-						</p>
-					</div>
-				</div>
-
-				<div class="col-11 col-md-5 col-lg-4 m-lr-auto">
-					<div class="how-bor1 ">
-						<div class="hov-img0">
-							<img src="../resources/main/images/about-01.jpg" alt="IMG">
-						</div>
-					</div>
-				</div>
-			</div>
-			
-			<div class="row">
-				<div class="order-md-2 col-md-7 col-lg-8 p-b-30">
-					<div class="p-t-7 p-l-85 p-l-15-lg p-l-0-md">
-						<h3 class="mtext-111 cl2 p-b-16">
-							Happy Today, and even Happier Tomorrow
-						</h3>
-
-						<p class="stext-113 cl6 p-b-26">
-							아쿠아이씨티를 통해<br/>
-							현대인들에게 기쁨과 감동을 매일 선사하고자 합니다.<br/>
-							<br/>
-							"행복한 오늘, 그리고 더 행복할 내일"<br/>
-							<br/>
-							당신의 행복할 나날엔 늘 아쿠아이씨티가 함께할 겁니다.
-						</p>
-
-						<div class="bor16 p-l-29 p-b-9 m-t-22">
-							<p class="stext-114 cl6 p-r-40 p-b-11">
-								"잘 키운 물고기 한 마리, 열 아들 안 부럽다."
-							</p>
-
-							<span class="stext-111 cl8">
-								대표이사 이상철 
-							</span>
-						</div>
-					</div>
-				</div>
-
-				<div class="order-md-1 col-11 col-md-5 col-lg-4 m-lr-auto p-b-30">
-					<div class="how-bor2">
-						<div class="hov-img0">
-							<img src="../resources/main/images/about-02.jpg" alt="IMG">
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</section>	
-	
-		
 
 	<!-- Footer -->
 	<%@include file="../main/main-footer.jsp" %>
@@ -376,9 +332,9 @@
 	</script>
 <!--===============================================================================================-->
 	<script src="../resources/main/js/main.js"></script>
-	<script>
+<script>
 		$('.main-menu > li').removeClass('active-menu');
-		$('.main-menu > li:eq(3)').addClass('active-menu');
+		$('.main-menu > li:eq(2)').addClass('active-menu');
 	</script>
 </body>
 </html>

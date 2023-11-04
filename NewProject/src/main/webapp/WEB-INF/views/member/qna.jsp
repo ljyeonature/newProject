@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<title>Blog</title>
+	<title>Q&A</title>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 <!--===============================================================================================-->	
@@ -215,7 +215,7 @@
 	<!-- Title page -->
 	<section class="bg-img1 txt-center p-lr-15 p-tb-92"
 		style="background-image: url('../resources/main/images/bg-02.jpg');">
-		<h2 class="ltext-105 cl0 txt-center">Blog</h2>
+		<h2 class="ltext-105 cl0 txt-center">Q&A</h2>
 	</section>
 
 <div class="board_wrap">
@@ -236,33 +236,21 @@
         <div class="board_list_wrap">
             <div class="board_list">
                 <div class="top">
-                    <div class="num">글 번호</div>
-                    <div class="title">제목</div>
-                    <div class="writer">작성자</div>
-                    <div class="date">작성일</div>
-                    <div class="count">조회</div>
+                    <div class="num" id="q_postid">글 번호</div>
+                    <div class="title" id="q_title">제목</div>
+                    <div class="writer" id="q_writer">작성자</div>
+                    <div class="date" id="q_date">작성일</div>
+                    <div class="count" id="q_count">조회</div>
                 </div>
-                <div>
-                    <div class="num">3</div>
-                    <div class="title"><a href="#">제목</a></div>
-                    <div class="writer">김모세</div>
-                    <div class="date">2023-10-30</div>
-                    <div class="count">99</div>
-                </div>
-                <div>
-                    <div class="num">2</div>
-                    <div class="title"><a href="#">제목</a></div>
-                    <div class="writer">김모세</div>
-                    <div class="date">2023-10-30</div>
-                    <div class="count">99</div>
-                </div>
-                <div>
-                    <div class="num">1</div>
-                    <div class="title"><a href="#">제목</a></div>
-                    <div class="writer">김모세</div>
-                    <div class="date">2023-10-30</div>
-                    <div class="count">99</div>
-                </div>
+                <c:forEach items="${qnaList}" var="q">
+                	<div>
+                   	 <div class="num" id="q_postid">${q.q_postid}</div>
+                    	<div class="title" id="q_title"><a href="#">${q.q_title}</a></div>
+                    	<div class="writer" id="q_writer">${q.q_inquiry}</div>
+                    	<div class="date" id="q_date">${q.q_date}</div>
+                    	<div class="count" id="q_count">${q.q_count}</div>
+                	</div>
+                </c:forEach>
             </div>
             <div class="board_page">
                 <a href="#" class="btn frist"><<</a>
@@ -273,7 +261,7 @@
                 <a href="#" class="btn last">>></a>
             </div>
             <div class="bt_wrap">
-                <a href="#" class="on">글쓰기</a>
+                <a href="qna-add" class="on">글쓰기</a>
             </div>
         </div>
     </div>
