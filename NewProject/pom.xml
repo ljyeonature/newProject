@@ -5,7 +5,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.javaclass</groupId>
 	<artifactId>basic</artifactId>
-	<name>fSpringWeb</name>
+	<name>AQUICITY</name>
 	<packaging>war</packaging>
 	<version>1.0.0-BUILD-SNAPSHOT</version>
 	<properties>

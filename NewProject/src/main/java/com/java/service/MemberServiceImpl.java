@@ -21,7 +21,7 @@ public class MemberServiceImpl implements MemberService{
 	}
 	
 	public MemberVO loginCheck(MemberVO vo) {
-		// System.out.println("로그인 : " + vo.getM_id() +"/" +vo.getM_pass());
+		System.out.println("로그인 : " + vo.getM_id() +"/" +vo.getM_pass());
 		return memberDAOImpl.loginCheck(vo);
 	}
 	

@@ -72,16 +72,20 @@ public class MemberController {
 		//		System.out.println(result.getM_name());
 		//		System.out.println(result.getM_rol());
 		if (result == null) {
+
 			return "member/login";
 		} else if ("manager".equals(result.getM_rol())) {
 			session.setAttribute("logname", result.getM_name());
 			return "redirect:/admin/admin-index";
 
 		} 
-		else {
-			session.setAttribute("logname", result.getM_name());
-			return "redirect:/member/home";
-		}
+
+	    else {
+	    	System.out.println(result);
+	        session.setAttribute("logname", result.getM_name());
+	        return "redirect:/member/home";
+	    }
+		
 
 	}
 
