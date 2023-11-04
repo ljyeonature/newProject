@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
+
 <html lang="en">
 <html>
 <head>
@@ -23,16 +24,7 @@
 </head>
 <body>
  
-<%--   	<form action="pw_new" method="POST" class="content">
-		<div class="textbox">
-			<input id="m_pass" name="m_pass" type="password"><label>새비밀번호</label>
-			<!-- <div class="error">Invalid password</div> -->
-		</div>
-		
-		<span id=same></span> <br>
-		<br> <input type="submit" id="check" value="비밀번호변경"> 
-		<input type="hidden" name="m_email" value="${m_email }">
-	</form>   --%>
+
 
   	<!--================Login Box Area =================-->
     	
@@ -76,5 +68,8 @@
   <script src="../resources/join_login/vendors/jquery.ajaxchimp.min.js"></script>
   <script src="../resources/join_login/vendors/mail-script.js"></script>
   <script src="../resources/join_login/js/main.js"></script>	
+
+	</form>
+
 </body>
 </html>

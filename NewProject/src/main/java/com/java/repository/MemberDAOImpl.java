@@ -41,8 +41,10 @@ public class MemberDAOImpl implements MemberDAO{
 	// 로그인 체크
 	@Override
 	public MemberVO loginCheck(MemberVO vo) {
-//		System.out.println("memberDAO : "+vo.toString());
-		return sqlSession.selectOne("org.java.MemberMapper.loginCheck", vo);
+		System.out.println("memberDAO : "+vo.toString());
+		MemberVO result = sqlSession.selectOne("org.java.MemberMapper.loginCheck", vo);
+		System.out.println(result);
+		return result;
 		
 	}
 

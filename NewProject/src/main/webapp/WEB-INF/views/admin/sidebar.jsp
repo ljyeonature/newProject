@@ -19,7 +19,7 @@
 			<!-- Sidebar - Brand -->
 			<a
 				class="sidebar-brand d-flex align-items-center justify-content-center"
-				href="../main/home">
+				href="../admin/home">
 				<div class="sidebar-brand-icon rotate-n-15">
 					<i class="fas fa-laugh-wink"></i>
 				</div> <!-- 제목  -->
@@ -52,8 +52,7 @@
 					data-parent="#accordionSidebar">
 					<div class="bg-white py-2 collapse-inner rounded">
 
-						<a class="collapse-item" href="buttons.html">총주문관리</a> <a
-							class="collapse-item" href="cards.html">주문내역수정</a> <a
+						<a class="collapse-item" href="order_all">총주문관리</a> <a
 							class="collapse-item" href="">주문 취소/교환/반품/환불</a>
 
 					</div>
@@ -93,8 +92,8 @@
 					aria-labelledby="headingPages" data-parent="#accordionSidebar">
 					<div class="bg-white py-2 collapse-inner rounded">
 						<!--     <h6 class="collapse-header">Login Screens:</h6> -->
-						<a class="collapse-item" href="product_all">전체상품관리</a> <a
-							class="collapse-item" href="product_stock">상품재고관리</a> 
+						<a class="collapse-item" href="product_all">전체상품관리</a> 
+						<a class="collapse-item" href="product_stock">상품재고관리</a> 
 					</div>
 				</div></li>
 			<hr class="sidebar-divider">

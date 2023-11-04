@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
+
 <html lang="en">
 <html>
 <head>
@@ -22,20 +23,6 @@
 
 </head>
 <body>
-
-<%-- 	<form action="pw_set" method="post">
-		<input type="hidden" name="num" value="${num }">
-		<div class=content>
-			<div class="textbox">
-				<input type="text" name="email_injeung" placeholder="인증번호를 입력하세요">
-				<label>인증번호</label>
-				<div class="error"></div>
-			</div>
-			<br>
-			<br> <input type="submit" id="check" value="확인">
-		</div>
-	</form>
-	 --%>
 	  	<!--================ 인증번호 Area =================-->
     	
 		<section class="login_box_area section-margin">
@@ -76,5 +63,8 @@
   <script src="../resources/join_login/vendors/jquery.ajaxchimp.min.js"></script>
   <script src="../resources/join_login/vendors/mail-script.js"></script>
   <script src="../resources/join_login/js/main.js"></script>	
+=======
+
+
 </body>
 </html>

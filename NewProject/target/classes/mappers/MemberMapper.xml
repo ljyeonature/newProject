@@ -37,7 +37,7 @@
 	</select>
 	<!-- 포인트 차감 -->
 	<update id='member_point_content' parameterType="com.java.domain.MemberVO">
-		UPDATE m_member SET  m_point=m_point-#{m_point} WHERE m_id=#{m_id}
+		UPDATE m_member SET  m_point=m_point+#{m_point} WHERE m_id=#{m_id}
 	</update>
 	
 	<!-- 해당 이메일이 있는지 확인 -->
