@@ -236,33 +236,21 @@
         <div class="board_list_wrap">
             <div class="board_list">
                 <div class="top">
-                    <div class="num">글 번호</div>
-                    <div class="title">제목</div>
-                    <div class="writer">작성자</div>
-                    <div class="date">작성일</div>
-                    <div class="count">조회</div>
+                    <div class="num" id="q_postid">글 번호</div>
+                    <div class="title" id="q_title">제목</div>
+                    <div class="writer" id="q_writer">작성자</div>
+                    <div class="date" id="q_date">작성일</div>
+                    <div class="count" id="q_count">조회</div>
                 </div>
-                <div>
-                    <div class="num">3</div>
-                    <div class="title"><a href="#">제목</a></div>
-                    <div class="writer">김모세</div>
-                    <div class="date">2023-10-30</div>
-                    <div class="count">99</div>
-                </div>
-                <div>
-                    <div class="num">2</div>
-                    <div class="title"><a href="#">제목</a></div>
-                    <div class="writer">김모세</div>
-                    <div class="date">2023-10-30</div>
-                    <div class="count">99</div>
-                </div>
-                <div>
-                    <div class="num">1</div>
-                    <div class="title"><a href="#">제목</a></div>
-                    <div class="writer">김모세</div>
-                    <div class="date">2023-10-30</div>
-                    <div class="count">99</div>
-                </div>
+                <c:forEach items="${qnaList}" var="q">
+                	<div>
+                   	 <div class="num" id="q_postid">${q.q_postid}</div>
+                    	<div class="title" id="q_title"><a href="#">${q.q_title}</a></div>
+                    	<div class="writer" id="q_writer">${q.q_inquiry}</div>
+                    	<div class="date" id="q_date">${q.q_date}</div>
+                    	<div class="count" id="q_count">${q.q_count}</div>
+                	</div>
+                </c:forEach>
             </div>
             <div class="board_page">
                 <a href="#" class="btn frist"><<</a>

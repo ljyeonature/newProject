@@ -5,7 +5,7 @@ import lombok.Data;
 @Data
 public class BoardVO {
 	
-	private String q_postid;		//글번호
+	private int q_postid;			//글번호
 	private String q_title;			//qna제목
 	private String q_content;		//qna내용
 	private String q_pass;			//qna비밀번호

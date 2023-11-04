@@ -46,6 +46,13 @@
 				$("#product_type").prop("disabled",false);
 			}
 		});
+		
+ 	    $('.submit-button').click(function(event){
+	        if($('#sltid').text() === "문의유형") {
+	            event.preventDefault();
+	            alert("문의유형은 필수 입력값입니다.");
+	        }
+	    });
 	});
 	
 </script>
@@ -149,13 +156,13 @@
 						alt="CLOSE">
 				</button>
 
-				<form class="wrap-search-header flex-w p-l-15">
+<!-- 				<form class="wrap-search-header flex-w p-l-15">
 					<button class="flex-c-m trans-04">
 						<i class="zmdi zmdi-search"></i>
 					</button>
 					<input class="plh3" type="text" name="search"
 						placeholder="Search...">
-				</form>
+				</form> -->
 			</div>
 		</div>
 	</header>
@@ -238,18 +245,17 @@
 
     <h1>QnA 글</h1>
     <p>궁금하신 모든것을 물어보세요.</p>
-    <form action="qna-add_do" method="post">
+    <form action="qna-add_do" method="get">
         <select id="inquiry_type" name="q_inquiry" required>
-            <option selected disabled>문의유형</option>
+            <option selected disabled id="sltid">문의유형</option>
             <option value="일반문의">일반문의</option>
             <option value="상품문의">상품문의</option>
         </select>
     <br/>
     <div class="addcontainer">
-        <form>
             <label for="type_select">제품선택</label>
 
-            <select id="product_type" required>
+            <select id="product_type">
                 <option selected disabled>제품선택</option>
                 <option>구매상품1</option>
                 <option>구매상품2</option>
@@ -266,15 +272,15 @@
             
             <label>게시글 비밀번호</label>
             <input type="password" id="q_pass" name="q_pass" required>
-        </form>
         
         <div class="button-container">
             <a class="list-button" href="qna">목록</a>
             <input class="submit-button" type="submit" value="작성완료">
             <a class="cancel-button" href="qna">취소</a>
-        </div>
+        </div>					
+          </form>  
     </div>
-    </form>
+
 
 
 	<!-- Footer -->
