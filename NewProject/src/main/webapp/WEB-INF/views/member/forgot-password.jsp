@@ -51,7 +51,7 @@
                                                 id="exampleInputEmail" aria-describedby="emailHelp"
                                                 placeholder="Enter Email Address..." name="m_email">
                                         </div>
-                                        <input type="submit" class="btn btn-primary btn-user btn-block" value="비밀번호 초기화"/>
+                                        <input type="submit" class="btn btn-primary btn-user btn-block" value="이메일로 인증번호 받기"/>
                                     </form>
                                     <hr>
                                     <div class="text-center">
