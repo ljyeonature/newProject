@@ -272,9 +272,6 @@
                 <a href="#" class="btn next">></a>
                 <a href="#" class="btn last">>></a>
             </div>
-            <div class="bt_wrap">
-                <a href="#" class="on">글쓰기</a>
-            </div>
         </div>
     </div>
 

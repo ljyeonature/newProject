@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<title>Q&A</title>
+	<title>Q&A작성</title>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 <!--===============================================================================================-->	
@@ -29,8 +29,26 @@
 <!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="../resources/main/css/util.css">
 	<link rel="stylesheet" type="text/css" href="../resources/main/css/main.css">
-	<link rel="stylesheet" type="text/css" href="../resources/main/css/QnA게시판.css">
+	<link rel="stylesheet" type="text/css" href="../resources/main/css/QnA게시판글.css">
 <!--===============================================================================================-->
+
+<!-- 제이쿼리CDN -->
+<script src="https://code.jquery.com/jquery-latest.min.js"></script>
+<!-- JS -->
+<script type="text/javascript">
+	$(document).ready(function() {
+		
+		//문의유형 변경
+		$("#inquiry_type").change(function(){
+			if($(this).val() === "일반문의") {
+				$("#product_type").prop("disabled",true);
+			}else {
+				$("#product_type").prop("disabled",false);
+			}
+		});
+	});
+	
+</script>
 </head>
 <body class="animsition">
 
@@ -218,65 +236,45 @@
 		<h2 class="ltext-105 cl0 txt-center">Q&A</h2>
 	</section>
 
-<div class="board_wrap">
-        <div class="board_title">
-            <h1>QnA게시판</h1>
-            <p>궁금하신 모든것을 물어보세요.</p>
-        </div>
+    <h1>QnA 글</h1>
+    <p>궁금하신 모든것을 물어보세요.</p>
+    <form action="qna-add_do" method="post">
+        <select id="inquiry_type" name="q_inquiry" required>
+            <option selected disabled>문의유형</option>
+            <option value="일반문의">일반문의</option>
+            <option value="상품문의">상품문의</option>
+        </select>
+    <br/>
+    <div class="addcontainer">
+        <form>
+            <label for="type_select">제품선택</label>
+
+            <select id="product_type" required>
+                <option selected disabled>제품선택</option>
+                <option>구매상품1</option>
+                <option>구매상품2</option>
+            </select>
+            
+            <label for="title">제목</label>
+            <input type="text" id="q_title" name="q_title" required>
+            
+            <label for="content">내용</label>
+            <textarea id="q_content" name="q_content" rows="13" required></textarea>
+            
+            <label for="image">이미지</label>
+            <input type="file" id="q_image" name="image">
+            
+            <label>게시글 비밀번호</label>
+            <input type="password" id="q_pass" name="q_pass" required>
+        </form>
         
-         <div class="search-wrap">
-             <select id="sltfilter">
-                <option>제목</option>
-                <option>작성자</option>
-             </select>
-            <input id="search" type="search" name="" placeholder="검색" value="">
-            <a id="search_btn" href="#">검색</a>
-        </div>
-        
-        <div class="board_list_wrap">
-            <div class="board_list">
-                <div class="top">
-                    <div class="num">글 번호</div>
-                    <div class="title">제목</div>
-                    <div class="writer">작성자</div>
-                    <div class="date">작성일</div>
-                    <div class="count">조회</div>
-                </div>
-                <div>
-                    <div class="num">3</div>
-                    <div class="title"><a href="#">제목</a></div>
-                    <div class="writer">김모세</div>
-                    <div class="date">2023-10-30</div>
-                    <div class="count">99</div>
-                </div>
-                <div>
-                    <div class="num">2</div>
-                    <div class="title"><a href="#">제목</a></div>
-                    <div class="writer">김모세</div>
-                    <div class="date">2023-10-30</div>
-                    <div class="count">99</div>
-                </div>
-                <div>
-                    <div class="num">1</div>
-                    <div class="title"><a href="#">제목</a></div>
-                    <div class="writer">김모세</div>
-                    <div class="date">2023-10-30</div>
-                    <div class="count">99</div>
-                </div>
-            </div>
-            <div class="board_page">
-                <a href="#" class="btn frist"><<</a>
-                <a href="#" class="btn prew"><</a>
-                <a href="#" class="num selected">1</a>
-                <a href="#" class="num">2</a>
-                <a href="#" class="btn next">></a>
-                <a href="#" class="btn last">>></a>
-            </div>
-            <div class="bt_wrap">
-                <a href="qna-add" class="on">글쓰기</a>
-            </div>
+        <div class="button-container">
+            <a class="list-button" href="qna">목록</a>
+            <input class="submit-button" type="submit" value="작성완료">
+            <a class="cancel-button" href="qna">취소</a>
         </div>
     </div>
+    </form>
 
 
 	<!-- Footer -->

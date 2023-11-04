@@ -19,16 +19,18 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.java.domain.BoardVO;
 import com.java.domain.MemberVO;
+import com.java.service.BoardServiceImpl;
 import com.java.service.MemberServiceImpl;
 
 @Controller
 @RequestMapping("/member")
 public class MemberController {
-	
+
 	@Autowired
 	MemberServiceImpl memberService;
-	
+
 	@Autowired
 	protected JavaMailSender mailSender;
 
@@ -37,14 +39,14 @@ public class MemberController {
 	public String viewPage(@PathVariable String step) {
 		return "member/" +step;
 	}
-	
+
 	// 회원가입 하고 login 페이지로 이동
 	@RequestMapping("/join_do")
 	public String join(MemberVO vo) {
 		memberService.insertMember(vo);
 		return "member/login";
 	}
-	
+
 	// 아이디 중복확인
 	@RequestMapping("/check_Id")
 	@ResponseBody
@@ -58,45 +60,45 @@ public class MemberController {
 			return "available";
 		}
 	}
-	
+
 	// 로그인 확인 후 정보 없으면 login 페이지 / 있으면 세션에 logname으로 아이디 저장
 	// 관리자 로그인 : m_rol이 manager인 경우
 	// redirect를 해야 아래 회원 목록을 불러오는 페이지로 갔다 올 수 있음.
 	@RequestMapping("/login_do")
 	public String loginCheck(MemberVO vo, HttpSession session) {
 		MemberVO result = memberService.loginCheck(vo);
-//		MemberVO adminResult = memberService.adminCheck(vo);
-//		System.out.println("admin Controller : " + adminResult);
-//		System.out.println(result.getM_name());
-//		System.out.println(result.getM_rol());
+		//		MemberVO adminResult = memberService.adminCheck(vo);
+		//		System.out.println("admin Controller : " + adminResult);
+		//		System.out.println(result.getM_name());
+		//		System.out.println(result.getM_rol());
 		if (result == null) {
-	        return "member/login";
-	    } else if ("manager".equals(result.getM_rol())) {
-	    	session.setAttribute("logname", result.getM_name());
-	        return "redirect:/admin/admin-index";
-	        
-	    } 
-	    else {
-	        session.setAttribute("logname", result.getM_name());
-	        return "redirect:/member/home";
-	    }
-		
+			return "member/login";
+		} else if ("manager".equals(result.getM_rol())) {
+			session.setAttribute("logname", result.getM_name());
+			return "redirect:/admin/admin-index";
+
+		} 
+		else {
+			session.setAttribute("logname", result.getM_name());
+			return "redirect:/member/home";
+		}
+
 	}
-	
+
 	// 아이디 저장하기(로그인시)
-	
-	
-	
+
+
+
 	// 세션 로그아웃
 	@RequestMapping("/logout_do")
 	public String logout(HttpSession session) {
-		
+
 		session.invalidate();
-		
+
 		return "redirect:/main/home";
 	}
 
-	
+
 	// 비밀번호 찾기 - 인증메일
 	@RequestMapping(value = "/pw_auth")
 	public ModelAndView pw_auth(HttpSession session, 
@@ -104,63 +106,63 @@ public class MemberController {
 		String m_email = (String)request.getParameter("m_email");
 		System.out.println(m_email);
 		MemberVO vo = memberService.selectMember(m_email);
-			
+
 		if(vo != null) {
-		Random r = new Random();
-		int num = r.nextInt(999999); // 랜덤난수설정
-		
-		if (vo.getM_email().equals(m_email)) {
-			session.setAttribute("m_email", vo.getM_email());
+			Random r = new Random();
+			int num = r.nextInt(999999); // 랜덤난수설정
 
-			String setfrom = "AQUICITY@naver.com"; // naver 
-			String tomail = m_email; //받는사람
-			String title = "[AQU I CITY] 비밀번호변경 인증 이메일 입니다"; 
-			String content = System.getProperty("line.separator") + "안녕하세요 회원님" + System.getProperty("line.separator")
-					+ "AQU I CITY 비밀번호찾기(변경) 인증번호는 " + num + " 입니다." + System.getProperty("line.separator"); // 
+			if (vo.getM_email().equals(m_email)) {
+				session.setAttribute("m_email", vo.getM_email());
 
-			try {
-				MimeMessage message = mailSender.createMimeMessage();
-				MimeMessageHelper messageHelper = new MimeMessageHelper(message, true, "utf-8");
+				String setfrom = "AQUICITY@naver.com"; // naver 
+				String tomail = m_email; //받는사람
+				String title = "[AQU I CITY] 비밀번호변경 인증 이메일 입니다"; 
+				String content = System.getProperty("line.separator") + "안녕하세요 회원님" + System.getProperty("line.separator")
+				+ "AQU I CITY 비밀번호찾기(변경) 인증번호는 " + num + " 입니다." + System.getProperty("line.separator"); // 
 
-				messageHelper.setFrom(setfrom); 
-				messageHelper.setTo(tomail); 
-				messageHelper.setSubject(title);
-				messageHelper.setText(content); 
+				try {
+					MimeMessage message = mailSender.createMimeMessage();
+					MimeMessageHelper messageHelper = new MimeMessageHelper(message, true, "utf-8");
 
-				mailSender.send(message);
-			} catch (Exception e) {
-				System.out.println(e.getMessage());
+					messageHelper.setFrom(setfrom); 
+					messageHelper.setTo(tomail); 
+					messageHelper.setSubject(title);
+					messageHelper.setText(content); 
+
+					mailSender.send(message);
+				} catch (Exception e) {
+					System.out.println(e.getMessage());
+				}
+
+				ModelAndView mv = new ModelAndView();
+				mv.setViewName("member/pw_auth");
+				mv.addObject("num", num);
+				return mv;
+			}else {
+				ModelAndView mv = new ModelAndView();
+				mv.setViewName("member/pw_find");
+				return mv;
 			}
+		}else {
+			ModelAndView mv = new ModelAndView();
+			mv.setViewName("member/pw_find");
+			return mv;
+		}
 
-			ModelAndView mv = new ModelAndView();
-			mv.setViewName("member/pw_auth");
-			mv.addObject("num", num);
-			return mv;
-		}else {
-			ModelAndView mv = new ModelAndView();
-			mv.setViewName("member/pw_find");
-			return mv;
-		}
-		}else {
-			ModelAndView mv = new ModelAndView();
-			mv.setViewName("member/pw_find");
-			return mv;
-		}
-	
-}
-	
+	}
+
 	@RequestMapping(value = "/pw_set", method = RequestMethod.POST)
 	public String pw_set(@RequestParam(value="email_injeung") String email_injeung,
-				@RequestParam(value = "num") String num) throws IOException{
-			
-			if(email_injeung.equals(num)) {
-				return "member/pw_new";
-			}
-			else {
-				return "member/pw_find";
-			}
+			@RequestParam(value = "num") String num) throws IOException{
+
+		if(email_injeung.equals(num)) {
+			return "member/pw_new";
+		}
+		else {
+			return "member/pw_find";
+		}
 	} //이메일 인증번호 확인
-	
+
 	@RequestMapping(value = "/pw_new", method = RequestMethod.POST)
 	public String pw_new(MemberVO vo, HttpSession session) throws IOException{
 		int result = memberService.pwUpdate_M(vo);
@@ -171,5 +173,15 @@ public class MemberController {
 			System.out.println("pw_update"+ result);
 			return "member/pw_new";
 		}
-}
+	}
+	
+	@Autowired
+	BoardServiceImpl boardService;
+	
+	// qna등록 하고 게시판 페이지로 이동
+	@RequestMapping("/qna-add_do")
+	public String qnaAdd(BoardVO vo) {
+		boardService.insertQna(vo);
+		return "member/qna";
+	}
 }
