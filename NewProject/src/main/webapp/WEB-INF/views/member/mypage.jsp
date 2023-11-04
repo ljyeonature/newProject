@@ -229,7 +229,7 @@ h4, h6 {
 							
 							<tr class="table_row">
 								<td class="column-1">
-									<a href="member-update">
+									<a href="member-info">
 										<img src="../resources/main/images/member.png" alt="IMG">
 										<h4>MEMBER</h4>
 										<h6>회원정보</h6>

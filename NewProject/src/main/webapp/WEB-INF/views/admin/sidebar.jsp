@@ -19,7 +19,7 @@
 			<!-- Sidebar - Brand -->
 			<a
 				class="sidebar-brand d-flex align-items-center justify-content-center"
-				href="../main/home">
+				href="../admin/home">
 				<div class="sidebar-brand-icon rotate-n-15">
 					<i class="fas fa-laugh-wink"></i>
 				</div> <!-- 제목  -->
@@ -93,7 +93,6 @@
 					<div class="bg-white py-2 collapse-inner rounded">
 						<!--     <h6 class="collapse-header">Login Screens:</h6> -->
 						<a class="collapse-item" href="product_all">전체상품관리</a> 
-						<a class="collapse-item" href="product_resister">상품등록</a> 
 						<a class="collapse-item" href="product_stock">상품재고관리</a> 
 					</div>
 				</div></li>
