@@ -100,8 +100,8 @@
 
 
 			<!-- Nav Item - Charts -->
-			<li class="nav-item"><a class="nav-link" href="charts.html">
-					<i class="fas fa-fw fa-chart-area"></i> <span>1:1 상담문의</span>
+			<li class="nav-item"><a class="nav-link" href="qna">
+					<i class="fas fa-fw fa-chart-area"></i> <span>Q&A 게시판</span>
 			</a></li>
 			
 				<!-- Divider -->
