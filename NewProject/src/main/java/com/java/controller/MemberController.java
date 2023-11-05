@@ -78,7 +78,7 @@ public class MemberController {
 			return "member/login";
 		} else if ("manager".equals(result.getM_rol())) {
 			session.setAttribute("logname", result.getM_name());
-			return "redirect:/admin/admin-index";
+			return "redirect:/admin/admin-choice";
 
 		} 
 
@@ -103,6 +103,27 @@ public class MemberController {
 
 		return "redirect:/main/home";
 	}
+	
+	// 회원 수정할 때 페이지에 데이터 불러오기
+	@RequestMapping("/member-info") 
+	public void member_detail(Model model, @RequestParam("m_id") String m_id)
+	{
+		MemberVO result = memberService.member_detail(m_id);
+//		System.out.println(result.getM_id());
+//		System.out.println("select : " + result);
+		model.addAttribute("memberInfo", result);
+		
+	}
+	
+	// 회원 정보 수정
+	@RequestMapping("/update_do")
+	public String update_member(MemberVO vo, @RequestParam("m_id") String m_id)
+	{
+		int result = memberService.update_member(vo);
+		System.out.println();
+		return "redirect:/member/mypage";
+	}
+	
 
 
 	// 비밀번호 찾기 - 인증메일

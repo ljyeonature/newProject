@@ -4,7 +4,7 @@
 
 <mapper namespace="org.java.ProductMapper">
 
-	<!-- 회원정보 입력 -->
+	<!-- 상품등록정보 입력 -->
 	<insert id='insertProduct' parameterType="com.java.domain.ProductVO">
 		INSERT INTO p_product(p_id, p_category, p_subcate, p_name, p_price, p_description, p_care, p_image, p_stock)
 		VALUES(#{p_id}, #{p_category}, #{p_subcate}, #{p_name}, #{p_price}, #{p_description}, #{p_care}, #{p_image}, #{p_stock})
