@@ -21,7 +21,7 @@ public class MemberDAOImpl implements MemberDAO{
 	public void insertMember(MemberVO vo) {
 //		System.out.println(vo.toString());
 		int result = sqlSession.insert("org.java.MemberMapper.insertMember", vo);
-		System.out.println("insert : " + result);
+//		System.out.println("insert : " + result);
 	}
 
 
@@ -41,9 +41,9 @@ public class MemberDAOImpl implements MemberDAO{
 	// 로그인 체크
 	@Override
 	public MemberVO loginCheck(MemberVO vo) {
-		System.out.println("memberDAO : "+vo.toString());
+//		System.out.println("memberDAO : "+vo.toString());
 		MemberVO result = sqlSession.selectOne("org.java.MemberMapper.loginCheck", vo);
-		System.out.println(result);
+//		System.out.println(result);
 		return result;
 		
 	}
@@ -83,15 +83,31 @@ public class MemberDAOImpl implements MemberDAO{
 	@Override
 	public MemberVO selectMember(String m_email) {
 		MemberVO result = sqlSession.selectOne("org.java.MemberMapper.selectMember", m_email);
-		System.out.println("selectMember DAO : " + result);
+//		System.out.println("selectMember DAO : " + result);
+		return result;
+	}
+
+	// 비밀번호 변경
+	@Override
+	public int pwUpdate_M(MemberVO vo) {
+		int result=sqlSession.update("org.java.MemberMapper.pwUpdate_M", vo);
+//		System.out.println("pwUpdate_M DAO : " + result);
+		return result;
+	}
+	
+	// 마이페이지 회원정보(수정)페이지에서 회원정보 가져오기
+	@Override
+	public MemberVO member_detail(String m_id) {
+		MemberVO result = sqlSession.selectOne("org.java.MemberMapper.member_detail", m_id);
+//		System.out.println("memberDetail(DAO) : " + result);
 		return result;
 	}
 
 
 	@Override
-	public int pwUpdate_M(MemberVO vo) {
-		int result=sqlSession.update("org.java.MemberMapper.pwUpdate_M", vo);
-		System.out.println("pwUpdate_M DAO : " + result);
+	public int update_member(MemberVO vo) {
+		int result = sqlSession.update("org.java.MemberMapper.update_member", vo);
+		System.out.println("update_member : " + result);
 		return result;
 	}
 

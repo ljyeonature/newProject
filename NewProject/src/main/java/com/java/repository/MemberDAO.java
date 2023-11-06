@@ -27,8 +27,13 @@ public interface MemberDAO {
 	// 비밀번호 찾기
 	public MemberVO selectMember(String m_email);
 	
+	// 비밀번호 변경
 	public int pwUpdate_M(MemberVO vo);
 	
+	// 마이페이지 회원정보(수정)페이지에서 회원정보 가져오기
+	public MemberVO member_detail(String m_id);
 	
+	// 회원정보 수정
+	public int update_member(MemberVO vo);
 	
 }

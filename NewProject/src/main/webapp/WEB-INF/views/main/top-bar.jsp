@@ -36,7 +36,7 @@
 						</c:if>
 						
 						<c:if test="${ not empty sessionScope.logname }">
-							<a href="../member/mypage" class="flex-c-m trans-04 p-lr-25">
+							<a href="../member/mypage?m_id=${sessionScope.logname}" class="flex-c-m trans-04 p-lr-25">
 								마이페이지
 							</a>
 						</c:if>

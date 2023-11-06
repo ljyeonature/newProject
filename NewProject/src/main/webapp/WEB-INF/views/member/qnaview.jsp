@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<title>Q&A</title>
+	<title>Q&A작성</title>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 <!--===============================================================================================-->	
@@ -29,7 +29,7 @@
 <!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="../resources/main/css/util.css">
 	<link rel="stylesheet" type="text/css" href="../resources/main/css/main.css">
-	<link rel="stylesheet" type="text/css" href="../resources/main/css/QnA게시판.css">
+	<link rel="stylesheet" type="text/css" href="../resources/main/css/QnA게시판글.css">
 <!--===============================================================================================-->
 
 <!-- 제이쿼리CDN -->
@@ -37,16 +37,21 @@
 <!-- JS -->
 <script type="text/javascript">
 	$(document).ready(function() {
-		$("#search_btn").click(function(){
-			if($("#search").val() === ""){
-				alert("검색어를 입력하세요.")
-				event.preventDefault();
-			}
-		});
+	    $(".re_add-button").click(function(event) {
+	        var adminPassword = $("#adminPassword").val();
+
+	        if (adminPassword === "") {
+	            alert("관리자 비밀번호를 입력하세요.");
+	            event.preventDefault();
+	        } else if (adminPassword !== "1234") {
+	            alert("비밀번호가 일치하지 않습니다.");
+	            event.preventDefault();
+	        }
+	    });
+
 	});
 	
 </script>
-
 </head>
 <body class="animsition">
 
@@ -147,13 +152,13 @@
 						alt="CLOSE">
 				</button>
 
-				<form class="wrap-search-header flex-w p-l-15">
+<!-- 				<form class="wrap-search-header flex-w p-l-15">
 					<button class="flex-c-m trans-04">
 						<i class="zmdi zmdi-search"></i>
 					</button>
 					<input class="plh3" type="text" name="search"
 						placeholder="Search...">
-				</form>
+				</form> -->
 			</div>
 		</div>
 	</header>
@@ -234,56 +239,49 @@
 		<h2 class="ltext-105 cl0 txt-center">Q&A</h2>
 	</section>
 
-<div class="board_wrap">
-        <div class="board_title">
-            <h1>QnA게시판</h1>
-            <p>궁금하신 모든것을 물어보세요.</p>
-        </div>
+
+<h1>QnA 글</h1>
+    <p>궁금하신 모든것을 물어보세요.</p>
+    <form action="/qnaview_do" method="post">
+    
+    <input name="q_postid" type="hidden" value="${qna.q_postnum}" />
+    <input type="text" id="q_import_inquiry" name="q_import_inquiry" value="${qna.q_inquiry}" required readonly>
+    <br/>
+    <div class="addcontainer">
         
-        <!-- 검색 부분 -->
-        <form action="qna_do">
-         <div class="search-wrap">
-             <select id="sltfilter" name="sltfilter">
-                <option value="q_title">제목</option>
-                <option value="m_id">작성자</option>
-             </select>
-            <input id="search" type="text" name="searchKeyword" placeholder="검색" value="">
-            <input id="search_btn" type='submit' value='검색' />
-        </div>
-        </form>
+            <label for="type_select">제품선택</label>
+            <input type="text" id="q_import_product" name="q_import_product" value="" required readonly>
+            
+            <label for="title">제목</label>
+            <input type="text" id="q_import_title" name="q_import_title" value="${qna.q_title}" required readonly>
+            
+            <label for="content">내용</label>
+            <textarea id="q_import_content" name="q_import_content" rows="13" required readonly>${qna.q_content}</textarea>
+            
+            <label>게시글 비밀번호</label>
+            <input type="password" id="q_pass" name="q_pass">
+
         
-        <div class="board_list_wrap">
-            <div class="board_list">
-                <div class="top">
-                    <div class="num" id="q_postnum">글 번호</div>
-                    <div class="title" id="q_title">제목</div>
-                    <div class="writer" id="q_writer">작성자</div>
-                    <div class="date" id="q_date">작성일</div>
-                    <div class="count" id="q_count">조회</div>
-                </div>
-                <c:forEach items="${qnaList}" var="q">
-                	<div>
-                   	 <div class="num" id="q_postnum">${q.q_postnum}</div>
-                    	<div class="title" id="q_title"><a href="qnaview_do?q_postnum=${q.q_postnum}">${q.q_title}</a></div>
-                    	<div class="writer" id="q_writer">${q.m_id}</div>
-                    	<div class="date" id="q_date">${q.q_date}</div>
-                    	<div class="count" id="q_count">${q.q_count}</div>
-                	</div>
-                </c:forEach>
-            </div>
-            <div class="board_page">
-                <a href="#" class="btn frist"><<</a>
-                <a href="#" class="btn prew"><</a>
-                <a href="#" class="num selected">1</a>
-                <a href="#" class="num">2</a>
-                <a href="#" class="btn next">></a>
-                <a href="#" class="btn last">>></a>
-            </div>
-            <div class="bt_wrap">
-                <a href="qna-add" class="on">글쓰기</a>
-            </div>
+        <div class="button-container">
+            <a class="list-button" href="qna">목록</a>
+            <input type="button" class="edit-button" value="수정">
         </div>
     </div>
+</form>
+    
+    <hr/>
+
+    <br/>
+    <div class="addcontainer">
+        <p>빠른 시일 내에 답변해 드리겠습니다.</p>
+        <form>
+            <div class="button-container">
+                <input type="password" id="adminPassword" placeholder="ADMIN ONLY!">
+                <input type="button" class="re_add-button" value="답글작성">
+            </div>
+        </form>
+    </div>
+
 
 
 	<!-- Footer -->

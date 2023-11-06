@@ -36,6 +36,10 @@
 	margin-bottom : 37px;
 }
 
+.login_box_img join_box{
+	height:106.5%;
+}
+
 </style>
 
 
@@ -161,50 +165,48 @@
 				<div class="col-lg-6">
 					<div class="login_form_inner register_form_inner">
 						<h3>회원정보 수정</h3>
-						<form class="row login_form join" action="join_do"
+						<form class="row login_form join" action="update_do?m_id=${sessionScope.logname }"
 							id="register_form" method='post'>
 							<div class="col-md-12 form-group id_input">
-								<input type="text" class="form-control" id="m_id" name="m_id"
+								<input type="text" class="form-control" id="m_id" name="m_id" value="${memberInfo.m_id }"
 									placeholder="Id" onfocus="this.placeholder = ''"
-									onblur="this.placeholder = 'Id'" required>
-								<button id="checkDuplicateButton" type="submit">중복 체크</button>
-								<div class="message" id="duplicateMessage"></div>
+									onblur="this.placeholder = 'Id'" required disabled="disabled">
 							</div>
 							<div class="col-md-12 form-group">
 								<input type="password" class="form-control" id="m_pass"
 									name="m_pass" placeholder="Password"
 									onfocus="this.placeholder = ''"
-									onblur="this.placeholder = 'Password'">
+									onblur="this.placeholder = 'Password'" >
 							</div>
 							<div class="col-md-12 form-group">
 								<input type="text" class="form-control" id="m_name"
 									name="m_name" placeholder="Username"
 									onfocus="this.placeholder = ''"
-									onblur="this.placeholder = 'Username'" required>
+									onblur="this.placeholder = 'Username'" required value="${memberInfo.m_name }">
 							</div>
 							<div class="col-md-12 form-group">
 								<input type="email" class="form-control" id="m_email"
 									name="m_email" placeholder="Email Address"
 									onfocus="this.placeholder = ''"
-									onblur="this.placeholder = 'Email Address'">
+									onblur="this.placeholder = 'Email Address'" value="${memberInfo.m_email }">
 							</div>
 
 							<div class="col-md-12 form-group">
 								<input type="tel" class="form-control" id="m_tel" name="m_tel"
 									placeholder="Tel" onfocus="this.placeholder = ''"
-									onblur="this.placeholder = 'Tel'">
+									onblur="this.placeholder = 'Tel'" value="${memberInfo.m_tel }">
 							</div>
 							<div class="col-md-12 form-group">
 								<input type="text" class="form-control" id="m_postcode"
 									name="m_postcode" placeholder="Postcode"
 									onfocus="this.placeholder = ''"
-									onblur="this.placeholder = 'Postcode'">
+									onblur="this.placeholder = 'Postcode'" value="${memberInfo.m_postcode }">
 							</div>
 							<div class="col-md-12 form-group">
 								<input type="text" class="form-control" id="m_addr"
 									name="m_addr" placeholder="Address"
 									onfocus="this.placeholder = ''"
-									onblur="this.placeholder = 'Address'">
+									onblur="this.placeholder = 'Address'" value="${memberInfo.m_addr }">
 							</div>
 							<div class="col-md-12 form-group">
 								<div class="creat_account">
@@ -212,7 +214,7 @@
 							</div>
 							<div class="col-md-12 form-group">
 								<button type="submit" value="submit"
-									class="button button-register w-100" id="updateBtn">Register</button>
+									class="button button-register w-100" id="updateBtn">수정</button>
 							</div>
 						</form>
 					</div>
