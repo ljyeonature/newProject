@@ -28,6 +28,26 @@
             border: 2px solid black;
             margin: 20px auto 40px;
         }
+        .addcontainer > p{
+        	font-weight: bold;
+        }
+        
+        
+        ::placeholder {
+  			color: white;
+		}
+		
+		#adminPassword {
+			text-align: center;
+		}
+		
+		#adminPassword:hover {
+		    color: yellow;
+			background-color: red;
+        	border: 2px solid yellow;
+        	font-weight: bold;
+        	text-align: center;
+        }
  
         form {
             margin-top: 20px;
