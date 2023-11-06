@@ -14,7 +14,7 @@
 	<select id='board_all' parameterType="com.java.domain.BoardVO" resultType="com.java.domain.BoardVO">
 		SELECT *
 		FROM qna
-		ORDER BY q_postid DESC
+		ORDER BY q_postnum DESC
 	</select> 
 
 
