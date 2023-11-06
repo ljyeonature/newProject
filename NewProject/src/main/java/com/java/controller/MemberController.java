@@ -78,6 +78,7 @@ public class MemberController {
 			return "member/login";
 		} else if ("manager".equals(result.getM_rol())) {
 			session.setAttribute("logname", result.getM_name());
+			session.setAttribute("logid", result.getM_id());
 			return "redirect:/admin/admin-choice";
 
 		} 
@@ -85,6 +86,7 @@ public class MemberController {
 	    else {
 	    	System.out.println(result);
 	        session.setAttribute("logname", result.getM_name());
+	        session.setAttribute("logid", result.getM_id());
 	        return "redirect:/member/home";
 	    }
 		
@@ -212,13 +214,21 @@ public class MemberController {
 		return "member/qna";
 	}
 	
+	// qna게시판 목록 조회
 	@RequestMapping("/qna")
 	public void board_all(BoardVO vo, Model model) {
 	    List<BoardVO> result = boardService.board_all(vo);
 	    model.addAttribute("qnaList", result);
-		/*
-		 * ModelAndView modelAndView = new ModelAndView();
-		 * modelAndView.addObject("qnaList", result);
-		 */
+	}
+	
+	// qna게시글 불러오기 (상세보기)
+	@RequestMapping("/qnaview_do")
+	public String qnaView(BoardVO vo, Model model) {
+		// 게시물 조회수 증가
+		boardService.incrementQnaCount(vo);
+		// 게시글 로딩
+		BoardVO result = boardService.qnaView(vo);
+		model.addAttribute("qna", result);
+		return "member/qnaview";
 	}
 }
