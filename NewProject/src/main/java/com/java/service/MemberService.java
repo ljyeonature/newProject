@@ -3,7 +3,6 @@ package com.java.service;
 import java.util.List;
 
 import com.java.domain.MemberVO;
-import com.java.domain.WishListVO;
 
 public interface MemberService {
 
@@ -34,11 +33,4 @@ public interface MemberService {
 	
 	// 회원정보 수정
 	public int update_member(MemberVO vo);
-	
-	// 찜 목록 저장
-	public int product_wishlist(WishListVO vo);
-	
-	// 해당 ID의 찜 목록 보이기
-	public List<WishListVO> wishlist_all(WishListVO vo);
-		
 }

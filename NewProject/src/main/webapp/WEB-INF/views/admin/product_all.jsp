@@ -31,7 +31,6 @@
 
 <!-- Custom styles for this template-->
 <link href="../resources/admin/css/sb-admin-2.min.css" rel="stylesheet">
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
 </head>
 
@@ -197,17 +196,14 @@
 									class="ionicons ion-android-add"></i> 상품등록
 								</a>
 								<tr role="row">
-									<th scope="col" rowspan="2" style="width: 8px;">
-									<input
+									<th scope="col" rowspan="2" style="width: 8px;"><input
 										type="checkbox" name="chkall" value="1"
-										onclick="check_all(this.form);">
-										</th>
+										onclick="check_all(this.form);"></th>
 									<th class="sorting sorting_asc" tabindex="0"
 										aria-controls="dataTable" rowspan="1" colspan="1"
 										aria-sort="ascending"
 										aria-label="Name: activate to sort column descending"
-										style="width: 130px;">번호
-										</th>
+										style="width: 130px;">번호</th>
 									<th class="sorting" tabindex="0" aria-controls="dataTable"
 										rowspan="1" colspan="1" style="width: 130px;">상품코드</th>
 									<th class="sorting" tabindex="0" aria-controls="dataTable"
@@ -221,29 +217,11 @@
 
 								</tr>
 							</thead>
-							<tbody>
-							
-							<c:forEach items="${productList }" var="product">
-								<tr>
-									<td><input type="checkbox" /></td>
-									<td >${product.p_selid }</td>
-									<td >${product.p_selid }</td>
-									<td >${product.p_name }</td>
-									<td >재고</td>
-									<td >${product.p_price }</td>
-									<td >관리</td>
-								</tr>
-							
-							</c:forEach>
-
-							
-							
-							</tbody>
 
 							<tbody>
 
 								<td rowspan="2"><a
-									href="#"
+									href="./goods.php?code=form&amp;w=u&amp;gs_id=21&amp;page=1&amp;bak=list"
 									class="btn_small">수정</a></td>
 							</tbody>
 						</table>

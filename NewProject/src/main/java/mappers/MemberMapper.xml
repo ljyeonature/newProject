@@ -55,19 +55,8 @@
 		SELECT * FROM m_member WHERE m_id=#{m_id}
 	</select>
 	
-	<!-- 회원 정보 수정 -->
 	<update id="update_member" parameterType="com.java.domain.MemberVO">
 		UPDATE m_member SET m_pass=#{m_pass}, m_name=#{m_name}, m_email=#{m_email}, m_tel=#{m_tel}, m_postcode=#{m_postcode}, m_addr=#{m_addr}  WHERE m_id=#{m_id}
 	</update>
-	
-	<!-- 찜 목록 저장 -->
-	<insert id="product_wishlist" parameterType="com.java.domain.WishListVO">
-		INSERT INTO wishlist (m_id, p_selid, p_name, p_price, wishstate) VALUES (#{m_id}, #{p_selid}, #{p_name}, #{p_price}, 1)
-	</insert>
-	
-	<!-- 해당 m_id의 찜 목록 보이기 -->
-	<select id="wishlist_all" parameterType="com.java.domain.WishListVO" resultType="com.java.domain.WishListVO">
-		SELECT * FROM wishlist WHERE m_id=#{m_id}
-	</select>
 
 </mapper>
