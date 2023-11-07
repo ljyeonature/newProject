@@ -41,4 +41,10 @@ public class BoardDAOImpl implements BoardDAO{
 	public void incrementQnaCount(BoardVO vo) {
 		sqlSession.update("org.java.BoardMapper.incrementQnaCount",vo);
 	}
+	
+	//QnA게시물 수정
+	@Override
+	public void qnaEdit(BoardVO vo) {
+		int result = sqlSession.update("org.java.BoardMapper.qnaEdit",vo);
+	}
 }

@@ -14,11 +14,11 @@
 	<select id='board_all' parameterType="com.java.domain.BoardVO" resultType="com.java.domain.BoardVO">
 		SELECT *
 		FROM qna
-<!-- 		<where>
-			<if test="sltfilter != null and sltfilter != '' and search != null and search != ''">
+ 		<where>
+			<if test="sltfilter != null">
 				${sltfilter} LIKE '%${search}%'
 			</if>
-		</where> -->
+		</where>
 		ORDER BY q_postnum DESC
 	</select>
 	
@@ -34,6 +34,18 @@
 		UPDATE qna
 		SET q_count = q_count + 1
 		WHERE q_postnum = #{q_postnum}
+	</update>
+	
+	<!-- qna게시판 게시물 수정 -->
+	<update id="qnaEdit" parameterType="com.java.domain.BoardVO">
+		UPDATE qna SET
+			Q_INQUIRY	= #{q_inquiry},
+			Q_TITLE		= #{q_title},
+			Q_CONTENT	= #{q_content},
+			Q_PASS		= #{q_pass},
+			M_ID		= #{m_id}
+		WHERE
+			Q_POSTNUM = #{q_postnum}
 	</update>
 
 
