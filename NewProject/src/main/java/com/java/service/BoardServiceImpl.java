@@ -1,6 +1,5 @@
 package com.java.service;
 
-import java.util.HashMap;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,12 +20,26 @@ public class BoardServiceImpl implements BoardService{
 	public void insertQna(BoardVO vo) {
 		boardDAOImpl.insertQna(vo);
 	}
+	//QnA게시물 불러오기
+	public BoardVO qnaView(BoardVO vo) {
+		return boardDAOImpl.qnaView(vo);
+	}
 	
 	//QnA게시판 게시물목록
 	@Override
 	public List<BoardVO> board_all(BoardVO vo){
 		List<BoardVO> result = boardDAOImpl.board_all(vo);
 		return result;
+	}
+	
+	//QnA게시판 게시글 조회수 증가
+	public void incrementQnaCount(BoardVO vo) {
+		boardDAOImpl.incrementQnaCount(vo);
+	}
+	
+	//QnA게시판 게시글 수정
+	public void qnaEdit(BoardVO vo) {
+		boardDAOImpl.qnaEdit(vo);
 	}
 
 }

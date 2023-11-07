@@ -47,12 +47,12 @@
 			}
 		});
 		
- 	    $('.submit-button').click(function(event){
-	        if($('#sltid').text() === "문의유형") {
+/*  	    $('.submit-button').click(function(event){
+	        if($('#sltid').val() === "문의유형") {
 	            event.preventDefault();
 	            alert("문의유형은 필수 입력값입니다.");
 	        }
-	    });
+	    }); */
 	});
 	
 </script>
@@ -245,14 +245,15 @@
 
     <h1>QnA 글</h1>
     <p>궁금하신 모든것을 물어보세요.</p>
-    <form action="qna-add_do" method="get">
+    <form action="qna-add_do" method="post">
         <select id="inquiry_type" name="q_inquiry" required>
-            <option selected disabled id="sltid">문의유형</option>
+            <option selected disabled id="sltid" value="문의유형">문의유형</option>
             <option value="일반문의">일반문의</option>
             <option value="상품문의">상품문의</option>
         </select>
     <br/>
     <div class="addcontainer">
+    		<input type="hidden" id="m_id" value="${sessionScope.logid}" name="m_id">
             <label for="type_select">제품선택</label>
 
             <select id="product_type">
@@ -266,9 +267,6 @@
             
             <label for="content">내용</label>
             <textarea id="q_content" name="q_content" rows="13" required></textarea>
-            
-            <label for="image">이미지</label>
-            <input type="file" id="q_image" name="image">
             
             <label>게시글 비밀번호</label>
             <input type="password" id="q_pass" name="q_pass" required>
