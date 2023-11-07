@@ -13,21 +13,31 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.java.domain.FstDivVO;
 import com.java.domain.MemberVO;
+
+import com.java.service.BoardServiceImpl;
+import com.java.service.MemberServiceImpl;
+import com.java.domain.BoardVO;
+
 import com.java.domain.ProductVO;
 import com.java.domain.SndDivVO;
 import com.java.domain.TrdDivVO;
 import com.java.service.MemberServiceImpl;
 import com.java.service.ProductServiceImpl;
 
+
 @Controller
-@RequestMapping("admin")
+@RequestMapping("admin")	
 public class AdminController {
 	
 	@Autowired
 	MemberServiceImpl memberService;
 	
 	@Autowired
+	BoardServiceImpl boardService;
+  
+  @Autowired
 	ProductServiceImpl productService;
+
 	
 	// 단순 페이지 이동
 	@RequestMapping("/{step}")
@@ -97,6 +107,23 @@ public class AdminController {
 		}
 	}
 	
+
+	
+   // qna게시판 목록 조회 (검색, 수정 합쳐서)
+   @RequestMapping("/qna")
+   public String board_all(Model model, String sltfilter, String search) {
+      
+      BoardVO vo = new BoardVO();
+      vo.setSltfilter(sltfilter);	// HashMap map = new HashMap(); -> map.put("",변수명);
+      vo.setSearch(search);
+      
+       List<BoardVO> result = boardService.board_all(vo);
+       model.addAttribute("qnaList", result);
+       
+       return "admin/qna";
+   }
+	
+
 	
 	// product_resister 페이지 들어가면 분류 내용 보내기
 	@RequestMapping("/product_resister")
@@ -131,27 +158,6 @@ public class AdminController {
 
 	
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-
 	
 
 }
