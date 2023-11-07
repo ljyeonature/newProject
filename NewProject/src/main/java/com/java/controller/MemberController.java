@@ -24,8 +24,11 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.java.domain.BoardVO;
 import com.java.domain.MemberVO;
+import com.java.domain.ProductVO;
+import com.java.domain.WishListVO;
 import com.java.service.BoardServiceImpl;
 import com.java.service.MemberServiceImpl;
+import com.java.service.ProductServiceImpl;
 
 @Controller
 @RequestMapping("/member")
@@ -244,6 +247,7 @@ public class MemberController {
 	    return "member/qna";
 	}
 	
+
 	// qna게시글 불러오기 (상세보기)
 	@RequestMapping("/qnaview_do")
 	public String qnaView(BoardVO vo, Model model) {
@@ -270,6 +274,38 @@ public class MemberController {
 		boardService.qnaEdit(vo);
 		m.addAttribute("qna",vo);
 		return "member/qnaview";
+
+	@Autowired
+	ProductServiceImpl productService;
+	
+	// 상품 보여주기
+	@RequestMapping("/product")
+	public void product_all(ProductVO vo, Model model) {
+		model.addAttribute("productAll",productService.product_all(vo));
+	}
+	
+	// 찜 목록 저장하기 - 해당 m_id와 p_selid
+	
+//	ajax로 보내면 해당 결과값을 얘가 반환해줘야함
+	@RequestMapping("/product_wishlist")
+	@ResponseBody
+	public String product_wishlist(WishListVO vo) {
+		int result = memberService.product_wishlist(vo);
+//		WishListVO wish = memberService.product_wishlist(vo);
+		if(result == 1) {
+			return "success";
+		}
+		else {
+			return "error";
+		}
+	}
+	
+	
+	// 찜 목록 해당 ID 인 경우 찜 목록 보이기
+	@RequestMapping("/wishlist_all")
+	public void wishlist_all(WishListVO vo, Model model) {
+		model.addAttribute("wishList", memberService.wishlist_all(vo));
+
 	}
 	
 }

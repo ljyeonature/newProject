@@ -126,14 +126,14 @@
 										</thead>
 
 										<tbody>
-											<c:forEach items="${memberList}" var="memberr">
+											<c:forEach items="${memberList}" var="member">
 
 										<tr>
-											<td>${memberr.m_name}</td>
-											<td>${memberr.m_email}</td>
-											<td>${memberr.m_id}</td>
-											<td>${memberr.m_pass}</td>
-											<td>${memberr.m_addr}</td>
+											<td>${member.m_name}</td>
+											<td>${member.m_email}</td>
+											<td>${member.m_id}</td>
+											<td>${member.m_pass}</td>
+											<td>${member.m_addr}</td>
 
 										</tr>
 
