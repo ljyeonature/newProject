@@ -129,7 +129,7 @@
 
 										<tr>
 											<td>${boardd.q_postnum}</td>
-											<td><a href="qnaview">${boardd.q_title}</a></td>
+											<td><a href="qnaview_do?q_postnum=${boardd.q_postnum}">${boardd.q_title}</a></td>
 											<td>${boardd.m_id}</td>
 											<td>${boardd.q_date}</td>
 											<td>${boardd.q_count}</td>
