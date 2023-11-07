@@ -14,5 +14,8 @@ public interface BoardService {
 	
 	//QnA게시글 조회수 증가
 	void incrementQnaCount(BoardVO vo);
+	
+	//QnA게시글 수정
+	void qnaEdit(BoardVO vo);
 
 }

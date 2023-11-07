@@ -36,5 +36,10 @@ public class BoardServiceImpl implements BoardService{
 	public void incrementQnaCount(BoardVO vo) {
 		boardDAOImpl.incrementQnaCount(vo);
 	}
+	
+	//QnA게시판 게시글 수정
+	public void qnaEdit(BoardVO vo) {
+		boardDAOImpl.qnaEdit(vo);
+	}
 
 }

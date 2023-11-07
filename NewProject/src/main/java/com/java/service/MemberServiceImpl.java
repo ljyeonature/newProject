@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.java.domain.MemberVO;
+import com.java.domain.WishListVO;
 import com.java.repository.MemberDAO;
 
 //### (1) 해당 어노테이션 지정
@@ -88,10 +89,25 @@ public class MemberServiceImpl implements MemberService{
 		return result;
 	}
 
+	// 회원정보 수정
 	@Override
 	public int update_member(MemberVO vo) {
 		int result = memberDAOImpl.update_member(vo);
 		System.out.println("Service(update) : " + result);
+		return result;
+	}
+
+	// 찜 목록 저장
+	@Override
+	public int product_wishlist(WishListVO vo) {
+		int result = memberDAOImpl.product_wishlist(vo);
+		return result;
+	}
+	
+	// 해당 ID의 찜 목록 보이기
+	@Override
+	public List<WishListVO> wishlist_all(WishListVO vo) {
+		List<WishListVO> result = memberDAOImpl.wishlist_all(vo);
 		return result;
 	}
 	

@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.support.PagedListHolder;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Controller;
@@ -23,8 +24,11 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.java.domain.BoardVO;
 import com.java.domain.MemberVO;
+import com.java.domain.ProductVO;
+import com.java.domain.WishListVO;
 import com.java.service.BoardServiceImpl;
 import com.java.service.MemberServiceImpl;
+import com.java.service.ProductServiceImpl;
 
 @Controller
 @RequestMapping("/member")
@@ -211,24 +215,97 @@ public class MemberController {
 	@RequestMapping("/qna-add_do")
 	public String qnaAdd(BoardVO vo) {
 		boardService.insertQna(vo);
-		return "member/qna";
+		return "redirect:/member/qna";
 	}
 	
 	// qna게시판 목록 조회
 	@RequestMapping("/qna")
-	public void board_all(BoardVO vo, Model model) {
-	    List<BoardVO> result = boardService.board_all(vo);
+	public String board_all(Model model, String sltfilter, String search, @RequestParam(defaultValue = "1") int page) {
+		
+		BoardVO vo = new BoardVO();
+		vo.setSltfilter(sltfilter);
+		vo.setSearch(search);
+		
+		// boardService를 사용하여 모든 QnA 게시물을 가져옵니다.
+		List<BoardVO> allQna = boardService.board_all(vo);
+		
+		// PagedListHolder를 사용하여 페이징된 목록을 생성합니다.
+		PagedListHolder<BoardVO> qnaListPage = new PagedListHolder<BoardVO>(allQna);
+		// 한 페이지당 표시할 항목 수를 설정합니다.
+		qnaListPage.setPageSize(5);
+		
+		// 요청에서 받은 페이지 번호에 따라 현재 페이지를 설정합니다. (0부터 시작)
+		qnaListPage.setPage(page - 1);
+		// 현재 페이지에 표시할 게시물 목록을 가져옵니다.
+		List<BoardVO> result = qnaListPage.getPageList();
+		
+		// 가져온 게시물 목록과 페이지 정보를 모델에 추가하여 뷰로 전달합니다.
 	    model.addAttribute("qnaList", result);
+	    model.addAttribute("maxPages", qnaListPage.getPageCount());	//전체페이지수
+	    model.addAttribute("currentPages", qnaListPage.getPage() + 1);	//현재페이지
+	    
+	    return "member/qna";
 	}
 	
+
 	// qna게시글 불러오기 (상세보기)
 	@RequestMapping("/qnaview_do")
 	public String qnaView(BoardVO vo, Model model) {
 		// 게시물 조회수 증가
 		boardService.incrementQnaCount(vo);
+		
 		// 게시글 로딩
 		BoardVO result = boardService.qnaView(vo);
+		
 		model.addAttribute("qna", result);
 		return "member/qnaview";
 	}
+	
+	//qna게시글 수정하는 폼 들어가기
+	@RequestMapping("/qnaeditform_do")
+	public String qnaEdit(BoardVO vo, Model m) {
+		m.addAttribute("qna",vo);
+		return "member/qnaedit";
+	}
+	
+	
+	@RequestMapping("/qnaedit_do")
+	public String qnarealEdit(BoardVO vo, Model m) {
+		boardService.qnaEdit(vo);
+		m.addAttribute("qna",vo);
+		return "member/qnaview";
+
+	@Autowired
+	ProductServiceImpl productService;
+	
+	// 상품 보여주기
+	@RequestMapping("/product")
+	public void product_all(ProductVO vo, Model model) {
+		model.addAttribute("productAll",productService.product_all(vo));
+	}
+	
+	// 찜 목록 저장하기 - 해당 m_id와 p_selid
+	
+//	ajax로 보내면 해당 결과값을 얘가 반환해줘야함
+	@RequestMapping("/product_wishlist")
+	@ResponseBody
+	public String product_wishlist(WishListVO vo) {
+		int result = memberService.product_wishlist(vo);
+//		WishListVO wish = memberService.product_wishlist(vo);
+		if(result == 1) {
+			return "success";
+		}
+		else {
+			return "error";
+		}
+	}
+	
+	
+	// 찜 목록 해당 ID 인 경우 찜 목록 보이기
+	@RequestMapping("/wishlist_all")
+	public void wishlist_all(WishListVO vo, Model model) {
+		model.addAttribute("wishList", memberService.wishlist_all(vo));
+
+	}
+	
 }

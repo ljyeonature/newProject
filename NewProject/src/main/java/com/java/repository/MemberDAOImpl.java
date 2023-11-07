@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.java.domain.MemberVO;
+import com.java.domain.WishListVO;
 
 //### (1) 해당 어노테이션 지정
 @Repository
@@ -103,12 +104,25 @@ public class MemberDAOImpl implements MemberDAO{
 		return result;
 	}
 
-
+	// 회원 정보 수정
 	@Override
 	public int update_member(MemberVO vo) {
 		int result = sqlSession.update("org.java.MemberMapper.update_member", vo);
 		System.out.println("update_member : " + result);
 		return result;
+	}
+
+	// 찜 목록에 저장
+	@Override
+	public int product_wishlist(WishListVO vo) {
+		int result = sqlSession.insert("org.java.MemberMapper.product_wishlist", vo);
+		return result;
+	}
+	
+	// 해당 ID의 찜 목록 보이기
+	@Override
+	public List<WishListVO> wishlist_all(WishListVO vo) {
+		return sqlSession.selectList("org.java.MemberMapper.product_wishlist", vo);
 	}
 
 

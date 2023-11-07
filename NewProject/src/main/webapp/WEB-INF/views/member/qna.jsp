@@ -37,12 +37,7 @@
 <!-- JS -->
 <script type="text/javascript">
 	$(document).ready(function() {
-		$("#search_btn").click(function(){
-			if($("#search").val() === ""){
-				alert("검색어를 입력하세요.")
-				event.preventDefault();
-			}
-		});
+
 	});
 	
 </script>
@@ -241,13 +236,13 @@
         </div>
         
         <!-- 검색 부분 -->
-        <form action="qna_do">
+        <form action="qna" method="post">
          <div class="search-wrap">
              <select id="sltfilter" name="sltfilter">
                 <option value="q_title">제목</option>
                 <option value="m_id">작성자</option>
              </select>
-            <input id="search" type="text" name="searchKeyword" placeholder="검색" value="">
+            <input id="search" type="text" name="search" placeholder="검색" value="">
             <input id="search_btn" type='submit' value='검색' />
         </div>
         </form>
@@ -263,22 +258,34 @@
                 </div>
                 <c:forEach items="${qnaList}" var="q">
                 	<div>
+
                    	 <div class="num" id="q_postnum">${q.q_postnum}</div>
                     	<div class="title" id="q_title"><a href="qnaview_do?q_postnum=${q.q_postnum}">${q.q_title}</a></div>
                     	<div class="writer" id="q_writer">${q.m_id}</div>
+
+                   	 <div class="num" id="q_postid">${q.q_postnum}</div>
+                    	<div class="title" id="q_title"><a href="#">${q.q_title}</a></div>
+                    	<div class="writer" id="q_writer">${q.q_inquiry}</div>
+
                     	<div class="date" id="q_date">${q.q_date}</div>
                     	<div class="count" id="q_count">${q.q_count}</div>
                 	</div>
                 </c:forEach>
             </div>
             <div class="board_page">
-                <a href="#" class="btn frist"><<</a>
-                <a href="#" class="btn prew"><</a>
-                <a href="#" class="num selected">1</a>
-                <a href="#" class="num">2</a>
-                <a href="#" class="btn next">></a>
-                <a href="#" class="btn last">>></a>
-            </div>
+            <c:if test="${maxPages > 1}">
+                <c:forEach var="page" begin="1" end="${maxPages}" step="1">
+                    <c:choose>
+                        <c:when test="${page == currentPages}">
+                            <a href="#" class="num selected">${page}</a>
+                        </c:when>
+                        <c:otherwise>
+                            <a href="qna?page=${page}" class="num">${page}</a>
+                        </c:otherwise>
+                    </c:choose>
+                </c:forEach>
+            </c:if>
+        </div>
             <div class="bt_wrap">
                 <a href="qna-add" class="on">글쓰기</a>
             </div>

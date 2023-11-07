@@ -5,11 +5,38 @@
 <mapper namespace="org.java.ProductMapper">
 
 	<!-- 상품등록정보 입력 -->
-	<insert id='insertProduct' parameterType="com.java.domain.ProductVO">
-		INSERT INTO p_product(p_id, p_category, p_subcate, p_name, p_price, p_description, p_care, p_image, p_stock)
-		VALUES(#{p_id}, #{p_category}, #{p_subcate}, #{p_name}, #{p_price}, #{p_description}, #{p_care}, #{p_image}, #{p_stock})
+	<insert id='productInsert' parameterType="com.java.domain.ProductVO">
+		INSERT INTO p_product(p_selid, p_name, p_price, p_description, p_care
+		<if test='p_imgn != null'>
+			, p_imgn, p_imgrn, p_imgsz
+		</if>
+		)
+		VALUES(#{p_selid}, #{p_name}, #{p_price}, #{p_description}, #{p_care}
+		<if test='p_imgn != null'>
+			, #{p_imgn}, #{p_imgrn}, #{p_imgsz}
+		</if>
+		)
 	</insert>
 	
+	<!-- product_all에 들어갔을 때 상품 등록 정보 불러오기  -->
+	<select id="product_all" resultType="com.java.domain.ProductVO">
+		SELECT * FROM p_product
+	
+	</select>
+	
+	
+	<!-- product_resister에 들어갔을 때, 분류 정보 불러오기 -->
+	<select id="selectFstCate" parameterType="com.java.domain.FstDivVO" resultType="com.java.domain.FstDivVO">
+		SELECT * FROM fstdiv
+	</select>
 
+	<select id="selectSndCate" parameterType="com.java.domain.SndDivVO" resultType="com.java.domain.SndDivVO">
+		SELECT * FROM snddiv
+	</select>
+	
+	<select id="selectTrdCate" parameterType="com.java.domain.TrdDivVO" resultType="com.java.domain.TrdDivVO">
+		SELECT * FROM trddiv
+	</select>
+	
 
 </mapper>

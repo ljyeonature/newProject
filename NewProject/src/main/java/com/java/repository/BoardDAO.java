@@ -17,4 +17,7 @@ public interface BoardDAO {
 
 	//qna게시물 조회수 증가
 	public void incrementQnaCount(BoardVO vo);
+	
+	//qna게시물 수정
+	public void qnaEdit(BoardVO vo);
 }

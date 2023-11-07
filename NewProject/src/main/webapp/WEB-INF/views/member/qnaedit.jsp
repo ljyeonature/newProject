@@ -37,18 +37,22 @@
 <!-- JS -->
 <script type="text/javascript">
 	$(document).ready(function() {
-	    $(".re_add-button").click(function(event) {
-	        var adminPassword = $("#adminPassword").val();
-
-	        if (adminPassword === "") {
-	            alert("관리자 비밀번호를 입력하세요.");
+		
+		//문의유형 변경
+		$("#inquiry_type").change(function(){
+			if($(this).val() === "일반문의") {
+				$("#product_type").prop("disabled",true);
+			}else {
+				$("#product_type").prop("disabled",false);
+			}
+		});
+		
+/*  	    $('.submit-button').click(function(event){
+	        if($('#sltid').val() === "문의유형") {
 	            event.preventDefault();
-	        } else if (adminPassword !== "1234") {
-	            alert("비밀번호가 일치하지 않습니다.");
-	            event.preventDefault();
+	            alert("문의유형은 필수 입력값입니다.");
 	        }
-	    });
-
+	    }); */
 	});
 	
 </script>
@@ -181,7 +185,7 @@
 				<ul class="header-cart-wrapitem w-full">
 					<li class="header-cart-item flex-w flex-t m-b-12">
 						<div class="header-cart-item-img">
-							<img src="../resources/main/images/item-cart-01.png" alt="IMG">
+							<img src="../resources/main/images/item-cart-01.jpg" alt="IMG">
 						</div>
 
 						<div class="header-cart-item-txt p-t-8">
@@ -239,47 +243,41 @@
 		<h2 class="ltext-105 cl0 txt-center">Q&A</h2>
 	</section>
 
-
-<h1>QnA 글</h1>
+    <h1>QnA 글</h1>
     <p>궁금하신 모든것을 물어보세요.</p>
-    <form action="/qnaview_do" method="post">
-    
-    <input name="q_postid" type="hidden" value="${qna.q_postnum}" />
-    <input type="text" id="q_import_inquiry" name="q_import_inquiry" value="${qna.q_inquiry}" required readonly>
+    <form action="qnaedit_do" method="post">
+    <input name="q_postnum" type="hidden" value="${qna.q_postnum}" />
+        <select id="inquiry_type" name="q_inquiry" required>
+            <option selected disabled id="sltid" value="문의유형">문의유형</option>
+            <option value="일반문의" ${qna.q_inquiry == '일반문의' ? 'selected' : ''} >일반문의</option>
+            <option value="상품문의" ${qna.q_inquiry == '상품문의' ? 'selected' : ''}>상품문의</option>
+        </select>
     <br/>
     <div class="addcontainer">
-        
+    		<input type="hidden" id="m_id" value="${sessionScope.logid}" name="m_id">
             <label for="type_select">제품선택</label>
-            <input type="text" id="q_import_product" name="q_import_product" value="" required readonly>
+
+            <select id="product_type">
+                <option selected disabled>제품선택</option>
+                <option>구매상품1</option>
+                <option>구매상품2</option>
+            </select>
             
             <label for="title">제목</label>
-            <input type="text" id="q_import_title" name="q_import_title" value="${qna.q_title}" required readonly>
+            <input type="text" id="q_title" name="q_title" value="${qna.q_title}" required>
             
             <label for="content">내용</label>
-            <textarea id="q_import_content" name="q_import_content" rows="13" required readonly>${qna.q_content}</textarea>
+            <textarea id="q_content" name="q_content" rows="13" required>${qna.q_content}</textarea>
             
             <label>게시글 비밀번호</label>
-            <input type="password" id="q_pass" name="q_pass">
-
+            <input type="password" id="q_pass" name="q_pass" required>
         
         <div class="button-container">
             <a class="list-button" href="qna">목록</a>
-            <a class="edit-button" href="qnaeditform_do?q_postnum=${qna.q_postnum}">수정</a>
-        </div>
-    </div>
-</form>
-    
-    <hr/>
-
-    <br/>
-    <div class="addcontainer">
-        <p>빠른 시일 내에 답변해 드리겠습니다.</p>
-        <form>
-            <div class="button-container">
-                <input type="password" id="adminPassword" placeholder="ADMIN ONLY!">
-                <input type="button" class="re_add-button" value="답글작성">
-            </div>
-        </form>
+            <input class="submit-button" type="submit" value="작성완료">
+            <a class="cancel-button" href="qnaedit_do?q_postnum=${qna.q_postnum}">취소</a>
+        </div>					
+          </form>  
     </div>
 
 

@@ -11,10 +11,19 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.java.domain.FstDivVO;
 import com.java.domain.MemberVO;
+
 import com.java.service.BoardServiceImpl;
 import com.java.service.MemberServiceImpl;
 import com.java.domain.BoardVO;
+
+import com.java.domain.ProductVO;
+import com.java.domain.SndDivVO;
+import com.java.domain.TrdDivVO;
+import com.java.service.MemberServiceImpl;
+import com.java.service.ProductServiceImpl;
+
 
 @Controller
 @RequestMapping("admin")	
@@ -25,6 +34,10 @@ public class AdminController {
 	
 	@Autowired
 	BoardServiceImpl boardService;
+  
+  @Autowired
+	ProductServiceImpl productService;
+
 	
 	// 단순 페이지 이동
 	@RequestMapping("/{step}")
@@ -94,20 +107,7 @@ public class AdminController {
 		}
 	}
 	
-//	// 글 상세 조회
-//	@RequestMapping("/qna.do")
-//	public void getBoard(BoardVO vo, Model model) {
-//		BoardVO result = (BoardVO) boardService.board_all(vo);
-//		model.addAttribute("board", result);
-//		
-//	}
-	
-	// qna 글 목록 조회 (검색, 수정 빼고)
-//	@RequestMapping("/qna")
-//	public void board_all(BoardVO vo, Model model) {
-//	    List<BoardVO> result = boardService.board_all(vo);
-//	    model.addAttribute("qnaList", result);
-//	}
+
 	
    // qna게시판 목록 조회 (검색, 수정 합쳐서)
    @RequestMapping("/qna")
@@ -123,20 +123,41 @@ public class AdminController {
        return "admin/qna";
    }
 	
-  /**
-   *    @RequestMapping("/qna")
-   public String board_all(Model model, String sltfilter, String search) {
-      
-      BoardVO vo = new BoardVO();
-      vo.setSltfilter(sltfilter);
-      vo.setSearch(search);
-      
-       List<BoardVO> result = boardService.board_all(vo);
-       model.addAttribute("qnaList", result);
-       
-       return "member/qna";
-   }
-   * */
-   
+
+	
+	// product_resister 페이지 들어가면 분류 내용 보내기
+	@RequestMapping("/product_resister")
+	public void select_cate(FstDivVO fvo, SndDivVO svo, TrdDivVO tvo, Model model) {
+		
+		model.addAttribute("fstcate", productService.select_FstCate(fvo));
+		model.addAttribute("sndcate", productService.select_SndCate(svo));
+		model.addAttribute("trdcate", productService.select_TrdCate(tvo));
+		
+	}
+	
+	// 상품 등록
+	@RequestMapping("/product_insert")
+	public String product_insert(ProductVO vo) {
+		int result = productService.product_insert(vo);
+//		System.out.println(result);
+		return "redirect:/admin/product_all";
+	}
+	
+	// 상품 보여주기
+	@RequestMapping("/product_all")
+	public void product_all(ProductVO vo, Model model) {
+		model.addAttribute("productList", productService.product_all(vo));
+//		System.out.println(result);
+	}
+	
+	/*
+	 * // 옵션 등록
+	 * 
+	 * @RequestMapping("/option_insert") public String option_insert()
+	 */
+
+	
+	
+	
 
 }
