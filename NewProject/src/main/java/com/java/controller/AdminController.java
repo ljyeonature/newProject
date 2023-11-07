@@ -35,7 +35,7 @@ public class AdminController {
 	@Autowired
 	BoardServiceImpl boardService;
   
-  @Autowired
+    @Autowired
 	ProductServiceImpl productService;
 
 	
@@ -155,6 +155,36 @@ public class AdminController {
 	 * 
 	 * @RequestMapping("/option_insert") public String option_insert()
 	 */
+
+	// 게시글 제목 클릭하면 내용 불러오기
+	@RequestMapping("/qnaview_do")
+	public String getContentList(BoardVO vo, Model model) {
+		BoardVO result = boardService.qnaView(vo);
+		model.addAttribute("qnacontent" , result);
+		
+		return "admin/qnaview";
+	}
+	
+	// qna게시물 수정하는 폼 들어가기
+	@RequestMapping("/qnaeditForm_do")
+	public String getContentForm(BoardVO vo, Model model) {
+		
+		BoardVO result3 = boardService.qnaView(vo);
+		model.addAttribute("qnacontent" , result3);
+		return "admin/qnaedit";
+	}
+	
+	// 내용 수정하고 수정된 게시물 불러오기
+	@RequestMapping("/qnaedit_do")
+	public String getContentEdit(BoardVO vo, Model model) {
+		
+		boardService.qnaEdit(vo);
+		BoardVO result2 = boardService.qnaView(vo);
+		
+		model.addAttribute("qnacontent" , result2);
+		return "redirect:/admin/qnaview_do?q_postnum=" + result2.getQ_postnum();
+	}
+	
 
 	
 	
