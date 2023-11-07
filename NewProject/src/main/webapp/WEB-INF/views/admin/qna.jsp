@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-	<%@ taglib prefix='c' uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix='c' uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -40,7 +40,7 @@
 <%@ include file="/WEB-INF/views/admin/top.jsp" %>
 
 
-				<!-- Begin Page Content -->
+					<!-- Begin Page Content -->
 				<div class="container-fluid">
 
 					<!-- Page Heading -->
@@ -54,7 +54,7 @@
 							<div class="table-responsive">
 								<table class="table table-bordered" id="dataTable" width="100%"
 									cellspacing="0">
-									<form name="fsearch" id="fsearch" method="get">
+									<form action="qna" name="fsearch" id="fsearch" method="POST">
 										<input type="hidden" name="code" value="list">
 										<div class="tbl_frm01">
 											<table>
@@ -65,12 +65,11 @@
 												<tbody>
 													<tr>
 														<th scope="row">검색어</th>
-														<td><select name="sfl">
-																<option value="id">이름</option>
-																<option value="name">이메일</option>
-																<option value="pt_id">아이디</option>
+														<td><select name="sltfilter">
+																<option value="q_title">제목</option>
+																<option value="m_id">작성자</option>
 
-														</select> <input type="text" name="stx" value="" class="frm_input"
+														</select> <input type="text" name="search" value="" class="frm_input"
 															size="30"></td>
 													</tr>
 
@@ -126,14 +125,14 @@
 										</thead>
 
 										<tbody>
-											<c:forEach items="${memberList}" var="memberr">
+											<c:forEach items="${qnaList}" var="boardd">
 
 										<tr>
-											<td>${memberr.m_name}</td>
-											<td>${memberr.m_email}</td>
-											<td>${memberr.m_id}</td>
-											<td>${memberr.m_pass}</td>
-											<td>${memberr.m_addr}</td>
+											<td>${boardd.q_postnum}</td>
+											<td><a href="qnaview">${boardd.q_title}</a></td>
+											<td>${boardd.m_id}</td>
+											<td>${boardd.q_date}</td>
+											<td>${boardd.q_count}</td>
 
 										</tr>
 
