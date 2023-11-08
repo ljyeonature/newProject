@@ -177,29 +177,19 @@
 				<div class="card-header py-3">
 
 					<h6 class="m-0 font-weight-bold text-primary">주문 결제 내역</h6>
-
 				</div>
+
 				<div class="card-body">
 					<div class="table-responsive">
-						<table class="table table-bordered" id="dataTable" width="100%"
-							cellspacing="0">
-							<thead>
-								<label> 주문일시 (-----) | 주문총액: 
-							</thead>
-
-							<tbody>
-								<form name="frmorderreceiptform"
-									action="./pop_orderformupdate.php" method="post"
-									autocomplete="off">
-									<input type="hidden" name="od_id" value="23043013364001">
-									<input type="hidden" name="mod_type" value="receipt">
-
-									<div class="compare_wrap">
-										<section id="anc_sodr_chk" class="compare_left">
+						    
+							<!-- <tbody> -->
+								<form name="frmorderreceiptform" action="./pop_orderformupdate.php" method="post" autocomplete="off">
+										
+											  
+											<div style="display: flex;">
+												<div style="flex: 50%;">
 											<h3>결제상세정보 확인</h3>
-
-											<div class="tbl_frm01">
-												<table>
+												<table id="tbl1">
 													<colgroup>
 														<col class="w150">
 														<col>
@@ -239,14 +229,11 @@
 														</tr>
 													</tbody>
 												</table>
-											</div>
-										</section>
-
-										<section id="anc_sodr_paymo" class="compare_right">
+												</div>
+											
+											<div style="flex: 50%;">
 											<h3>결제상세정보 수정</h3>
-
-											<div class="tbl_frm01">
-												<table>
+												<table id="tbl2">
 													<colgroup>
 														<col class="w150">
 														<col>
@@ -296,20 +283,16 @@
 															<th scope="row">입금확인일시</th>
 															<td>입금 확인일시 정보가 없습니다.</td>
 														</tr>
-
-
-
-
-
 														<tr>
 															<th scope="row">개별 전자결제(PG)</th>
 															<td><strong>admin</strong> PG설정으로 주문</td>
 														</tr>
 													</tbody>
 												</table>
-											</div>
-										</section>
 									</div>
+									<!-- 아랫덩어리 여기까지 -->
+									</div>
+
 
 									<div class="btn_confirm">
 										<input type="submit" value="결제정보 수정" class="btn_medium">
@@ -317,10 +300,6 @@
 											class="btn_medium bx-white">닫기</a>
 									</div>
 								</form>
-
-
-							</tbody>
-						</table>
 					</div>
 				</div>
 			</div>
@@ -339,13 +318,6 @@
 	<!------------------------------------------------------------------------------------------------------  -->
 	<!------------------------------------------------------------------------------------------------------  -->
 
-	</div>
-
-	</div>
-	</div>
-	</div>
-
-	</div>
 
 
 
@@ -355,10 +327,8 @@
 	<!-- 포터바  -->
 	<%@ include file="/WEB-INF/views/admin/footer.jsp"%>
 
-	</div>
 	<!-- End of Content Wrapper -->
 
-	</div>
 	<!-- End of Page Wrapper -->
 
 	<!-- Scroll to Top Button-->

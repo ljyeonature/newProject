@@ -47,32 +47,35 @@
 						<!-- DataTales Example -->
 						<div class="card shadow mb-4">
 							<div class="card-header py-3">
-							
-								<h6 class="m-0 font-weight-bold text-primary">게시글 조회</h6>
 								
-								<h1>QnA 글</h1>
-    <p>궁금하신 모든것을 물어보세요.</p>
     <form action="/qnaview_do" method="post">
-    
-    <input name="q_postid" type="hidden" value="${qnacontent.q_postnum}">
-    <input type="text" id="q_import_inquiry" name="q_import_inquiry" value="${qnacontent.q_inquiry}" required readonly/>
-    <br/>
     <div class="addcontainer">
-        
-            <label for="type_select">제품선택</label>
+        	<label for="inquiry_select">작성자ID</label>
+            <input type="text" id="q_import_product" name="q_import_product" value="${qnacontent.m_id}" readonly>
+    		<hr/>
+        	<label for="inquiry_select">Q&A유형</label>
+            <input type="text" id="q_import_product" name="q_import_product" value="${qnacontent.q_inquiry}" readonly>
+            <hr/>
+            <label for="type_select">구매제품</label>
             <input type="text" id="q_import_product" name="q_import_product" value="" readonly>
-            
-            <label for="title">제목</label>
+            <hr/>
+            <label for="title">Q&A제목</label>
             <input type="text" id="q_import_title" name="q_import_title" value="${qnacontent.q_title}" required readonly>
-            
-            <label for="content">내용</label>
+            <hr/>
+            <label for="content">Q&A내용</label>
             <textarea id="q_import_content" name="q_import_content" rows="13" value="" required readonly>${qnacontent.q_content}</textarea>
-
+            <hr/>
+            <label for="title">답글제목</label>
+            <input type="text" id="r_title_import" name="r_title_import" value="${qnacontent.q_answertitle}"
+                   required readonly>
+                   <hr/>
+			<label for="content">답글내용</label>
+            <textarea id="r_import_content" name="r_import_content" rows="13"required readonly>${qnacontent.q_answercontent}</textarea>
 
         
         <div class="button-container">
-            <a class="list-button" href="#">목록</a>
-            <a class="edit-button" href="qnaeditForm_do?q_postnum=${qnacontent.q_postnum}">수정</a>
+            <a class="list-button" href="qna">목록</a>
+            <a class="edit-button" href="qnaeditForm_do?q_postnum=${qnacontent.q_postnum}">답글 작성 및 수정</a>
         </div>
     </div>
 </form>

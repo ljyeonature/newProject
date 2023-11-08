@@ -47,7 +47,9 @@
 			Q_TITLE		= #{q_title},
 			Q_CONTENT	= #{q_content},
 			Q_PASS		= #{q_pass},
-			M_ID		= #{m_id}
+			M_ID		= #{m_id},
+			Q_ANSWERTITLE	= #{q_answertitle},
+			Q_ANSWERCONTENT	= #{q_answercontent}
 		WHERE
 			Q_POSTNUM = #{q_postnum}
 	</update>
