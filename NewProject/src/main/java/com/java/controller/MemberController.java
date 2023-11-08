@@ -24,11 +24,9 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.java.domain.BoardVO;
 import com.java.domain.MemberVO;
-import com.java.domain.ProductVO;
 import com.java.domain.WishListVO;
 import com.java.service.BoardServiceImpl;
 import com.java.service.MemberServiceImpl;
-import com.java.service.ProductServiceImpl;
 
 @Controller
 @RequestMapping("/member")
@@ -264,25 +262,46 @@ public class MemberController {
 	//qna게시글 수정하는 폼 들어가기
 	@RequestMapping("/qnaeditform_do")
 	public String qnaEdit(BoardVO vo, Model m) {
-		m.addAttribute("qna",vo);
+		
+		BoardVO qna = boardService.qnaView(vo);
+		m.addAttribute("qna",qna);
 		return "member/qnaedit";
 	}
 	
-	
+	//qna게시글 수정후 수정한 게시글 불러오기
 	@RequestMapping("/qnaedit_do")
 	public String qnarealEdit(BoardVO vo, Model m) {
+		
 		boardService.qnaEdit(vo);
-		m.addAttribute("qna",vo);
-		return "member/qnaview";
-
-	@Autowired
+		BoardVO updateqna = boardService.qnaView(vo);
+		
+		m.addAttribute("qna",updateqna);
+		return "redirect:/member/qnaview_do?q_postnum=" + updateqna.getQ_postnum();
+	}
+	
+	
+	  //qna 게시글 비밀번호랑 DB 비교후 동일한지 확인
+	  
+	  @RequestMapping("/checkQpass")
+	  @ResponseBody
+	  public String checkQpass(BoardVO vo) {
+		  int result = boardService.checkQpass(vo);
+		  if(result == 1) {
+			  return "success";
+		  }else { 
+			  return "fail";
+			  }
+	  }
+	 
+	
+/*	@Autowired
 	ProductServiceImpl productService;
 	
 	// 상품 보여주기
 	@RequestMapping("/product")
 	public void product_all(ProductVO vo, Model model) {
 		model.addAttribute("productAll",productService.product_all(vo));
-	}
+	}*/
 	
 	// 찜 목록 저장하기 - 해당 m_id와 p_selid
 	

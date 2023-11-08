@@ -51,6 +51,12 @@
 		WHERE
 			Q_POSTNUM = #{q_postnum}
 	</update>
+	
+	<!-- 게시글 비밀번호 DB와 비교 -->
+	<select id="checkQpass" parameterType="com.java.domain.BoardVO" resultType="int">
+    	SELECT COUNT(*) FROM qna
+    	WHERE q_postnum = #{q_postnum} AND q_pass = #{q_pass}
+	</select>
 
 
 </mapper>

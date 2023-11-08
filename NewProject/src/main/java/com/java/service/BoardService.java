@@ -17,5 +17,8 @@ public interface BoardService {
 	
 	//QnA게시글 수정
 	void qnaEdit(BoardVO vo);
+	
+	//QnA게시글 수정할때 비밀번호 비교
+	int checkQpass(BoardVO vo);
 
 }

@@ -48,6 +48,34 @@
 	            event.preventDefault();
 	        }
 	    });
+	    
+	    $(".edit-button").click(function(e){
+	         e.preventDefault();
+	         
+	        var pass = $("#q_pass").val();
+	        var postnum = ${qna.q_postnum};
+	        
+	        $.ajax({
+	            url: 'checkQpass',
+	            type: 'post',
+	            data: { q_pass : pass, q_postnum : postnum },
+	            success: function(data) {
+	                if(data == 'success') {
+	                     window.location.href = "qnaeditform_do?q_postnum=" + postnum;
+	                } else {
+	                    alert('비밀번호가 일치하지 않습니다.');
+	                }
+	            },
+	            error: function(err) {
+	            	console.log(err);
+	            }
+	            
+	        });
+	    });
+	    
+	    $("#toggle-button").click(function() {
+	        $("#toggle-content").toggle(); // 내용 토글
+	    });
 
 	});
 	
@@ -271,16 +299,28 @@
     
     <hr/>
 
+<div class="toggle-container">
+    <button id="toggle-button">답글확인</button>
     <br/>
-    <div class="addcontainer">
-        <p>빠른 시일 내에 답변해 드리겠습니다.</p>
-        <form>
-            <div class="button-container">
-                <input type="password" id="adminPassword" placeholder="ADMIN ONLY!">
-                <input type="button" class="re_add-button" value="답글작성">
-            </div>
-        </form>
+    	<div id="toggle-content" style="display: none;">
+            <h1>QnA 답글</h1>
+    	<p>답변해드린 내용을 확인하세요.</p>
+	
+    	<br/>
+   	 <div class="addcontainer">
+     	   <form>
+        	    <label for="title">제목</label>
+          		  <input type="text" id="r_title_import" name="r_title_import" value="${qna.q_answertitle}"
+            	       required readonly>
+            
+           			 <label for="content">내용</label>
+           		 <textarea id="r_import_content" name="r_import_content" rows="13"required readonly>${qna.q_answercontent}</textarea>
+        	</form>
+        
+    	</div>
     </div>
+</div>
+
 
 
 

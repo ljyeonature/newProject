@@ -41,5 +41,10 @@ public class BoardServiceImpl implements BoardService{
 	public void qnaEdit(BoardVO vo) {
 		boardDAOImpl.qnaEdit(vo);
 	}
+	
+	//QnA게시글 수정할때 비밀번호 비교
+	public int checkQpass(BoardVO vo) {
+		return boardDAOImpl.checkQpass(vo);
+	}
 
 }
