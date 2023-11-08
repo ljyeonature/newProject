@@ -47,4 +47,10 @@ public class BoardDAOImpl implements BoardDAO{
 	public void qnaEdit(BoardVO vo) {
 		int result = sqlSession.update("org.java.BoardMapper.qnaEdit",vo);
 	}
+	
+	//QnA게시글 수정할때 비밀번호 비교
+	@Override
+	public int checkQpass(BoardVO vo) {
+		return sqlSession.selectOne("org.java.BoardMapper.checkQpass",vo);
+	}
 }

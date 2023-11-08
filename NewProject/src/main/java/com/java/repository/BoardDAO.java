@@ -20,4 +20,7 @@ public interface BoardDAO {
 	
 	//qna게시물 수정
 	public void qnaEdit(BoardVO vo);
+	
+	//QnA게시글 수정할때 비밀번호 비교
+	public int checkQpass(BoardVO vo);
 }

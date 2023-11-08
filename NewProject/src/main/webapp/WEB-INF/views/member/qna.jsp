@@ -262,11 +262,6 @@
                    	 <div class="num" id="q_postnum">${q.q_postnum}</div>
                     	<div class="title" id="q_title"><a href="qnaview_do?q_postnum=${q.q_postnum}">${q.q_title}</a></div>
                     	<div class="writer" id="q_writer">${q.m_id}</div>
-
-                   	 <div class="num" id="q_postid">${q.q_postnum}</div>
-                    	<div class="title" id="q_title"><a href="#">${q.q_title}</a></div>
-                    	<div class="writer" id="q_writer">${q.q_inquiry}</div>
-
                     	<div class="date" id="q_date">${q.q_date}</div>
                     	<div class="count" id="q_count">${q.q_count}</div>
                 	</div>
