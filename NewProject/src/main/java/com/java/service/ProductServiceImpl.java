@@ -6,7 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.java.domain.FstDivVO;
-import com.java.domain.MemberVO;
+import com.java.domain.ImageVO;
+import com.java.domain.OptionVO;
 import com.java.domain.ProductVO;
 import com.java.domain.SndDivVO;
 import com.java.domain.TrdDivVO;
@@ -54,12 +55,35 @@ public class ProductServiceImpl implements ProductService{
 		return result;
 	}
 
+	
+	// 상품 이미지 등록
+	@Override
+	public int upload_image(ImageVO vo) {
+		int result = productDAOImpl.upload_image(vo);
+		return result;
+	}
 
+	// 상품 모두 불러오기
 	@Override
 	public List<ProductVO> product_all(ProductVO vo) {
 		return productDAOImpl.product_all(vo);
 		
 	}
+	// 상품 상세정보
+	@Override
+	public ProductVO product_detail(String p_selid) {
+		ProductVO result = productDAOImpl.product_detail(p_selid);
+		return result;
+	}
+
+	// 상품 상세 정보 옵션 가져오기
+	@Override
+	public List<OptionVO> product_option(String p_selid) {
+		List<OptionVO> result = productDAOImpl.product_option(p_selid);
+		
+		return result;
+	}
+
 
 	
 	

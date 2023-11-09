@@ -17,7 +17,7 @@ public class ProductVO {			// 상품
 	private String p_description;	// 상품상세설명			- p_description
 	private String p_care;			// 상품사육방법설명		- p_care
 	private String p_imgn;			// 상품이미지파일(업로드용)	- p_imgn
-	private String p_imgrn;		// 상품이미지파일(실제파일명)		- p_imgrn
+	private String p_imgrn;			// 상품이미지파일(실제파일명)		- p_imgrn
 	private long   p_imgsz;			// 상품이미지파일(파일크기)	- p_imgsz
 	
 	//*************************************************
@@ -34,7 +34,7 @@ public class ProductVO {			// 상품
 	         
 	         // 실제 저장된 파일명 만들기
 	         UUID uuid = UUID.randomUUID();
-	         this.p_imgrn = uuid.toString();
+	         this.p_imgrn = uuid.toString() + "_" + p_imgn;
 	         
 	         // 실제파일 저장
 	         // 추후에 웹서버 경로를 찾아서 수정

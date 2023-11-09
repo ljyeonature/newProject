@@ -39,6 +39,7 @@
 	<link rel="stylesheet" type="text/css" href="../resources/main/css/main.css">
 <!--===============================================================================================-->
 <script src="../resources/main/jquery/jquery-3.2.1.min.js"></script>
+
 </head>
 <body class="animsition">
 
@@ -56,28 +57,29 @@
 					<i class="zmdi zmdi-close"></i>
 				</div>
 			</div>
-			
+			<!-- 위시리스트 -->
 			<div class="header-cart-content flex-w js-pscroll">
 				<ul class="header-cart-wrapitem w-full">
-				<c:forEach items="${wishList }" var="wishList">
+				<c:forEach items="${wishList}" var="wish">
 					<li class="header-cart-item flex-w flex-t m-b-12">
-						<div class="header-cart-item-img">
-							<img src="../resources/main/images/item-cart-01.jpg" alt="IMG">
-						</div>
-
-						<div class="header-cart-item-txt p-t-8">
-							<a href="#" class="header-cart-item-name m-b-18 hov-cl1 trans-04">
-								${wishList.p_name }
-							</a>
-
-							<span class="header-cart-item-info">
-								${wishList.p_price }
-							</span>
-						</div>
-					</li>
+							<div class="header-cart-item-img">
+								<img src="../resources/productImages/${wish.p_imgrn }" alt="IMG">
+							</div>
+	
+							<div class="header-cart-item-txt p-t-8">
+								<a href="#" class="header-cart-item-name m-b-18 hov-cl1 trans-04">
+									${wish.p_name }
+								</a>
+	
+								<span class="header-cart-item-info">
+									${wish.p_price }원
+								</span>
+							</div>
+						</li>
 				
 				</c:forEach>
-
+				
+				
 				</ul>
 				
 				<div class="w-full">
@@ -86,7 +88,7 @@
 					</div>
 
 					<div class="header-cart-buttons flex-w w-full">
-						<a href="shoping-cart.html" class="flex-c-m stext-101 cl0 size-107 bg3 bor2 hov-btn3 p-lr-15 trans-04 m-r-8 m-b-10">
+						<a href="shoping-cart?m_id=${sessionScope.logid }" class="flex-c-m stext-101 cl0 size-107 bg3 bor2 hov-btn3 p-lr-15 trans-04 m-r-8 m-b-10">
 							View Cart
 						</a>
 

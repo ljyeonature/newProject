@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+	<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -52,67 +53,108 @@
 	href="../resources/main/css/main.css">
 <!--===============================================================================================-->
 <script src="../resources/main/jquery/jquery-3.2.1.min.js"></script>
+
 <script>
 
 	$(function(){
-		
-		$('.js-addwish-b2, .js-addwish-detail').on('click', function(e){
-			e.preventDefault();
-			//console.log($.trim($('#p_name').text()));
-			//console.log($('#logid').val())
-			// console.log($('#p_selid').val())
-			var param = { m_id:$('#logid').val(), p_selid:$('#p_selid').val(), p_name:$.trim($('#p_name').text()), p_price:$.trim($('#p_price').text()) };
-			console.log("parma :" +  param.p_selid);
-			$.ajax({
-				type:'post',
-				data: param,
-				url:"product_wishlist",
-				success : function(result) {
-					if(result === "error"){
-						console.log(result)
-					} else {
-						console.log(result)
-					}
-					
-				},
-				error : function(err) {
-					console.log(err);
-				}
-				
-	
-				
-			});
-		});
+		 // 페이지 로드 시 세션 스토리지에서 위시리스트 상태 가져오기
+	    var wishlistState = JSON.parse(localStorage.getItem('wishlistState')) || {};
 
-		$('.js-addwish-b2').each(function(){
-			var nameProduct = $(this).parent().parent().find('.js-name-b2').html();
-			$(this).on('click', function(){
-				swal(nameProduct, "is added to wishlist !", "success");
+	    // 클릭 이벤트 핸들러
+	    $('.js-addwish-b2, .js-addwish-detail').click(function (e) {
+	        e.preventDefault();
+	        var selIdProduct = $(this).parent().parent().find('.js-selid-b2').val();
+	        var heartImage = $(this).find('img');
 
-				$(this).addClass('js-addedwish-b2');
-				$(this).off('click');
-			});
-		});
+	        if (wishlistState[selIdProduct]) {
+	            // 이미 찜한 경우, 제거
+	            $(heartImage).attr('src', $(heartImage).attr('src').replace('heart-02', 'heart-01'));
+	            delete wishlistState[selIdProduct];
+	            removeItemFromWishlist(selIdProduct);
+	            var nameProduct = $(this).parent().parent().find('.js-name-b2').html();
+	            swal(nameProduct, "찜 삭제하였습니다", "success");
+	        } else {
+	            // 찜하지 않은 경우, 추가
+	            var nameProduct = $(this).parent().parent().find('.js-name-b2').val();
+	            var priceProduct = $(this).parent().parent().find('.js-price-b2').val();
+	            var imgProduct = $(this).parent().parent().find('.js-img-b2').val();
+	            var param = {
+	                m_id: $('#logid').val(),
+	                p_selid: selIdProduct,
+	                p_name: nameProduct,
+	                p_price: priceProduct,
+	                p_imgrn: imgProduct
+	            };
+	            addItemToWishlist(param);
+	            wishlistState[selIdProduct] = true;
+	            $(heartImage).attr('src', $(heartImage).attr('src').replace('heart-01', 'heart-02'));
+	            var nameProduct = $(this).parent().parent().find('.js-name-b2').html();
+	            swal(nameProduct, "찜 추가하였습니다", "success");
+	        }
 
-		$('.js-addwish-detail').each(function(){
-			var nameProduct = $(this).parent().parent().parent().find('.js-name-detail').html();
+	        // 세션 스토리지에 업데이트된 위시리스트 상태 저장
+	        localStorage.setItem('wishlistState', JSON.stringify(wishlistState));
+	    });
 
-			$(this).on('click', function(){
-				swal(nameProduct, "is added to wishlist !", "success");
+	    // 페이지 로드 시 위시리스트 상태에 따라 하트 이미지 업데이트
+	    $('.js-addwish-b2, .js-addwish-detail').each(function () {
+	        var selIdProduct = $(this).parent().parent().find('.js-selid-b2').val();
+	        var heartImage = $(this).find('img');
+	        if (wishlistState[selIdProduct]) {
+	            $(heartImage).attr('src', $(heartImage).attr('src').replace('heart-01', 'heart-02'));
+	        }
+	    });
 
-				$(this).addClass('js-addedwish-detail');
-				$(this).off('click');
-			});
-		});
+	    // 실제 위시리스트에 항목 추가
+	    function addItemToWishlist(param) {
+	        $.ajax({
+	            type: 'post',
+	            data: param,
+	            url: 'product_wishlist',
+	            success: function (result) {
+	                if (result === "error") {
+	                    console.log(result);
+	                } else {
+	                    //alert(result);
+	                }
+	            },
+	            error: function (err) {
+	                console.log(err);
+	            }
+	        });
+	    }
+
+	    // 위시리스트에서 항목 제거
+	    function removeItemFromWishlist(selId) {
+	        $.ajax({
+	            type: 'post',
+	            data: { p_selid: selId },
+	            url: 'delete_wishlist',
+	            success: function (result) {
+	                if (result === "delete") {
+	                    //alert(result);
+	                } else if (result === "fail") {
+	                    //alert(result);
+	                }
+	            },
+	            error: function (err) {
+	                console.log(err);
+	            }
+	        });
+	    }
+	    
+	    // quick-view
+	 /*    $.ajax({
+	    	
+	    	type:'post',
+	    	data:{p:selid : }
+	    	
+	    	
+	    	
+	    });// ajax */
+
 
 		/*---------------------------------------------*/
-
-		$('.js-addcart-detail').each(function(){
-			var nameProduct = $(this).parent().parent().parent().parent().find('.js-name-detail').html();
-			$(this).on('click', function(){
-				swal(nameProduct, "is added to cart !", "success");
-			});
-		});
 	
 
 	}); // end
@@ -421,33 +463,33 @@
 						<div class="block2-pic hov-img0">
 							<img src="../resources/productImages/${product.p_imgrn }" alt="IMG-PRODUCT"> 
 							<a href="product_quickview?p_selid=${product.p_selid }"
-								class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1">
+								class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1 quickView">
 								Quick View </a>
 						</div>
 
 						<div class="block2-txt flex-w flex-t p-t-14">
 							<div class="block2-txt-child1 flex-col-l ">
-								<a href="product-detail?p_selid=${product.p_selid }"
-									class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6" id="p_name">
+								<a href="product-detail?m_id=${sessionScope.logid }&p_selid=${product.p_selid }" class="stext-104 cl4 hov-cl1 trans-04 p-b-6" id="p_name">
 									${product.p_name }
 								</a> 
-									<span class="stext-105 cl3" id="p_price"> ${product.p_price }원
-								</span>
+								<input type="hidden" value="${product.p_selid }" id="p_selid" class="js-selid-b2">
+								<input type="hidden" value="${product.p_name }" id="p_selid" class="js-name-b2">
+								<input type="hidden" value="${product.p_price }" id="p_price" class="js-price-b2">
+								<input type="hidden" value="${product.p_imgrn }" id="p_imgrn" class="js-img-b2">
+								<span class="stext-105 cl3" id="p_price"> ${product.p_price }원</span>
 							</div>
 
-								<input type="hidden" value="${product.p_selid }" id="p_selid">
 							<div class="block2-txt-child2 flex-r p-t-3">
-								<a href="product_wishlist?p_selid=${product.p_selid }"
-									class="btn-addwish-b2 dis-block pos-relative js-addwish-b2">
-									
-									<img class="icon-heart1 dis-block trans-04"
+
+								<div class="btn-addwish-b2 dis-block pos-relative js-addwish-b2">
+									<!-- 위시리스트에 없을 때는 불꺼진 하트 -->
+									<img class="icon-heart1 dis-block trans-04" 
 									src="../resources/main/images/icons/icon-heart-01.png"
-									alt="ICON"> 
-									<img
-									class="icon-heart2 dis-block trans-04 ab-t-l"
-									src="../resources/main/images/icons/icon-heart-02.png"
-									alt="ICON">
-								</a>
+									alt="ICON" id="empty-heart"> 
+									
+									
+								</div>
+
 							</div>
 						</div>
 					</div>
@@ -500,12 +542,12 @@
 
 								<div class="slick3 gallery-lb">
 									<div class="item-slick3"
-										data-thumb="../resources/main/images/product-detail-01.jpg">
+										data-thumb="../resources/productImages/${productQuick.p_imgrn}">
 										<div class="wrap-pic-w pos-relative">
-											<img src="../resources/main/images/product-detail-01.jpg"
+											<img src="../resources/productImages/${productQuick.p_imgrn}"
 												alt="IMG-PRODUCT"> <a
 												class="flex-c-m size-108 how-pos1 bor0 fs-16 cl10 bg0 hov-btn3 trans-04"
-												href="../resources/main/images/product-detail-01.jpg"> <i
+												href="../resources/productImages/${productQuick.p_imgrn}"> <i
 												class="fa fa-expand"></i>
 											</a>
 										</div>
@@ -563,23 +605,6 @@
 												<option>Size M</option>
 												<option>Size L</option>
 												<option>Size XL</option>
-											</select>
-											<div class="dropDownSelect2"></div>
-										</div>
-									</div>
-								</div>
-
-								<div class="flex-w flex-r-m p-b-10">
-									<div class="size-203 flex-c-m respon6">Color</div>
-
-									<div class="size-204 respon6-next">
-										<div class="rs1-select2 bor8 bg0">
-											<select class="js-select2" name="time">
-												<option>Choose an option</option>
-												<option>Red</option>
-												<option>Blue</option>
-												<option>White</option>
-												<option>Grey</option>
 											</select>
 											<div class="dropDownSelect2"></div>
 										</div>

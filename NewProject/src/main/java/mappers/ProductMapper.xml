@@ -18,6 +18,32 @@
 		)
 	</insert>
 	
+	
+	<!-- 상품 이미지 등록 -->
+	<insert id="uploadImage" parameterType="com.java.domain.ImageVO">
+    INSERT INTO image (
+    imgnum,
+        img1_n, img1_rn, img1_sz,
+        img2_n, img2_rn, img2_sz,
+        img3_n, img3_rn, img3_sz,
+        img4_n, img4_rn, img4_sz,
+        img5_n, img5_rn, img5_sz,
+        img6_n, img6_rn, img6_sz,
+        img7_n, img7_rn, img7_sz,
+        img8_n, img8_rn, img8_sz
+    ) VALUES (
+    6,
+        #{img1_n}, #{img1_rn}, #{img1_sz},
+        #{img2_n}, #{img2_rn}, #{img2_sz},
+        #{img3_n}, #{img3_rn}, #{img3_sz},
+        #{img4_n}, #{img4_rn}, #{img4_sz},
+        #{img5_n}, #{img5_rn}, #{img5_sz},
+        #{img6_n}, #{img6_rn}, #{img6_sz},
+        #{img7_n}, #{img7_rn}, #{img7_sz},
+        #{img8_n}, #{img8_rn}, #{img8_sz}
+    )
+</insert>
+	
 	<!-- product_all에 들어갔을 때 상품 등록 정보 불러오기  -->
 	<select id="product_all" resultType="com.java.domain.ProductVO">
 		SELECT * FROM p_product
@@ -38,5 +64,15 @@
 		SELECT * FROM trddiv
 	</select>
 	
+	<!-- 상품 상세보기 -->
+	<select id="product_detail" parameterType="String" resultType="com.java.domain.ProductVO">
+		SELECT * FROM p_product WHERE p_selid = #{p_selid}
+	
+	</select>
+	
+	<!-- 상품상세보기에서 상품 옵션 불러오기 -->
+	<select id="product_option" parameterType="String" resultType="com.java.domain.OptionVO">
+		SELECT * FROM p_option WHERE trddivid = #{p_selid}
+	</select>
 
 </mapper>

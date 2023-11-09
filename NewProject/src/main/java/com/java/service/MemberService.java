@@ -2,6 +2,8 @@ package com.java.service;
 
 import java.util.List;
 
+import com.java.domain.CartVO;
+import com.java.domain.CartViewVO;
 import com.java.domain.MemberVO;
 import com.java.domain.WishListVO;
 
@@ -40,5 +42,24 @@ public interface MemberService {
 	
 	// 해당 ID의 찜 목록 보이기
 	public List<WishListVO> wishlist_all(WishListVO vo);
+	
+	
+	// 찜 삭제
+	public int delete_wishlist(WishListVO vo);
+	
+	// 장바구니 추가
+	public int add_to_cart(CartVO vo);
+	
+	// 장바구니 리스트
+	public List<CartVO> shopping_cart(CartViewVO vo);
+	
+	// 장바구니 중복 확인
+	public int alreadyInCartList(CartVO vo);
+	
+	// 장바구니 수량 올리기
+	public int plusCartCnt(CartVO vo);
+	
+	// 장바구니 수량 내리기
+	public int minusCartCnt(CartVO vo);
 		
 }

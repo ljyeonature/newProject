@@ -282,7 +282,7 @@ h4, h6 {
 
 							<tr class="table_row">
 								<td class="column-1">
-									<a href="qna">
+									<a href="qna?sltfilter=m_id&search=${sessionScope.logid">
 										<img src="../resources/main/images/qna.png" alt="IMG">
 										<h4>Q&A</h4>
 										<h6>게시판</h6>

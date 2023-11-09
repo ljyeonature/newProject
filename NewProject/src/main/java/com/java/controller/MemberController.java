@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.support.PagedListHolder;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Controller;
@@ -22,7 +23,10 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.java.domain.BoardVO;
+import com.java.domain.CartVO;
+import com.java.domain.CartViewVO;
 import com.java.domain.MemberVO;
+import com.java.domain.OptionVO;
 import com.java.domain.ProductVO;
 import com.java.domain.WishListVO;
 import com.java.service.BoardServiceImpl;
@@ -41,7 +45,8 @@ public class MemberController {
 
 	// 단순 페이지 이동
 	@RequestMapping("/{step}")
-	public String viewPage(@PathVariable String step) {
+	public String viewPage(@PathVariable String step, Model model, WishListVO wvo) {
+		model.addAttribute("wishList", memberService.wishlist_all(wvo));
 		return "member/" +step;
 	}
 
@@ -87,7 +92,7 @@ public class MemberController {
 		} 
 
 	    else {
-	    	System.out.println(result);
+	    	//System.out.println(result);
 	        session.setAttribute("logname", result.getM_name());
 	        session.setAttribute("logid", result.getM_id());
 	        return "redirect:/member/home";
@@ -111,7 +116,7 @@ public class MemberController {
 	
 	// 회원 수정할 때 페이지에 데이터 불러오기
 	@RequestMapping("/member-info") 
-	public void member_detail(Model model, @RequestParam("m_id") String m_id)
+	public void memberDetail(Model model, @RequestParam("m_id") String m_id)
 	{
 		MemberVO result = memberService.member_detail(m_id);
 //		System.out.println(result.getM_id());
@@ -122,10 +127,9 @@ public class MemberController {
 	
 	// 회원 정보 수정
 	@RequestMapping("/update_do")
-	public String update_member(MemberVO vo, @RequestParam("m_id") String m_id)
+	public String updateMember(MemberVO vo, @RequestParam("m_id") String m_id)
 	{
 		int result = memberService.update_member(vo);
-		System.out.println();
 		return "redirect:/member/mypage";
 	}
 	
@@ -214,26 +218,110 @@ public class MemberController {
 	@RequestMapping("/qna-add_do")
 	public String qnaAdd(BoardVO vo) {
 		boardService.insertQna(vo);
-		return "member/qna";
+		return "redirect:/member/qna";
 	}
 	
+	// qna게시판 목록 조회
 	@RequestMapping("/qna")
-	public void board_all(BoardVO vo, Model model) {
-	    List<BoardVO> result = boardService.board_all(vo);
+	public String board_all(Model model, String sltfilter, String search, @RequestParam(defaultValue = "1") int page) {
+		
+		BoardVO vo = new BoardVO();
+		vo.setSltfilter(sltfilter);
+		vo.setSearch(search);
+		
+		// boardService를 사용하여 모든 QnA 게시물을 가져옵니다.
+		List<BoardVO> allQna = boardService.board_all(vo);
+		
+		// PagedListHolder를 사용하여 페이징된 목록을 생성합니다.
+		PagedListHolder<BoardVO> qnaListPage = new PagedListHolder<BoardVO>(allQna);
+		// 한 페이지당 표시할 항목 수를 설정합니다.
+		qnaListPage.setPageSize(5);
+		
+		// 요청에서 받은 페이지 번호에 따라 현재 페이지를 설정합니다. (0부터 시작)
+		qnaListPage.setPage(page - 1);
+		// 현재 페이지에 표시할 게시물 목록을 가져옵니다.
+		List<BoardVO> result = qnaListPage.getPageList();
+		
+		// 가져온 게시물 목록과 페이지 정보를 모델에 추가하여 뷰로 전달합니다.
 	    model.addAttribute("qnaList", result);
-		/*
-		 * ModelAndView modelAndView = new ModelAndView();
-		 * modelAndView.addObject("qnaList", result);
-		 */
+	    model.addAttribute("maxPages", qnaListPage.getPageCount());	//전체페이지수
+	    model.addAttribute("currentPages", qnaListPage.getPage() + 1);	//현재페이지
+	    
+	    return "member/qna";
 	}
+	
+
+	// qna게시글 불러오기 (상세보기)
+	@RequestMapping("/qnaview_do")
+	public String qnaView(BoardVO vo, Model model) {
+		// 게시물 조회수 증가
+		boardService.incrementQnaCount(vo);
+		
+		// 게시글 로딩
+		BoardVO result = boardService.qnaView(vo);
+		
+		model.addAttribute("qna", result);
+		return "member/qnaview";
+	}
+	
+	//qna게시글 수정하는 폼 들어가기
+	@RequestMapping("/qnaeditform_do")
+	public String qnaEdit(BoardVO vo, Model m) {
+		
+		BoardVO qna = boardService.qnaView(vo);
+		m.addAttribute("qna",qna);
+		return "member/qnaedit";
+	}
+	
+	//qna게시글 수정후 수정한 게시글 불러오기
+	@RequestMapping("/qnaedit_do")
+	public String qnarealEdit(BoardVO vo, Model m) {
+		
+		boardService.qnaEdit(vo);
+		BoardVO updateqna = boardService.qnaView(vo);
+		
+		m.addAttribute("qna",updateqna);
+		return "redirect:/member/qnaview_do?q_postnum=" + updateqna.getQ_postnum();
+	}
+	
+	
+	  //qna 게시글 비밀번호랑 DB 비교후 동일한지 확인
+	  
+	  @RequestMapping("/checkQpass")
+	  @ResponseBody
+	  public String checkQpass(BoardVO vo) {
+		  int result = boardService.checkQpass(vo);
+		  if(result == 1) {
+			  return "success";
+		  }else { 
+			  return "fail";
+			  }
+	  }
 	
 	@Autowired
 	ProductServiceImpl productService;
 	
 	// 상품 보여주기
 	@RequestMapping("/product")
-	public void product_all(ProductVO vo, Model model) {
+	public void productAll(ProductVO vo, Model model, WishListVO wvo) {
 		model.addAttribute("productAll",productService.product_all(vo));
+		model.addAttribute("wishList", memberService.wishlist_all(wvo));
+	}
+	
+	
+	// 장바구니 중복 확인
+	@RequestMapping("/alreadyInCartList")
+	@ResponseBody
+	public String alreadyInWishList(CartVO vo) {
+//		System.out.println(vo.toString());
+		int result = memberService.alreadyInCartList(vo);
+		//System.out.println("alreadyInCartList : "+result);
+		if(result == 1) {
+			return "ok";
+		}
+		else {
+			return "no";
+		}
 	}
 	
 	// 찜 목록 저장하기 - 해당 m_id와 p_selid
@@ -253,10 +341,104 @@ public class MemberController {
 	}
 	
 	
-	// 찜 목록 해당 ID 인 경우 찜 목록 보이기
+	// 찜 목록 해당 ID 인 경우 찜 목록 보이기 : json으로 보내야 하기 때문에 -> pom.xml에 json 변환 도구 추가
 	@RequestMapping("/wishlist_all")
-	public void wishlist_all(WishListVO vo, Model model) {
-		model.addAttribute("wishList", memberService.wishlist_all(vo));
+	@ResponseBody
+	public List<WishListVO> wishlistAll(WishListVO vo) {
+		//System.out.println(vo.getM_id());
+		List<WishListVO> result = memberService.wishlist_all(vo);
+		System.out.println(result);
+		return result;
 	}
+	
+	// 찜 삭제하기
+	@RequestMapping("/delete_wishlist")
+	@ResponseBody
+	public String deleteWishlist(WishListVO vo) {
+		int result = memberService.delete_wishlist(vo);
+		System.out.println("delete : " + result);
+		if(result == 1) {
+			return "delete";
+			
+		} else {
+			return "fail";
+		}
+	}
+
+	
+	// 상품상세정보 보기
+	@RequestMapping("/product-detail")
+	public void productDetail(Model model, @RequestParam String p_selid, WishListVO wvo) {
+//		System.out.println(p_selid);
+		ProductVO result = productService.product_detail(p_selid);
+		List<OptionVO> option = productService.product_option(p_selid);
+//		System.out.println(result.toString());
+		model.addAttribute("productDetail", result);
+		model.addAttribute("productOption", option);
+		model.addAttribute("wishList", memberService.wishlist_all(wvo));
+	}
+	
+	
+	  // quick view 보기
+	  
+	@RequestMapping("/product_quickview") 
+	public void productQuickview(Model model, @RequestParam String p_selid) { 
+			model.addAttribute("productQuick", productService.product_detail(p_selid));
+
+	}
+	 
+	
+	
+	// 장바구니 담기
+	@RequestMapping("/add-to-cart")
+	@ResponseBody
+	public String addToCart(CartVO vo) {
+		
+		int result = memberService.add_to_cart(vo);
+		if(result == 1) {
+			return "success";
+					
+		} else {
+			return "fail";
+		}
+	}
+	
+	// 장바구니 내역 보이기
+	@RequestMapping("/shoping-cart")
+	public void shoppingCart(CartViewVO vo, Model model, WishListVO wvo, MemberVO mvo) {
+		System.out.println(vo.toString());
+		model.addAttribute("shoppingCart",memberService.shopping_cart(vo));
+		model.addAttribute("wishList", memberService.wishlist_all(wvo));
+		model.addAttribute("point", memberService.member_point_detail(mvo));
+	}
+	
+	// 장바구니 수량 올리기
+	@RequestMapping("/plusCartCnt")
+	@ResponseBody
+	public String plusCartCnt(CartVO vo) {
+		int result = memberService.plusCartCnt(vo);
+		String total = vo.getShopping_total();
+		System.out.println(total);
+		if(result == 1) {
+			return total;
+		} else {
+			return "no";
+		}
+	}
+	
+	// 장바구니 수량 내리기
+	@RequestMapping("/minusCartCnt")
+	@ResponseBody
+	public String minusCartCnt(CartVO vo) {
+		int result = memberService.minusCartCnt(vo);
+		String total = vo.getShopping_total();
+		System.out.println(total);
+		if(result == 1) {
+			return total;
+		} else {
+			return "no";
+		}
+	}
+
 	
 }

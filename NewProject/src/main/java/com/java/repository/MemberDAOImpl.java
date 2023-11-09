@@ -6,7 +6,10 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.java.domain.CartVO;
+import com.java.domain.CartViewVO;
 import com.java.domain.MemberVO;
+import com.java.domain.ProductVO;
 import com.java.domain.WishListVO;
 
 //### (1) 해당 어노테이션 지정
@@ -122,9 +125,62 @@ public class MemberDAOImpl implements MemberDAO{
 	// 해당 ID의 찜 목록 보이기
 	@Override
 	public List<WishListVO> wishlist_all(WishListVO vo) {
-		return sqlSession.selectList("org.java.MemberMapper.product_wishlist", vo);
+		return sqlSession.selectList("org.java.MemberMapper.wishlist_all", vo);
 	}
 
 
+
+	// 찜 삭제
+	@Override
+	public int delete_wishlist(WishListVO vo) {
+		
+		int result = sqlSession.delete("org.java.MemberMapper.delete_wishlist", vo);
+		return result;
+		
+	}
+
+
+	// 장바구니 추가
+	@Override
+	public int add_to_cart(CartVO vo) {
+		int result = sqlSession.insert("org.java.MemberMapper.add_to_cart", vo);
+		return result;
+	}
 	
+	// 장바구니 리스트
+	@Override
+	public List<CartVO> shopping_cart(CartViewVO vo) {
+		List<CartVO> result = sqlSession.selectList("org.java.MemberMapper.shopping_cart", vo);
+		return result;
+	}
+
+	// 장바구니 중복 확인
+	@Override
+	public int alreadyInCartList(CartVO vo) {
+		int result = sqlSession.selectOne("org.java.MemberMapper.alreadyInCartList", vo);
+		System.out.println(result);
+		return result;
+
+	}
+
+	// 장바구니 수량 올리기
+	@Override
+	public int plusCartCnt(CartVO vo) {
+		int result = sqlSession.update("org.java.MemberMapper.plusCartCnt", vo);
+		return result;
+	}
+	
+	// 장바구니 수량 올리기
+	@Override
+	public int minusCartCnt(CartVO vo) {
+		int result = sqlSession.update("org.java.MemberMapper.minusCartCnt", vo);
+		return result;
+	}
+	
+
+	
+	
+	
+
+
 }

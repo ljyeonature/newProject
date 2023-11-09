@@ -6,16 +6,59 @@
 
 	<!-- qna 입력 -->
 	<insert id='insertQna' parameterType="com.java.domain.BoardVO">
-		INSERT INTO qna(q_inquiry, q_title, q_content, q_image, q_pass, q_date, q_count)
-		VALUES(#{q_inquiry}, #{q_title}, #{q_content}, #{q_image}, #{q_pass}, NOW(), 0)
+		INSERT INTO qna(q_inquiry, q_title, q_content, q_pass, q_date, q_count, m_id)
+		VALUES(#{q_inquiry}, #{q_title}, #{q_content}, #{q_pass}, NOW(), 0, #{m_id})
 	</insert>
 	
-	<!-- qna게시판 게시물목록 -->
+	<!-- qna게시판 게시물목록 --> <!-- 검색기능 추가 -->
 	<select id='board_all' parameterType="com.java.domain.BoardVO" resultType="com.java.domain.BoardVO">
 		SELECT *
 		FROM qna
+
+ 		<where>
+			<if test="sltfilter != null">
+				${sltfilter} LIKE '%${search}%'
+			</if>
+		</where>
 		ORDER BY q_postnum DESC
+	</select>
+	
+	<!-- qna게시판 게시물불러오기 -->
+	<select id='qnaView' parameterType="com.java.domain.BoardVO" resultType="com.java.domain.BoardVO">
+		SELECT *
+		FROM qna
+		WHERE q_postnum = #{q_postnum}
+
+		ORDER BY q_postnum DESC
+
 	</select> 
+	
+	<!-- qna게시판 게시물 조회수 증가 -->
+	<update id="incrementQnaCount" parameterType="com.java.domain.BoardVO">
+		UPDATE qna
+		SET q_count = q_count + 1
+		WHERE q_postnum = #{q_postnum}
+	</update>
+	
+	<!-- qna게시판 게시물 수정 -->
+	<update id="qnaEdit" parameterType="com.java.domain.BoardVO">
+		UPDATE qna SET
+			Q_INQUIRY	= #{q_inquiry},
+			Q_TITLE		= #{q_title},
+			Q_CONTENT	= #{q_content},
+			Q_PASS		= #{q_pass},
+			M_ID		= #{m_id},
+			Q_ANSWERTITLE	= #{q_answertitle},
+			Q_ANSWERCONTENT	= #{q_answercontent}
+		WHERE
+			Q_POSTNUM = #{q_postnum}
+	</update>
+	
+	<!-- 게시글 비밀번호 DB와 비교 -->
+	<select id="checkQpass" parameterType="com.java.domain.BoardVO" resultType="int">
+    	SELECT COUNT(*) FROM qna
+    	WHERE q_postnum = #{q_postnum} AND q_pass = #{q_pass}
+	</select>
 
 
 </mapper>

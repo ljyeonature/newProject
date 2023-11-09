@@ -11,11 +11,14 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.java.domain.BoardVO;
 import com.java.domain.FstDivVO;
+import com.java.domain.ImageVO;
 import com.java.domain.MemberVO;
 import com.java.domain.ProductVO;
 import com.java.domain.SndDivVO;
 import com.java.domain.TrdDivVO;
+import com.java.service.BoardServiceImpl;
 import com.java.service.MemberServiceImpl;
 import com.java.service.ProductServiceImpl;
 
@@ -25,6 +28,9 @@ public class AdminController {
 	
 	@Autowired
 	MemberServiceImpl memberService;
+	
+	@Autowired
+	BoardServiceImpl boardService;
 	
 	@Autowired
 	ProductServiceImpl productService;
@@ -110,10 +116,29 @@ public class AdminController {
 	
 	// 상품 등록
 	@RequestMapping("/product_insert")
-	public String product_insert(ProductVO vo) {
+	@ResponseBody
+	public String product_insert( ProductVO vo) {
 		int result = productService.product_insert(vo);
 //		System.out.println(result);
-		return "redirect:/admin/product_all";
+		if(result == 1) {
+			return "ok";
+		} else {
+			return "no";
+		}
+	}
+	
+	// 상품 등록
+	@RequestMapping("/upload-image")
+	@ResponseBody
+	public String upload_image( ImageVO vo) {
+		System.out.println("Controller : " + vo.toString());
+		int result = productService.upload_image(vo);
+//		System.out.println(result);
+		if(result == 1) {
+			return "ok";
+		} else {
+			return "no";
+		}
 	}
 	
 	// 상품 보여주기
@@ -129,7 +154,34 @@ public class AdminController {
 	 * @RequestMapping("/option_insert") public String option_insert()
 	 */
 
-	
+	// 게시글 제목 클릭하면 내용 불러오기
+		@RequestMapping("/qnaview_do")
+		public String getContentList(BoardVO vo, Model model) {
+			BoardVO result = boardService.qnaView(vo);
+			model.addAttribute("qnacontent" , result);
+			
+			return "admin/qnaview";
+		}
+		
+		// qna게시물 수정하는 폼 들어가기
+		@RequestMapping("/qnaeditForm_do")
+		public String getContentForm(BoardVO vo, Model model) {
+			
+			BoardVO result3 = boardService.qnaView(vo);
+			model.addAttribute("qnacontent" , result3);
+			return "admin/qnaedit";
+		}
+		
+		// 내용 수정하고 수정된 게시물 불러오기
+		@RequestMapping("/qnaedit_do")
+		public String getContentEdit(BoardVO vo, Model model) {
+			
+			boardService.qnaEdit(vo);
+			BoardVO result2 = boardService.qnaView(vo);
+			
+			model.addAttribute("qnacontent" , result2);
+			return "redirect:/admin/qnaview_do?q_postnum=" + result2.getQ_postnum();
+		}
 	
 	
 	

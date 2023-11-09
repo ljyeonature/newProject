@@ -5,6 +5,8 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.java.domain.CartVO;
+import com.java.domain.CartViewVO;
 import com.java.domain.MemberVO;
 import com.java.domain.WishListVO;
 import com.java.repository.MemberDAO;
@@ -110,6 +112,54 @@ public class MemberServiceImpl implements MemberService{
 		List<WishListVO> result = memberDAOImpl.wishlist_all(vo);
 		return result;
 	}
+
+
+	// 찜 삭제
+	@Override
+	public int delete_wishlist(WishListVO vo) {
+		int result = memberDAOImpl.delete_wishlist(vo);
+		return result;
+	}
+
+	// 장바구니 추가
+	@Override
+	public int add_to_cart(CartVO vo) {
+		int result = memberDAOImpl.add_to_cart(vo);
+		return result;
+	}
+
+	// 장바구니 리스트
+	@Override
+	public List<CartVO> shopping_cart(CartViewVO vo) {
+		List<CartVO> result = memberDAOImpl.shopping_cart(vo);
+		return result;
+	}
+	// 장바구니 상품 중복 확인
+	@Override
+	public int alreadyInCartList(CartVO vo) {
+		//System.out.println(vo.toString());
+		int result = memberDAOImpl.alreadyInCartList(vo);
+		return result;
+	}
+
+	// 장바구니 수량 올리기
+	@Override
+	public int plusCartCnt(CartVO vo) {
+		int result = memberDAOImpl.plusCartCnt(vo);
+		return result;
+	}
+
+	// 장바구니 수량 내리기
+	@Override
+	public int minusCartCnt(CartVO vo) {
+		int result = memberDAOImpl.minusCartCnt(vo);
+		return result;
+	}
+	
+	
+	
+
+
 	
 	
 }

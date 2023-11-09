@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<title>Q&A</title>
+	<title>Q&A작성</title>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 <!--===============================================================================================-->	
@@ -29,8 +29,33 @@
 <!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="../resources/main/css/util.css">
 	<link rel="stylesheet" type="text/css" href="../resources/main/css/main.css">
-	<link rel="stylesheet" type="text/css" href="../resources/main/css/QnA게시판.css">
+	<link rel="stylesheet" type="text/css" href="../resources/main/css/QnA게시판글.css">
 <!--===============================================================================================-->
+
+<!-- 제이쿼리CDN -->
+<script src="https://code.jquery.com/jquery-latest.min.js"></script>
+<!-- JS -->
+<script type="text/javascript">
+	$(document).ready(function() {
+		
+		//문의유형 변경
+		$("#inquiry_type").change(function(){
+			if($(this).val() === "일반문의") {
+				$("#product_type").prop("disabled",true);
+			}else {
+				$("#product_type").prop("disabled",false);
+			}
+		});
+		
+/*  	    $('.submit-button').click(function(event){
+	        if($('#sltid').val() === "문의유형") {
+	            event.preventDefault();
+	            alert("문의유형은 필수 입력값입니다.");
+	        }
+	    }); */
+	});
+	
+</script>
 </head>
 <body class="animsition">
 
@@ -39,8 +64,8 @@
 		<!-- Header -->
 		<div class="container-menu-desktop">
 			<!-- Header desktop -->
-			<%@include file="top-bar.jsp"%>
-			<%@include file="main-header.jsp"%>
+			<%@include file="../main/top-bar.jsp"%>
+			<%@include file="../main/main-header.jsp"%>
 
 		</div>
 
@@ -131,21 +156,84 @@
 						alt="CLOSE">
 				</button>
 
-				<form class="wrap-search-header flex-w p-l-15">
+<!-- 				<form class="wrap-search-header flex-w p-l-15">
 					<button class="flex-c-m trans-04">
 						<i class="zmdi zmdi-search"></i>
 					</button>
 					<input class="plh3" type="text" name="search"
 						placeholder="Search...">
-				</form>
+				</form> -->
 			</div>
 		</div>
 	</header>
 
 	<!-- Cart -->
-	<c:if test="${not empty sessionScope.logname}">
-	<%@include file="wishlist.jsp" %>
-	</c:if>
+	<div class="wrap-header-cart js-panel-cart">
+		<div class="s-full js-hide-cart"></div>
+
+		<div class="header-cart flex-col-l p-l-65 p-r-25">
+			<div class="header-cart-title flex-w flex-sb-m p-b-8">
+				<span class="mtext-103 cl2"> Your Cart </span>
+
+				<div
+					class="fs-35 lh-10 cl2 p-lr-5 pointer hov-cl1 trans-04 js-hide-cart">
+					<i class="zmdi zmdi-close"></i>
+				</div>
+			</div>
+
+			<div class="header-cart-content flex-w js-pscroll">
+				<ul class="header-cart-wrapitem w-full">
+					<li class="header-cart-item flex-w flex-t m-b-12">
+						<div class="header-cart-item-img">
+							<img src="../resources/main/images/item-cart-01.jpg" alt="IMG">
+						</div>
+
+						<div class="header-cart-item-txt p-t-8">
+							<a href="#" class="header-cart-item-name m-b-18 hov-cl1 trans-04">
+								White Shirt Pleat </a> <span class="header-cart-item-info"> 1
+								x $19.00 </span>
+						</div>
+					</li>
+
+					<li class="header-cart-item flex-w flex-t m-b-12">
+						<div class="header-cart-item-img">
+							<img src="../resources/main/images/item-cart-02.jpg" alt="IMG">
+						</div>
+
+						<div class="header-cart-item-txt p-t-8">
+							<a href="#" class="header-cart-item-name m-b-18 hov-cl1 trans-04">
+								Converse All Star </a> <span class="header-cart-item-info"> 1
+								x $39.00 </span>
+						</div>
+					</li>
+
+					<li class="header-cart-item flex-w flex-t m-b-12">
+						<div class="header-cart-item-img">
+							<img src="../resources/main/images/item-cart-03.jpg" alt="IMG">
+						</div>
+
+						<div class="header-cart-item-txt p-t-8">
+							<a href="#" class="header-cart-item-name m-b-18 hov-cl1 trans-04">
+								Nixon Porter Leather </a> <span class="header-cart-item-info">
+								1 x $17.00 </span>
+						</div>
+					</li>
+				</ul>
+
+				<div class="w-full">
+					<div class="header-cart-total w-full p-tb-40">Total: $75.00</div>
+
+					<div class="header-cart-buttons flex-w w-full">
+						<a href="shoping-cart"
+							class="flex-c-m stext-101 cl0 size-107 bg3 bor2 hov-btn3 p-lr-15 trans-04 m-r-8 m-b-10">
+							View Cart </a> <a href="shoping-cart"
+							class="flex-c-m stext-101 cl0 size-107 bg3 bor2 hov-btn3 p-lr-15 trans-04 m-b-10">
+							Check Out </a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
 
 	
 
@@ -155,54 +243,47 @@
 		<h2 class="ltext-105 cl0 txt-center">Q&A</h2>
 	</section>
 
-<div class="board_wrap">
-        <div class="board_title">
-            <h1>QnA게시판</h1>
-            <p>궁금하신 모든것을 물어보세요.</p>
-        </div>
+    <h1>QnA 글</h1>
+    <p>궁금하신 모든것을 물어보세요.</p>
+    <form action="qnaedit_do" method="post">
+    <input name="q_postnum" type="hidden" value="${qna.q_postnum}" />
+        <select id="inquiry_type" name="q_inquiry" required>
+            <option selected disabled id="sltid" value="문의유형">문의유형</option>
+            <option value="일반문의" ${qna.q_inquiry == '일반문의' ? 'selected' : ''} >일반문의</option>
+            <option value="상품문의" ${qna.q_inquiry == '상품문의' ? 'selected' : ''}>상품문의</option>
+        </select>
+    <br/>
+    <div class="addcontainer">
+    		<input type="hidden" id="m_id" value="${sessionScope.logid}" name="m_id">
+            <label for="type_select">제품선택</label>
+
+            <select id="product_type">
+                <option selected disabled>제품선택</option>
+                <option>구매상품1</option>
+                <option>구매상품2</option>
+            </select>
+            
+            <label for="title">제목</label>
+            <input type="text" id="q_title" name="q_title" value="${qna.q_title}" required>
+            
+            <label for="content">내용</label>
+            <textarea id="q_content" name="q_content" rows="13" required>${qna.q_content}</textarea>
+            
+            <label>게시글 비밀번호</label>
+            <input type="password" id="q_pass" name="q_pass" required>
         
-         <div class="search-wrap">
-             <select id="sltfilter">
-                <option>제목</option>
-                <option>작성자</option>
-             </select>
-            <input id="search" type="search" name="" placeholder="검색" value="">
-            <a id="search_btn" href="#">검색</a>
-        </div>
-        
-        <div class="board_list_wrap">
-            <div class="board_list">
-                <div class="top">
-                    <div class="num">글 번호</div>
-                    <div class="title">제목</div>
-                    <div class="writer">작성자</div>
-                    <div class="date">작성일</div>
-                    <div class="count">조회</div>
-                </div>
-               <c:forEach items="${qnaList}" var="q">
-                	<div>
-                   	 <div class="num" id="q_postnum">${q.q_postnum}</div>
-                    	<div class="title" id="q_title"><a href="#">${q.q_title}</a></div>
-                    	<div class="writer" id="q_writer">${q.q_inquiry}</div>
-                    	<div class="date" id="q_date">${q.q_date}</div>
-                    	<div class="count" id="q_count">${q.q_count}</div>
-                	</div>
-                </c:forEach>
-            </div>
-            <div class="board_page">
-                <a href="#" class="btn frist"><<</a>
-                <a href="#" class="btn prew"><</a>
-                <a href="#" class="num selected">1</a>
-                <a href="#" class="num">2</a>
-                <a href="#" class="btn next">></a>
-                <a href="#" class="btn last">>></a>
-            </div>
-        </div>
+        <div class="button-container">
+            <a class="list-button" href="qna">목록</a>
+            <input class="submit-button" type="submit" value="작성완료">
+            <a class="cancel-button" href="qnaedit_do?q_postnum=${qna.q_postnum}">취소</a>
+        </div>					
+          </form>  
     </div>
 
 
+
 	<!-- Footer -->
-	<%@include file="main-footer.jsp" %>
+	<%@include file="../main/main-footer.jsp" %>
 
 
 	<!-- Back to top -->

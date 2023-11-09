@@ -161,8 +161,9 @@
 	</header>
 
 	<!-- Cart -->
-	
+	<c:if test="${not empty sessionScope.logname}">
 	<%@include file="../main/wishlist.jsp" %>
+	</c:if>
 	
 		
 

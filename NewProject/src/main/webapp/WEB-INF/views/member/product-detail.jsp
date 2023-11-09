@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix='c' uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -51,6 +52,93 @@
 <link rel="stylesheet" type="text/css"
 	href="../resources/main/css/main.css">
 <!--===============================================================================================-->
+<script src="../resources/main/jquery/jquery-3.2.1.min.js"></script>
+
+<script>
+$(function(){
+	
+	// 장바구니
+	// Add to Cart -> Cart에 담기
+	// Add to Cart 버튼 클릭 이벤트 리스너
+$(".js-addcart-detail").on("click", function() {
+    var productName = $(".p_name").text();
+    var productPrice = $(".p_price").text();
+    var selectedOption = $("select#o_name option:selected").text();
+    var numProduct    = $(".num-product").val();
+    var m_id = $('#logid').val();
+	//alert(numProduct);
+    var nameProduct = $(this).parent().parent().parent().parent().find('.js-name-detail').text();
+    //alert(nameProduct);
+
+    // 장바구니에 추가할 데이터를 준비
+    var cartData = {
+        p_name: productName,
+        p_price: productPrice,
+        o_name: selectedOption,
+        cart_cnt : numProduct,
+        m_id:m_id
+        
+    };
+    
+    // 장바구니 중복 확인
+    $.ajax({
+    	
+    	type:'POST',
+    	url : "alreadyInCartList",
+    	data : {p_name : productName},
+    	success : function(response) {
+    		if(response == "ok"){
+    			//alert(response);
+    		    swal(nameProduct, "장바구니에 이미 있습니다", "info");
+    		} else {
+    			//alert(response);
+    			 // 서버로 Ajax 요청 보내기
+    		    $.ajax({
+    		        type: "POST", // 또는 "GET", 요청 방식에 따라 수정
+    		        url: "add-to-cart", // 실제 서버 엔드포인트에 맞게 수정
+    		        data: cartData, // 전송할 데이터
+    		        success: function(response) {
+    		            // 서버에서의 응답 처리
+    		            if (response === "success") {
+			    		    swal(nameProduct, "장바구니에 추가되었습니다", "success");
+    		                //alert("제품이 장바구니에 추가되었습니다.");
+    		            } else {
+    		                //alert("장바구니 추가 중 오류가 발생했습니다.");
+    		            }
+    		        },
+    		        error: function(err) {
+    		            //console.error("장바구니 추가 중 오류가 발생했습니다.", err);
+    		        }
+    		    }); // 장바구니 추가
+    		}
+    	},
+    	
+    	error : function(err) {
+    		console.log(err);
+    	}
+    	
+    	
+    	
+    	
+    	
+    	
+    }); // 장바구니 중복확인
+
+   
+});
+// 장바구니 버튼 클릭
+
+
+
+	
+
+}) // end
+
+
+
+</script>
+
+
 </head>
 <body class="animsition">
 
@@ -163,23 +251,24 @@
 
 	<!-- Cart -->
 	<c:if test="${not empty sessionScope.logname}">
-	<%@include file="../main/wishlist.jsp" %>
+		<%@include file="../main/wishlist.jsp" %>
 	</c:if>
 
-
+<input type="hidden" value="${sessionScope.logid }" id="logid"/>
 	<!-- breadcrumb -->
 	<div class="container">
 		<div class="bread-crumb flex-w p-l-25 p-r-15 p-t-30 p-lr-0-lg">
-			<a href="home" class="stext-109 cl8 hov-cl1 trans-04"> Home <i
+			<a href="member/home?m_id=${sessionScope.login }" class="stext-109 cl8 hov-cl1 trans-04"> Home <i
 				class="fa fa-angle-right m-l-9 m-r-10" aria-hidden="true"></i>
-			</a> <a href="product" class="stext-109 cl8 hov-cl1 trans-04"> Men <i
+			</a> <a href="member/product?m_id=${sessionScope.login }" class="stext-109 cl8 hov-cl1 trans-04"> Product <i
 				class="fa fa-angle-right m-l-9 m-r-10" aria-hidden="true"></i>
-			</a> <span class="stext-109 cl4"> Lightweight Jacket </span>
+			</a> <span class="stext-109 cl4"> ${productDetail.p_name} </span>
 		</div>
 	</div>
 
 
 	<!-- Product Detail -->
+	
 	<section class="sec-product-detail bg0 p-t-65 p-b-60">
 		<div class="container">
 			<div class="row">
@@ -191,9 +280,9 @@
 
 							<div class="slick3 gallery-lb">
 								<div class="item-slick3"
-									data-thumb="../resources/main/images/product-detail-01.jpg">
+									data-thumb="../resources/productImages/${productDetail.p_imgrn}">
 									<div class="wrap-pic-w pos-relative">
-										<img src="../resources/main/images/product-detail-01.jpg"
+										<img src="../resources/productImages/${productDetail.p_imgrn}"
 											alt="IMG-PRODUCT"> <a
 											class="flex-c-m size-108 how-pos1 bor0 fs-16 cl10 bg0 hov-btn3 trans-04"
 											href="../resources/main/images/product-detail-01.jpg"> <i
@@ -232,45 +321,24 @@
 
 				<div class="col-md-6 col-lg-5 p-b-30">
 					<div class="p-r-50 p-t-5 p-lr-0-lg">
-						<h4 class="mtext-105 cl2 js-name-detail p-b-14">Lightweight
-							Jacket</h4>
+						<h4 class="mtext-105 cl2 js-name-detail p-b-14 p_name">${productDetail.p_name }</h4>
 
-						<span class="mtext-106 cl2"> $58.79 </span>
+						<span class="mtext-106 cl2 p_price"> ${productDetail.p_price }</span>
 
-						<p class="stext-102 cl3 p-t-23">Nulla eget sem vitae eros
-							pharetra viverra. Nam vitae luctus ligula. Mauris consequat
-							ornare feugiat.</p>
+						<p class="stext-102 cl3 p-t-23">${productDetail.p_description }</p>
 
 						<!--  -->
 						<div class="p-t-33">
 							<div class="flex-w flex-r-m p-b-10">
-								<div class="size-203 flex-c-m respon6">Size</div>
+								<div class="size-203 flex-c-m respon6">Option</div>
 
 								<div class="size-204 respon6-next">
 									<div class="rs1-select2 bor8 bg0">
-										<select class="js-select2" name="time">
-											<option>Choose an option</option>
-											<option>Size S</option>
-											<option>Size M</option>
-											<option>Size L</option>
-											<option>Size XL</option>
-										</select>
-										<div class="dropDownSelect2"></div>
-									</div>
-								</div>
-							</div>
-
-							<div class="flex-w flex-r-m p-b-10">
-								<div class="size-203 flex-c-m respon6">Color</div>
-
-								<div class="size-204 respon6-next">
-									<div class="rs1-select2 bor8 bg0">
-										<select class="js-select2" name="time">
-											<option>Choose an option</option>
-											<option>Red</option>
-											<option>Blue</option>
-											<option>White</option>
-											<option>Grey</option>
+										<select class="js-select2" name="o_name" id="o_name">
+									<c:forEach items="${productOption }" var="option">
+											<option value="${option.o_name }">${option.o_name }</option>
+										
+									</c:forEach>
 										</select>
 										<div class="dropDownSelect2"></div>
 									</div>
@@ -286,7 +354,7 @@
 										</div>
 
 										<input class="mtext-104 cl3 txt-center num-product"
-											type="number" name="num-product" value="1">
+											type="number" name="cart_cnt" value="1">
 
 										<div class="btn-num-product-up cl8 hov-btn3 trans-04 flex-c-m">
 											<i class="fs-16 zmdi zmdi-plus"></i>
@@ -295,7 +363,8 @@
 
 									<button
 										class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04 js-addcart-detail">
-										Add to cart</button>
+										Add to cart
+									</button>
 								</div>
 							</div>
 						</div>
@@ -893,10 +962,10 @@
 												<i class="fs-16 zmdi zmdi-plus"></i>
 											</div>
 										</div>
-
+										<a href="shopping-cart?m_id=${sessionScope.logid }">
 										<button
 											class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04 js-addcart-detail">
-											Add to cart</button>
+											Add to cart</button></a>
 									</div>
 								</div>
 							</div>
@@ -906,8 +975,8 @@
 								<div class="flex-m bor9 p-r-10 m-r-11">
 									<a href="#"
 										class="fs-14 cl3 hov-cl1 trans-04 lh-10 p-lr-5 p-tb-2 js-addwish-detail tooltip100"
-										data-tooltip="Add to Wishlist"> <i
-										class="zmdi zmdi-favorite"></i>
+										data-tooltip="Add to Wishlist"> 
+										<i class="zmdi zmdi-favorite"></i>
 									</a>
 								</div>
 
@@ -978,39 +1047,103 @@
 	<!--===============================================================================================-->
 	<script src="../resources/main/vendor/sweetalert/sweetalert.min.js"></script>
 	<script>
-		$('.js-addwish-b2, .js-addwish-detail').on('click', function(e){
-			e.preventDefault();
-		});
 
-		$('.js-addwish-b2').each(function(){
-			var nameProduct = $(this).parent().parent().find('.js-name-b2').html();
-			$(this).on('click', function(){
-				swal(nameProduct, "is added to wishlist !", "success");
 
-				$(this).addClass('js-addedwish-b2');
-				$(this).off('click');
-			});
-		});
+		 // 페이지 로드 시 세션 스토리지에서 위시리스트 상태 가져오기
+	    var wishlistState = JSON.parse(localStorage.getItem('wishlistState')) || {};
 
-		$('.js-addwish-detail').each(function(){
-			var nameProduct = $(this).parent().parent().parent().find('.js-name-detail').html();
 
-			$(this).on('click', function(){
-				swal(nameProduct, "is added to wishlist !", "success");
+	    // 클릭 이벤트 핸들러
+	    $('.js-addwish-b2, .js-addwish-detail').click(function (e) {
+	        e.preventDefault();
+	        var selIdProduct = $(this).parent().parent().find('.js-selid-b2').val();
+	        var heartImage = $(this).find('img');
 
-				$(this).addClass('js-addedwish-detail');
-				$(this).off('click');
-			});
-		});
+	        if (wishlistState[selIdProduct]) {
+	            // 이미 찜한 경우, 제거
+	            $(heartImage).attr('src', $(heartImage).attr('src').replace('heart-02', 'heart-01'));
+	            delete wishlistState[selIdProduct];
+	            removeItemFromWishlist(selIdProduct);
+	            var nameProduct = $(this).parent().parent().find('.js-name-b2').html();
+	            swal(nameProduct, "찜 삭제하였습니다", "success");
+	        } else {
+	            // 찜하지 않은 경우, 추가
+	            var nameProduct = $(this).parent().parent().find('.js-name-b2').val();
+	            var priceProduct = $(this).parent().parent().find('.js-price-b2').val();
+	            var imgProduct = $(this).parent().parent().find('.js-img-b2').val();
+	            var param = {
+	                m_id: $('#logid').val(),
+	                p_selid: selIdProduct,
+	                p_name: nameProduct,
+	                p_price: priceProduct,
+	                p_imgrn: imgProduct
+	            };
+	            addItemToWishlist(param);
+	            wishlistState[selIdProduct] = true;
+	            $(heartImage).attr('src', $(heartImage).attr('src').replace('heart-01', 'heart-02'));
+	            var nameProduct = $(this).parent().parent().find('.js-name-b2').html();
+	            swal(nameProduct, "찜 추가하였습니다", "success");
+	        }
+
+	        // 세션 스토리지에 업데이트된 위시리스트 상태 저장
+	        localStorage.setItem('wishlistState', JSON.stringify(wishlistState));
+	    });
+
+	    // 페이지 로드 시 위시리스트 상태에 따라 하트 이미지 업데이트
+	    $('.js-addwish-b2, .js-addwish-detail').each(function () {
+	        var selIdProduct = $(this).parent().parent().find('.js-selid-b2').val();
+	        var heartImage = $(this).find('img');
+	        if (wishlistState[selIdProduct]) {
+	            $(heartImage).attr('src', $(heartImage).attr('src').replace('heart-01', 'heart-02'));
+	        }
+	    });
+
+	    // 실제 위시리스트에 항목 추가
+	    function addItemToWishlist(param) {
+	        $.ajax({
+	            type: 'post',
+	            data: param,
+	            url: 'product_wishlist',
+	            success: function (result) {
+	                if (result === "error") {
+	                    console.log(result);
+	                } else {
+	                    //alert(result);
+	                }
+	            },
+	            error: function (err) {
+	                console.log(err);
+	            }
+	        });
+	    }
+
+	    // 위시리스트에서 항목 제거
+	    function removeItemFromWishlist(selId) {
+	        $.ajax({
+	            type: 'post',
+	            data: { p_selid: selId },
+	            url: 'delete_wishlist',
+	            success: function (result) {
+	                if (result === "delete") {
+	                    //alert(result);
+	                } else if (result === "fail") {
+	                    //alert(result);
+	                }
+	            },
+	            error: function (err) {
+	                console.log(err);
+	            }
+	        });
+	    }
 
 		/*---------------------------------------------*/
 
-		$('.js-addcart-detail').each(function(){
-			var nameProduct = $(this).parent().parent().parent().parent().find('.js-name-detail').html();
+/* 		$('.js-addcart-detail').each(function(){
+			
 			$(this).on('click', function(){
-				swal(nameProduct, "is added to cart !", "success");
+				
 			});
-		});
+		}); */
 	
 	</script>
 	<!--===============================================================================================-->
@@ -1033,6 +1166,8 @@
 	</script>
 	<!--===============================================================================================-->
 	<script src="../resources/main/js/main.js"></script>
+	
+	
 
 </body>
 </html>

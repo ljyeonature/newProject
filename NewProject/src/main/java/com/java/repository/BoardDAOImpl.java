@@ -1,6 +1,5 @@
 package com.java.repository;
 
-import java.util.HashMap;
 import java.util.List;
 
 import org.mybatis.spring.SqlSessionTemplate;
@@ -29,5 +28,29 @@ public class BoardDAOImpl implements BoardDAO{
 	@Override
 	public List<BoardVO> board_all(BoardVO vo){
 		return sqlSession.selectList("org.java.BoardMapper.board_all",vo);
+	}
+	
+	//QnA게시물 불러오기
+	@Override
+	public BoardVO qnaView(BoardVO vo) {
+		return sqlSession.selectOne("org.java.BoardMapper.qnaView",vo);
+	}
+	
+	//QnA게시물 조회수증가
+	@Override
+	public void incrementQnaCount(BoardVO vo) {
+		sqlSession.update("org.java.BoardMapper.incrementQnaCount",vo);
+	}
+	
+	//QnA게시물 수정
+	@Override
+	public void qnaEdit(BoardVO vo) {
+		int result = sqlSession.update("org.java.BoardMapper.qnaEdit",vo);
+	}
+	
+	//QnA게시글 수정할때 비밀번호 비교
+	@Override
+	public int checkQpass(BoardVO vo) {
+		return sqlSession.selectOne("org.java.BoardMapper.checkQpass",vo);
 	}
 }

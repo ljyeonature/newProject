@@ -62,12 +62,60 @@
 	
 	<!-- 찜 목록 저장 -->
 	<insert id="product_wishlist" parameterType="com.java.domain.WishListVO">
-		INSERT INTO wishlist (m_id, p_selid, p_name, p_price, wishstate) VALUES (#{m_id}, #{p_selid}, #{p_name}, #{p_price}, 1)
+		INSERT INTO wishlist (m_id, p_selid, p_name, p_price, wishstate, p_imgrn) VALUES (#{m_id}, #{p_selid}, #{p_name}, #{p_price}, 1, #{p_imgrn})
 	</insert>
 	
 	<!-- 해당 m_id의 찜 목록 보이기 -->
 	<select id="wishlist_all" parameterType="com.java.domain.WishListVO" resultType="com.java.domain.WishListVO">
 		SELECT * FROM wishlist WHERE m_id=#{m_id}
 	</select>
+	
+	
+	<!-- 찜 목록 삭제 -->
+	<delete id="delete_wishlist" parameterType="com.java.domain.WishListVO">
+		DELETE FROM wishlist WHERE p_selid = #{p_selid}
+	</delete>
+	
+	<!-- 장바구니 추가 -->
+	<insert id="add_to_cart" parameterType="com.java.domain.CartVO">
+		INSERT INTO CART (m_id, cart_cnt, o_name, p_name, p_price, shopping_total) 
+		VALUES (#{m_id}, #{cart_cnt}, #{o_name}, #{p_name}, #{p_price}, #{cart_cnt}*#{p_price})
+	</insert>
 
+	<!-- 장바구니 내역 보이기 -->
+	<select id="shopping_cart" parameterType="com.java.domain.CartViewVO" resultType="com.java.domain.CartViewVO">
+		SELECT c.cartnum cartnum, c.m_id m_id, 
+		c.cart_cnt cart_cnt, c.o_name o_name, c.p_name p_name, c.p_price p_price, p.p_imgrn p_imgrn,
+		m.m_point m_point, c.p_price*cart_cnt shopping_total
+		FROM cart c
+		INNER JOIN p_product p ON c.p_name = p.p_name
+		INNER JOIN m_member m ON c.m_id = m.m_id
+		WHERE m.m_id = #{m_id};
+	</select>	
+
+	<!-- 찜 중복 확인 -->
+	<select id="alreadyInCartList" parameterType="com.java.domain.CartVO" resultType="int">
+	    SELECT 
+	      COUNT(*)
+	    FROM cart
+	    WHERE p_name = #{p_name}
+	</select>
+	
+	<!-- 장바구니 수량 올리기 -->
+	<update id="plusCartCnt" parameterType="com.java.domain.CartVO">
+		UPDATE cart 
+		SET cart_cnt=#{cart_cnt}, shopping_total=#{cart_cnt}*#{p_price} 
+		WHERE o_name=#{o_name}
+	</update>
+	
+	<!-- 장바구니 수량 내리기 -->
+	<update id="minusCartCnt" parameterType="com.java.domain.CartVO">
+		UPDATE cart 
+		SET cart_cnt=#{cart_cnt}, shopping_total=#{cart_cnt}*#{p_price} 
+		WHERE o_name=#{o_name}
+	</update>
+	
+	
+	
+	
 </mapper>

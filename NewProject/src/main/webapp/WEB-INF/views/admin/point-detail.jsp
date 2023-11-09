@@ -65,7 +65,7 @@ $(function(){
 					console.log(result)
 				} else {
 					location.reload();
-					console.log("#point").text();
+					// console.log("#point").text();
 					$('#point').text(memberPoint.m_point);
 				}
 				
