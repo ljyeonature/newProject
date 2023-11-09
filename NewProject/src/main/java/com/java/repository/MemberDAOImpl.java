@@ -176,6 +176,13 @@ public class MemberDAOImpl implements MemberDAO{
 		int result = sqlSession.update("org.java.MemberMapper.minusCartCnt", vo);
 		return result;
 	}
+
+
+	@Override
+	public String cartTotal(CartVO vo) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 	
 
 	

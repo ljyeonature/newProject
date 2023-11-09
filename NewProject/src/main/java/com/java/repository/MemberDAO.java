@@ -64,5 +64,8 @@ public interface MemberDAO {
 	
 	// 장바구니 수량 내리기
 	public int minusCartCnt(CartVO vo);
+	
+	// 장바구니 총합
+	public String cartTotal(CartVO vo);
 
 }

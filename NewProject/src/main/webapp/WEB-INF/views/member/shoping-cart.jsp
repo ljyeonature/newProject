@@ -65,7 +65,7 @@ $(function(){
 	            // 서버에서 업데이트된 총합을 반환하면 화면에 업데이트
 	            // alert(response);
 	            location.reload(); 
-	            shopping_total.text(response);
+	            $(this).parent().parents().find('#shopping_total').text(response);
 	        }
 	    });
 		
@@ -91,13 +91,15 @@ $(function(){
 	            // 서버에서 업데이트된 총합을 반환하면 화면에 업데이트
 	            // alert(response);
 	            location.reload(); 
-	            shopping_total.text(response);
+	            $(this).parent().parents().find('#shopping_total').text(response);
 	        }
 	    });
 		
-	})// + 버튼
+	})// - 버튼
 	
 	// Total 업데이트
+	
+	
 	
 })
 

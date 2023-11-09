@@ -33,6 +33,39 @@
 <link href="../resources/admin/css/sb-admin-2.min.css" rel="stylesheet">
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
+<script>
+$(document).ready(function() {
+   
+   $(".btn_small").on('click', function(event) {
+      // 선택된 체크박스(.delete-checkbox)를 찾아서 삭제 작업을 수행
+         $('.delete-checkbox:checked').each(function() {
+            
+            var productId = $(this).data('id');
+            // 선택된 제품을 삭제하거나 필요한 작업을 수행
+            
+          $.ajax({
+            type: "POST",
+            url: 'productdelete',
+            data: { p_selid : productId  },
+            success: function(result) {
+               alert("삭제완료");
+               location.reload(); // 페이지 새로 고침
+            },
+            error: function(err) {
+                    console.log(err);
+                 }
+             });
+            
+            
+            // 여기에서 선택된 제품을 삭제하는 서버 요청을 보낼 수 있습니다.
+         });
+      });
+   
+});
+
+
+</script>
+
 </head>
 
 <body id="page-top">
@@ -218,6 +251,8 @@
 										rowspan="1" colspan="1" style="width: 130px;">가격</th>
 									<th class="sorting" tabindex="0" aria-controls="dataTable"
 										rowspan="1" colspan="1" style="width: 130px;">관리</th>
+									<th class="sorting" tabindex="0" aria-controls="dataTable"
+                                 rowspan="1" colspan="1" style="width: 130px;">비고</th>
 
 								</tr>
 							</thead>
@@ -232,6 +267,7 @@
 									<td >재고</td>
 									<td >${product.p_price }</td>
 									<td >관리</td>
+									<td ><button class="remark-button" id = "remark-button" name="remark-button" type="submit">수정</button></td>
 								</tr>
 							
 							</c:forEach>
@@ -243,8 +279,8 @@
 							<tbody>
 
 								<td rowspan="2"><a
-									href="#"
-									class="btn_small">수정</a></td>
+                           href="#"
+                           class="btn_small">삭제</a></td>
 							</tbody>
 						</table>
 					</div>

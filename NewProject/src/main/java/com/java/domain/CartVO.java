@@ -13,4 +13,5 @@ public class CartVO {			// 장바구니		- cart
 	private String p_price;
 	private String o_name;
 	private String shopping_total;
+	private String cart_total;
 }

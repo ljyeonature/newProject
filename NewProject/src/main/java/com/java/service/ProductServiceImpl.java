@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.java.domain.FstDivVO;
 import com.java.domain.ImageVO;
+import com.java.domain.OptionFinalVO;
 import com.java.domain.OptionVO;
 import com.java.domain.ProductVO;
 import com.java.domain.SndDivVO;
@@ -84,6 +85,25 @@ public class ProductServiceImpl implements ProductService{
 		return result;
 	}
 
+	// 옵션 조회
+	@Override
+	public List<OptionVO> product_option(OptionVO vo) {
+		return productDAOImpl.product_option(vo);
+	}
+
+
+	// 옵션 등록
+	@Override
+	public int insertProduct(OptionFinalVO vo) {
+		return productDAOImpl.insertProduct(vo);
+	}
+
+	// 상품 삭제
+	@Override
+	public int deleteProduct(ProductVO vo){
+	    System.out.println("ProductServiceImpl Vo:" + vo);
+	    return productDAOImpl.deleteProduct(vo);
+	}
 
 	
 	
