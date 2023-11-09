@@ -36,4 +36,7 @@ public interface ProductDAO {
 	// 상품 상세 정보 옵션 가져오기
 	public List<OptionVO> product_option(String p_selid);
 	
+	// 상품 삭제
+	public int deleteProduct(ProductVO vo);
+	
 }

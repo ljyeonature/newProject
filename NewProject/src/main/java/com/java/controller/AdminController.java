@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.java.domain.BoardVO;
@@ -154,6 +155,24 @@ public class AdminController {
 	 * @RequestMapping("/option_insert") public String option_insert()
 	 */
 
+	//-----------------------------------------------------------------------------------------------------
+	//----------------------------------------여기서부터 관리자 QnA-----------------------------------
+	//-----------------------------------------------------------------------------------------------------
+	
+	   // qna게시판 목록 조회 (검색, 수정 합쳐서)
+	   @RequestMapping("/qna")
+	   public String board_all(Model model, String sltfilter, String search) {
+	      
+	      BoardVO vo = new BoardVO();
+	      vo.setSltfilter(sltfilter);	// HashMap map = new HashMap(); -> map.put("",변수명);
+	      vo.setSearch(search);
+	      
+	       List<BoardVO> result = boardService.board_all(vo);
+	       model.addAttribute("qnaList", result);
+	       
+	       return "admin/qna";
+	   }
+	
 	// 게시글 제목 클릭하면 내용 불러오기
 		@RequestMapping("/qnaview_do")
 		public String getContentList(BoardVO vo, Model model) {
@@ -182,28 +201,18 @@ public class AdminController {
 			model.addAttribute("qnacontent" , result2);
 			return "redirect:/admin/qnaview_do?q_postnum=" + result2.getQ_postnum();
 		}
+		
+		   // 체크박스 선택 상품 삭제
+		   @RequestMapping(value="productdelete", method=RequestMethod.POST)
+		   @ResponseBody
+		   public String deleteProduct(ProductVO vo) {
+		      
+		      System.out.println("deleteProduct vo : " + vo);
+		      
+		      productService.deleteProduct(vo);
+		      return "redirect:/admin/product_all";
+		   }
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-
 	
 
 }
