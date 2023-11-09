@@ -90,6 +90,33 @@ public class ProductServiceImpl implements ProductService{
 	    System.out.println("ProductServiceImpl Vo:" + vo);
 	    return productDAOImpl.deleteProduct(vo);
 	}
-
+//------------------------상철----------------------------------
+	
+	   // 소분류 목록2
+	   @Override
+	   public List<TrdDivVO> select_TrdCate2(TrdDivVO vo) {
+	      List<TrdDivVO> result = productDAOImpl.select_TrdCate2(vo);
+	      // TODO Auto-generated method stub
+	      return result;
+	   }
+	   // 중분류 목록2
+	   @Override
+	   public List<SndDivVO> select_SndCate2(SndDivVO vo) {
+	      List<SndDivVO> result = productDAOImpl.select_SndCate2(vo);
+	      return result;
+	   }
+	   // 대분류 목록2
+	   @Override
+	   public List<FstDivVO> select_FstCate2(FstDivVO vo){
+	      List<FstDivVO> result = productDAOImpl.select_FstCate2(vo);
+	      return result;
+	   }
+	   
+	   // 수정페이지 카테고리 불러오기
+	   public ProductVO productView(ProductVO vo){
+	       return productDAOImpl.productView(vo);
+	   }
+	
+//------------------------상철----------------------------------
 	
 }

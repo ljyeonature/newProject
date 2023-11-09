@@ -164,7 +164,7 @@
 <body class="animsition">
 
 	<!-- Header -->
-	<header class="header-v4">
+	<header>
 		<!-- Header desktop -->
 
 		<!-- Topbar -->
@@ -281,6 +281,12 @@
 	
 	<input type="hidden" value="${sessionScope.logid }" id="logid"/>
 
+	<!-- Title page -->
+	<section class="bg-img1 txt-center p-lr-15 p-tb-92" style="background-image: url('../resources/main/images/bg-01.jpg');">
+		<h2 class="ltext-105 cl0 txt-center">
+			Shop
+		</h2>
+	</section>
 
 	<!-- Product -->
 	<div class="bg0 m-t-23 p-b-140">
@@ -451,6 +457,8 @@
 					</div>
 				</div>
 			</div>
+			
+			
 <!-- 상품 불러오기 -->
 			<div class="row isotope-grid">
 			

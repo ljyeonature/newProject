@@ -40,4 +40,19 @@ public interface ProductService {
 	// 상품 삭제
 	public int deleteProduct(ProductVO vo);
 	
+	
+//	-------------------상철-------------------------------
+	
+	
+	//// 대분류 정보 가져오기2
+	public List<FstDivVO> select_FstCate2(FstDivVO vo);
+	// 중분류 정보 가져오기2
+	public List<SndDivVO> select_SndCate2(SndDivVO vo);
+	// 소분류 정보 가져오기2
+	public List<TrdDivVO> select_TrdCate2(TrdDivVO vo);
+	// 카테고리 불러오기
+	public ProductVO productView(ProductVO vo);
+	
+//	-------------------상철-------------------------------
+	
 }

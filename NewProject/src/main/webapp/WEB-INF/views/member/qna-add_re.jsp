@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<title>Q&A작성</title>
+	<title>환불문의</title>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 <!--===============================================================================================-->	
@@ -228,13 +228,22 @@
 		<h2 class="ltext-105 cl0 txt-center">Q&A</h2>
 	</section>
 
-    <h1>QnA 글</h1>
+    <h1>교환문의</h1>
     <p>궁금하신 모든것을 물어보세요.</p>
     <form action="qna-add_do" method="post">
-        <input type="text" id="q_import_inquiry" name="q_inquiry" value="일반문의" required readonly>
+    	<input type="text" id="q_import_inquiry" name="q_inquiry" value="상품문의" required readonly>
     <br/>
     <div class="addcontainer">
     		<input type="hidden" id="m_id" value="${sessionScope.logid}" name="m_id">
+            <label for="type_select">제품선택</label>
+			<div style="display: flex;">
+			<input type="text" id="q_product_inquiry" name="p_inq_type" value="환불문의" readonly>
+            <select id="product_type">
+                <option selected disabled>제품선택</option>
+                <option>구매상품1</option>
+                <option>구매상품2</option>
+            </select>
+            </div>
             
             <label for="title">제목</label>
             <input type="text" id="q_title" name="q_title" required>
@@ -248,7 +257,7 @@
         <div class="button-container">
             <a class="list-button" href="qna">목록</a>
             <input class="submit-button" type="submit" value="작성완료">
-            <a class="cancel-button" href="qna">취소</a>
+            <a class="cancel-button" href="re-ex">취소</a>
         </div>					
           </form>  
     </div>

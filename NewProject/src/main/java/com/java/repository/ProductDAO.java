@@ -21,6 +21,23 @@ public interface ProductDAO {
 	// 소분류 정보 가져오기
 	public List<TrdDivVO> select_TrdCate(TrdDivVO vo);
 	
+	//-------------------------------------------------------------
+	//------------------상철이형---------------------------------------
+	//상품등록수정
+	
+	   // 대분류 정보 가져오기
+    public List<FstDivVO> select_FstCate2(FstDivVO vo);
+    
+    // 중분류 정보 가져오기
+    public List<SndDivVO> select_SndCate2(SndDivVO vo);
+    
+    // 소분류 정보 가져오기
+    public List<TrdDivVO> select_TrdCate2(TrdDivVO vo);
+    
+	//-------------------------------------------------------------
+	//------------------상철이형---------------------------------------
+	
+	
 	// 상품 등록
 	public int product_insert(ProductVO vo);
 	
@@ -38,5 +55,8 @@ public interface ProductDAO {
 	
 	// 상품 삭제
 	public int deleteProduct(ProductVO vo);
+	
+	// 상품수정불러오기
+	public ProductVO productView(ProductVO vo);
 	
 }

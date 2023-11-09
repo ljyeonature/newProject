@@ -53,4 +53,9 @@ public class BoardDAOImpl implements BoardDAO{
 	public int checkQpass(BoardVO vo) {
 		return sqlSession.selectOne("org.java.BoardMapper.checkQpass",vo);
 	}
+	
+	//QnA게시글 관리자 페이지에서 삭제
+	public void deleteQna(BoardVO vo) {
+		sqlSession.delete("org.java.BoardMapper.deleteQna",vo);
+	}
 }

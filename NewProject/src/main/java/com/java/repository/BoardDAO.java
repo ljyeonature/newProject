@@ -23,4 +23,7 @@ public interface BoardDAO {
 	
 	//QnA게시글 수정할때 비밀번호 비교
 	public int checkQpass(BoardVO vo);
+	
+	//관리자페이지에서 qna게시물 삭제
+	public void deleteQna(BoardVO vo);
 }

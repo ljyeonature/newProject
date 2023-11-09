@@ -159,7 +159,17 @@ public class AdminController {
 	//----------------------------------------여기서부터 관리자 QnA-----------------------------------
 	//-----------------------------------------------------------------------------------------------------
 	
-	   // qna게시판 목록 조회 (검색, 수정 합쳐서)
+	   // p_list_edit 페이지 들어가면 분류 내용 보내기
+	   @RequestMapping("/p_list_edit")
+	   public void select_cate2(FstDivVO fvo, SndDivVO svo, TrdDivVO tvo, Model model) {
+	      System.out.println("fvo:"+fvo + "svo:" + svo + "tvo:" + tvo);
+	      model.addAttribute("fstcate2", productService.select_FstCate2(fvo));
+	      model.addAttribute("sndcate2", productService.select_SndCate2(svo));
+	      model.addAttribute("trdcate2", productService.select_TrdCate2(tvo));
+	      
+	   }
+	
+	// qna게시판 목록 조회 (검색, 수정 합쳐서)
 	   @RequestMapping("/qna")
 	   public String board_all(Model model, String sltfilter, String search) {
 	      
@@ -211,6 +221,13 @@ public class AdminController {
 		      
 		      productService.deleteProduct(vo);
 		      return "redirect:/admin/product_all";
+		   }
+		   
+		  // 관리자페이지에서 qna 게시물 삭제
+		   @RequestMapping("qnadelete_do")
+		   public String deleteQna(BoardVO vo) {
+			   boardService.deleteQna(vo);
+			   return "redirect:/admin/qna";
 		   }
 	
 	

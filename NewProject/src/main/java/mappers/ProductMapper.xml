@@ -64,6 +64,23 @@
 		SELECT * FROM trddiv
 	</select>
 	
+	<!-- 상철 -->
+	<!-- 상품정보 수정에서, 분류 정보 불러오기 -->
+	   <select id="selectFstCate2" parameterType="com.java.domain.FstDivVO" resultType="com.java.domain.FstDivVO">
+      SELECT * FROM fstdiv
+   </select>
+
+   <select id="selectSndCate2" parameterType="com.java.domain.SndDivVO" resultType="com.java.domain.SndDivVO">
+      SELECT * FROM snddiv
+   </select>
+   
+   <select id="selectTrdCate2" parameterType="com.java.domain.TrdDivVO" resultType="com.java.domain.TrdDivVO">
+      SELECT * FROM trddiv
+   </select>
+	
+	<!-- 상철 -->
+
+	
 	<!-- 상품 상세보기 -->
 	<select id="product_detail" parameterType="String" resultType="com.java.domain.ProductVO">
 		SELECT * FROM p_product WHERE p_selid = #{p_selid}
@@ -80,5 +97,15 @@
       DELETE FROM p_product
       WHERE p_selid = #{p_selid}
    </delete>
+   
+      <!-- 상품정보수정 카테고리 로드 *상철 -->
+   <select id='productView' parameterType="com.java.domain.ProductVO" resultType="com.java.domain.ProductVO">
+    SELECT *
+    FROM p_product
+    WHERE p_selid = #{p_selid}
+
+    ORDER BY p_selid DESC
+
+   </select> 
 
 </mapper>

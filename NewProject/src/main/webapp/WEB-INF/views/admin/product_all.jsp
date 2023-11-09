@@ -35,6 +35,7 @@ webapp/WEB-INF/views/admin/product_all.jsp
 <!-- Custom styles for this template-->
 <link href="../resources/admin/css/sb-admin-2.min.css" rel="stylesheet">
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
 <script>
 $(document).ready(function() {
    
@@ -223,6 +224,8 @@ $(document).ready(function() {
                   <table class="table table-bordered" id="dataTable" width="100%"
                      cellspacing="0">
                      <thead>
+                     
+                     <div style="display: flex !important;">
                         <label> <select name="dataTable_length"
                            aria-controls="dataTable"
                            class="custom-select custom-select-sm form-control form-control-sm">
@@ -233,9 +236,11 @@ $(document).ready(function() {
                         </select>
                         </label>
                         <!-- =========> -->
-                        <a class="fr btn_lsmall red" href="product_resister"> <i
+                        
+                        <a class="fr btn_lsmall red" href="product_resister" style="margin-left: auto !important;"> <i
                            class="ionicons ion-android-add"></i> 상품등록
                         </a>
+                        </div>
                         
                         <form action="">
                            <tr role="row">
@@ -276,7 +281,9 @@ $(document).ready(function() {
                               <td >재고</td>
                               <td >${product.p_price }</td>
                               <td >관리</td>
-                              <td ><button class="remark-button" id = "remark-button" name="remark-button" type="submit">수정</button></td>
+                              <td ><a href="p_list_edit?p_selid=${product.p_selid}">
+                             수정
+                              </a></td>
                            </tr>
                         
                         </c:forEach>

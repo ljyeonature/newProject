@@ -74,10 +74,25 @@
 								
 				<form action="qnaedit_do" method="post">
 					<input name="q_postnum" type="hidden" value="${qnacontent.q_postnum}" />
-					<input name="q_inquiry" type="hidden" value="${qnacontent.q_inquiry}" />
+					
+       				 <select id="inquiry_type" name="q_inquiry" required>
+            			<option selected disabled id="sltid" value="문의유형">문의유형</option>
+            			<option value="일반문의" ${qnacontent.q_inquiry == '일반문의' ? 'selected' : ''} >일반문의</option>
+            			<option value="상품문의" ${qnacontent.q_inquiry == '상품문의' ? 'selected' : ''}>상품문의</option>
+        			</select>
+       				 
 					<div class="addcontainer">
 						<input type="hidden" id="m_id" value="${qnacontent.m_id}" name="m_id">
-						<input name="" type="hidden" value="" />
+						
+						<label for="inquiry_select">작성자ID</label>
+            			<input type="text" id="q_import_product" name="q_import_product" value="${qnacontent.m_id}" readonly>
+    					<hr/>
+						<label for="type_select">세부유형, 제품선택</label>
+            			<div style="display: flex;">
+            				<input type="text" id="q_import_product" name="p_inq_type" value="${qnacontent.p_inq_type}" readonly>
+            				<input type="text" id="q_import_product" name="q_import_product" value="" readonly>
+            			</div>
+            			<hr/>
 						<label for="title">제목</label>
 						<input type="text" id="q_title" name="q_title" value="${qnacontent.q_title}" required>
 						<hr/>

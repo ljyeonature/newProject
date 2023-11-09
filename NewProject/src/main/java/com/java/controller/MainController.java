@@ -3,6 +3,7 @@ package com.java.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.support.PagedListHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -37,16 +38,6 @@ public class MainController {
 	}
 
 
-	//QnA게시판 게시글 목록
-
-	@RequestMapping("/qna")
-	public void getListload(BoardVO vo, Model model) 
-	{ 
-		List<BoardVO> result = boardService.board_all(vo); 
-		model.addAttribute("qnaList", result);
-
-	}
-
 	// 상품 페이지
 	@RequestMapping("/product")
 	public void product_all(ProductVO vo, Model model) {
@@ -64,6 +55,33 @@ public class MainController {
 		model.addAttribute("productDetail", result);
 		model.addAttribute("productOption", option);
 	}
-
-
+	
+	// qna게시판 목록 조회
+	@RequestMapping("/qna")
+	public String board_all(Model model, String sltfilter, String search, @RequestParam(defaultValue = "1") int page) {
+		
+		BoardVO vo = new BoardVO();
+		vo.setSltfilter(sltfilter);
+		vo.setSearch(search);
+		
+		// boardService를 사용하여 모든 QnA 게시물을 가져옵니다.
+		List<BoardVO> allQna = boardService.board_all(vo);
+		
+		// PagedListHolder를 사용하여 페이징된 목록을 생성합니다.
+		PagedListHolder<BoardVO> qnaListPage = new PagedListHolder<BoardVO>(allQna);
+		// 한 페이지당 표시할 항목 수를 설정합니다.
+		qnaListPage.setPageSize(5);
+		
+		// 요청에서 받은 페이지 번호에 따라 현재 페이지를 설정합니다. (0부터 시작)
+		qnaListPage.setPage(page - 1);
+		// 현재 페이지에 표시할 게시물 목록을 가져옵니다.
+		List<BoardVO> result = qnaListPage.getPageList();
+		
+		// 가져온 게시물 목록과 페이지 정보를 모델에 추가하여 뷰로 전달합니다.
+	    model.addAttribute("qnaList", result);
+	    model.addAttribute("maxPages", qnaListPage.getPageCount());	//전체페이지수
+	    model.addAttribute("currentPages", qnaListPage.getPage() + 1);	//현재페이지
+	    
+	    return "main/qna";
+	}
 }

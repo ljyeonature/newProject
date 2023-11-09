@@ -297,7 +297,7 @@ td.column-1 a:hover {
 									<h1 id="title">교환</h1>
 									<h4 id="small-title">교환 처리 시</h4>
 									<p id="content">아래 교환 버튼을 누르면 Q&A 게시판에 자동으로 제목으로 <br/> <span>‘교환입니다’</span>의 게시물 등록 페이지로 넘어감</p>
-									<a href="qna" id="ex"> 교환 </a>
+									<a href="qna-add_ex" id="ex"> 교환 </a>
 								</td>
 								
 
@@ -323,7 +323,7 @@ td.column-1 a:hover {
 								<h1 id="title">환불</h1>
 									<h4 id="small-title">환불 처리 시</h4>
 									<p id="content">아래 환불 버튼을 누르면 Q&A 게시판에 자동으로 제목으로 <br/> <span>‘환불입니다’</span>의 게시물 등록 페이지로 넘어감</p>
-									<a href="qna" id="re"> 환불 
+									<a href="qna-add_re" id="re"> 환불 
 									</a>
 									
 								</td>

@@ -20,17 +20,12 @@
 				<ul class="main-menu">
 				<c:if test="${empty sessionScope.logid }">
 					<li class="active-menu"><a href="home">Home</a>
-						<ul class="sub-menu">
-							<li><a href="home">Homepage 1</a></li>
-							<li><a href="home-02">Homepage 2</a></li>
-							<li><a href="home-03">Homepage 3</a></li>
-						</ul></li>
 
 					<li><a href="product">Shop</a></li>
 
 
 					<li><a href="qna">Q&A</a></li>
-
+				
 					<li><a href="about">About</a></li>
 				</c:if>
 				<c:if test="${not empty sessionScope.logid }">
@@ -45,7 +40,7 @@
 					<li><a href="product?m_id=${sessionScope.logid }">Shop</a></li>
 
 
-					<li><a href="qna?m_id=${sessionScope.logid }">Q&A</a></li>
+					<li><a id="mainqna" href="qna?m_id=${sessionScope.logid }">Q&A</a></li>
 
 					<li><a href="about?m_id=${sessionScope.logid }">About</a></li>
 				</c:if>
@@ -80,6 +75,11 @@
 								});
 								
 								$('#wishlist').click(function(event){
+									 event.preventDefault();
+									alert("로그인 후 이용해주세요.")
+								});
+								
+								$('#mainqna').click(function(event){
 									 event.preventDefault();
 									alert("로그인 후 이용해주세요.")
 								});
