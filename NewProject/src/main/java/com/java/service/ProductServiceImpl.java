@@ -83,9 +83,13 @@ public class ProductServiceImpl implements ProductService{
 		
 		return result;
 	}
-
-
 	
-	
+	// 상품 삭제
+	@Override
+	public int deleteProduct(ProductVO vo){
+	    System.out.println("ProductServiceImpl Vo:" + vo);
+	    return productDAOImpl.deleteProduct(vo);
+	}
+
 	
 }

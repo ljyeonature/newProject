@@ -74,5 +74,11 @@
 	<select id="product_option" parameterType="String" resultType="com.java.domain.OptionVO">
 		SELECT * FROM p_option WHERE trddivid = #{p_selid}
 	</select>
+	
+	<!-- product_all에서 체크박스 누르고 삭제 시 해당 컬럼 내용 삭제하기  -->
+   <delete id="deleteProduct" parameterType="com.java.domain.ProductVO">
+      DELETE FROM p_product
+      WHERE p_selid = #{p_selid}
+   </delete>
 
 </mapper>

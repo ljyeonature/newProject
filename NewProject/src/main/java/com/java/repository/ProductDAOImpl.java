@@ -86,7 +86,13 @@ public class ProductDAOImpl implements ProductDAO{
 		List<OptionVO> result = sqlSession.selectList("org.java.ProductMapper.product_option", p_selid);
 		return result;
 	}
-
+	
+	// 상품삭제
+	@Override
+	public int deleteProduct(ProductVO vo) {
+	      System.out.println("ProductDAOimpl vo:" + vo);
+	      return sqlSession.delete("org.java.ProductMapper.deleteProduct", vo);
+	   }
 
 
 

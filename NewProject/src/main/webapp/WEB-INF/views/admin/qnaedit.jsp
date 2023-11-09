@@ -76,7 +76,7 @@
 					<input name="q_postnum" type="hidden" value="${qnacontent.q_postnum}" />
 					<input name="q_inquiry" type="hidden" value="${qnacontent.q_inquiry}" />
 					<div class="addcontainer">
-						<input type="hidden" id="m_id" value="${sessionScope.logid}" name="m_id">
+						<input type="hidden" id="m_id" value="${qnacontent.m_id}" name="m_id">
 						<input name="" type="hidden" value="" />
 						<label for="title">제목</label>
 						<input type="text" id="q_title" name="q_title" value="${qnacontent.q_title}" required>
