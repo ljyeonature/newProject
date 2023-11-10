@@ -257,35 +257,15 @@ public class AdminController {
   
  // p_list_edit 페이지 들어가면 분류 내용 보내기
  @RequestMapping("/p_list_edit")
- public void (FstDivVO fvo, SndDivVO svo, TrdDivVO tvo, Model model) {
+ public void select_cate2(FstDivVO fvo, SndDivVO svo, TrdDivVO tvo, Model model) {
     System.out.println("fvo:"+fvo + "svo:" + svo + "tvo:" + tvo);
     model.addAttribute("fstcate2", productService.select_FstCate2(fvo));
     model.addAttribute("sndcate2", productService.select_SndCate2(svo));
     model.addAttribute("trdcate2", productService.select_TrdCate2(tvo));
  }
 	
-	// qna게시판 목록 조회 (검색, 수정 합쳐서)
- @RequestMapping("/qna")
- public String board_all(Model model, String sltfilter, String search) {
-
-    BoardVO vo = new BoardVO();
-    vo.setSltfilter(sltfilter);	// HashMap map = new HashMap(); -> map.put("",변수명);
-    vo.setSearch(search);
-
-     List<BoardVO> result = boardService.board_all(vo);
-     model.addAttribute("qnaList", result);
-
-     return "admin/qna";
- }
 	
-	// 게시글 제목 클릭하면 내용 불러오기
-		@RequestMapping("/qnaview_do")
-		public String getContentList(BoardVO vo, Model model) {
-			BoardVO result = boardService.qnaView(vo);
-			model.addAttribute("qnacontent" , result);
-			
-			return "admin/qnaview";
-		}
-
+	
+	
 
 }
