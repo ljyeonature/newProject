@@ -85,7 +85,7 @@ $(function(){
     var p_price = parseFloat($(this).closest('tr').find('.column-3').text());
     var cart_cnt = parseInt($(this).closest('tr').find('.num-product').val());
     var shopping_total = parseFloat($(this).closest('tr').find('.column-5').text());
-		console.log(cart_cnt)
+		//console.log(cart_cnt)
 
     shopping_total = shopping_total - p_price;
     $(this).closest('tr').find('.num-product').val(cart_cnt);
@@ -122,7 +122,7 @@ $(function(){
 	        data: { m_id: m_id },
 	        success: function(response) {
 	            // 서버에서 계산된 총합을 받아와 화면에 업데이트
-	            $('#totalAmount').text(response.toFixed(0) + "원");
+	            $('#totalAmount').text(response+"원");
 	        },
 	        error: function(error) {
 	            console.log("Error fetching cart total:", error);
@@ -132,6 +132,50 @@ $(function(){
 
 	// 장바구니 총합 업데이트 호출
 	updateCartTotalAmount();
+	
+        
+    
+    
+	// 장바구니 삭제 - 이미지 클릭 시 삭제
+	$('.how-itemcart1').on('click', function (){
+		var oName = $(this).closest('tr').find('#o_name').text();
+       	//console.log(oName);
+		 // 사용자 확인 후 삭제 여부 묻기 (선택적)
+        if (confirm('장바구니에서 이 상품을 삭제하시겠습니까?')) {
+            // AJAX를 사용하여 서버에 삭제 요청 보내기
+            $.ajax({
+                type: 'POST',
+                url: 'removeCartItem', // 실제 서버의 삭제 요청을 처리하는 URL로 변경
+                data: { o_name: oName },
+                success: function (response) {
+                    // 서버에서 성공적으로 처리된 경우에만 화면에서 해당 상품 제거
+                    if (response == "ok") {
+                        alert('상품이 성공적으로 삭제되었습니다.');
+                        //swal("", "장바구니에서 삭제되었습니다", "success");
+                        location.reload();
+                        // 화면에서 해당 행 제거
+                        $(this).closest('tr').remove();
+                    } else {
+                        alert('상품 삭제에 실패하였습니다.');
+                        //swal("", "장바구니에서 삭제되지 않았습니다", "success");
+                    }
+                },
+                error: function () {
+                    alert('상품 삭제 중 오류가 발생했습니다.');
+                }
+            });
+        }
+    });
+	
+	// 장바구니에 상품이 없는 경우 주문 페이지로 못가게 해야 함.
+	$('.pay').on('click', function(){
+		if($('#totalAmount').text() !== '원') {
+			$('#pay').submit();
+		} else {
+			alert("주문할 상품이 없습니다.");
+		}
+		
+	})
 
 	
 	
@@ -268,8 +312,8 @@ $(function(){
 
 
 	<!-- Shoping Cart -->
-	<form class="bg0 p-t-75 p-b-85" method="post" action="member-order">
-<input type="hidden" value="${sessionScope.logid }" id="m_id" name="m_id"/>
+	<form class="bg0 p-t-75 p-b-85" method="post" action="member-order" id="pay">
+		<input type="hidden" value="${sessionScope.logid }" id="m_id" name="m_id"/>
 		<div class="container">
 			<div class="row">
 				<div class="col-lg-10 col-xl-7 m-lr-auto m-b-50">
@@ -333,11 +377,10 @@ $(function(){
 							</div>
 
 							<div class="size-209 p-t-1">
-								<span id="totalAmount" class="mtext-110 cl2">0</span>
+								<span id="totalAmount" class="mtext-110 cl2">0원</span>
 							</div>
 						</div>
-
-						<button type="submit" class="flex-c-m stext-101 cl0 size-116 bg3 bor14 hov-btn3 p-lr-15 trans-04 pointer">주문</button>
+						<button type="button" class="flex-c-m stext-101 cl0 size-116 bg3 bor14 hov-btn3 p-lr-15 trans-04 pointer pay">주문</button>
 					</div>
 				</div>
 			</div>

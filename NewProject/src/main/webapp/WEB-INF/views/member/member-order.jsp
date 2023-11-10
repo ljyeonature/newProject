@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix='c' uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -94,6 +95,56 @@ select {
 
 
 }
+ #cashReceiptInput h6 {
+       display: inline-block; /* 가로로 정렬하기 위해 inline-block 설정 */
+       margin-right: 10px; /* 간격 조절 */
+}
+
+input[type=radio] {
+    display: inline-block;
+    box-sizing: border-box;
+    padding: 0;
+}
+
+table.container-bottom-table tr td:nth-child(1) {
+    padding-left: 10px;
+    width: 246px;
+    line-height: 1.2;
+    }
+
+#cashpay {
+    position: relative;
+    left: 0px;
+    padding-bottom: 5px;
+    margin-right: 20px;
+    display: inline-block;
+}
+
+table.container-bottom-table tr td:nth-child(1) {
+    padding-left: 10px;
+    width: 269px;
+    line-height: 1.2;
+}
+
+label#account {
+	display : inline-block;
+    outline: none;
+    border: none;
+    margin-bottom: 30px;
+}
+
+input#pay_acc {
+	display : inline-block;
+    outline: none;
+    border: none;
+}
+
+input#pay_acc {
+    display: inline-block;
+    outline: none;
+    border: 1px solid black;
+ }
+
 
 </style>
 
@@ -108,19 +159,20 @@ select {
    var totalAmount = 0; // 초기값 설정
 
   // 각 상품에 대한 반복문
-  $('.column-5').each(function() {
-    var shoppingTotal = $(this).text().replace(/[^0-9.-]+/g, ''); // 숫자 이외의 문자 제거
+  $('#shopping_total input').each(function() {
+    var shoppingTotal = $(this).val().replace(/[^0-9.-]+/g, ''); // 숫자 이외의 문자 제거
     console.log(shoppingTotal); // 개발자 도구의 콘솔에서 값 확인
     totalAmount += parseFloat(shoppingTotal) || 0; // 숫자로 변환하여 더하고, NaN이면 0으로 처리
   });
 
   // 총 합계를 표시하는 요소에 결과값 설정
-  $('#totalAmount').text(totalAmount.toFixed(0)); // 소수점 둘째 자리까지 표시
+  $('#cart_total').val(totalAmount.toFixed(0)); // 소수점 둘째 자리까지 표시
 }
 
     // 페이지 로딩 후 총 합계 업데이트 실행
     updateTotalAmount();
     
+    // 결제 버튼을 눌렀을 때
     $('.pay_btn').on('click', function(e){
     	alert(1);
     	e.preventDefault();
@@ -133,13 +185,13 @@ select {
 		    pg : 'kcp',
 		    pay_method : 'card',
 		    merchant_uid : 'merchant_' + new Date().getTime(),
-		    name : $('#o_name').text() , //결제창에서 보여질 이름
-		    amount : $('#totalAmount').text(), //실제 결제되는 가격
+		    name : $('#o_name').val() , //결제창에서 보여질 이름
+		    amount : $('#cart_total').val(), //실제 결제되는 가격
 		    buyer_email : $('#m_email').val(),
-		    buyer_name : $('#oder_rc').val(),
-		    buyer_tel : $('#rec_tel').val(),
-		    buyer_addr : $('#rc_addr_detail').val(),
-		    buyer_postcode : $('#rc_addr').val()
+		    buyer_name : $('#rc_name').val(),
+		    buyer_tel : $('#rc_tel').val(),
+		    buyer_addr : $('#rc_addr').val(),
+		    buyer_postcode : $('#rc_postcode').val()
 		}, function(rsp) {
 			console.log(rsp);
 			// 결제검증
@@ -153,17 +205,81 @@ select {
 	        	// 위의 rsp.paid_amount 와 data.response.amount를 비교한후 로직 실행 (import 서버검증)
 	        	if(rsp.paid_amount == data.response.amount){
 		        	alert("결제 및 결제검증완료");
+		        	// 주문 테이블에 주문 정보 들어오기 + 결제 정보 + 주문 아이템
+		        	$('#orderData').submit();
+		        	
 	        	} else {
 	        		alert("결제 실패");
 	        	}
 	        });
 		});
-	}
+	}; // 결제 끝
+	
+	// 회원 정보 배송지 | 새로운 배송지에 따라 테이블 상태 다르게 설정
+	
+    // 라디오 버튼 변경 시 이벤트 처리
+        $("input[name='check']").change(function () {
+            if ($(this).val() === "equal") {
+                showMemberInfo();
+            } else if ($(this).val() === "diff") {
+                showNewAddressInfo();
+            }
+        });
 
-    
-  });
+        // 회원정보와 동일일 때 보여줄 함수
+        function showMemberInfo() {
+        	 // 회원정보와 동일한 행 숨기기
+            $("#addr tr").show(); // 모든 행 보이기
+            $("#rc_name").val($("#logname").val()); // 첫 번째 행 숨기기
+            $("#rc_postcode").val($("#postnum").val()); // 첫 번째 행 숨기기
+            $("#rc_addr").val($("#addr").val()); // 첫 번째 행 숨기기
+            $("#m_email").val($("#email").val()); // 첫 번째 행 숨기기
+            $("#rc_tel").val($("#tel").val()); // 첫 번째 행 숨기기
+            
+        }
+
+        // 새로운 배송지일 때 보여줄 함수
+        function showNewAddressInfo() {
+        	$("#addr tr").show(); // 모든 행 보이기
+            $("#rc_name").val(""); // 첫 번째 행 숨기기
+            $("#rc_postcode").val(""); // 첫 번째 행 숨기기
+            $("#rc_addr").val(""); // 첫 번째 행 숨기기
+            $("#m_email").val(""); // 첫 번째 행 숨기기
+            $("#rc_tel").val(""); // 첫 번째 행 숨기기
+        }
+        
+        // 결제 방법 : 무통장입금일 경우 계좌번호 입력창 뜨게 하기
+          // 초기 설정
+        checkPaymentMethod();
+
+        // 결제 방법이 변경될 때 이벤트 처리
+        $('select[name="pay_by"]').change(function () {
+            checkPaymentMethod();
+        });
+
+        function checkPaymentMethod() {
+            // 선택된 결제 방법 가져오기
+            var selectedPaymentMethod = $('select[name="pay_by"]').val();
+
+            // 무통장입금인 경우 계좌번호 입력 창 보이게
+            if (selectedPaymentMethod === 'bank_acc') {
+                $('#bankAccountInput').show();
+            } else {
+                $('#bankAccountInput').hide();
+            }
+
+            // 현금영수증 선택 라디오 버튼 보이게
+            if (selectedPaymentMethod === 'card_acc') {
+                $('#cashReceiptInput').hide();
+            } else {
+                $('#cashReceiptInput').show();
+            }
+        }
+        
+        
+        
+  });// 스크립트 끝
   
- 
 </script>
 
 
@@ -283,51 +399,61 @@ select {
 
 
 	<!-- Title page -->
-	<form class="bg0 p-t-75 p-b-85">
+	<form class="bg0 p-t-75 p-b-85" action="order_do" id="orderData" method="post">
  		<div class="order_title">
             <h1 class="header">상품 주문서</h1>
         </div>
+        <input type="hidden" id="logname" name="m_name" value="${sessionScope.logname }" />
+        <input type="hidden" id="m_id" name="m_id" value="${sessionScope.logid }" />
+        <input type="hidden" id="postnum" value="${member.m_postcode }" />
+        <input type="hidden" id="addr" value="${member.m_addr }" />
+        <input type="hidden" id="email" value="${member.m_email }" />
+        <input type="hidden" id="tel" value="${member.m_tel }" />
 		<div class="container-top">
 			<div class="container-bottom-title">
                     <h5>배송지</h5>
             </div>
 			<div class="top-radiobtn">
-				<input type="radio" checked="checked" /><h6 id="check">회원정보와 동일</h6>
-				<input type="radio" /><h6 id="check">새로운 배송지</h6>
+				<input type="radio" name="check" value="equal" checked="checked" /><h6 id="check">회원정보와 동일</h6>
+				<input type="radio" name="check" value="diff"/><h6 id="check">새로운 배송지</h6>
 			</div>
-				<table border='1' id="addr">
-				<tr>
-					<td><label for="oder_rc" class="oder_rc">받는사람</label></td> 
-					<td><input type="text" id="oder_rc" required value="${member.m_name }"/></td>
-				
-				</tr>
-				<tr>
-					<td><label for="rc_addr" class="addr-top">주소</label></td>
-					<td>
-						<table border='1' id="addr-detail">
-							<tr>
-								<td><input type="text" id="rc_addr" placeholder="우편번호" required value="${member.m_postcode }"/></td>
-								<td><input type="button" value="주소검색" class="rc_addr"  /></td>
-							
-							</tr>
-							<tr>
-								<td  colspan='2'><input type="text" id="rc_addr_detail" placeholder="기본주소" required value="${member.m_addr }"/></td>
-							</tr>
-						</table>
+			<table border='1' id="addr">
+			<tr>
+				<td><label for="oder_rc" class="oder_rc">받는사람</label></td> 
+				<td><input type="text" id="rc_name" name="rc_name" required value="${member.m_name }"/></td>
+			
+			</tr>
+			<tr>
+				<td><label for="rc_addr" class="addr-top">주소</label></td>
+				<td>
+					<table border='1' id="addr-detail">
+						<tr>
+							<td><input type="text" id="rc_postcode" placeholder="우편번호" name="rc_postcode" required value="${member.m_postcode }"/></td>
+							<td><input type="button" value="주소검색" class="rc_postcode" /></td>
 						
-
-					</td>
-				</tr>
-				<tr>
-					<td><label for="m_email" class="m_email">이메일</label></td>
-					<td><input type="email" id="m_email" required value="${member.m_email }"/></td>
-				</tr>
-				<tr>
-					<td><label for="rec_tel" class="rec_tel">연락처</label></td>
-					<td><input type="tel" id="rec_tel" required value="${member.m_tel }"/></td>
-				</tr>
-					
-				</table>
+						</tr>
+						<tr>
+							<td colspan='2'>
+								<input type="text" id="rc_addr" name="rc_addr" placeholder="기본주소" required value="${member.m_addr }"/>
+							</td>
+						</tr>
+					</table>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<label for="m_email" class="m_email">이메일</label>
+				</td>
+				<td>
+					<input type="email" id="m_email" name="m_email"  required value="${member.m_email }"/>
+				</td>
+			</tr>
+			<tr>
+				<td><label for="rc_tel" class="rc_tel">연락처</label></td>
+				<td><input type="tel" id="rc_tel" name="rc_tel" required value="${member.m_tel }"/></td>
+			</tr>
+				
+			</table>
 		</div>
 		
 		<div class="container">
@@ -352,12 +478,18 @@ select {
 													alt="IMG">
 											</div>
 										</td>
-										<td class="column-2" id="o_name">${shopping.o_name}</td>
-										<td class="column-3" id="p_price">${shopping.p_price}</td>
-										<td class="column-4">
-											${shopping.cart_cnt}
+										<td class="column-2" id="o_name">
+											<input type="text" name="products[${loop.index}].o_name" value="${shopping.o_name}" readonly />
 										</td>
-										<td class="column-5" id="shopping_total">${shopping.shopping_total }</td>
+										<td class="column-3" id="p_price">
+											<input type="text" name="products[${loop.index}].p_price" value="${shopping.p_price}" readonly />
+										</td>
+										<td class="column-4" id="cart_cnt">
+											<input type="text" name="products[${loop.index}].cart_cnt" value="${shopping.cart_cnt}" readonly />
+										</td>
+										<td class="column-5" id="shopping_total">
+											<input type="text" name="products[${loop.index}].shopping_total" value="${shopping.shopping_total }" readonly />
+										</td>
 
 									</tr>
 
@@ -372,56 +504,60 @@ select {
 			</div>
 		</div>
 		<div class="container-bottom">
-                    <div class="container-bottom-title">
-                    	<h5>결제정보 및 수단</h5>
-                    </div>
-                    <div>
-                        <table class="container-bottom-table">
-                            <tr>
-                                <td>
-                                    <label for="pay_by" id="pay_by">결제방법</label>
-                                    <select>
-                                        <option value="bank_acc">무통장입금</option>
-                                        <option value="card_acc">카드결제</option>
-                                    </select>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <span style="text-align: left; display:block; width:90px;">
-                                    <label for="cashpay" id="cashpay">현금영수증</label></span>
-                                    
-                                </td>
-                            </tr>
-
-                        </table>
-                    </div>
-                </div>
-                <div>
-                
-					<div class="col-sm-10 col-lg-7 col-xl-5 m-lr-auto m-b-50">
-						<div
-							class="bor10 p-lr-40 p-t-30 p-b-40 m-l-63 m-r-40 m-lr-0-xl p-lr-15-sm order">
-							<h4 class="mtext-109 cl2 p-b-30">총 주문 금액</h4>
-	
-	
-							<div class="flex-w flex-t p-t-27 p-b-33">
-								<div class="size-208">
-									<span class="mtext-101 cl2"> Total: </span>
-								</div>
-	
-								<div class="size-209 p-t-1">
-									<span id="totalAmount" class="mtext-110 cl2">0</span>
-									<span class="mtext-110 cl2">원</span>
-								</div>
-							</div>
-	
-							<button class="flex-c-m stext-101 cl0 size-116 bg3 bor14 hov-btn3 p-lr-15 trans-04 pointer pay_btn">
-								Pay</button>
+		    <div class="container-bottom-title">
+		        <h5>결제정보 및 수단</h5>
+		    </div>
+		        <table class="container-bottom-table">
+		            <tr>
+		                <td>
+		                    <label for="pay_by" id="pay_by">결제방법</label>
+		                    <select name="pay_by">
+		                        <option id="bank_acc" value="bank_acc">무통장입금</option>
+		                        <option id="card_acc" value="card_acc" selected>카드결제</option>
+		                    </select>
+		                </td>
+		            </tr>
+		            <tr id="bankAccountInput">
+		                <td>
+		                    <!-- 무통장입금일 때만 보이게 할 계좌번호 입력 창 -->
+		                    <label for="bank_account" id="account">계좌번호</label>
+		                    <input type="text" name="pay_acc" id="pay_acc" />
+		                </td>
+		            </tr>
+		            <tr id="cashReceiptInput">
+		                <td>
+		                    <!-- 현금영수증 선택 라디오 버튼 -->
+		                    <label for="cashpay" id="cashpay">현금영수증</label>
+		                    <input type="radio" name="cash_receipt" value="issue"> <h6>발급</h6>
+		                    <input type="radio" name="cash_receipt" value="not_issue"> <h6>발급 안함</h6>
+		                </td>
+		            </tr>
+		        </table>
+		</div>
+		<div>
+			            
+			<div class="col-sm-10 col-lg-7 col-xl-5 m-lr-auto m-b-50">
+				<div
+					class="bor10 p-lr-40 p-t-30 p-b-40 m-l-63 m-r-40 m-lr-0-xl p-lr-15-sm order">
+					<h4 class="mtext-109 cl2 p-b-30">총 주문 금액</h4>
+		
+		
+					<div class="flex-w flex-t p-t-27 p-b-33">
+						<div class="size-208">
+							<span class="mtext-101 cl2"> Total: </span>
+						</div>
+		
+						<div class="size-209 p-t-1">
+							<span id="totalAmount" class="mtext-110 cl2"><input id="cart_total" name="pay_amount" value="0"/></span>
 						</div>
 					</div>
-                
-                </div>
+		
+					<button class="flex-c-m stext-101 cl0 size-116 bg3 bor14 hov-btn3 p-lr-15 trans-04 pointer pay_btn">
+						Pay</button>
+				</div>
+			</div>
+			            
+		</div>
 	</form>
 
 
@@ -485,7 +621,7 @@ select {
 	
 	<!-- 다음 카카오 주소 가져오기 -->
 	<script>
-		$('.rc_addr').click(
+		$('.rc_postcode').click(
 				function() {
 
 					new daum.Postcode({
@@ -530,11 +666,11 @@ select {
 							}
 
 							// 우편번호와 주소 정보를 해당 필드에 넣는다.
-							$('#rc_addr').val(data.zonecode);
-							$('#rc_addr_detail').val(addr);
+							$('#rc_postcode').val(data.zonecode);
+							$('#rc_addr').val(addr);
 							// document.getElementById("sample6_address").value = addr;
 							// 커서를 상세주소 필드로 이동한다.
-							$("#rc_addr_detail").focus();
+							$("#rc_addr").focus();
 						}
 					}).open();
 

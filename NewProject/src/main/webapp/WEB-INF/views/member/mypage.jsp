@@ -82,8 +82,17 @@ td > a > img {
 	align-content: center;
 }
 
- 
 </style>
+
+<script type="text/javascript">
+
+$('.pointButton').on('click', function(){
+	
+	
+	
+})
+
+</script>
 
 </head>
 <body class="animsition">
@@ -217,10 +226,10 @@ td > a > img {
 
 	<div class="flex-w flex-m m-r-20 m-tb-5" id="point">
 		<input class="stext-104 cl2 plh4 size-117 bor13 p-lr-20 m-r-10 m-tb-5"
-			type="text" name="coupon" placeholder="POINT">
+			type="text" name="coupon" placeholder="POINT" value="${member.m_point }">
 
 		<div
-			class="flex-c-m stext-101 cl2 size-118 bg8 bor13 hov-btn3 p-lr-15 trans-04 pointer m-tb-5">
+			class="flex-c-m stext-101 cl2 size-118 bg8 bor13 hov-btn3 p-lr-15 trans-04 pointer m-tb-5 pointButton">
 			Your Point</div>
 	</div>
 

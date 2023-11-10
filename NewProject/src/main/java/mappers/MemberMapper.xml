@@ -120,10 +120,46 @@
 		SELECT sum(shopping_total) cart_total FROM cart WHERE m_id=#{m_id}
 	</select>
 	
+	<!-- 장바구니 삭제 : 이미지 클릭 시 삭제 -->
+	<delete id="removeCartItem" parameterType="com.java.domain.CartVO">
+		DELETE FROM cart WHERE o_name=#{o_name}
+	</delete>
+
 	<!-- 세션 아이디에 해당하는 회원 정보 불러오기 : 주문서 -->
 	<select id="member-info" parameterType="com.java.domain.MemberVO" resultType="com.java.domain.MemberVO">
 		SELECT * FROM m_member WHERE m_id=#{m_id}
 	</select>
+	
+	<!-- 주문 내역 넣기 -->
+	<insert id="insertOrder" parameterType="com.java.domain.OrderVO">
+		INSERT INTO o_order (o_id, m_id, o_date, o_status, rc_name, rc_tel, rc_postcode, rc_addr, pay_amount, pay_by) 
+		VALUES 
+		( #{o_id}, #{m_id}, now(), '결제완료', 
+		#{rc_name}, #{rc_tel}, #{rc_postcode}, #{rc_addr}, #{pay_amount}, #{pay_by} )
+	</insert>
+	
+	<!-- 결제 내역 넣기 -->
+	<insert id="insertPayInfo" parameterType="com.java.domain.PayInfoVO">
+		INSERT INTO pay_info (o_id, pay_by, pay_acc, pay_amount, m_name) 
+	    VALUES 
+	    <if test="pay_by == 'card_acc'">
+	        (#{o_id}, #{pay_by}, 0 ,#{pay_amount}, #{m_name})
+	    </if>
+	    <if test="pay_by == 'bank_acc'">
+	        (#{o_id}, #{pay_by}, #{pay_acc}, #{pay_amount}, #{m_name})    
+	    </if>
+	</insert>
+	
+	<!-- 주문 아이템 넣기 -->
+	<insert id="insertOrderItem" parameterType="com.java.domain.OrderItemVO">
+	    INSERT INTO order_item (o_id, p_optionID, cart_cnt) 
+	    SELECT #{o_id}, p_optionID, cart_cnt FROM cart WHERE m_id = #{m_id}
+	</insert>
+	
+	<!-- 주문 후 장바구니 삭제 -->
+	<delete id="cartAllDelete" parameterType="com.java.domain.CartVO">
+		DELETE FROM cart WHERE m_id = #{m_id}
+	</delete>
 	
 	
 	

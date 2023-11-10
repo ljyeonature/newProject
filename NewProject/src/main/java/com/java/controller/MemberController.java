@@ -1,6 +1,8 @@
 package com.java.controller;
 
 import java.io.IOException;
+import java.text.DecimalFormat;
+import java.util.Calendar;
 import java.util.List;
 import java.util.Locale;
 import java.util.Random;
@@ -28,6 +30,9 @@ import com.java.domain.CartVO;
 import com.java.domain.CartViewVO;
 import com.java.domain.MemberVO;
 import com.java.domain.OptionVO;
+import com.java.domain.OrderItemVO;
+import com.java.domain.OrderVO;
+import com.java.domain.PayInfoVO;
 import com.java.domain.ProductVO;
 import com.java.domain.WishListVO;
 import com.java.service.BoardServiceImpl;
@@ -440,11 +445,13 @@ public class MemberController {
 	public String minusCartCnt(CartVO vo) {
 		int result = memberService.minusCartCnt(vo);
 		String total = vo.getShopping_total();
-//		System.out.println(total);
+		String zero = "0";
+		System.out.println(total);
 		if(result == 1) {
 			return total;
-		} else {
-			return "no";
+		} 
+		else {
+			return zero;
 		}
 	}
 	
@@ -457,6 +464,19 @@ public class MemberController {
 		return result;
 	}
 	
+	// 장바구니 이미지 클릭 시 삭제
+	@RequestMapping("/removeCartItem")
+	@ResponseBody
+	public String removeCartItem(CartVO vo) {
+		int result = memberService.removeCartItem(vo);
+		System.out.println(result);
+		if(result == 1) {
+			return "ok";
+		} else {
+			return "no";
+		}
+	}
+	
 	// 주문 페이지로 갈 때 데이터 불러오기
 	@RequestMapping("/member-order")
 	public void order(CartViewVO wvo, Model model, @RequestParam String m_id, MemberVO mvo) {
@@ -465,13 +485,21 @@ public class MemberController {
 		model.addAttribute("member", memberService.memberInfo(mvo));
 		
 	}
+	
+	// 마이페이지 -> 회원 정보 불러오기
+	@RequestMapping("/mypage")
+	public void memberPoint(@RequestParam String m_id, MemberVO vo, Model model) {
+		model.addAttribute("member", memberService.member_detail(m_id));
+	}
+	
+	// 결제 시스템 : 아임포트 - NHN
 	private IamportClient api;
 	
 	public MemberController() {
     	// REST API 키와 REST API secret 를 아래처럼 순서대로 입력한다.
 		this.api = new IamportClient("6256026187130804","6moL42tAiYn3MNwPOIvqFeEedcXOm8Hhth8ObKeVVA3Aw6wpIPCrVlplp6lZZaSoQve7XAWA7NwxvoZ3");
 	}
-		
+	// 결제
 	@ResponseBody
 	@RequestMapping(value="/verifyIamport/{imp_uid}")
 	public IamportResponse<Payment> paymentByImpUid(
@@ -482,6 +510,41 @@ public class MemberController {
 	{	
 			return api.paymentByImpUid(imp_uid);
 	}
+	
+	// 결제 후 결제 정보 저장 / 주문 정보 저장 / 주문 아이템 저장
+	@RequestMapping("/order_do")
+	public String order(OrderVO ovo, OrderItemVO oivo, PayInfoVO pvo, CartVO vo) {
+		Calendar cal = Calendar.getInstance();
+		int year = cal.get(Calendar.YEAR);
+		String ym = year + new DecimalFormat("00").format(cal.get(Calendar.MONTH) + 1);
+		String ymd = ym + new DecimalFormat("00").format(cal.get(Calendar.DATE));
+		String subNum = "";
+		
+		for(int i = 1; i<= 6; i++) {
+			subNum += (int)(Math.random() * 10);
+		}
+		String orderId = ymd + "_" + subNum;
+		
+		ovo.setO_id(orderId);
+		oivo.setO_id(orderId);
+		pvo.setO_id(orderId);
+		
+		int insertOrder = memberService.insertOrder(ovo);
+		int insertOrderItem = memberService.insertOrderItem(oivo);
+		int insertPayInfo = memberService.insertPayInfo(pvo);
+		
+		//System.out.println("insertOrder : " + insertOrder);
+		//System.out.println("insertPayInfo : " + insertPayInfo);
+		//System.out.println("insertOrderItem : " + insertOrderItem);
+		
+		// 결제 완료 후 : 장바구니 삭제
+		memberService.cartAllDelete(vo);
+		
+		return "member/order-detail";
+		
+	}
+	
+
 
 	
 }

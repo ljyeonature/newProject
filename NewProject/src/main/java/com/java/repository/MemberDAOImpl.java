@@ -9,6 +9,9 @@ import org.springframework.stereotype.Repository;
 import com.java.domain.CartVO;
 import com.java.domain.CartViewVO;
 import com.java.domain.MemberVO;
+import com.java.domain.OrderItemVO;
+import com.java.domain.OrderVO;
+import com.java.domain.PayInfoVO;
 import com.java.domain.ProductVO;
 import com.java.domain.WishListVO;
 
@@ -186,11 +189,47 @@ public class MemberDAOImpl implements MemberDAO{
 		return result;
 	}
 	
+	// 장바구니 삭제 : 이미지 클릭 시 삭제
+	@Override
+	public int removeCartItem(CartVO vo) {
+		int result = sqlSession.delete("org.java.MemberMapper.removeCartItem", vo);
+		return result;
+	}
+	
 	// 세션 아이디에 해당하는 회원정보 가져오기
 	public MemberVO memberInfo(MemberVO vo) {
 		MemberVO result = sqlSession.selectOne("org.java.MemberMapper.member-info", vo);
 		return result;
 	}
+
+	// 주문 내역 넣기
+	@Override
+	public int insertOrder(OrderVO ovo) {
+		System.out.println(ovo);
+		return sqlSession.insert("org.java.MemberMapper.insertOrder", ovo);
+		
+	}
+
+	// 결제 내역 넣기
+	@Override
+	public int insertPayInfo(PayInfoVO pvo) {
+		return sqlSession.insert("org.java.MemberMapper.insertPayInfo", pvo);
+		
+	}
+
+	// 주문 아이템 넣기
+	@Override 
+	public int insertOrderItem(OrderItemVO oivo) { 
+		return sqlSession.insert("org.java.MemberMapper.insertOrderItem", oivo);
+	}
+	
+	// 결제 후 장바구니 모두 삭제
+	@Override
+	public int cartAllDelete(CartVO vo) {
+		return sqlSession.delete("org.java.MemberMapper.cartAllDelete", vo);
+	}
+
+	 
 	
 
 	

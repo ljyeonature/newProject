@@ -8,6 +8,9 @@ import org.springframework.stereotype.Service;
 import com.java.domain.CartVO;
 import com.java.domain.CartViewVO;
 import com.java.domain.MemberVO;
+import com.java.domain.OrderItemVO;
+import com.java.domain.OrderVO;
+import com.java.domain.PayInfoVO;
 import com.java.domain.WishListVO;
 import com.java.repository.MemberDAO;
 
@@ -156,15 +159,51 @@ public class MemberServiceImpl implements MemberService{
 		return result;
 	}
 
+	// 장바구니 총합
 	@Override
 	public String cartTotal(CartVO vo) {
 		String result = memberDAOImpl.cartTotal(vo);
 		return result;
 	}
 
+	// 회원 정보 가져오기
 	@Override
 	public MemberVO memberInfo(MemberVO vo) {
 		MemberVO result = memberDAOImpl.memberInfo(vo);
+		return result;
+	}
+
+	// 주문 넣기
+	@Override
+	public int insertOrder(OrderVO ovo) {
+		return memberDAOImpl.insertOrder(ovo);
+	}
+
+	// 결제 내역 넣기
+	@Override
+	public int insertPayInfo(PayInfoVO pvo) {
+		return memberDAOImpl.insertPayInfo(pvo);
+		
+	}
+
+	// 주문 아이템 넣기
+	@Override
+	public int insertOrderItem(OrderItemVO oivo) {
+		return memberDAOImpl.insertOrderItem(oivo);
+		
+	}
+
+	// 장바구니 삭제 - 이미지 클릭 시 삭제
+	@Override
+	public int removeCartItem(CartVO vo) {
+		int result = memberDAOImpl.removeCartItem(vo);
+		return result;
+	}
+
+	
+	@Override
+	public int cartAllDelete(CartVO vo) {
+		int result = memberDAOImpl.cartAllDelete(vo);
 		return result;
 	}
 	

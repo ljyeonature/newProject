@@ -5,6 +5,9 @@ import java.util.List;
 import com.java.domain.CartVO;
 import com.java.domain.CartViewVO;
 import com.java.domain.MemberVO;
+import com.java.domain.OrderItemVO;
+import com.java.domain.OrderVO;
+import com.java.domain.PayInfoVO;
 import com.java.domain.WishListVO;
 
 public interface MemberService {
@@ -65,7 +68,22 @@ public interface MemberService {
 	// 장바구니 총합
 	public String cartTotal(CartVO vo);
 	
+	// 장바구니 삭제 : 이미지 클릭 시 삭제
+	public int removeCartItem(CartVO vo);
+	
 	// 세션 아이디에 해당하는 회원정보 가져오기
 	public MemberVO memberInfo(MemberVO vo);
+	
+	// 주문 내역 넣기
+	public int insertOrder(OrderVO ovo);
+	
+	// 결제 내역 넣기
+	public int insertPayInfo(PayInfoVO pvo);
+	
+	// 주문 아이템 넣기
+	 public int insertOrderItem(OrderItemVO oivo); 
+	 
+	// 결제 후 장바구니 삭제
+	public int cartAllDelete(CartVO vo); 
 		
 }
