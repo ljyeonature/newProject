@@ -83,6 +83,7 @@
        				 
 					<div class="addcontainer">
 						<input type="hidden" id="m_id" value="${qnacontent.m_id}" name="m_id">
+
 						
 						<label for="inquiry_select">작성자ID</label>
             			<input type="text" id="q_import_product" name="q_import_product" value="${qnacontent.m_id}" readonly>
@@ -93,6 +94,9 @@
             				<input type="text" id="q_import_product" name="q_import_product" value="" readonly>
             			</div>
             			<hr/>
+
+						<input name="" type="hidden" value="" />
+
 						<label for="title">제목</label>
 						<input type="text" id="q_title" name="q_title" value="${qnacontent.q_title}" required>
 						<hr/>

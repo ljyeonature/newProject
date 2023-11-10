@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.java.domain.FstDivVO;
 import com.java.domain.ImageVO;
+import com.java.domain.OptionFinalVO;
 import com.java.domain.OptionVO;
 import com.java.domain.ProductVO;
 import com.java.domain.SndDivVO;
@@ -37,9 +38,6 @@ public interface ProductService {
 	// 상품 상세 정보 옵션 가져오기
 	public List<OptionVO> product_option(String p_selid);
 	
-	// 상품 삭제
-	public int deleteProduct(ProductVO vo);
-	
 	
 //	-------------------상철-------------------------------
 	
@@ -54,5 +52,15 @@ public interface ProductService {
 	public ProductVO productView(ProductVO vo);
 	
 //	-------------------상철-------------------------------
+
+	//옵션 조회
+	public List<OptionVO> product_option(OptionVO vo);
+	
+	// 옵션 등록하기
+	public int insertProduct(OptionFinalVO vo);
+	
+	// 상품 삭제
+	public int deleteProduct(ProductVO vo);
+
 	
 }

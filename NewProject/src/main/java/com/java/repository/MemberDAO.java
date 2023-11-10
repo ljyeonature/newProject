@@ -64,5 +64,10 @@ public interface MemberDAO {
 	
 	// 장바구니 수량 내리기
 	public int minusCartCnt(CartVO vo);
+	
+	// 장바구니 총합
+	public String cartTotal(CartVO vo);
 
+	// 회원정보 가져오기(주문서==>세션아이디로)
+	public MemberVO memberInfo(MemberVO vo);
 }

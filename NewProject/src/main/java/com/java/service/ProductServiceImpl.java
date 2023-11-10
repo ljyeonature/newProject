@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.java.domain.FstDivVO;
 import com.java.domain.ImageVO;
+import com.java.domain.OptionFinalVO;
 import com.java.domain.OptionVO;
 import com.java.domain.ProductVO;
 import com.java.domain.SndDivVO;
@@ -83,6 +84,20 @@ public class ProductServiceImpl implements ProductService{
 		
 		return result;
 	}
+
+
+	// 옵션 조회
+	@Override
+	public List<OptionVO> product_option(OptionVO vo) {
+		return productDAOImpl.product_option(vo);
+	}
+
+
+	// 옵션 등록
+	@Override
+	public int insertProduct(OptionFinalVO vo) {
+		return productDAOImpl.insertProduct(vo);
+	}
 	
 	// 상품 삭제
 	@Override
@@ -92,30 +107,30 @@ public class ProductServiceImpl implements ProductService{
 	}
 //------------------------상철----------------------------------
 	
-	   // 소분류 목록2
-	   @Override
-	   public List<TrdDivVO> select_TrdCate2(TrdDivVO vo) {
-	      List<TrdDivVO> result = productDAOImpl.select_TrdCate2(vo);
-	      // TODO Auto-generated method stub
-	      return result;
-	   }
-	   // 중분류 목록2
-	   @Override
-	   public List<SndDivVO> select_SndCate2(SndDivVO vo) {
-	      List<SndDivVO> result = productDAOImpl.select_SndCate2(vo);
-	      return result;
-	   }
-	   // 대분류 목록2
-	   @Override
-	   public List<FstDivVO> select_FstCate2(FstDivVO vo){
-	      List<FstDivVO> result = productDAOImpl.select_FstCate2(vo);
-	      return result;
-	   }
-	   
-	   // 수정페이지 카테고리 불러오기
-	   public ProductVO productView(ProductVO vo){
-	       return productDAOImpl.productView(vo);
-	   }
+ // 소분류 목록2
+ @Override
+ public List<TrdDivVO> select_TrdCate2(TrdDivVO vo) {
+    List<TrdDivVO> result = productDAOImpl.select_TrdCate2(vo);
+    // TODO Auto-generated method stub
+    return result;
+ }
+ // 중분류 목록2
+ @Override
+ public List<SndDivVO> select_SndCate2(SndDivVO vo) {
+    List<SndDivVO> result = productDAOImpl.select_SndCate2(vo);
+    return result;
+ }
+ // 대분류 목록2
+ @Override
+ public List<FstDivVO> select_FstCate2(FstDivVO vo){
+    List<FstDivVO> result = productDAOImpl.select_FstCate2(vo);
+    return result;
+ }
+
+ // 수정페이지 카테고리 불러오기
+ public ProductVO productView(ProductVO vo){
+     return productDAOImpl.productView(vo);
+ }
 	
 //------------------------상철----------------------------------
 	

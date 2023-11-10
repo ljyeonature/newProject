@@ -2,6 +2,7 @@ package com.java.controller;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.Locale;
 import java.util.Random;
 
 import javax.mail.internet.MimeMessage;
@@ -32,6 +33,10 @@ import com.java.domain.WishListVO;
 import com.java.service.BoardServiceImpl;
 import com.java.service.MemberServiceImpl;
 import com.java.service.ProductServiceImpl;
+import com.siot.IamportRestClient.IamportClient;
+import com.siot.IamportRestClient.exception.IamportResponseException;
+import com.siot.IamportRestClient.response.IamportResponse;
+import com.siot.IamportRestClient.response.Payment;
 
 @Controller
 @RequestMapping("/member")
@@ -221,9 +226,9 @@ public class MemberController {
 		return "redirect:/member/qna";
 	}
 	
-	// qna게시판 목록 조회
+	// qna게시판 목록 조회 =============> wishlist 표시 => 자동 qna로 이동
 	@RequestMapping("/qna")
-	public String board_all(Model model, String sltfilter, String search, @RequestParam(defaultValue = "1") int page) {
+	public void board_all(Model model, WishListVO wvo, String sltfilter, String search, @RequestParam(defaultValue = "1") int page) {
 		
 		BoardVO vo = new BoardVO();
 		vo.setSltfilter(sltfilter);
@@ -246,8 +251,9 @@ public class MemberController {
 	    model.addAttribute("qnaList", result);
 	    model.addAttribute("maxPages", qnaListPage.getPageCount());	//전체페이지수
 	    model.addAttribute("currentPages", qnaListPage.getPage() + 1);	//현재페이지
+	    model.addAttribute("wishList", memberService.wishlist_all(wvo));
 	    
-	    return "member/qna";
+//	    return "member/qna";
 	}
 	
 
@@ -259,6 +265,7 @@ public class MemberController {
 		
 		// 게시글 로딩
 		BoardVO result = boardService.qnaView(vo);
+		
 		
 		model.addAttribute("qna", result);
 		return "member/qnaview";
@@ -347,7 +354,7 @@ public class MemberController {
 	public List<WishListVO> wishlistAll(WishListVO vo) {
 		//System.out.println(vo.getM_id());
 		List<WishListVO> result = memberService.wishlist_all(vo);
-		System.out.println(result);
+//		System.out.println(result);
 		return result;
 	}
 	
@@ -406,7 +413,7 @@ public class MemberController {
 	// 장바구니 내역 보이기
 	@RequestMapping("/shoping-cart")
 	public void shoppingCart(CartViewVO vo, Model model, WishListVO wvo, MemberVO mvo) {
-		System.out.println(vo.toString());
+//		System.out.println(vo.toString());
 		model.addAttribute("shoppingCart",memberService.shopping_cart(vo));
 		model.addAttribute("wishList", memberService.wishlist_all(wvo));
 		model.addAttribute("point", memberService.member_point_detail(mvo));
@@ -416,9 +423,10 @@ public class MemberController {
 	@RequestMapping("/plusCartCnt")
 	@ResponseBody
 	public String plusCartCnt(CartVO vo) {
+//		System.out.println(vo.toString());
 		int result = memberService.plusCartCnt(vo);
 		String total = vo.getShopping_total();
-		System.out.println(total);
+//		System.out.println(total);
 		if(result == 1) {
 			return total;
 		} else {
@@ -432,12 +440,47 @@ public class MemberController {
 	public String minusCartCnt(CartVO vo) {
 		int result = memberService.minusCartCnt(vo);
 		String total = vo.getShopping_total();
-		System.out.println(total);
+//		System.out.println(total);
 		if(result == 1) {
 			return total;
 		} else {
 			return "no";
 		}
+	}
+	
+	// 장바구니 총합
+	@RequestMapping("/getCartTotal")
+	@ResponseBody
+	public String updateTotal(CartVO vo) {
+		String result = memberService.cartTotal(vo);
+//		System.out.println(result);
+		return result;
+	}
+	
+	// 주문 페이지로 갈 때 데이터 불러오기
+	@RequestMapping("/member-order")
+	public void order(CartViewVO wvo, Model model, @RequestParam String m_id, MemberVO mvo) {
+		System.out.println(m_id);
+		model.addAttribute("shoppingCart",memberService.shopping_cart(wvo));
+		model.addAttribute("member", memberService.memberInfo(mvo));
+		
+	}
+	private IamportClient api;
+	
+	public MemberController() {
+    	// REST API 키와 REST API secret 를 아래처럼 순서대로 입력한다.
+		this.api = new IamportClient("6256026187130804","6moL42tAiYn3MNwPOIvqFeEedcXOm8Hhth8ObKeVVA3Aw6wpIPCrVlplp6lZZaSoQve7XAWA7NwxvoZ3");
+	}
+		
+	@ResponseBody
+	@RequestMapping(value="/verifyIamport/{imp_uid}")
+	public IamportResponse<Payment> paymentByImpUid(
+			Model model
+			, Locale locale
+			, HttpSession session
+			, @PathVariable(value= "imp_uid") String imp_uid) throws IamportResponseException, IOException
+	{	
+			return api.paymentByImpUid(imp_uid);
 	}
 
 	

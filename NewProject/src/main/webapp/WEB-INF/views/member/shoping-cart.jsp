@@ -45,61 +45,97 @@
 <script src="../resources/main/jquery/jquery-3.2.1.min.js"></script>
 <script>
 $(function(){
+	var m_id = $('#m_id').val();
+	console.log(m_id);
 	//수량 + 버튼 클릭시 -> 총합 업데이트
-	$('.plus-button').on('click', function(){
-		// 옵션명
-		var o_name = $(this).parent().parents().find('#o_name').text()
-		// 개별 가격
-		var p_price = $(this).parent().parents().find('#p_price').text()
-		// 개별 수량
-		var cart_cnt = $(this).siblings('input').val();
-		// 총합
-		var shopping_total = $(this).parent().parents().find('#shopping_total').text()
-		
-		 // Ajax 요청을 보내서 서버에 수량 업데이트 요청
+	$('.plus-button').on('click', function() {
+	    // 옵션명
+	    var o_name = $(this).closest('tr').find('.column-2').text();
+	    // 개별 가격
+	    var p_price = parseFloat($(this).closest('tr').find('.column-3').text());
+	    // 개별 수량
+	    var cart_cnt = parseInt($(this).closest('tr').find('.num-product').val());
+	    // 총합
+	    var shopping_total = parseFloat($(this).closest('tr').find('.column-5').text());
+	
+	    // 총합 업데이트
+	    shopping_total = shopping_total + p_price;
+	    $(this).closest('tr').find('.column-5').text(shopping_total);
+	
+	    // Ajax 요청을 보내서 서버에 수량 업데이트 요청
 	    $.ajax({
 	        type: "POST",
 	        url: "plusCartCnt", // 서버의 컨트롤러 엔드포인트
-	        data: { o_name: o_name, cart_cnt: cart_cnt, shopping_total:shopping_total, p_price:p_price },
+	        data: { o_name: o_name, cart_cnt: cart_cnt, shopping_total: shopping_total, p_price: p_price, m_id:m_id },
 	        success: function(response) {
 	            // 서버에서 업데이트된 총합을 반환하면 화면에 업데이트
-	            // alert(response);
-	            location.reload(); 
-	            shopping_total.text(response);
-	        }
+	            $(this).closest('tr').find('.column-5').text(response);
+	            updateCartTotalAmount();
+	        }.bind(this)
 	    });
-		
-	})// + 버튼
+	});
+	
+	
+    
+	// + 버튼
 	// 수량 - 버튼 클릭시 -> 총합 업데이트
 		//수량 + 버튼 클릭시 -> 총합 업데이트
-	$('.minus-button').on('click', function(){
-		// 옵션명
-		var o_name = $(this).parent().parents().find('#o_name').text()
-		// 개별 가격
-		var p_price = $(this).parent().parents().find('#p_price').text()
-		// 개별 수량
-		var cart_cnt = $(this).siblings('input').val();
-		// 총합
-		var shopping_total = $(this).parent().parents().find('#shopping_total').text()
+	$('.minus-button').on('click', function() {
+    var o_name = $(this).closest('tr').find('.column-2').text();
+    var p_price = parseFloat($(this).closest('tr').find('.column-3').text());
+    var cart_cnt = parseInt($(this).closest('tr').find('.num-product').val());
+    var shopping_total = parseFloat($(this).closest('tr').find('.column-5').text());
+		console.log(cart_cnt)
+
+    shopping_total = shopping_total - p_price;
+    $(this).closest('tr').find('.num-product').val(cart_cnt);
+    $(this).closest('tr').find('.column-5').text(shopping_total);
+
+    if (cart_cnt >= 1) {
+        $.ajax({
+            type: "POST",
+            url: "minusCartCnt",
+            data: { o_name: o_name, cart_cnt: cart_cnt, shopping_total: shopping_total, p_price: p_price, m_id: m_id },
+            success: function(response) {
+                $(this).closest('tr').find('.column-5').text(response);
+                updateCartTotalAmount();
+            }.bind(this)
+        });
+    } else {
+        $(this).closest('tr').find('.num-product').val(1);
+        shopping_total = p_price;
+        $(this).closest('tr').find('.column-5').text(shopping_total);
+        updateCartTotalAmount();
+    }
+});
+		// 수량 - 끝
 		
-		 // Ajax 요청을 보내서 서버에 수량 업데이트 요청
+	// 총합계 구하기
+	// 합계 구하기
+	function updateCartTotalAmount() {
+	    var m_id = $('#m_id').val();
+
+	    // Ajax 요청을 보내서 서버에 장바구니 총합 요청
 	    $.ajax({
-	        type: "POST",
-	        url: "minusCartCnt", // 서버의 컨트롤러 엔드포인트
-	        data: { o_name: o_name, cart_cnt: cart_cnt, shopping_total:shopping_total, p_price:p_price },
+	        type: "post",
+	        url: "getCartTotal",
+	        data: { m_id: m_id },
 	        success: function(response) {
-	            // 서버에서 업데이트된 총합을 반환하면 화면에 업데이트
-	            // alert(response);
-	            location.reload(); 
-	            shopping_total.text(response);
+	            // 서버에서 계산된 총합을 받아와 화면에 업데이트
+	            $('#totalAmount').text(response.toFixed(0) + "원");
+	        },
+	        error: function(error) {
+	            console.log("Error fetching cart total:", error);
 	        }
 	    });
-		
-	})// + 버튼
+	}
+
+	// 장바구니 총합 업데이트 호출
+	updateCartTotalAmount();
+
 	
-	// Total 업데이트
 	
-})
+}); // 스크립트 끝
 
 </script>
 
@@ -232,7 +268,8 @@ $(function(){
 
 
 	<!-- Shoping Cart -->
-	<form class="bg0 p-t-75 p-b-85">
+	<form class="bg0 p-t-75 p-b-85" method="post" action="member-order">
+<input type="hidden" value="${sessionScope.logid }" id="m_id" name="m_id"/>
 		<div class="container">
 			<div class="row">
 				<div class="col-lg-10 col-xl-7 m-lr-auto m-b-50">
@@ -265,7 +302,7 @@ $(function(){
 												</div>
 	
 												<input class="mtext-104 cl3 txt-center num-product"
-													type="number" name="cart_cnt" value="${shopping.cart_cnt}" id="cart_cnt">
+													type="number" value="${shopping.cart_cnt}" id="cart_cnt">
 	
 												<div class="btn-num-product-up cl8 hov-btn3 trans-04 flex-c-m plus-button" id="plus">
 													<i class="fs-16 zmdi zmdi-plus"></i>
@@ -296,13 +333,11 @@ $(function(){
 							</div>
 
 							<div class="size-209 p-t-1">
-								<span class="mtext-110 cl2"> $79.65 </span>
+								<span id="totalAmount" class="mtext-110 cl2">0</span>
 							</div>
 						</div>
 
-						<button
-							class="flex-c-m stext-101 cl0 size-116 bg3 bor14 hov-btn3 p-lr-15 trans-04 pointer">
-							Proceed to Checkout</button>
+						<button type="submit" class="flex-c-m stext-101 cl0 size-116 bg3 bor14 hov-btn3 p-lr-15 trans-04 pointer">주문</button>
 					</div>
 				</div>
 			</div>

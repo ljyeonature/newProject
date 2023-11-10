@@ -12,6 +12,7 @@ import lombok.Data;
 public class ImageVO {			// 상품이미지	- image
 	
 	private String imgnum;		// 상품ID		- p_id
+	private String p_selid;
 	
 	private String img1_n;			// 상품이미지파일(업로드용)	- p_imgn
 	private String img1_rn;			// 상품이미지파일(실제파일명)		- p_imgrn

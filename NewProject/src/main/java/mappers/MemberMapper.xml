@@ -78,8 +78,8 @@
 	
 	<!-- 장바구니 추가 -->
 	<insert id="add_to_cart" parameterType="com.java.domain.CartVO">
-		INSERT INTO CART (m_id, cart_cnt, o_name, p_name, p_price, shopping_total) 
-		VALUES (#{m_id}, #{cart_cnt}, #{o_name}, #{p_name}, #{p_price}, #{cart_cnt}*#{p_price})
+		INSERT INTO CART (m_id, cart_cnt, p_optionID, o_name, p_name, p_price, shopping_total) 
+		VALUES (#{m_id}, #{cart_cnt}, #{p_optionID}, #{o_name}, #{p_name}, #{p_price}, #{cart_cnt}*#{p_price})
 	</insert>
 
 	<!-- 장바구니 내역 보이기 -->
@@ -93,28 +93,37 @@
 		WHERE m.m_id = #{m_id};
 	</select>	
 
-	<!-- 찜 중복 확인 -->
+	<!-- 장바구니 중복 확인 -->
 	<select id="alreadyInCartList" parameterType="com.java.domain.CartVO" resultType="int">
 	    SELECT 
 	      COUNT(*)
 	    FROM cart
-	    WHERE p_name = #{p_name}
+	    WHERE o_name = #{o_name} AND m_id=#{m_id}
 	</select>
 	
 	<!-- 장바구니 수량 올리기 -->
 	<update id="plusCartCnt" parameterType="com.java.domain.CartVO">
 		UPDATE cart 
 		SET cart_cnt=#{cart_cnt}, shopping_total=#{cart_cnt}*#{p_price} 
-		WHERE o_name=#{o_name}
+		WHERE o_name=#{o_name} AND m_id=#{m_id}
 	</update>
 	
 	<!-- 장바구니 수량 내리기 -->
 	<update id="minusCartCnt" parameterType="com.java.domain.CartVO">
 		UPDATE cart 
 		SET cart_cnt=#{cart_cnt}, shopping_total=#{cart_cnt}*#{p_price} 
-		WHERE o_name=#{o_name}
+		WHERE o_name=#{o_name} AND m_id=#{m_id}
 	</update>
 	
+	<!-- 장바구니 총합계 -->
+	<select id="cart_total" parameterType="com.java.domain.CartVO" resultType="String">
+		SELECT sum(shopping_total) cart_total FROM cart WHERE m_id=#{m_id}
+	</select>
+	
+	<!-- 세션 아이디에 해당하는 회원 정보 불러오기 : 주문서 -->
+	<select id="member-info" parameterType="com.java.domain.MemberVO" resultType="com.java.domain.MemberVO">
+		SELECT * FROM m_member WHERE m_id=#{m_id}
+	</select>
 	
 	
 	

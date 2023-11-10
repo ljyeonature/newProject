@@ -73,8 +73,6 @@ $(document).ready(function() {
 
 <body id="page-top">
 
-
-
    <!-- 사이드바  -->
    <%@ include file="/WEB-INF/views/admin/sidebar.jsp"%>
    <!-- TOP  -->
@@ -344,6 +342,7 @@ $(document).ready(function() {
 
 
    
+
 </body>
 </html>
 

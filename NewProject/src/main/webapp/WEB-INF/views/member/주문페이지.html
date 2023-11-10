@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>주문페이지</title>
+    <link rel="stylesheet" href="주문페이지.css">
+</head>
+<body>   
+    <div class="container">
+        <span class="header">
+        <h1>상품 주문서</h1>
+        </span>
+            <form>
+                <div class="container-top">
+                    <p><span class="container-top-title">배송지</span></p>
+                    <div class="top-radiobtn">
+                        <input type="radio" name="newship"> 회원정보와 동일
+                        <input type="radio" name="newship"> 새로운 배송지
+                    </div>
+                    <ul>
+                        <span style="line-height: 23px;">
+                            <li>
+                                <label for="oder_rc" class="oder_rc">받는사람</label>
+                                <input type="text" id="oder_rc" placeholder="여백없이 입력" required/>
+                            </li>
+                        <!-- ----------------------------------- -->
+                            <li>
+                                <label for="rc_addr" class="addr-top">주소</label>
+                                <div class="addr-top">
+                                    <tr>
+                                        <td>
+                                            <input type="text" id="rc_addr" placeholder="우편번호" required />
+                                        </td>
+                                        <td>
+                                            <a href="#"><input type="button" value="주소검색" class="rc_addr"/></a>
+                                        </td>
+                                    </tr>
+                                </div>
+                                <span style="line-height: 30px;">
+                                <input type="text" id="rc_addr_detail" placeholder="기본주소" required/>
+                                </span>
+                            </li>
+                            <li>
+                                <label for="rec_tel" class="rec_tel">연락처1</label>
+                                <input type="tel" id="rec_tel" required>
+                            </li>
+                            <li>
+                                <label for="rec_tel2" class="rec_tel2">연락처2</label>
+                                <input type="tel" id="rec_tel2" required>
+                            </li>
+                        </span>
+                    </ul>
+                </div>
+                <div class="container-middle">
+                    <p><span class="container-middle-title">주문정보</span></p>
+                        <table id="order_info">
+                            <tr>
+                                <th>PRODUCT</th>
+                                <th>PRICE</th>
+                                <th>QUANTITY</th>
+                                <th>TOTAL</th>
+                            </tr>
+                            <tr>
+                                <td>상품명1</td>
+                                <td>3.00</td>
+                                <td>2</td>
+                                <td>3.00</td>
+                            </tr>
+                            <tr>
+                                <td>상품명1</td>
+                                <td>15.00</td>
+                                <td>1</td>
+                                <td>15.00</td>
+                            </tr>
+                            <tr>
+                                <td colspan="4">
+                                    <div id="container2">
+                                        <div class="left">
+                                            <input type="text" class="left_text" value="Total:"/>
+                                        </div>
+                                        <div class="right">
+                                            <input type="text" class="right_text" value="">
+                                        </div>
+                                    </div>                                
+                                </td>
+                            </tr>                        
+                        </table><br/>
+                </div>
+
+                <div class="container-bottom">
+                    <p><span class="container-bottom-title">결제정보 및 수단</span></p>
+                        <div>
+                            <table class="container-bottom-table">
+                                <tr>
+                                    <td>
+                                        <label for="pay_by" id="pay_by">결제방법&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+                                        <select name="pay_by">
+                                            <option value="bank_acc">무통장입금</option>
+                                            <option value="card_acc">카드결제</option>
+                                        </select>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <span style="text-align: left; display:block; width:90px;"><label for="cashpay" id="cashpay">현금영수증</label></span>
+                                        
+                                    </td>
+                                </tr>
+
+                            </table>
+                        </div>
+                </div><br/>
+                <label id="agreement">
+                    <div class="agreement">
+                        <input type="checkbox"/> 주문내용을 확인하였으며 약관에 동의합니다.
+                    </div>
+                </label>
+
+                <div class="btn" style="padding-top:3px;">
+                    <input type="submit" value="결제하기">
+                    <input type="reset" value="다시작성">
+                </div>
+            </form>
+        </div>
+    </div>
+</body>

@@ -115,6 +115,10 @@
 		WHERE o_name=#{o_name}
 	</update>
 	
+	<!-- 장바구니 총합계 -->
+	<select id="cart_total" parameterType="com.java.domain.CartVO" resultType="String">
+		SELECT sum(shopping_total) cart_total FROM cart WHERE m_id=#{m_id};
+	</select>
 	
 	
 	

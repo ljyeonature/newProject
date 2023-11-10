@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 
 import com.java.domain.FstDivVO;
 import com.java.domain.ImageVO;
+import com.java.domain.OptionFinalVO;
 import com.java.domain.OptionVO;
 import com.java.domain.ProductVO;
 import com.java.domain.SndDivVO;
@@ -117,17 +118,39 @@ public class ProductDAOImpl implements ProductDAO{
 		return result;
 	}
 	
+
+
+	   // 관리자페이지 수정 버튼 클릭 후 상품정보 불러오기 *상철
+  @Override
+ public ProductVO productView(ProductVO vo) {
+    return sqlSession.selectOne("org.java.ProductMapper.productView",vo);
+ }
+
+	// 옵션
+	@Override
+	public List<OptionVO> product_option(OptionVO vo){
+		List<OptionVO> result =  sqlSession.selectList("org.java.ProductMapper.product_option", vo);
+		System.out.println(result);
+		return result;
+		
+	}
+
+
+	// 옵션 등록
+	@Override
+	public int insertProduct(OptionFinalVO vo) {
+		int result = sqlSession.insert("org.java.ProductMapper.insert_option", vo);
+		return result;
+	}
+	
 	// 상품삭제
 	@Override
 	public int deleteProduct(ProductVO vo) {
-	      System.out.println("ProductDAOimpl vo:" + vo);
-	      return sqlSession.delete("org.java.ProductMapper.deleteProduct", vo);
-	   }
+      System.out.println("ProductDAOimpl vo:" + vo);
+      return sqlSession.delete("org.java.ProductMapper.deleteProduct", vo);
+   }
+	
 
-	   // 관리자페이지 수정 버튼 클릭 후 상품정보 불러오기 *상철
-	   public ProductVO productView(ProductVO vo) {
-	      return sqlSession.selectOne("org.java.ProductMapper.productView",vo);
-	   }
 
 
 	
