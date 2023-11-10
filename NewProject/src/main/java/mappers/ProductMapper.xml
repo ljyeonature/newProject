@@ -22,7 +22,7 @@
 	<!-- 상품 이미지 등록 -->
 	<insert id="uploadImage" parameterType="com.java.domain.ImageVO">
     INSERT INTO image (
-    imgnum,
+    p_selid,
         img1_n, img1_rn, img1_sz,
         img2_n, img2_rn, img2_sz,
         img3_n, img3_rn, img3_sz,
@@ -32,7 +32,7 @@
         img7_n, img7_rn, img7_sz,
         img8_n, img8_rn, img8_sz
     ) VALUES (
-    6,
+    #{p_selid},
         #{img1_n}, #{img1_rn}, #{img1_sz},
         #{img2_n}, #{img2_rn}, #{img2_sz},
         #{img3_n}, #{img3_rn}, #{img3_sz},

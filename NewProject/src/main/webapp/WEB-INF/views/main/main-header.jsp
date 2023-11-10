@@ -19,12 +19,9 @@
 			<div class="menu-desktop">
 				<ul class="main-menu">
 				<c:if test="${empty sessionScope.logid }">
-					<li class="active-menu"><a href="home">Home</a>
-						<ul class="sub-menu">
-							<li><a href="home">Homepage 1</a></li>
-							<li><a href="home-02">Homepage 2</a></li>
-							<li><a href="home-03">Homepage 3</a></li>
-						</ul></li>
+					<li class="active-menu">
+					<a href="home">Home</a>
+						</li>
 
 					<li><a href="product">Shop</a></li>
 
@@ -35,11 +32,7 @@
 				</c:if>
 				<c:if test="${not empty sessionScope.logid }">
 					<li class="active-menu"><a href="home?m_id=${sessionScope.logid }">Home</a>
-						<ul class="sub-menu">
-							<li><a href="home">Homepage 1</a></li>
-							<li><a href="home-02">Homepage 2</a></li>
-							<li><a href="home-03">Homepage 3</a></li>
-						</ul></li>
+					</li>
 
 					<!-- 찜 상품이 있으면.. -->
 					<li><a href="product?m_id=${sessionScope.logid }">Shop</a></li>
@@ -89,66 +82,7 @@
 						</script>
 					
 					</c:if>
-						<c:if test="${ not empty sessionScope.logname }">
-					
-						<script type="text/javascript">
-							$(function(){
-								/* $('#shopping-cart').click(function(event){
-									 event.preventDefault();
-									alert("로그인 후 이용해주세요.");
-								}); */
-								
-				/* 				$('#wishlist').click(function(event){
-									 event.preventDefault();
-									var logid = $('#logid').val();
-									//console.log(logid);
-									 $.ajax({
-										type:"post",
-										data:{m_id : logid},
-										url:'wishlist_all',
-										success: function(result){
-											 // Wishlist 컨테이너 엘리먼트를 찾거나 생성
-								            var wishlistContainer = $(".header-cart-wrapitem");
-
-
-								            // 받아온 Wishlist 데이터를 순회하며 항목 추가
-								            $.each(result, function(index, item) {
-								                // 각 항목을 나타내는 HTML 생성
-								                var wishlistItem = 
-								                    '<li class="header-cart-item flex-w flex-t m-b-12" data-p_selid="' + item.p_selid + '">' +
-								                        '<div class="header-cart-item-img">' +
-								                            '<img src="../resources/productImages/'+item.p_imgrn + '" alt="IMG">' +
-								                        '</div>' +
-								                        '<div class="header-cart-item-txt p-t-8">' +
-								                            '<a href="#" class="header-cart-item-name m-b-18 hov-cl1 trans-04">' +
-								                                item.p_name +
-								                            '</a>' +
-								                            '<span class="header-cart-item-info">' +
-								                                item.p_price +
-								                            '</span>' +
-								                        '</div>' +
-								                    '</li>';
-
-								                // 중복 항목을 추가하지 않도록 확인
-								                if (!wishlistContainer.find("li[data-p_selid='" + item.p_selid + "']").length) {
-								                    // Wishlist 컨테이너에 항목 추가
-								                    wishlistContainer.append(wishlistItem);
-								                }
-								            });
-										},
-										error : function(err) {
-											console.log(err);
-										}
-										
-										
-									 }) */
-								/* }); */
-									
-							});
-							
-						</script>
-					
-					</c:if>
+				
 				</div>
 		</nav>
 	</div>

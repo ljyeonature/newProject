@@ -255,7 +255,7 @@ h4, h6 {
 
 							<tr class="table_row">
 								<td class="column-1">
-									<a href="member-order">
+									<a href="#">
 										<img src="../resources/main/images/order.png" alt="IMG">
 										<h4>ORDER</h4>
 										<h6>주문정보</h6>

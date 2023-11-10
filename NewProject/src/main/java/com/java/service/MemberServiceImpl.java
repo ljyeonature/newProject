@@ -155,6 +155,18 @@ public class MemberServiceImpl implements MemberService{
 		int result = memberDAOImpl.minusCartCnt(vo);
 		return result;
 	}
+
+	@Override
+	public String cartTotal(CartVO vo) {
+		String result = memberDAOImpl.cartTotal(vo);
+		return result;
+	}
+
+	@Override
+	public MemberVO memberInfo(MemberVO vo) {
+		MemberVO result = memberDAOImpl.memberInfo(vo);
+		return result;
+	}
 	
 	
 	

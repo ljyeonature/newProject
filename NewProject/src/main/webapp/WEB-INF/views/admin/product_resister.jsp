@@ -68,7 +68,6 @@ body {
 						cellspacing="0">
 						<form name="fsearch" id="fsearch" method="post"
 							enctype="multipart/form-data" action="product_insert">
-							<input type="hidden" name="code" value="list">
 							<div class="tbl_frm01">
 								<table>
 									<colgroup>
@@ -477,25 +476,13 @@ body {
 																onclick="chk_simg_type(1);"> <label
 																for="simg_type_2">URL 입력</label></td>
 														</tr>
+
 														<tr class="item_img_fld">
-															<th scope="row">이미지1 <span class="fc_197">(400
+															<th scope="row">대표이미지<span class="fc_197">(400
 																	* 400)</span> <strong class="fc_red">[필수]</strong></th>
 															<td>
 																<div class="item_file_fld">
 																	<input type="file" name="file" id="file">
-																</div>
-																<div class="item_url_fld" style="display: none;">
-																	<input type="text" name="simg1" value=""
-																		class="frm_input" size="80" placeholder="http://">
-																</div>
-															</td>
-														</tr>
-														<tr class="item_img_fld">
-															<th scope="row">이미지1 <span class="fc_197">(400
-																	* 400)</span> <strong class="fc_red">[필수]</strong></th>
-															<td>
-																<div class="item_file_fld">
-																	<input type="file" name="file">
 																</div>
 																<div class="item_url_fld" style="display: none;">
 																	<input type="text" name="simg1" value=""
@@ -544,8 +531,7 @@ body {
 								<div class="table-responsive">
 									<table class="table table-bordered" id="dataTable" width="100%"
 										cellspacing="0">
-										<!--  <form name="fsearch" id="fsearch" method="get"> -->
-										<input type="hidden" name="code" value="list">
+										<form name="fsearch" id="fsearch" method="post" enctype="multipart/form-data">
 										<div class="tbl_frm01">
 											<table>
 												<colgroup>
@@ -563,11 +549,11 @@ body {
 															<tbody>
 
 																<tr class="item_img_fld">
-																	<th scope="row">이미지2 <span class="fc_197">(400
+																	<th scope="row">물고기옵션1 <span class="fc_197">(400
 																			* 400)</span> <strong class="fc_red">[필수]</strong></th>
 																	<td>
 																		<div class="item_file_fld">
-																			<input type="file" name="file">
+																			<input type="file" name="file1">
 																		</div>
 																		<div class="item_url_fld" style="display: none;">
 																			<input type="text" name="simg1" value=""
@@ -576,11 +562,11 @@ body {
 																	</td>
 																</tr>
 																<tr class="item_img_fld">
-																	<th scope="row">이미지3 <span class="fc_197">(400
+																	<th scope="row">물고기옵션2 <span class="fc_197">(400
 																			* 400)</span> <strong class="fc_red">[필수]</strong></th>
 																	<td>
 																		<div class="item_file_fld">
-																			<input type="file" name="file">
+																			<input type="file" name="file2">
 																		</div>
 																		<div class="item_url_fld" style="display: none;">
 																			<input type="text" name="simg1" value=""
@@ -589,11 +575,76 @@ body {
 																	</td>
 																</tr>
 																<tr class="item_img_fld">
-																	<th scope="row">이미지4 <span class="fc_197">(400
+																	<th scope="row">물고기옵션3<span class="fc_197">(400
 																			* 400)</span> <strong class="fc_red">[필수]</strong></th>
 																	<td>
 																		<div class="item_file_fld">
-																			<input type="file" name="file">
+																			<input type="file" name="file3">
+																		</div>
+																		<div class="item_url_fld" style="display: none;">
+																			<input type="text" name="simg1" value=""
+																				class="frm_input" size="80" placeholder="http://">
+																		</div>
+																	</td>
+																</tr>
+																<tr class="item_img_fld">
+																	<th scope="row">물고기옵션4 <span class="fc_197">(400
+																			* 400)</span> <strong class="fc_red">[필수]</strong></th>
+																	<td>
+																		<div class="item_file_fld">
+																			<input type="file" name="file4">
+																		</div>
+																		<div class="item_url_fld" style="display: none;">
+																			<input type="text" name="simg1" value=""
+																				class="frm_input" size="80" placeholder="http://">
+																		</div>
+																	</td>
+																</tr>
+																<tr class="item_img_fld">
+																	<th scope="row">물고기옵션5 <span class="fc_197">(400
+																			* 400)</span> <strong class="fc_red">[필수]</strong></th>
+																	<td>
+																		<div class="item_file_fld">
+																			<input type="file" name="file5">
+																		</div>
+																		<div class="item_url_fld" style="display: none;">
+																			<input type="text" name="simg1" value=""
+																				class="frm_input" size="80" placeholder="http://">
+																		</div>
+																	</td>
+																</tr>
+																<tr class="item_img_fld">
+																	<th scope="row">상세정보 <span class="fc_197">(400
+																			* 400)</span> <strong class="fc_red">[필수]</strong></th>
+																	<td>
+																		<div class="item_file_fld">
+																			<input type="file" name="file6">
+																		</div>
+																		<div class="item_url_fld" style="display: none;">
+																			<input type="text" name="simg1" value=""
+																				class="frm_input" size="80" placeholder="http://">
+																		</div>
+																	</td>
+																</tr>
+																<tr class="item_img_fld">
+																	<th scope="row">폐사보상규정 <span class="fc_197">(400
+																			* 400)</span> <strong class="fc_red">[필수]</strong></th>
+																	<td>
+																		<div class="item_file_fld">
+																			<input type="file" name="file7">
+																		</div>
+																		<div class="item_url_fld" style="display: none;">
+																			<input type="text" name="simg1" value=""
+																				class="frm_input" size="80" placeholder="http://">
+																		</div>
+																	</td>
+																</tr>
+																<tr class="item_img_fld">
+																	<th scope="row">폐사확인사항 <span class="fc_197">(400
+																			* 400)</span> <strong class="fc_red">[필수]</strong></th>
+																	<td>
+																		<div class="item_file_fld">
+																			<input type="file" name="file8">
 																		</div>
 																		<div class="item_url_fld" style="display: none;">
 																			<input type="text" name="simg1" value=""
@@ -615,13 +666,14 @@ body {
 												id="image_insert">
 
 										</div>
-
+</form>
 									</table>
 								</div>
 								</section>
 
 							</div>
 						</div>
+						
 
 
 
@@ -848,6 +900,43 @@ body {
          });// ajax  
          
       });// 상품 등록
+      
+      
+      // 이미지 등록
+      $('#image_insert').click(function(e) {
+    	    e.preventDefault(); // 폼 제출 방지
+
+    	    var imgData = new FormData();
+    	    var p_selid = $('#p_selid').val();
+
+    	    for (var i = 1; i <= 8; i++) {
+    	        var fieldName = 'file' + i;
+    	        var fileInput = document.querySelector('input[name="' + fieldName + '"]');
+    	        var file = fileInput.files[0]; // 실제 파일 객체 가져오기
+    	        if (file) {
+    	        	imgData.append(fieldName, file); // 이미지 파일 추가
+    	        }
+    	    }
+    	    imgData.append('p_selid', p_selid);
+
+    	    $.ajax({
+    	        url: 'upload-image', // 실제 서버 엔드포인트 URL로 대체
+    	        type: 'POST',
+    	        data: imgData,
+    	        processData: false,
+    	        contentType: false,
+    	        success: function(response) {
+    	            if (response === "ok") {
+    	                alert(response);
+    	            } else {
+    	                alert(response);
+    	            }
+    	        },
+    	        error: function(err) {
+    	            console.log(err);
+    	        }
+    	    });
+    	}); // 이미지 insert
 
       var selectedOptionId = []; // 변수를 미리 정의
       var selectedp_selid = [];
@@ -908,7 +997,7 @@ body {
             contentType: "application/json", // JSON 데이터를 전송하는 경우 content type을 설정
             url: 'insert_option', // 옵션 등록을 처리할 URL로 변경
             success: function(response) {
-                alert(response);
+                //alert(response);
                 // 성공 시 어떤 동작을 수행할 수 있습니다.
             },
             error: function(err) {

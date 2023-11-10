@@ -63,7 +63,8 @@ $(function(){
 $(".js-addcart-detail").on("click", function() {
     var productName = $(".p_name").text();
     var productPrice = $(".p_price").text();
-    var selectedOption = $("select#o_name option:selected").text();
+    var selectedOption = $("select#p_optionID option:selected").val();
+    var selectedName = $("select#p_optionID option:selected").text();
     var numProduct    = $(".num-product").val();
     var m_id = $('#logid').val();
 	//alert(numProduct);
@@ -74,7 +75,8 @@ $(".js-addcart-detail").on("click", function() {
     var cartData = {
         p_name: productName,
         p_price: productPrice,
-        o_name: selectedOption,
+        o_name: selectedName,
+        p_optionID : selectedOption,
         cart_cnt : numProduct,
         m_id:m_id
         
@@ -334,9 +336,9 @@ $(".js-addcart-detail").on("click", function() {
 
 								<div class="size-204 respon6-next">
 									<div class="rs1-select2 bor8 bg0">
-										<select class="js-select2" name="o_name" id="o_name">
+										<select class="js-select2" name="p_optionID" id="p_optionID">
 									<c:forEach items="${productOption }" var="option">
-											<option value="${option.o_name }">${option.o_name }</option>
+											<option value="${option.p_optionID }">${option.o_name }</option>
 										
 									</c:forEach>
 										</select>
@@ -360,11 +362,23 @@ $(".js-addcart-detail").on("click", function() {
 											<i class="fs-16 zmdi zmdi-plus"></i>
 										</div>
 									</div>
-
+								<c:if test="${not empty sessionScope.logid }">
 									<button
 										class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04 js-addcart-detail">
 										Add to cart
 									</button>
+								</c:if>
+								<c:if test="${empty sessionScope.logid }">
+									<button
+										class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04 js-addcart-detail">
+										Add to cart
+									</button>
+									<script>
+										$('.js-addcart-detail').click(function(){
+											alert("로그인 후 가능한 서비스입니다.")
+										});
+									</script>
+								</c:if>
 								</div>
 							</div>
 						</div>

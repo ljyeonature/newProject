@@ -61,5 +61,11 @@ public interface MemberService {
 	
 	// 장바구니 수량 내리기
 	public int minusCartCnt(CartVO vo);
+	
+	// 장바구니 총합
+	public String cartTotal(CartVO vo);
+	
+	// 세션 아이디에 해당하는 회원정보 가져오기
+	public MemberVO memberInfo(MemberVO vo);
 		
 }

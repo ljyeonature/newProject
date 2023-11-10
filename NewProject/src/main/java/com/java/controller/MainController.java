@@ -50,7 +50,6 @@ public class MainController {
 	// 상품 페이지
 	@RequestMapping("/product")
 	public void product_all(ProductVO vo, Model model) {
-		System.out.println(1);
 		model.addAttribute("productAll",productService.product_all(vo));
 	}
 

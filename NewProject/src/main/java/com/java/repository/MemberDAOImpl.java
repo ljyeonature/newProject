@@ -178,10 +178,18 @@ public class MemberDAOImpl implements MemberDAO{
 	}
 
 
+	// 장바구니 총합
 	@Override
 	public String cartTotal(CartVO vo) {
-		// TODO Auto-generated method stub
-		return null;
+		String result = sqlSession.selectOne("org.java.MemberMapper.cart_total", vo);
+		//System.out.println("DAO" + result);
+		return result;
+	}
+	
+	// 세션 아이디에 해당하는 회원정보 가져오기
+	public MemberVO memberInfo(MemberVO vo) {
+		MemberVO result = sqlSession.selectOne("org.java.MemberMapper.member-info", vo);
+		return result;
 	}
 	
 
