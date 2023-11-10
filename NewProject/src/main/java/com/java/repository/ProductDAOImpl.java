@@ -47,6 +47,36 @@ public class ProductDAOImpl implements ProductDAO{
 		return sqlSession.selectList("org.java.ProductMapper.selectTrdCate",vo);
 	}
 
+	
+	//-------------------------------------------------------------
+	//------------------상철이형---------------------------------------
+	//상품등록수정
+	
+	   // 대분류
+    @Override
+    public List<FstDivVO> select_FstCate2(FstDivVO vo) {
+       return sqlSession.selectList("org.java.ProductMapper.selectFstCate2",vo);
+    }
+    
+    
+
+    // 중분류
+    @Override
+    public List<SndDivVO> select_SndCate2(SndDivVO vo) {
+       return sqlSession.selectList("org.java.ProductMapper.selectSndCate2",vo);
+    }
+
+
+
+    // 소분류
+    @Override
+    public List<TrdDivVO> select_TrdCate2(TrdDivVO vo) {
+       return sqlSession.selectList("org.java.ProductMapper.selectTrdCate2",vo);
+    }
+	
+	
+	//-------------------------------------------------------------
+	//------------------상철이형---------------------------------------
 
 	// 상품 등록
 	@Override
@@ -88,6 +118,14 @@ public class ProductDAOImpl implements ProductDAO{
 		return result;
 	}
 	
+
+
+	   // 관리자페이지 수정 버튼 클릭 후 상품정보 불러오기 *상철
+  @Override
+ public ProductVO productView(ProductVO vo) {
+    return sqlSession.selectOne("org.java.ProductMapper.productView",vo);
+ }
+
 	// 옵션
 	@Override
 	public List<OptionVO> product_option(OptionVO vo){
@@ -112,9 +150,6 @@ public class ProductDAOImpl implements ProductDAO{
       return sqlSession.delete("org.java.ProductMapper.deleteProduct", vo);
    }
 	
-	
-
-
 
 
 

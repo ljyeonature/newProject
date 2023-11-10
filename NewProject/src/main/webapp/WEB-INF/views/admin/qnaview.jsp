@@ -20,6 +20,20 @@
 <meta name="author" content="">
 
 <title>전체회원관리</title>
+<!-- 제이쿼리CDN -->
+<script src="https://code.jquery.com/jquery-latest.min.js"></script>
+<!-- JS -->
+<script type="text/javascript">
+   $(function() {
+      $("#delete-button").click(function(){
+          if (confirm("해당 게시물을 삭제하시겠습니까?")) {
+			alert("삭제되었습니다.");
+      	} else {
+			// 사용자가 "취소"를 클릭한 경우 추가 동작을 수행하거나 아무것도 하지 않을 수 있습니다.
+      	}
+      });
+   });
+</script>
 
 <!-- Custom fonts for this template-->
 <link href="../resources/admin/vendor/fontawesome-free/css/all.min.css"
@@ -56,8 +70,11 @@
         	<label for="inquiry_select">Q&A유형</label>
             <input type="text" id="q_import_product" name="q_import_product" value="${qnacontent.q_inquiry}" readonly>
             <hr/>
-            <label for="type_select">구매제품</label>
-            <input type="text" id="q_import_product" name="q_import_product" value="" readonly>
+            <label for="type_select">세부유형, 제품선택</label>
+            <div style="display: flex;">
+            	<input type="text" id="q_import_product" name="p_inq_type" value="${qnacontent.p_inq_type}" readonly>
+            	<input type="text" id="q_import_product" name="q_import_product" value="" readonly>
+            </div>
             <hr/>
             <label for="title">Q&A제목</label>
             <input type="text" id="q_import_title" name="q_import_title" value="${qnacontent.q_title}" required readonly>
@@ -75,7 +92,9 @@
         
         <div class="button-container">
             <a class="list-button" href="qna">목록</a>
-            <a class="edit-button" href="qnaeditForm_do?q_postnum=${qnacontent.q_postnum}">답글 작성 및 수정</a>
+            
+           	<a class="re_edit-button" href="qnaeditForm_do?q_postnum=${qnacontent.q_postnum}">답글 작성 및 수정</a>
+			<a class="cancel-button" id="delete-button" href="qnadelete_do?q_postnum=${qnacontent.q_postnum}">삭제</a>
         </div>
     </div>
 </form>

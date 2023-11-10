@@ -44,7 +44,7 @@
 
 	
 	<!-- Header -->
-	<header>
+	<header class="header-v4">
 	<div class="container-menu-desktop">
 		<!-- Header desktop -->
 		<%@include file="../main/top-bar.jsp" %>

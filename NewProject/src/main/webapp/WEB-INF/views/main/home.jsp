@@ -42,7 +42,7 @@
 <body class="animsition">
 	
 	<!-- Header -->
-	<header>
+	<header class="header-v4">
 	<div class="container-menu-desktop">
 		<!-- Header desktop -->
 		<%@include file="top-bar.jsp" %>

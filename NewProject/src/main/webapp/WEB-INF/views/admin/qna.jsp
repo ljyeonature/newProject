@@ -19,7 +19,7 @@
 <meta name="description" content="">
 <meta name="author" content="">
 
-<title>전체회원관리</title>
+<title>qna게시물관리</title>
 
 <!-- Custom fonts for this template-->
 <link href="../resources/admin/vendor/fontawesome-free/css/all.min.css"
@@ -101,26 +101,27 @@
 									<table class="table table-bordered" id="dataTable" width="100%"
 										cellspacing="0">
 										<thead>
-										<label>Show <select name="dataTable_length" aria-controls="dataTable" class="custom-select custom-select-sm form-control form-control-sm">
-								<option value="10">10</option>
-								<option value="25">25</option>
-								<option value="50">50</option>
-								<option value="100">100</option>
-								</select> </label>
+										
 											<tr role="row">
 										<th class="sorting sorting_asc" tabindex="0"
 											aria-controls="dataTable" rowspan="1" colspan="1"
 											aria-sort="ascending"
 											aria-label="Name: activate to sort column descending"
-											style="width: 130px;">글 번호</th>
+											style="width: 10px; text-align: center;">번호</th>
 										<th class="sorting" tabindex="0" aria-controls="dataTable"
-											rowspan="1" colspan="1" style="width: 130px;">제목</th>
+											rowspan="1" colspan="1" style="width: 20px; text-align: center;">문의유형</th>
 										<th class="sorting" tabindex="0" aria-controls="dataTable"
-											rowspan="1" colspan="1" style="width: 130px;">작성자</th>
+											rowspan="1" colspan="1" style="width: 20px; text-align: center;">세부유형</th>
 										<th class="sorting" tabindex="0" aria-controls="dataTable"
-											rowspan="1" colspan="1" style="width: 130px;">작성일</th>
+											rowspan="1" colspan="1" style="width: 150px; text-align: center;">제목</th>
 										<th class="sorting" tabindex="0" aria-controls="dataTable"
-											rowspan="1" colspan="1" style="width: 130px;">조회</th>
+											rowspan="1" colspan="1" style="width: 250px; text-align: center;">내용</th>
+										<th class="sorting" tabindex="0" aria-controls="dataTable"
+											rowspan="1" colspan="1" style="width: 20px; text-align: center;">작성자</th>
+										<th class="sorting" tabindex="0" aria-controls="dataTable"
+											rowspan="1" colspan="1" style="width: 20px; text-align: center;">작성일</th>
+										<th class="sorting" tabindex="0" aria-controls="dataTable"
+											rowspan="1" colspan="1" style="width: 20px; text-align: center;">조회</th>
 									</tr>
 										</thead>
 
@@ -128,11 +129,14 @@
 											<c:forEach items="${qnaList}" var="boardd">
 
 										<tr>
-											<td>${boardd.q_postnum}</td>
-											<td><a href="qnaview_do?q_postnum=${boardd.q_postnum}">${boardd.q_title}</a></td>
-											<td>${boardd.m_id}</td>
-											<td>${boardd.q_date}</td>
-											<td>${boardd.q_count}</td>
+											<td style="text-align: center;"><a href="qnaview_do?q_postnum=${boardd.q_postnum}">${boardd.q_postnum}</a></td>
+											<td style="text-align: center;">${boardd.q_inquiry}</td>
+											<td style="text-align: center;">${boardd.p_inq_type}</td>
+											<td style="text-align: center;"><a href="qnaview_do?q_postnum=${boardd.q_postnum}">${boardd.q_title}</a></td>
+											<td style="text-align: center;">${boardd.q_content}</td>
+											<td style="text-align: center;">${boardd.m_id}</td>
+											<td style="text-align: center;">${boardd.q_date}</td>
+											<td style="text-align: center;">${boardd.q_count}</td>
 
 										</tr>
 

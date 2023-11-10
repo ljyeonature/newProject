@@ -20,5 +20,8 @@ public interface BoardService {
 	
 	//QnA게시글 수정할때 비밀번호 비교
 	int checkQpass(BoardVO vo);
+	
+	//QnA게시글 관리자 페이지에서 삭제
+	public void deleteQna(BoardVO vo);
 
 }

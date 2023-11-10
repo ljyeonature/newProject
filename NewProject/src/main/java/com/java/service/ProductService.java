@@ -38,6 +38,21 @@ public interface ProductService {
 	// 상품 상세 정보 옵션 가져오기
 	public List<OptionVO> product_option(String p_selid);
 	
+	
+//	-------------------상철-------------------------------
+	
+	
+	//// 대분류 정보 가져오기2
+	public List<FstDivVO> select_FstCate2(FstDivVO vo);
+	// 중분류 정보 가져오기2
+	public List<SndDivVO> select_SndCate2(SndDivVO vo);
+	// 소분류 정보 가져오기2
+	public List<TrdDivVO> select_TrdCate2(TrdDivVO vo);
+	// 카테고리 불러오기
+	public ProductVO productView(ProductVO vo);
+	
+//	-------------------상철-------------------------------
+
 	//옵션 조회
 	public List<OptionVO> product_option(OptionVO vo);
 	
@@ -46,5 +61,6 @@ public interface ProductService {
 	
 	// 상품 삭제
 	public int deleteProduct(ProductVO vo);
+
 	
 }

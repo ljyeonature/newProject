@@ -37,17 +37,6 @@
 <!-- JS -->
 <script type="text/javascript">
 	$(document).ready(function() {
-	    $(".re_add-button").click(function(event) {
-	        var adminPassword = $("#adminPassword").val();
-
-	        if (adminPassword === "") {
-	            alert("관리자 비밀번호를 입력하세요.");
-	            event.preventDefault();
-	        } else if (adminPassword !== "1234") {
-	            alert("비밀번호가 일치하지 않습니다.");
-	            event.preventDefault();
-	        }
-	    });
 	    
 	    $(".edit-button").click(function(e){
 	         e.preventDefault();
@@ -277,8 +266,9 @@
     <br/>
     <div class="addcontainer">
         
-            <label for="type_select">제품선택</label>
-            <input type="text" id="q_import_product" name="q_import_product" value="" required readonly>
+            <label for="type_select">세부유형, 제품선택</label>
+            	<input type="text" id="q_import_product" name="p_inq_type" value="${qna.p_inq_type}" readonly>
+            	<input type="text" id="q_import_product" name="q_import_product" value="" readonly>
             
             <label for="title">제목</label>
             <input type="text" id="q_import_title" name="q_import_title" value="${qna.q_title}" required readonly>

@@ -60,9 +60,9 @@ form {
     margin: 0 20px; /* 요소 사이의 간격을 조절 */
 }
 
-form#first{
+/* form#first{
 	padding-left : 250px
-}
+} */
 
 div#point {
 	margin-top:30px;
@@ -75,7 +75,7 @@ td > a > img {
 	width:100px;
 	height:100px;
 }
-h4, h6 {
+.start h4, h6 {
 	width:100px;
 	text-align : center;
 	justify-content: center;
@@ -89,7 +89,7 @@ h4, h6 {
 <body class="animsition">
 
 	<!-- Header -->
-	<header class="header-v4">
+	<header>
 		<!-- Header desktop -->
 		<div class="container-menu-desktop">
 			<!-- Header desktop -->
@@ -199,6 +199,12 @@ h4, h6 {
 	<!-- Cart -->
 	<%@include file="../main/wishlist.jsp" %>
 
+	<!-- Title page -->
+	<section class="bg-img1 txt-center p-lr-15 p-tb-92" style="background-image: url('../resources/main/images/bg-02.jpg');">
+		<h2 class="ltext-105 cl0 txt-center">
+			MyPage
+		</h2>
+	</section>
 
 	<!-- breadcrumb -->
 	<div class="container">
@@ -219,6 +225,8 @@ h4, h6 {
 	</div>
 
 	<!-- Shoping Cart -->
+	
+	<div class="start" style="display: flex; justify-content: center; align-items: center;">
 	<form class="bg0 p-t-75 p-b-85" id="first">
 		<div class="container">
 			<div class="row">
@@ -311,7 +319,7 @@ h4, h6 {
 									<a href="re-ex">
 										<img src="../resources/main/images/re-ex.png" alt="IMG">
 										<h4>RE/EX</h4>
-										<h6>교환/환불</h6>
+										<h6>환불/교환</h6>
 									</a>
 									
 								
@@ -325,7 +333,7 @@ h4, h6 {
 			</div>
 		</div>
 	</form>
-
+</div>
 
 
 

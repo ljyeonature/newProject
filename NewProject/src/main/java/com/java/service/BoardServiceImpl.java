@@ -46,5 +46,10 @@ public class BoardServiceImpl implements BoardService{
 	public int checkQpass(BoardVO vo) {
 		return boardDAOImpl.checkQpass(vo);
 	}
+	
+	//QnA게시글 관리자페이지에서 삭제
+	public void deleteQna(BoardVO vo) {
+		boardDAOImpl.deleteQna(vo);
+	}
 
 }
