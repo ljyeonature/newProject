@@ -25,6 +25,62 @@
 <!-- Custom styles for this template-->
 <link href="../resources/admin/css/sb-admin-2.min.css" rel="stylesheet">
 
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="../resources/main/jquery/jquery-3.2.1.min.js"></script>
+<script>
+
+$(function(){
+	var jsonData = ${json}
+	var jsonObject = JSON.stringify(jsonData);
+	var jData = JSON.parse(jsonObject);
+			
+	var labelList = new Array();
+	var valueList = new Array();
+	var colorList = new Array();
+			
+	for(var i = 0; i<jData.length; i++) {
+		var d = jData[i];
+		labelList.push(d.Fstdivname);
+		valueList.push(d.Count);
+		colorList.push(colorize());
+	}
+			
+			
+	var data = {
+					labels: labelList,
+					datasets: [{
+							backgroundColor: colorList,
+							data : valueList
+					}],
+					options : {
+							title : {
+							display : true,
+							text: '대분류 별 주문회수'
+							}
+					}
+	};
+			
+	var ctx1 = document.getElementById('logNameChart').getContext('2d');
+	new Chart(ctx1, {
+		      type: 'pie',
+			  data: data
+	});
+	
+	function colorize() {
+		var r = Math.floor(Math.random()*200);
+		var g = Math.floor(Math.random()*200);
+		var b = Math.floor(Math.random()*200);
+		var color = 'rgba(' + r + ', ' + g + ', ' + b + ', 0.7)';
+		return color;
+	}
+});
+
+
+
+
+
+</script>
+
 
 </head>
 
@@ -75,10 +131,6 @@
 				class="fas fa-download fa-sm text-white-50"></i> Generate Report</a>
 		</div>
 
-		<!-- Content Row -->
-		<div class="row">
-
-
 			<!-- Content Row -->
 
 			<div class="row">
@@ -96,7 +148,7 @@
 						</div>
 					</div>
 				</div>
-			</div>
+			
 
 			<!-- Pie Chart -->
 			<div class="col-xl-4 col-lg-5">
@@ -104,7 +156,7 @@
 					<!-- Card Header - Dropdown -->
 					<div
 						class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-						<h6 class="m-0 font-weight-bold text-primary">Revenue Sources</h6>
+						<h6 class="m-0 font-weight-bold text-primary">카테고리별 주문 내역</h6>
 						<div class="dropdown no-arrow">
 							<a class="dropdown-toggle" href="#" role="button"
 								id="dropdownMenuLink" data-toggle="dropdown"
@@ -125,17 +177,9 @@
 					<!-- Card Body -->
 					<div class="card-body">
 						<div class="chart-pie pt-4 pb-2">
-							<canvas id="myPieChart"></canvas>
+							<canvas id="logNameChart"></canvas>
 						</div>
-						<div class="mt-4 text-center small">
-							<span class="mr-2"> <i class="fas fa-circle text-primary"></i>
-								Direct
-							</span> <span class="mr-2"> <i class="fas fa-circle text-success"></i>
-								Social
-							</span> <span class="mr-2"> <i class="fas fa-circle text-info"></i>
-								Referral
-							</span>
-						</div>
+						
 					</div>
 				</div>
 			</div>

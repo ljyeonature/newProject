@@ -955,6 +955,7 @@ body {
   	  		  //alert(response);
   	  		  
   	  		var dataContainer = $("#option_item");
+  	  	dataContainer.empty();
 
   	  	// JSON 데이터를 반복하여 화면에 추가
   	  	$.each(response, function(index, item) {

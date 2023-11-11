@@ -1,5 +1,6 @@
 package com.java.controller;
 
+import java.util.Iterator;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -15,9 +16,13 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.google.gson.Gson;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonObject;
 import com.java.domain.BoardVO;
 import com.java.domain.FstDivVO;
 import com.java.domain.ImageVO;
+import com.java.domain.LogVO;
 import com.java.domain.MemberVO;
 import com.java.domain.OptionFinalVO;
 import com.java.domain.OptionVO;
@@ -57,14 +62,37 @@ public class AdminController {
 
 		return "/main/home";
 	}
+	
+	//------------------------------------------차트--------------------------------- 
 
 	// 관리자 홈에서 회원 정보 불러오기
 	@RequestMapping("/admin-index")
-	public void memeber_dash(MemberVO vo, Model model) {
-		System.out.println("Controller : " + vo.toString());
-		System.out.println("controller : " + memberService.member_dash(vo));
+	public void memeber_dash(MemberVO mvo, Model model, LogVO vo) {
+		System.out.println("Controller : " + mvo.toString());
+		System.out.println("controller : " + memberService.member_dash(mvo));
+		
+		List<LogVO> logNameList = memberService.fstOrder(vo);
+		
+		Gson gson = new Gson();
+		JsonArray jArray = new JsonArray();
+		
+		Iterator<LogVO> it = logNameList.iterator();
+		while(it.hasNext()) {
+			LogVO curVO = it.next();
+			JsonObject object = new JsonObject();
+			String fstdivname = curVO.getFstdivname();
+			int cnt = Integer.parseInt(curVO.getCnt());
+			
+			object.addProperty("Fstdivname", fstdivname);
+			object.addProperty("Count", cnt);
+			jArray.add(object);
+		}
+		
+		String json = gson.toJson(jArray);
+		System.out.println(json);
+		model.addAttribute("json", json);
 
-		model.addAttribute("memberList", memberService.member_dash(vo));
+		model.addAttribute("memberList", memberService.member_dash(mvo));
 
 	}
 	// 전체 관리자 홈에서 회원 정보 불러오기
@@ -186,7 +214,10 @@ public class AdminController {
 		}
 
 	}
+	
 
+	
+	
 
 	//-----------------------------------------------------------------------------------------------------
 	//----------------------------------------여기서부터 관리자 QnA-----------------------------------

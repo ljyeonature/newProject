@@ -161,6 +161,16 @@
 		DELETE FROM cart WHERE m_id = #{m_id}
 	</delete>
 	
+	<!-- 주문 내역 리스트 대분류 별 구매 내역 -->
+	<select id="fstOrder" parameterType="com.java.domain.LogVO" resultType="com.java.domain.LogVO">
+		SELECT f.fstdivname fstdivname, count(*) AS cnt 
+		FROM order_item oi INNER JOIN p_option po ON oi.p_optionID = po.p_optionID 
+		INNER JOIN trddiv t ON po.trddivid = t.trddivid 
+		INNER JOIN snddiv s ON t.snddivid  = s.snddivid 
+		INNER JOIN fstdiv f ON s.fstdivid  = f.fstdivid
+		WHERE SUBSTRING(oi.p_optionID, 1, 1) = f.fstdivid
+		GROUP BY f.fstdivname;
+	</select>
 	
 	
 </mapper>

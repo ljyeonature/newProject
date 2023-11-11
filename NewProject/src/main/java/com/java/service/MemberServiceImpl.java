@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.java.domain.CartVO;
 import com.java.domain.CartViewVO;
+import com.java.domain.LogVO;
 import com.java.domain.MemberVO;
 import com.java.domain.OrderItemVO;
 import com.java.domain.OrderVO;
@@ -200,10 +201,17 @@ public class MemberServiceImpl implements MemberService{
 		return result;
 	}
 
-	
+	// 장바구니 삭제 : 주문 후 모두 삭제
 	@Override
 	public int cartAllDelete(CartVO vo) {
 		int result = memberDAOImpl.cartAllDelete(vo);
+		return result;
+	}
+	
+	// 대분류 별 주문 내역
+	@Override
+	public List<LogVO> fstOrder(LogVO vo) {
+		List<LogVO> result = memberDAOImpl.fstOrder(vo);
 		return result;
 	}
 	

@@ -5,6 +5,7 @@ import java.util.List;
 
 import com.java.domain.CartVO;
 import com.java.domain.CartViewVO;
+import com.java.domain.LogVO;
 import com.java.domain.MemberVO;
 import com.java.domain.OrderItemVO;
 import com.java.domain.OrderVO;
@@ -87,5 +88,8 @@ public interface MemberDAO {
 	public int removeCartItem(CartVO vo);
 	
 	// 결제 후 장바구니 삭제
-	public int cartAllDelete(CartVO vo); 
+	public int cartAllDelete(CartVO vo);
+	
+	// 대분류 별 주문
+	public List<LogVO> fstOrder(LogVO vo); 
 }

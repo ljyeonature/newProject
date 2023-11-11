@@ -8,11 +8,11 @@ import org.springframework.stereotype.Repository;
 
 import com.java.domain.CartVO;
 import com.java.domain.CartViewVO;
+import com.java.domain.LogVO;
 import com.java.domain.MemberVO;
 import com.java.domain.OrderItemVO;
 import com.java.domain.OrderVO;
 import com.java.domain.PayInfoVO;
-import com.java.domain.ProductVO;
 import com.java.domain.WishListVO;
 
 //### (1) 해당 어노테이션 지정
@@ -227,6 +227,12 @@ public class MemberDAOImpl implements MemberDAO{
 	@Override
 	public int cartAllDelete(CartVO vo) {
 		return sqlSession.delete("org.java.MemberMapper.cartAllDelete", vo);
+	}
+	
+	// 차트 : 대분류 별 주문 내역
+	@Override
+	public List<LogVO> fstOrder(LogVO vo){
+		return sqlSession.selectList("org.java.MemberMapper.fstOrder", vo);
 	}
 
 	 
