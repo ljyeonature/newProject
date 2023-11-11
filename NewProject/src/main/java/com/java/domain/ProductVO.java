@@ -17,8 +17,11 @@ public class ProductVO {			// 상품
 	private String p_description;	// 상품상세설명			- p_description
 	private String p_care;			// 상품사육방법설명		- p_care
 	private String p_imgn;			// 상품이미지파일(업로드용)	- p_imgn
-	private String p_imgrn;			// 상품이미지파일(실제파일명)		- p_imgrn
+	private String p_imgrn;			// 상품이미지파일(실제파일명)	- p_imgrn
 	private long   p_imgsz;			// 상품이미지파일(파일크기)	- p_imgsz
+	private String m_id;
+	private String fstdivid;		// F / D /E
+	private String search;     		// 검색어
 	
 	//*************************************************
 

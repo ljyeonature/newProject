@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -215,6 +216,30 @@ public class AdminController {
 
 	}
 	
+	// 옵션 재고등록
+	@RequestMapping(value="/update_stock")
+	@ResponseBody
+	public void updateOption(@RequestBody OptionFinalVO vo) {
+		System.out.println("insert_stock 진입" + vo.toString());
+		int result = productService.updateOption(vo);
+		
+	}
+	
+	//옵션 재고 내역 불러오기
+	@RequestMapping(value="/product_stock_res")
+	public void opcollect(OptionFinalVO vo, Model model) {
+//		System.out.println(vo.getP_selid());
+		List<OptionFinalVO> result = productService.opcollect(vo);
+				System.out.println(result.toString());
+		model.addAttribute("product_stock_res", productService.opcollect(vo) );
+	}
+	
+	//재고관리에 등록된 상품 불러오기
+	@RequestMapping("/product_stock")
+	public void product_optionList(ProductVO vo, Model model) {
+		model.addAttribute("product_stock", productService.product_optionList(vo));
+	}
+
 
 	
 	

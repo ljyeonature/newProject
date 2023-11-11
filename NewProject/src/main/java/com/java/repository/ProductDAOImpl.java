@@ -10,6 +10,7 @@ import com.java.domain.FstDivVO;
 import com.java.domain.ImageVO;
 import com.java.domain.OptionFinalVO;
 import com.java.domain.OptionVO;
+import com.java.domain.OrderVO;
 import com.java.domain.ProductVO;
 import com.java.domain.SndDivVO;
 import com.java.domain.TrdDivVO;
@@ -101,6 +102,13 @@ public class ProductDAOImpl implements ProductDAO{
 		
 		return sqlSession.selectList("org.java.ProductMapper.product_all", vo);
 	}
+	
+	// 대분류 검색 - 물고기
+	@Override
+	public List<ProductVO> fishAll(ProductVO vo) {
+		List<ProductVO> result = sqlSession.selectList("org.java.ProductMapper.fishAll", vo);
+		return result;
+	}
 
 	// 상품 상세정보 보기
 	@Override
@@ -134,6 +142,15 @@ public class ProductDAOImpl implements ProductDAO{
 		return result;
 		
 	}
+	
+	// stock 옵션 띄우
+	@Override
+	public List<OptionVO> stock_option(OptionVO vo){
+		List<OptionVO> result =  sqlSession.selectList("org.java.ProductMapper.product_option", vo);
+		System.out.println(result);
+		return result;
+		
+	}
 
 
 	// 옵션 등록
@@ -143,12 +160,51 @@ public class ProductDAOImpl implements ProductDAO{
 		return result;
 	}
 	
+	//옵션 재고 등록
+	@Override
+	public int updateOption(OptionFinalVO vo) {
+		int result = sqlSession.insert("org.java.ProductMapper.update_stock", vo);
+		System.out.println(result);
+
+		return result;
+	}
+	
+	
+	//옵션 재고 내역 띄우기
+	@Override
+	public List<OptionFinalVO> opcollect(OptionFinalVO vo){
+		List<OptionFinalVO> result =  sqlSession.selectList("org.java.ProductMapper.opcollect", vo);
+
+		return result;
+	}
+	
+	
+	//재고관리에 등록된 상품 불러오기
+	@Override
+	public List<ProductVO> product_optionList(ProductVO vo){
+		List<ProductVO> result =  sqlSession.selectList("org.java.ProductMapper.product_optionList", vo);
+		System.out.println(result);
+		return result;
+
+	}
+	
 	// 상품삭제
 	@Override
 	public int deleteProduct(ProductVO vo) {
       System.out.println("ProductDAOimpl vo:" + vo);
       return sqlSession.delete("org.java.ProductMapper.deleteProduct", vo);
    }
+
+	
+	//주문게시판 리스트 불러오기
+	@Override
+	public List<OrderVO> order_all(OrderVO vo){
+		return sqlSession.selectList("org.java.ProductMapper.order_all",vo);
+	}
+
+
+
+	
 	
 
 

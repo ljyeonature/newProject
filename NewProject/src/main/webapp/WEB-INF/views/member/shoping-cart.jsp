@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<title>Shoping Cart</title>
+<title>장바구니</title>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <!--===============================================================================================-->
@@ -324,7 +324,7 @@ $(function(){
 									<th class="column-1">Product</th>
 									<th class="column-2"></th>
 									<th class="column-3">Price</th>
-									<th class="column-4">Quantity</th>
+									<th class="column-4"  style="text-align: center;">>Quantity</th>
 									<th class="column-5">Total</th>
 								</tr>
 								<!-- 장바구니 리스트 -->

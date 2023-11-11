@@ -43,12 +43,47 @@
         #{img8_n}, #{img8_rn}, #{img8_sz}
     )
 </insert>
-	
+
+
 	<!-- product_all에 들어갔을 때 상품 등록 정보 불러오기  -->
 	<select id="product_all" resultType="com.java.domain.ProductVO">
 		SELECT * FROM p_product
+		
+		<choose>
+		
+			<when test="search != null">
+				p_name LIKE CONCAT('%', #{search}, '%')
+				OR p_price LIKE CONCAT('%', #{search}, '%')
+				OR p_description LIKE CONCAT('%', #{search}, '%')
+				OR p_care LIKE LIKE CONCAT('%', #{search}, '%')
+			</when>
+			<otherwise>
+			WHERE 1 = 1
+			</otherwise>
+		
+		</choose>
 	
 	</select>
+	
+	<!-- product_all에 들어갔을 때 상품 등록 정보 불러오기  -->
+	<select id="fishAll" resultType="com.java.domain.ProductVO">
+    SELECT * FROM p_product
+    WHERE
+    <choose>
+        <when test='fstdivid.equals("F")'>
+            SUBSTRING(p_selid, 1, 1) = #{fstdivid}
+        </when>
+        <when test='fstdivid.equals("D")'>
+            SUBSTRING(p_selid, 1, 1) = #{fstdivid}
+        </when>
+        <when test='fstdivid.equals("E")'>
+            SUBSTRING(p_selid, 1, 1) = #{fstdivid}
+        </when>
+        <otherwise>
+            1=1
+        </otherwise>
+    </choose>
+</select>
 	
 	
 	<!-- product_resister에 들어갔을 때, 분류 정보 불러오기 -->
@@ -95,6 +130,14 @@
 		WHERE trddiv.TRDDIVID = #{p_selid}
 	</select>
 	
+	<!-- product_stock_res 옵션 정보 불러오기 -->
+   <select id="stock_option" parameterType="com.java.domain.OptionVO" resultType="com.java.domain.OptionVO">
+         SELECT p_option.P_OPTIONID ,p_option.o_name
+      FROM p_option INNER JOIN trddiv 
+      ON p_option.trddivid = trddiv.trddivid
+      WHERE trddiv.TRDDIVID = #{trddivid}
+   </select>
+	
 
 	<!-- 옵션 등록 -->
 	<insert id="insert_option" parameterType="com.java.domain.OptionFinalVO">
@@ -102,12 +145,38 @@
 		INSERT INTO final_op (p_optionID, p_selid) VALUES (#{p_optionID}, #{p_selid})
 	</insert>
 	
+	<!-- 옵션재고 등록 -->
+<!-- <insert id ="insert_stock" parameterType="com.java.domain.OptionFinalVO">
+   		UPDATE FINAL_OP 
+		SET p_stock = #{p_stock}
+		WHERE p_optionID = #{p_optionID};
+   </insert>  -->
+   
+   <update id="update_stock" parameterType="com.java.domain.OptionFinalVO">
+	    UPDATE FINAL_OP 
+	    SET p_stock = #{p_stock}
+	    WHERE p_optionID = #{p_optionID};
+	</update> 
+	
+	<!-- 재고 수정 눌렀을때 재고 내역뜨게 하기 -->
+	<select id="opcollect" parameterType="com.java.domain.OptionFinalVO" resultType="com.java.domain.OptionFinalVO">
+		SELECT fo.p_stock p_stock, fo.p_optionID p_optionID, o.o_name o_name
+		FROM FINAL_OP fo inner join p_option o
+		on fo.p_optionID = o.p_optionID
+		WHERE fo.p_selid = #{p_selid}; 
+	</select>
+	
 
 	<!-- product_all에서 체크박스 누르고 삭제 시 해당 컬럼 내용 삭제하기  -->
    <delete id="deleteProduct" parameterType="com.java.domain.ProductVO">
       DELETE FROM p_product
       WHERE p_selid = #{p_selid}
    </delete>
+   
+    <!-- 제품 등록한거 불러오기  -->
+   <select id="product_optionList" parameterType="com.java.domain.ProductVO" resultType="com.java.domain.ProductVO">
+   	SELECT * FROM P_PRODUCT;
+   </select>
 
    
       <!-- 상품정보수정 카테고리 로드 *상철 -->
@@ -120,5 +189,9 @@
 
    </select> 
 
+ <!--  주문목록리스트 불러오기  -->
+<select id="order_all" parameterType="com.java.domain.OrderVO" resultType="com.java.domain.OrderVO">
+SELECT * FROM o_order WHERE m_id = #{m_id}
+</select>
 
 </mapper>

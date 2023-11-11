@@ -262,14 +262,14 @@ input#pay_acc {
             var selectedPaymentMethod = $('select[name="pay_by"]').val();
 
             // 무통장입금인 경우 계좌번호 입력 창 보이게
-            if (selectedPaymentMethod === 'bank_acc') {
+            if (selectedPaymentMethod === '무통장입금') {
                 $('#bankAccountInput').show();
             } else {
                 $('#bankAccountInput').hide();
             }
 
             // 현금영수증 선택 라디오 버튼 보이게
-            if (selectedPaymentMethod === 'card_acc') {
+            if (selectedPaymentMethod === '카드결제') {
                 $('#cashReceiptInput').hide();
             } else {
                 $('#cashReceiptInput').show();
@@ -512,8 +512,8 @@ input#pay_acc {
 		                <td>
 		                    <label for="pay_by" id="pay_by">결제방법</label>
 		                    <select name="pay_by">
-		                        <option id="bank_acc" value="bank_acc">무통장입금</option>
-		                        <option id="card_acc" value="card_acc" selected>카드결제</option>
+		                        <option id="bank_acc" value="무통장입금">무통장입금</option>
+		                        <option id="card_acc" value="카드결제" selected>카드결제</option>
 		                    </select>
 		                </td>
 		            </tr>

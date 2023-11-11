@@ -9,6 +9,7 @@ import com.java.domain.FstDivVO;
 import com.java.domain.ImageVO;
 import com.java.domain.OptionFinalVO;
 import com.java.domain.OptionVO;
+import com.java.domain.OrderVO;
 import com.java.domain.ProductVO;
 import com.java.domain.SndDivVO;
 import com.java.domain.TrdDivVO;
@@ -70,6 +71,15 @@ public class ProductServiceImpl implements ProductService{
 		return productDAOImpl.product_all(vo);
 		
 	}
+	
+	// 대분류 검색 - 물고기
+	@Override
+	public List<ProductVO> fishAll(ProductVO vo) {
+		List<ProductVO> result = productDAOImpl.fishAll(vo);
+		return result;
+	}
+	
+	
 	// 상품 상세정보
 	@Override
 	public ProductVO product_detail(String p_selid) {
@@ -97,6 +107,30 @@ public class ProductServiceImpl implements ProductService{
 	@Override
 	public int insertProduct(OptionFinalVO vo) {
 		return productDAOImpl.insertProduct(vo);
+	}
+	
+	// 옵션 조회
+	@Override
+	public List<OptionVO> stock_option(OptionVO vo) {
+		return productDAOImpl.stock_option(vo);
+	}
+	
+	// 옵션재고등록
+	@Override
+	public int updateOption(OptionFinalVO vo) {
+		return productDAOImpl.updateOption(vo);
+	}
+			
+	//옵션 재고 내역 불러오기
+	@Override
+	public List<OptionFinalVO> opcollect(OptionFinalVO vo){
+		return productDAOImpl.opcollect(vo);
+	}
+	
+	//재고관리에 등록된 상품 불러오기
+	@Override
+	public List<ProductVO> product_optionList(ProductVO vo){
+		return productDAOImpl.product_optionList(vo);
 	}
 	
 	// 상품 삭제
@@ -128,10 +162,24 @@ public class ProductServiceImpl implements ProductService{
  }
 
  // 수정페이지 카테고리 불러오기
+ @Override
  public ProductVO productView(ProductVO vo){
      return productDAOImpl.productView(vo);
  }
+
+
+
+
+
 	
 //------------------------상철----------------------------------
-	
+ //주문조회게시판 목록 불러오기
+ public List<OrderVO> order_all(OrderVO vo){
+	 List<OrderVO> result = productDAOImpl.order_all(vo);
+	 return result;
+ }	
+ 
+ 
+ 
+ 
 }

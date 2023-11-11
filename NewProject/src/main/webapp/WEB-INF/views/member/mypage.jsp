@@ -60,14 +60,8 @@ form {
     margin: 0 20px; /* 요소 사이의 간격을 조절 */
 }
 
-/* form#first{
-	padding-left : 250px
-} */
 
 div#point {
-	margin-top:30px;
-	margin-bottom:30px;
-	margin-right : 300px;
     display: flex;
     justify-content: flex-end;
 }
@@ -82,17 +76,8 @@ td > a > img {
 	align-content: center;
 }
 
+ 
 </style>
-
-<script type="text/javascript">
-
-$('.pointButton').on('click', function(){
-	
-	
-	
-})
-
-</script>
 
 </head>
 <body class="animsition">
@@ -224,14 +209,7 @@ $('.pointButton').on('click', function(){
 		</div>
 	</div>
 
-	<div class="flex-w flex-m m-r-20 m-tb-5" id="point">
-		<input class="stext-104 cl2 plh4 size-117 bor13 p-lr-20 m-r-10 m-tb-5"
-			type="text" name="coupon" placeholder="POINT" value="${member.m_point }">
 
-		<div
-			class="flex-c-m stext-101 cl2 size-118 bg8 bor13 hov-btn3 p-lr-15 trans-04 pointer m-tb-5 pointButton">
-			Your Point</div>
-	</div>
 
 	<!-- Shoping Cart -->
 	
@@ -246,7 +224,7 @@ $('.pointButton').on('click', function(){
 							
 							<tr class="table_row">
 								<td class="column-1">
-									<a href="member-info?m_id=${sessionScope.logname }">
+									<a href="member-info?m_id=${sessionScope.logid }">
 										<img src="../resources/main/images/member.png" alt="IMG">
 										<h4>MEMBER</h4>
 										<h6>회원정보</h6>
@@ -272,7 +250,7 @@ $('.pointButton').on('click', function(){
 
 							<tr class="table_row">
 								<td class="column-1">
-									<a href="#">
+									<a href="order_search?m_id=${sessionScope.logid}">
 										<img src="../resources/main/images/order.png" alt="IMG">
 										<h4>ORDER</h4>
 										<h6>주문정보</h6>
@@ -315,7 +293,17 @@ $('.pointButton').on('click', function(){
 			</div>
 		</div>
 	</form>
-	<form class="bg0 p-t-75 p-b-85">
+	<form class="bg0 p-t-75 p-b-85" style="padding-top: 10px;">
+	
+			<div class="flex-w flex-m m-r-20 m-tb-5" id="point" style="margin-right: 2px;">
+		<input class="stext-104 cl2 plh4 size-117 bor13 p-lr-20 m-r-10 m-tb-5"
+			type="text" name="coupon" placeholder="POINT" value="${member.m_point}" readonly style="text-align: center; width: 160px;">
+
+		<div
+			class="flex-c-m stext-101 cl2 size-118 bg8 bor13 hov-btn3 p-lr-15 trans-04 pointer m-tb-5"  style="min-width: 100px !important;">
+			Point</div>
+	</div>
+	
 		<div class="container">
 			<div class="row">
 

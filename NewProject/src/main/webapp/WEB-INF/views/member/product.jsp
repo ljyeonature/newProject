@@ -155,7 +155,53 @@
 
 
 		/*---------------------------------------------*/
-	
+		
+	function appendProduct(product) {
+    const html = `
+        <div class="col-sm-6 col-md-4 col-lg-3 p-b-35 isotope-item">
+            <div class="block2">
+                <div class="block2-pic hov-img0">
+                    <img src="../resources/productImages/${product.p_imgrn}" alt="IMG-PRODUCT">
+                    <a href="product_quickview?p_selid=${product.p_selid}" class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1 quickView">Quick View</a>
+                </div>
+                <div class="block2-txt flex-w flex-t p-t-14">
+                    <div class="block2-txt-child1 flex-col-l ">
+                        <a href="product-detail?m_id=${sessionScope.logid}&p_selid=${product.p_selid}" class="stext-104 cl4 hov-cl1 trans-04 p-b-6" id="p_name">${product.p_name}</a>
+                        <input type="hidden" value="${product.p_selid}" id="p_selid" class="js-selid-b2">
+                        <input type="hidden" value="${product.p_name}" id="p_selid" class="js-name-b2">
+                        <input type="hidden" value="${product.p_price}" id="p_price" class="js-price-b2">
+                        <input type="hidden" value="${product.p_imgrn}" id="p_imgrn" class="js-img-b2">
+                        <span class="stext-105 cl3" id="p_price">${product.p_price}원</span>
+                    </div>
+                    <div class="block2-txt-child2 flex-r p-t-3">
+                        <div class="btn-addwish-b2 dis-block pos-relative js-addwish-b2">
+                            <img class="icon-heart1 dis-block trans-04" src="../resources/main/images/icons/icon-heart-01.png" alt="ICON" id="empty-heart">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    `;
+    $('.isotope-grid').append(html);
+}
+		
+
+	 	$('.filter-tope-group button').on('click', function(){
+	 		 var fstdivid = $(this).data('filter');
+	 		 $.ajax({
+	 			 type : 'post',
+	 			 data : {fstdivid : fstdivid},
+	 			 dataType :'JSON',
+	 			 url : 'fishAll',
+	 			 success : function(response){
+	 				$('.isotope-grid').empty();
+	 				 for (var i = 0; i < response.length; i++) {
+	 					 console.log(response[i]);
+	 	                appendProduct(response[i]);
+	 	            }
+	 			 }
+	 		 }); // ajax
+	 	});// 클릭 시
 
 	}); // end
 	
@@ -280,6 +326,11 @@
 	</c:if>
 	
 	<input type="hidden" value="${sessionScope.logid }" id="logid"/>
+	<input type="hidden" value="${product.p_selid }" id="p_selid" class="js-selid-b2">
+	<input type="hidden" value="${product.p_name }" id="p_selid" class="js-name-b2">
+	<input type="hidden" value="${product.p_price }" id="p_price" class="js-price-b2">
+	<input type="hidden" value="${product.p_imgrn }" id="p_imgrn" class="js-img-b2">
+	
 
 	<!-- Title page -->
 	<section class="bg-img1 txt-center p-lr-15 p-tb-92" style="background-image: url('../resources/main/images/bg-01.jpg');">
@@ -295,22 +346,17 @@
 				<div class="flex-w flex-l-m filter-tope-group m-tb-10">
 					<button
 						class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5 how-active1"
-						data-filter="*">All Products</button>
+						data-filter="A">All Products</button>
+
+					<button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5" id="F"
+						data-filter="F">물고기</button>
 
 					<button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5"
-						data-filter=".women">Women</button>
+						data-filter="D">조경용품</button>
 
 					<button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5"
-						data-filter=".men">Men</button>
+						data-filter="E">기타용품</button>
 
-					<button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5"
-						data-filter=".bag">Bag</button>
-
-					<button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5"
-						data-filter=".shoes">Shoes</button>
-
-					<button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5"
-						data-filter=".watches">Watches</button>
 				</div>
 
 				<div class="flex-w flex-c-m m-tb-10">
@@ -335,12 +381,12 @@
 				<!-- Search product -->
 				<div class="dis-none panel-search w-full p-t-10 p-b-15">
 					<div class="bor8 dis-flex p-l-15">
-						<button class="size-113 flex-c-m fs-16 cl2 hov-cl1 trans-04">
+						<button class="size-113 flex-c-m fs-16 cl2 hov-cl1 trans-04" id="search_btn">
 							<i class="zmdi zmdi-search"></i>
 						</button>
 
 						<input class="mtext-107 cl2 size-114 plh2 p-r-15" type="text"
-							name="search-product" placeholder="Search">
+							name="search" placeholder="Search">
 					</div>
 				</div>
 
@@ -459,13 +505,13 @@
 			</div>
 			
 			
-<!-- 상품 불러오기 -->
+		<!-- 상품 불러오기 -->
 			<div class="row isotope-grid">
 			
 			<c:forEach items="${productAll }" var="product">
 			
-			
-				<div class="col-sm-6 col-md-4 col-lg-3 p-b-35 isotope-item women">
+				
+				<div class="col-sm-6 col-md-4 col-lg-3 p-b-35 isotope-item *">
 					<!-- Block2 -->
 					<div class="block2">
 						<div class="block2-pic hov-img0">
@@ -480,10 +526,7 @@
 								<a href="product-detail?m_id=${sessionScope.logid }&p_selid=${product.p_selid }" class="stext-104 cl4 hov-cl1 trans-04 p-b-6" id="p_name">
 									${product.p_name }
 								</a> 
-								<input type="hidden" value="${product.p_selid }" id="p_selid" class="js-selid-b2">
-								<input type="hidden" value="${product.p_name }" id="p_selid" class="js-name-b2">
-								<input type="hidden" value="${product.p_price }" id="p_price" class="js-price-b2">
-								<input type="hidden" value="${product.p_imgrn }" id="p_imgrn" class="js-img-b2">
+								
 								<span class="stext-105 cl3" id="p_price"> ${product.p_price }원</span>
 							</div>
 
@@ -502,13 +545,18 @@
 						</div>
 					</div>
 				</div>
+				
+				
+				
 			
 			</c:forEach>
 
+			</div>
+			
 			
 			
 			</div>
-
+	
 			<!-- Load more -->
 			<div class="flex-c-m flex-w w-full p-t-45">
 				<a href="#"
@@ -516,7 +564,6 @@
 					Load More </a>
 			</div>
 		</div>
-	</div>
 
 
 	<!-- Footer -->

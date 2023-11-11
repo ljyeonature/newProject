@@ -49,6 +49,10 @@
 		<url-pattern>/*</url-pattern>
 	</filter-mapping>
 	
-	
+	<!--  에러추가  -->
+<error-page>
+	<error-code>404</error-code>
+	<location>/error</location>
+</error-page>
 
 </web-app>

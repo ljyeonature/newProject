@@ -142,10 +142,10 @@
 	<insert id="insertPayInfo" parameterType="com.java.domain.PayInfoVO">
 		INSERT INTO pay_info (o_id, pay_by, pay_acc, pay_amount, m_name) 
 	    VALUES 
-	    <if test="pay_by == 'card_acc'">
+	    <if test="pay_by == '카드결제'">
 	        (#{o_id}, #{pay_by}, 0 ,#{pay_amount}, #{m_name})
 	    </if>
-	    <if test="pay_by == 'bank_acc'">
+	    <if test="pay_by == '무통장입금'">
 	        (#{o_id}, #{pay_by}, #{pay_acc}, #{pay_amount}, #{m_name})    
 	    </if>
 	</insert>

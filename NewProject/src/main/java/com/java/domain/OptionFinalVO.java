@@ -9,5 +9,6 @@ public class OptionFinalVO {		// 파이널옵션			-final_op
 	private String p_selid;			// 판매게시물상품 ID	- p_selid
 	private String p_optionID;		// 상품ID(최종)		- p_option
 	private String o_name;
+	private String p_stock;
 
 }

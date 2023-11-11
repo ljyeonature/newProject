@@ -19,6 +19,7 @@ import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -309,15 +310,35 @@ public class MemberController {
 			  return "fail";
 			  }
 	  }
+	  
+	//마이페이지 주문 목록조회
+	@RequestMapping("/order_search")
+	public void order_all(OrderVO vo, Model model) {
+		List<OrderVO> order = productService.order_all(vo);
+		model.addAttribute("orderList", order);
+	}
 	
 	@Autowired
 	ProductServiceImpl productService;
 	
 	// 상품 보여주기
-	@RequestMapping("/product")
-	public void productAll(ProductVO vo, Model model, WishListVO wvo) {
-		model.addAttribute("productAll",productService.product_all(vo));
-		model.addAttribute("wishList", memberService.wishlist_all(wvo));
+		@RequestMapping("/product")
+		public void product_all(ProductVO vo, Model model, WishListVO wvo) {
+
+			model.addAttribute("productAll",productService.product_all(vo));
+			model.addAttribute("wishList", memberService.wishlist_all(wvo));
+		}
+	
+
+	
+	// 대분류 검색 - 물고기
+	@RequestMapping("/fishAll")
+	@ResponseBody
+	public List<ProductVO> fishAll(ProductVO vo, Model model) {
+		System.out.println("alreadyInCartList : "+ vo.toString());
+		List<ProductVO> result = productService.fishAll(vo);
+		System.out.println("alreadyInCartList : "+ result.toString());
+		return result;
 	}
 	
 	
@@ -540,7 +561,7 @@ public class MemberController {
 		// 결제 완료 후 : 장바구니 삭제
 		memberService.cartAllDelete(vo);
 		
-		return "member/order-detail";
+		return "member/my-page/order_search?m_id=" + ovo.getM_id();
 		
 	}
 	
