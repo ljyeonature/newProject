@@ -10,6 +10,7 @@ import com.java.domain.FstDivVO;
 import com.java.domain.ImageVO;
 import com.java.domain.OptionFinalVO;
 import com.java.domain.OptionVO;
+import com.java.domain.OrderVO;
 import com.java.domain.ProductVO;
 import com.java.domain.SndDivVO;
 import com.java.domain.TrdDivVO;
@@ -149,6 +150,12 @@ public class ProductDAOImpl implements ProductDAO{
       System.out.println("ProductDAOimpl vo:" + vo);
       return sqlSession.delete("org.java.ProductMapper.deleteProduct", vo);
    }
+	
+	//주문게시판 리스트 불러오기
+	@Override
+	public List<OrderVO> order_all(OrderVO vo){
+		return sqlSession.selectList("org.java.ProductMapper.order_all",vo);
+	}
 	
 
 

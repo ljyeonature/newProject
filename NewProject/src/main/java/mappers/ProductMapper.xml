@@ -119,6 +119,10 @@
     ORDER BY p_selid DESC
 
    </select> 
-
+   
+   <!--  주문목록리스트 불러오기  -->
+<select id="order_all" parameterType="com.java.domain.OrderVO" resultType="com.java.domain.OrderVO">
+SELECT * FROM o_order WHERE m_id = #{m_id}
+</select>
 
 </mapper>

@@ -309,6 +309,13 @@ public class MemberController {
 			  return "fail";
 			  }
 	  }
+	  
+		//마이페이지 주문 목록조회
+		@RequestMapping("/order_search")
+		public void order_all(OrderVO vo, Model model) {
+			List<OrderVO> order = productService.order_all(vo);
+			model.addAttribute("orderList", order);
+		}
 	
 	@Autowired
 	ProductServiceImpl productService;

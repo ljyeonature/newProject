@@ -88,15 +88,15 @@ function getCookie(cookieName) {
 				<div class="col-lg-6">
 					<div class="login_box_img" id="login_box">
 						<div class="hover">
-							<h4>New to our website?</h4>
-							<p>There are advances being made in science and technology everyday, and a good example of this is the</p>
-							<a class="button button-account" href="join">Create an Account</a>
+							<h4>설마 아쿠아이씨티 회원이 아니신가요?</h4>
+							<p>아름다운 바다의 신비를 아쿠아씨티에서 느껴보세요!</p>
+							<a class="button button-account" href="join">회원가입</a>
 						</div>
 					</div>
 				</div>
 				<div class="col-lg-6">
-					<div class="login_form_inner">
-						<h3>Log in to enter</h3>
+					<div class="login_form_inner" style="padding-top: 175px !important; padding-bottom: 161px !important;">
+						<h3>이미 회원이신가요? 로그인하세요!</h3>
 						<form class="row login_form login" action="login_do" id="contactForm" method="post">
 							<div class="col-md-12 form-group">
 								<input type="text" class="form-control" id="m_id" name="m_id" placeholder=Id onfocus="this.placeholder = ''" onblur="this.placeholder = 'Id'">
@@ -106,14 +106,10 @@ function getCookie(cookieName) {
 								<input type="password" class="form-control" id="m_pass" name="m_pass" placeholder="Password" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Password'">
 							</div>
 							<div class="col-md-12 form-group">
-								<div class="creat_account">
-									<input type="checkbox" id="rememberme" name="rememberme">
-									<label for="rememberme">아이디 저장</label>
-								</div>
 							</div>
 							<div class="col-md-12 form-group">
-								<button type="submit" value="submit" class="button button-login w-100">Log In</button>
-								<a href="forgot-password">Forgot Password?</a>
+								<button type="submit" value="submit" class="button button-login w-100">로그인</button>
+								<a href="forgot-password">비밀번호를 잊으셨나요?</a>
 							</div>
 						</form>
 					</div>
