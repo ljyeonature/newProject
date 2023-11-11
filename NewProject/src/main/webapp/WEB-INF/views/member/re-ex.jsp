@@ -60,12 +60,12 @@ form {
     margin: 0 20px; /* 요소 사이의 간격을 조절 */
 }
 
-form#re{
+/* form#re{
 	padding-left : 400px
-}
-form#ex {
+} */
+/* form#ex {
 	padding-left : 100px
-}
+} */
 
 div#point {
 	margin-top:30px;
@@ -78,7 +78,7 @@ td > a > img {
 	width:100px;
 	height:100px;
 }
-h4, h6 {
+.start h4, h6 {
 	width:100px;
 	text-align : center;
 	justify-content: center;
@@ -118,7 +118,7 @@ td.column-1 {
 }
 
 #content {
-    text-align: left; /* 텍스트를 왼쪽 정렬 */
+    text-align: center; /* 텍스트를 왼쪽 정렬 */
     margin-left: -163px; /* 왼쪽 여백을 조절 (원하는 값으로 조절) */
 }
 
@@ -282,7 +282,7 @@ td.column-1 a:hover {
 	</div>
 
 
-
+<div class="start" style="display: flex; justify-content: center; align-items: center;">
 	<!-- Shoping Cart -->
 	<form class="bg0 p-t-75 p-b-85" id="re">
 		<div class="container">
@@ -336,6 +336,7 @@ td.column-1 a:hover {
 			</div>
 		</div>
 	</form>
+	</div>
 	
 
 

@@ -6,7 +6,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta http-equiv="X-UA-Compatible" content="ie=edge">
-<title>AQU I CITY 회원정보</title>
+<title>AQU I CITY 회원정보수정</title>
 <link rel="icon" href="img/Fevicon.png" type="image/png">
 <link rel="stylesheet"
 	href="../resources/join_login/vendors/bootstrap/bootstrap.min.css">
@@ -155,15 +155,14 @@
 				<div class="col-lg-6">
 					<div class="login_box_img join_box">
 						<div class="hover">
-							<h4>돌아가시겠습니까?</h4>
-							<p>There are advances being made in science and technology
-								everyday, and a good example of this is the</p>
-							<a class="button button-account" href="mypage">MyPage</a>
+							<h4>회원정보수정</h4>
+							<p>개인정보보호를 위해 비밀번호 변경을 생활화합시다.</p>
+							<a class="button button-account" href="mypage">마이페이지</a>
 						</div>
 					</div>
 				</div>
 				<div class="col-lg-6">
-					<div class="login_form_inner register_form_inner">
+					<div class="login_form_inner register_form_inner" style="padding-top: 97px !important; padding-bottom: 43px !important;">
 						<h3>회원정보 수정</h3>
 						<form class="row login_form join" action="update_do?m_id=${sessionScope.logname }"
 							id="register_form" method='post'>
@@ -214,7 +213,7 @@
 							</div>
 							<div class="col-md-12 form-group">
 								<button type="submit" value="submit"
-									class="button button-register w-100" id="updateBtn">수정</button>
+									class="button button-register w-100" id="updateBtn">수정완료</button>
 							</div>
 						</form>
 					</div>

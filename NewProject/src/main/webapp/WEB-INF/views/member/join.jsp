@@ -145,58 +145,57 @@
 				<div class="col-lg-6">
 					<div class="login_box_img join_box">
 						<div class="hover">
-							<h4>Already have an account?</h4>
-							<p>There are advances being made in science and technology
-								everyday, and a good example of this is the</p>
-							<a class="button button-account" href="login">Login Now</a>
+							<h4>혹시 이미 회원이셨나요?</h4>
+							<p>아름다운 바다의 신비를 아쿠아씨티에서 느껴보세요!</p>
+							<a class="button button-account" href="login">로그인하기</a>
 						</div>
 					</div>
 				</div>
 				<div class="col-lg-6">
-					<div class="login_form_inner register_form_inner">
-						<h3>Create an account</h3>
+					<div class="login_form_inner register_form_inner" style="padding-top: 70px !important; padding-bottom: 73px !important;">
+						<h3>회원가입</h3>
 						<form class="row login_form join" action="join_do"
 							id="register_form" method='post'>
 							<div class="col-md-12 form-group id_input">
 								<input type="text" class="form-control" id="m_id" name="m_id"
-									placeholder="Id" onfocus="this.placeholder = ''"
+									placeholder="아이디" onfocus="this.placeholder = ''"
 									onblur="this.placeholder = 'Id'" required>
-								<button id="checkDuplicateButton" type="submit">중복 체크</button>
+								<button id="checkDuplicateButton" type="submit">중복확인</button>
 								<div class="message" id="duplicateMessage"></div>
 							</div>
 							<div class="col-md-12 form-group">
-								<input type="password" class="form-control" id="m_pass"
-									name="m_pass" placeholder="Password"
+								<input type="비밀번호" class="form-control" id="m_pass"
+									name="m_pass" placeholder="비밀번호"
 									onfocus="this.placeholder = ''"
 									onblur="this.placeholder = 'Password'">
 							</div>
 							<div class="col-md-12 form-group">
 								<input type="text" class="form-control" id="m_name"
-									name="m_name" placeholder="Username"
+									name="m_name" placeholder="이름"
 									onfocus="this.placeholder = ''"
 									onblur="this.placeholder = 'Username'" required>
 							</div>
 							<div class="col-md-12 form-group">
 								<input type="email" class="form-control" id="m_email"
-									name="m_email" placeholder="Email Address"
+									name="m_email" placeholder="이메일주소"
 									onfocus="this.placeholder = ''"
 									onblur="this.placeholder = 'Email Address'">
 							</div>
 
 							<div class="col-md-12 form-group">
 								<input type="tel" class="form-control" id="m_tel" name="m_tel"
-									placeholder="Tel" onfocus="this.placeholder = ''"
+									placeholder="전화번호" onfocus="this.placeholder = ''"
 									onblur="this.placeholder = 'Tel'">
 							</div>
 							<div class="col-md-12 form-group">
 								<input type="text" class="form-control" id="m_postcode"
-									name="m_postcode" placeholder="Postcode"
+									name="m_postcode" placeholder="우편번호"
 									onfocus="this.placeholder = ''"
 									onblur="this.placeholder = 'Postcode'">
 							</div>
 							<div class="col-md-12 form-group">
 								<input type="text" class="form-control" id="m_addr"
-									name="m_addr" placeholder="Address"
+									name="m_addr" placeholder="주소"
 									onfocus="this.placeholder = ''"
 									onblur="this.placeholder = 'Address'">
 							</div>
@@ -208,7 +207,7 @@
 							</div>
 							<div class="col-md-12 form-group">
 								<button type="submit" value="submit"
-									class="button button-register w-100">Register</button>
+									class="button button-register w-100">가입완료</button>
 							</div>
 						</form>
 					</div>

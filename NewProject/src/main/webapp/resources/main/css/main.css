@@ -495,7 +495,7 @@ footer {
 
 /*---------------------------------------------*/
 .icon-header-noti::after {
-  content: attr(data-notify);
+/*   content: attr(data-notify); */
   font-family: Poppins-Regular;
   font-size: 12px;
   color: #fff;

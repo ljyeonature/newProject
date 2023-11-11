@@ -6,6 +6,7 @@ import com.java.domain.FstDivVO;
 import com.java.domain.ImageVO;
 import com.java.domain.OptionFinalVO;
 import com.java.domain.OptionVO;
+import com.java.domain.OrderVO;
 import com.java.domain.ProductVO;
 import com.java.domain.SndDivVO;
 import com.java.domain.TrdDivVO;
@@ -61,6 +62,9 @@ public interface ProductService {
 	
 	// 상품 삭제
 	public int deleteProduct(ProductVO vo);
+	
+	//주문조회 게시판 목록 불러오기
+	public List<OrderVO> order_all(OrderVO vo);
 
 	
 }

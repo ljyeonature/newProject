@@ -1,11 +1,13 @@
+<%@ page isErrorPage="true"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+    
+    <%response.setStatus(HttpServletResponse.SC_OK);%>
+
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<meta charset="UTF-8">
-<title>WishList</title>
+	<title>ERROR</title>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 <!--===============================================================================================-->	
@@ -40,66 +42,111 @@
 <!--===============================================================================================-->
 <script src="../resources/main/jquery/jquery-3.2.1.min.js"></script>
 
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Arial', sans-serif;
+            background-color: #f5f5f5;
+        }
+
+        .error-container {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+        }
+
+        .error-image {
+            max-width: 100%;
+            height: auto;
+        }
+
+        .error-message {
+            margin-top: 20px;
+            font-size: 18px;
+            color: #333;
+        }
+
+        .home-link {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: #3498db;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+
+        .home-link:hover {
+            background-color: #2980b9;
+        }
+        
+        @keyframes shake {
+  			0%, 100% {
+    			transform: translateX(0);
+  		}
+  			10%, 30%, 50%, 70%, 90% {
+    			transform: translateX(-10px);
+ 		}
+  			20%, 40%, 60%, 80% {
+    			transform: translateX(10px);
+  		}
+}
+
+.error-image {
+  max-width: 100%;
+  height: auto;
+  animation: shake 5s ease-in-out;
+}
+    </style>
+
 </head>
-<body class="animsition">
+<body>
 
+	
+	<!-- Header -->
+	<div class="container-menu-desktop">
+		<!-- Header desktop -->
+		<%@include file="../main/main-header.jsp" %>
 
-<div class="wrap-header-cart js-panel-cart">
-		<div class="s-full js-hide-cart"></div>
+	</div>
 
-		<div class="header-cart flex-col-l p-l-65 p-r-25">
-			<div class="header-cart-title flex-w flex-sb-m p-b-8">
-				<span class="mtext-103 cl2">
-					Your WishList
-				</span>
-
-				<div class="fs-35 lh-10 cl2 p-lr-5 pointer hov-cl1 trans-04 js-hide-cart">
-					<i class="zmdi zmdi-close"></i>
-				</div>
+		<!-- Header Mobile -->
+		<div class="wrap-header-mobile">
+			<!-- Logo moblie -->		
+			<div class="logo-mobile">
+				<a href="home"><img src="../resources/main/images/icons/logo-01.png" alt="IMG-LOGO"></a>
 			</div>
-			<!-- 위시리스트 -->
-			<div class="header-cart-content flex-w js-pscroll">
-				<ul class="header-cart-wrapitem w-full">
-				<c:forEach items="${wishList}" var="wish">
-					<li class="header-cart-item flex-w flex-t m-b-12">
-							<div class="header-cart-item-img">
-								<img src="../resources/productImages/${wish.p_imgrn }" alt="IMG">
-							</div>
-	
-							<div class="header-cart-item-txt p-t-8">
-								<a href="#" class="header-cart-item-name m-b-18 hov-cl1 trans-04">
-									${wish.p_name }
-								</a>
-	
-								<span class="header-cart-item-info">
-									${wish.p_price }원
-								</span>
-							</div>
-						</li>
-				
-				</c:forEach>
-				
-				
-				</ul>
-				
-<%-- 				<div class="w-full">
-					<div class="header-cart-total w-full p-tb-40">
-						Total: $75.00
-					</div>
 
-					<div class="header-cart-buttons flex-w w-full">
-						<a href="shoping-cart?m_id=${sessionScope.logid }" class="flex-c-m stext-101 cl0 size-107 bg3 bor2 hov-btn3 p-lr-15 trans-04 m-r-8 m-b-10">
-							View Cart
-						</a>
+			<!-- Icon header -->
+			<div class="wrap-icon-header flex-w flex-r-m m-r-15">
+				<div class="icon-header-item cl2 hov-cl1 trans-04 p-r-11 js-show-modal-search">
+					<i class="zmdi zmdi-search"></i>
+				</div>
 
-						<a href="shoping-cart.html" class="flex-c-m stext-101 cl0 size-107 bg3 bor2 hov-btn3 p-lr-15 trans-04 m-b-10">
-							Check Out
-						</a>
-					</div>
-				</div> --%>
+				<div class="icon-header-item cl2 hov-cl1 trans-04 p-r-11 p-l-10 icon-header-noti js-show-cart" data-notify="2">
+					<i class="zmdi zmdi-shopping-cart"></i>
+				</div>
+
+				<a href="#" class="dis-block icon-header-item cl2 hov-cl1 trans-04 p-r-11 p-l-10 icon-header-noti" data-notify="0">
+					<i class="zmdi zmdi-favorite-outline"></i>
+				</a>
 			</div>
 		</div>
-	</div>
+
+    <div class="error-container">
+        <img src="../resources/main/images/error.png" alt="Error Image" class="error-image">
+        <div class="error-message">
+            <p>죄송합니다. 잘못된 접근입니다.</p>
+        </div>
+        <a href="/AQUICITY/main/home" class="home-link">홈으로 이동</a>
+    </div>
+
+
+
+
 <!--===============================================================================================-->	
 	<script src="../resources/main/jquery/jquery-3.2.1.min.js"></script>
 <!--===============================================================================================-->
@@ -201,5 +248,7 @@
 	</script>
 <!--===============================================================================================-->
 	<script src="../resources/main/js/main.js"></script>
+
+
 </body>
 </html>

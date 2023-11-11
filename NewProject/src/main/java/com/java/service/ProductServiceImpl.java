@@ -9,6 +9,7 @@ import com.java.domain.FstDivVO;
 import com.java.domain.ImageVO;
 import com.java.domain.OptionFinalVO;
 import com.java.domain.OptionVO;
+import com.java.domain.OrderVO;
 import com.java.domain.ProductVO;
 import com.java.domain.SndDivVO;
 import com.java.domain.TrdDivVO;
@@ -134,4 +135,9 @@ public class ProductServiceImpl implements ProductService{
 	
 //------------------------상철----------------------------------
 	
+ //주문조회게시판 목록 불러오기
+ public List<OrderVO> order_all(OrderVO vo){
+	 List<OrderVO> result = productDAOImpl.order_all(vo);
+	 return result;
+ }
 }
