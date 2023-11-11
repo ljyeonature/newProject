@@ -95,7 +95,7 @@ function getCookie(cookieName) {
 					</div>
 				</div>
 				<div class="col-lg-6">
-					<div class="login_form_inner" style="padding-top: 175px !important; padding-bottom: 161px !important;">
+					<div class="login_form_inner" style="padding-top: 175px !important; padding-bottom: 125px !important;">
 						<h3>이미 회원이신가요? 로그인하세요!</h3>
 						<form class="row login_form login" action="login_do" id="contactForm" method="post">
 							<div class="col-md-12 form-group">

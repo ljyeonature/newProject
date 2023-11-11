@@ -89,7 +89,7 @@ td > a > img {
 
 #title {
     position:  absolute;
-    top: 300px;
+    top: 560px;
 }
 
 #small-title {
@@ -119,19 +119,13 @@ td.column-1 {
 
 #content {
     text-align: center; /* 텍스트를 왼쪽 정렬 */
-    margin-left: -163px; /* 왼쪽 여백을 조절 (원하는 값으로 조절) */
+    margin-left: -178px; /* 왼쪽 여백을 조절 (원하는 값으로 조절) */
 }
 
-a#ex {
+a#ex, a#re {
 	position:relative;
 	top:179px;
-	left:-31px
-}
-
-a#re {
-	position:relative;
-	top:179px;
-	left:-31px
+	left:-52px
 }
 
 td.column-1 a {
@@ -157,7 +151,7 @@ td.column-1 a:hover {
 <body class="animsition">
 
 	<!-- Header -->
-	<header class="header-v4">
+	<header>
 		<!-- Header desktop -->
 		<div class="container-menu-desktop">
 			<!-- Header desktop -->
@@ -267,6 +261,12 @@ td.column-1 a:hover {
 	<!-- Cart -->
 	<%@include file="../main/wishlist.jsp" %>
 
+	<!-- Title page -->
+	<section class="bg-img1 txt-center p-lr-15 p-tb-92" style="background-image: url('../resources/main/images/bg-03.jpg'); padding-bottom: 160px;">
+<!-- 						<h2 class="ltext-105 cl0 txt-center">
+			MyPage
+		</h2> -->
+	</section>
 
 	<!-- breadcrumb -->
 	<div class="container">
@@ -295,9 +295,9 @@ td.column-1 a:hover {
 							<tr class="table_row">
 								<td class="column-1">
 									<h1 id="title">교환</h1>
-									<h4 id="small-title">교환 처리 시</h4>
-									<p id="content">아래 교환 버튼을 누르면 Q&A 게시판에 자동으로 제목으로 <br/> <span>‘교환입니다’</span>의 게시물 등록 페이지로 넘어감</p>
-									<a href="qna-add_ex" id="ex"> 교환 </a>
+									<!-- <h4 id="small-title">불편을 드려 상당히 죄송합니다.</h4> -->
+									<p id="content">항상 만족을 드릴수 있는 아쿠아씨티가 되도록 하겠습니다.<br/>QnA게시판의 교환문의로 연결됩니다.</p>
+									<a href="qna-add_ex" id="ex"> 교환문의 </a>
 								</td>
 								
 
@@ -321,9 +321,36 @@ td.column-1 a:hover {
 							<tr class="table_row">
 								<td class="column-1">
 								<h1 id="title">환불</h1>
-									<h4 id="small-title">환불 처리 시</h4>
-									<p id="content">아래 환불 버튼을 누르면 Q&A 게시판에 자동으로 제목으로 <br/> <span>‘환불입니다’</span>의 게시물 등록 페이지로 넘어감</p>
-									<a href="qna-add_re" id="re"> 환불 
+									<!-- <h4 id="small-title">불편을 드려 상당히 죄송합니다.</h4> -->
+									<p id="content">항상 만족을 드릴수 있는 아쿠아씨티가 되도록 하겠습니다.<br/>QnA게시판의 환불문의로 연결됩니다.</p>
+									<a href="qna-add_re" id="re"> 환불문의 
+									</a>
+									
+								</td>
+
+							</tr>
+						</tbody>
+					</table>
+				</div>
+
+			</div>
+		</div>
+	</form>
+	<form class="bg0 p-t-75 p-b-85" id="ex">
+		<div class="container">
+			<div class="row">
+
+				<div class="wrap-table-shopping-cart">
+					<table class="table-shopping-cart">
+						<tbody id="mypage_menu">
+							
+
+							<tr class="table_row">
+								<td class="column-1">
+								<h1 id="title">취소</h1>
+									<!-- <h4 id="small-title">불편을 드려 상당히 죄송합니다.</h4> -->
+									<p id="content">항상 만족을 드릴수 있는 아쿠아씨티가 되도록 하겠습니다.<br/>QnA게시판의 취소문의로 연결됩니다.</p>
+									<a href="qna-add_re" id="re"> 취소문의 
 									</a>
 									
 								</td>
