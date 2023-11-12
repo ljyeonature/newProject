@@ -8,7 +8,7 @@
 <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-<title>비밀번호 초기화 : 인증번호 입력</title>
+<title>비밀번호 찾기 : 인증번호 입력</title>
 	<link rel="icon" href="img/Fevicon.png" type="image/png">
   <link rel="stylesheet" href="../resources/join_login/vendors/bootstrap/bootstrap.min.css">
   <link rel="stylesheet" href="../resources/join_login/vendors/fontawesome/css/all.min.css">
@@ -31,7 +31,7 @@
 					<div class="col-lg-6">
 						<div class="login_box_img" id="login_box">
 							<div class="hover">
-								<h4>Get Number from E-mail</h4>
+								<h4>방금 발송해드린 인증번호를 확인하세요!</h4>
 							</div>
 						</div>
 					</div>

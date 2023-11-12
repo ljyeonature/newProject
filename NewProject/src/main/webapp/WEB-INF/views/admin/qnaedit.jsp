@@ -91,7 +91,7 @@
 						<label for="type_select">세부유형, 제품선택</label>
             			<div style="display: flex;">
             				<input type="text" id="q_import_product" name="p_inq_type" value="${qnacontent.p_inq_type}" readonly>
-            				<input type="text" id="q_import_product" name="q_import_product" value="" readonly>
+            				<input type="text" id="q_import_product" name="q_product" value="${qnacontent.q_product}" readonly>
             			</div>
             			<hr/>
 

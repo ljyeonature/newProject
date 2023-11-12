@@ -110,11 +110,11 @@ function getCookie(cookieName) {
 						<h3>이미 회원이신가요? 로그인하세요!</h3>
 						<form class="row login_form login" action="login_do" id="contactForm" method="post">
 							<div class="col-md-12 form-group">
-								<input type="text" class="form-control" id="m_id" name="m_id" placeholder=Id onfocus="this.placeholder = ''" onblur="this.placeholder = 'Id'">
+								<input type="text" class="form-control" id="m_id" name="m_id" placeholder=아이디 onfocus="this.placeholder = ''" onblur="this.placeholder = 'Id'">
 								
 							</div>
 							<div class="col-md-12 form-group">
-								<input type="password" class="form-control" id="m_pass" name="m_pass" placeholder="Password" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Password'">
+								<input type="password" class="form-control" id="m_pass" name="m_pass" placeholder="비밀번호" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Password'">
 							</div>
 							<div class="col-md-12 form-group">
 							</div>

@@ -509,7 +509,7 @@ form {
 
 							<ul>
 								<li class="p-b-6"><a href="#"
-									class="filter-link price-link stext-106 trans-04 filter-link-active">
+									class="filter-link price-link stext-106 trans-04 filter-link-active" data-filter="*">
 										All </a></li>
 
 								<li class="p-b-6"><a href="#"
@@ -572,15 +572,15 @@ form {
 							<div class="flex-w p-t-4 m-r--5">
 								<a href="#"
 									class="flex-c-m stext-107 cl6 size-301 bor7 p-lr-15 hov-tag1 trans-04 m-r-5 m-b-5">
-									Fashion </a> <a href="#"
+									Cute </a> <a href="#"
 									class="flex-c-m stext-107 cl6 size-301 bor7 p-lr-15 hov-tag1 trans-04 m-r-5 m-b-5">
-									Lifestyle </a> <a href="#"
+									Nice </a> <a href="#"
 									class="flex-c-m stext-107 cl6 size-301 bor7 p-lr-15 hov-tag1 trans-04 m-r-5 m-b-5">
-									Denim </a> <a href="#"
+									Pretty </a> <a href="#"
 									class="flex-c-m stext-107 cl6 size-301 bor7 p-lr-15 hov-tag1 trans-04 m-r-5 m-b-5">
-									Streetstyle </a> <a href="#"
+									Cool </a> <a href="#"
 									class="flex-c-m stext-107 cl6 size-301 bor7 p-lr-15 hov-tag1 trans-04 m-r-5 m-b-5">
-									Crafts </a>
+									Sensitive </a>
 							</div>
 						</div>
 					</div>

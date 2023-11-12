@@ -233,6 +233,11 @@
     <form action="qnaedit_do" method="post">
     <input name="q_postnum" type="hidden" value="${qna.q_postnum}" />
     <input name="q_inquiry" type="hidden" value="${qna.q_inquiry}" />
+     <input name="q_product" type="hidden" value="${qna.q_product}" />
+    <input name="q_product" type="hidden" value="${qna.q_product}" />
+    <input name="q_answertitle" type="hidden" value="${qna.q_answertitle}" />
+    <input name="q_answercontent" type="hidden" value="${qna.q_answercontent}" />
+
     <div class="addcontainer">
     		<input type="hidden" id="m_id" value="${qna.m_id}" name="m_id">
     		<input type="hidden" name="p_inq_type" value="${qna.p_inq_type}">
@@ -251,7 +256,6 @@
             <a class="cancel-button" href="qnaview_do?q_postnum=${qna.q_postnum}">취소</a>
         </div>					
           </form>  
-    </div>
 
 
 

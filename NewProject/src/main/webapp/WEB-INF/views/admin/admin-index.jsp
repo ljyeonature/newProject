@@ -177,7 +177,7 @@ $(function(){
 					<!-- Card Body -->
 					<div class="card-body">
 						<div class="chart-pie pt-4 pb-2">
-							<canvas id="logNameChart"></canvas>
+							<canvas id="logNameChart" style="max-width: 450px; max-height: 430px; overflow: hidden;"></canvas>
 						</div>
 						
 					</div>

@@ -227,7 +227,7 @@ td > a > img {
 									<a href="member-info?m_id=${sessionScope.logid }">
 										<img src="../resources/main/images/member.png" alt="IMG">
 										<h4>MEMBER</h4>
-										<h6>회원정보</h6>
+										<h6>회원정보수정</h6>
 									</a>
 								</td>
 
@@ -316,7 +316,7 @@ td > a > img {
 									<a href="re-ex">
 										<img src="../resources/main/images/re-ex.png" alt="IMG">
 										<h4>RE/EX</h4>
-										<h6>환불/교환</h6>
+										<h6 style="width: 109px;">환불/교환</h6>
 									</a>
 									
 								

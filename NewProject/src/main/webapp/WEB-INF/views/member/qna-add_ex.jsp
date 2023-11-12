@@ -34,6 +34,64 @@
 
 <!-- 제이쿼리CDN -->
 <script src="https://code.jquery.com/jquery-latest.min.js"></script>
+
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $('#product_category').change(function () {
+            var selectedCategory = $(this).val();
+            var targetSelect = $('#q_product');
+            targetSelect.empty();
+            switch (selectedCategory) {
+                case 'fish':
+                    targetSelect.append('<option selected disabled value="물고기" name="product_type">물고기</option>');
+                    targetSelect.append('<option value="구피" name="product_type">구피</option>');
+                    targetSelect.append('<option value="플레티" name="product_type">플레티</option>');
+                    targetSelect.append('<option value="금붕어" name="product_type">금붕어</option>');
+                    targetSelect.append('<option value="잉어" name="product_type">잉어</option>');
+                    targetSelect.append('<option value="디스커스" name="product_type">디스커스</option>');
+                    targetSelect.append('<option value="시클리드" name="product_type">시클리드</option>');
+                    targetSelect.append('<option value="베타" name="product_type">베타</option>');
+                    targetSelect.append('<option value="구라미" name="product_type">구라미</option>');
+                    targetSelect.append('<option value="복어" name="product_type">복어</option>');
+                    targetSelect.append('<option value="테트라" name="product_type">테트라</option>');
+                    break;
+                case 'deco':
+                    targetSelect.append('<option selected disabled value="조경용품" name="product_type">조경용품</option>');
+                    targetSelect.append('<option value="subo바닥재" name="product_type">subo바닥재</option>');
+                    targetSelect.append('<option value="마이스터소일" name="product_type">마이스터소일</option>');
+                    targetSelect.append('<option value="녹색공원수초" name="product_type">녹색공원수초</option>');
+                    targetSelect.append('<option value="초보자수초" name="product_type">초보자수초</option>');
+                    targetSelect.append('<option value="그로비타큐브" name="product_type">그로비타큐브</option>');
+                    targetSelect.append('<option value="그로비타와이드" name="product_type">그로비타와이드</option>');
+                    targetSelect.append('<option value="복주머니" name="product_type">복주머니</option>');
+                    break;
+                case 'etc':
+                    targetSelect.append('<option selected disabled value="기타용품" name="product_type">기타용품</option>');
+                    targetSelect.append('<option value="라글라스뜰채" name="product_type">라글라스뜰채</option>');
+                    targetSelect.append('<option value="이스타뜰채" name="product_type">이스타뜰채</option>');
+                    targetSelect.append('<option value="아로와나" name="product_type">아로와나</option>');
+                    targetSelect.append('<option value="테트라푸드" name="product_type">테트라푸드</option>');
+                    targetSelect.append('<option value="핑퐁스타" name="product_type">핑퐁스타</option>');
+                    targetSelect.append('<option value="아마존818" name="product_type">아마존818</option>');
+                    targetSelect.append('<option value="아마존" name="product_type">아마존</option>');
+                    targetSelect.append('<option value="필그린" name="product_type">필그린</option>');
+                    targetSelect.append('<option value="아마존LED" name="product_type">아마존LED</option>');
+                    targetSelect.append('<option value="웨이브포인트" name="product_type">웨이브포인트</option>');
+                    targetSelect.append('<option value="온도계모음" name="product_type">온도계모음</option>');
+                    targetSelect.append('<option value="테트라디지털" name="product_type">테트라디지털</option>');
+                    break;
+                default:
+                    targetSelect.append('<option selected disabled value="선택하세요" name="product_type">선택하세요</option>');
+                    break;
+            }
+        });
+    });
+</script>
+
+
+
+
 <!-- JS -->
 <script type="text/javascript">
 	$(document).ready(function() {
@@ -238,12 +296,18 @@
             <label for="type_select">제품선택</label>
 			<div style="display: flex;">
 			<input type="text" id="q_product_inquiry" name="p_inq_type" value="교환문의" readonly>
-            <select id="product_type">
-                <option selected disabled>제품선택</option>
-                <option>구매상품1</option>
-                <option>구매상품2</option>
-            </select>
-            </div>
+            <select id="product_category"
+					style="width: 130px; text-align: center;">
+					<option selected disabled>카테고리</option>
+					<option value="fish">물고기</option>
+					<option value="deco">조경용품</option>
+					<option value="etc">기타용품</option>
+				</select>
+				<select id="q_product" name="q_product"
+					style="width: 130px; text-align: center;">
+					<option selected disabled>선택하세요</option>
+				</select>
+			</div>
             
             <label for="title">제목</label>
             <input type="text" id="q_title" name="q_title" required>

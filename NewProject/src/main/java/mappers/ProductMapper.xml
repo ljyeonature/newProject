@@ -82,6 +82,9 @@
         <when test="condition == 4">
             p_price &gt;= 50000
         </when>
+         <otherwise>
+	            1=1
+	     </otherwise>
 	    </choose>
 	</select>
 	

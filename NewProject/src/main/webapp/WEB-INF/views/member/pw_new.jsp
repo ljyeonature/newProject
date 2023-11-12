@@ -8,7 +8,7 @@
 <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-<title>새 비밀번호 설정</title>
+<title>비밀번호 찾기 : 비밀번호 변경</title>
 	<link rel="icon" href="img/Fevicon.png" type="image/png">
   <link rel="stylesheet" href="../resources/join_login/vendors/bootstrap/bootstrap.min.css">
   <link rel="stylesheet" href="../resources/join_login/vendors/fontawesome/css/all.min.css">
@@ -34,13 +34,13 @@
 					<div class="col-lg-6">
 						<div class="login_box_img" id="login_box">
 							<div class="hover">
-								<h4>Want To Change Password?</h4>
+								<h4>새롭게 변경할 비밀번호를 입력해주세요</h4>
 							</div>
 						</div>
 					</div>
 					<div class="col-lg-6">
 						<div class="newpass_form_inner">
-							<h3>Change Password</h3>
+							<h3>새 비밀번호 설정</h3>
 							<form class="row login_form login" action="pw_new" id="contactForm" method="POST">
 								<div class="col-md-12 form-group" id="col-md-12">
 									<input type="password" class="form-control" id="m_pass" name="m_pass" placeholder="새 비밀번호">

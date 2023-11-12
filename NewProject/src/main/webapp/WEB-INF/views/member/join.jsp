@@ -164,7 +164,7 @@
 								<div class="message" id="duplicateMessage"></div>
 							</div>
 							<div class="col-md-12 form-group">
-								<input type="비밀번호" class="form-control" id="m_pass"
+								<input type="password" class="form-control" id="m_pass"
 									name="m_pass" placeholder="비밀번호"
 									onfocus="this.placeholder = ''"
 									onblur="this.placeholder = 'Password'">

@@ -19,6 +19,8 @@ public class BoardVO {
 	private String q_inquiry;		//문의유형
 	private String p_inq_type;		//제품문의유형
 	
+	private String q_product;
+	
 	private String sltfilter;  // 검색 필터
 	private String search;     // 검색어
 	

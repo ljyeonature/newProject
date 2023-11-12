@@ -157,7 +157,7 @@
 						<div class="hover">
 							<h4>회원정보수정</h4>
 							<p>개인정보보호를 위해 비밀번호 변경을 생활화합시다.</p>
-							<a class="button button-account" href="mypage">마이페이지</a>
+							<a class="button button-account" href="../member/mypage?m_id=${sessionScope.logid}">마이페이지</a>
 						</div>
 					</div>
 				</div>

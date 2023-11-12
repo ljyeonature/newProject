@@ -160,7 +160,7 @@ fieldset{
     margin: 30px;
     height:300px;
     position : relative;
-    left:559px;
+    margin: auto;
 }
 
 .container-top-title {
@@ -228,11 +228,8 @@ t.top-radiobtn {
     margin-right:auto;
     display:block;
     margin-top:0px;
-    margin-bottom:30px;
-    margin-left:30px;
-    margin-right: 30px;
+   margin : auto;
     position : relative;
-    left:558px;
     top:100;
     bottom:52px
 }

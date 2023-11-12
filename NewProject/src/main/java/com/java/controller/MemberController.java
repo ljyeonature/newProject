@@ -86,7 +86,7 @@ public class MemberController {
 	// 관리자 로그인 : m_rol이 manager인 경우
 	// redirect를 해야 아래 회원 목록을 불러오는 페이지로 갔다 올 수 있음.
 	@RequestMapping("/login_do")
-	public String loginCheck(MemberVO vo, HttpSession session, Model model) {
+	public String loginCheck(MemberVO vo, HttpSession session, Model model, WishListVO wvo) {
 		MemberVO result = memberService.loginCheck(vo);
 		//		MemberVO adminResult = memberService.adminCheck(vo);
 		//		System.out.println("admin Controller : " + adminResult);
@@ -330,7 +330,7 @@ public class MemberController {
 			
 			ProductVO pvo = new ProductVO();
 			pvo.setSearch(search);
-
+			System.out.println(wvo.toString());
 			model.addAttribute("productAll",productService.product_all(vo));
 			model.addAttribute("wishList", memberService.wishlist_all(wvo));
 		}
@@ -535,8 +535,9 @@ public class MemberController {
 	
 	// 마이페이지 -> 회원 정보 불러오기
 	@RequestMapping("/mypage")
-	public void memberPoint(@RequestParam String m_id, MemberVO vo, Model model) {
+	public void memberPoint(@RequestParam String m_id, MemberVO vo, Model model, WishListVO wvo) {
 		model.addAttribute("member", memberService.member_detail(m_id));
+		model.addAttribute("wishList", memberService.wishlist_all(wvo));
 	}
 	
 	// 결제 시스템 : 아임포트 - NHN

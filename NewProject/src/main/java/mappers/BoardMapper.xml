@@ -6,8 +6,8 @@
 
 	<!-- qna 입력 -->
 	<insert id='insertQna' parameterType="com.java.domain.BoardVO">
-		INSERT INTO qna(q_inquiry, q_title, q_content, q_pass, q_date, q_count, m_id, p_inq_type)
-		VALUES(#{q_inquiry}, #{q_title}, #{q_content}, #{q_pass}, NOW(), 0, #{m_id}, #{p_inq_type})
+		INSERT INTO qna(q_inquiry, q_title, q_content, q_pass, q_date, q_count, m_id, p_inq_type, q_product)
+		VALUES(#{q_inquiry}, #{q_title}, #{q_content}, #{q_pass}, NOW(), 0, #{m_id}, #{p_inq_type}, , #{q_product})
 	</insert>
 	
 	<!-- qna게시판 게시물목록 --> <!-- 검색기능 추가 -->
@@ -50,7 +50,8 @@
 			M_ID		= #{m_id},
 			Q_ANSWERTITLE	= #{q_answertitle},
 			Q_ANSWERCONTENT	= #{q_answercontent},
-			P_INQ_TYPE	= #{p_inq_type}
+			P_INQ_TYPE	= #{p_inq_type},
+			Q_PRODUCT = #{q_product}
 		WHERE
 			Q_POSTNUM = #{q_postnum}
 	</update>

@@ -267,9 +267,11 @@
     <div class="addcontainer">
         
             <label for="type_select">세부유형, 제품선택</label>
-            	<input type="text" id="q_import_product" name="p_inq_type" value="${qna.p_inq_type}" readonly>
-            	<input type="text" id="q_import_product" name="q_import_product" value="" readonly>
-            
+             <div style="display: flex;">
+            	<input type="text" id="q_import_product" name="p_inq_type" value="${qna.p_inq_type}" style="width: 130px; text-align: center;" readonly>
+            	<input type="text" id="q_import_product" name="q_import_product" value="${qna.q_product}" style="width: 200px; text-align: center;" readonly>
+            </div>
+            	
             <label for="title">제목</label>
             <input type="text" id="q_import_title" name="q_import_title" value="${qna.q_title}" required readonly>
             

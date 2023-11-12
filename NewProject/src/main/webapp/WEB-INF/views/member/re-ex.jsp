@@ -336,33 +336,7 @@ td.column-1 a:hover {
 			</div>
 		</div>
 	</form>
-	<form class="bg0 p-t-75 p-b-85" id="ex">
-		<div class="container">
-			<div class="row">
-
-				<div class="wrap-table-shopping-cart">
-					<table class="table-shopping-cart">
-						<tbody id="mypage_menu">
-							
-
-							<tr class="table_row">
-								<td class="column-1">
-								<h1 id="title">취소</h1>
-									<!-- <h4 id="small-title">불편을 드려 상당히 죄송합니다.</h4> -->
-									<p id="content">항상 만족을 드릴수 있는 아쿠아씨티가 되도록 하겠습니다.<br/>QnA게시판의 취소문의로 연결됩니다.</p>
-									<a href="qna-add_re" id="re"> 취소문의 
-									</a>
-									
-								</td>
-
-							</tr>
-						</tbody>
-					</table>
-				</div>
-
-			</div>
-		</div>
-	</form>
+	
 	</div>
 	
 

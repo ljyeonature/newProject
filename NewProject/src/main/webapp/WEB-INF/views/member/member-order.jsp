@@ -130,7 +130,7 @@ label#account {
 	display : inline-block;
     outline: none;
     border: none;
-    margin-bottom: 14px;
+    margin-bottom: 30px;
 }
 
 input#pay_acc {
@@ -414,14 +414,14 @@ input#pay_acc {
 			<div class="container-bottom-title">
                     <h5>배송지</h5>
             </div>
-			<div class="top-radiobtn">
+			<div class="top-radiobtn" style="padding-left: 10px;">
 				<input type="radio" name="check" value="equal" checked="checked" /><h6 id="check">회원정보와 동일</h6>
 				<input type="radio" name="check" value="diff"/><h6 id="check">새로운 배송지</h6>
 			</div>
 			<table border='1' id="addr">
 			<tr>
 				<td><label for="oder_rc" class="oder_rc">받는사람</label></td> 
-				<td><input type="text" id="rc_name" name="rc_name" required value="${member.m_name }"/></td>
+				<td><input type="text" id="rc_name" name="rc_name" required value="${member.m_name }" style="padding-left: 10px;"/></td>
 			
 			</tr>
 			<tr>
@@ -430,12 +430,12 @@ input#pay_acc {
 					<table border='1' id="addr-detail">
 						<tr>
 							<td><input type="text" id="rc_postcode" placeholder="우편번호" name="rc_postcode" required value="${member.m_postcode }"/></td>
-							<td><input type="button" value="주소검색" class="rc_postcode" /></td>
+							<td><input type="button" value="주소검색" class="rc_postcode" style="background: white; padding-left: 10px;"/></td>
 						
 						</tr>
 						<tr>
 							<td colspan='2'>
-								<input type="text" id="rc_addr" name="rc_addr" placeholder="기본주소" required value="${member.m_addr }"/>
+								<input type="text" id="rc_addr" name="rc_addr" placeholder="기본주소" required value="${member.m_addr }" style="width: 500px;"/>
 							</td>
 						</tr>
 					</table>
@@ -446,12 +446,12 @@ input#pay_acc {
 					<label for="m_email" class="m_email">이메일</label>
 				</td>
 				<td>
-					<input type="email" id="m_email" name="m_email"  required value="${member.m_email }"/>
+					<input type="email" id="m_email" name="m_email"  required value="${member.m_email }" style="padding-left: 10px;"/>
 				</td>
 			</tr>
 			<tr>
 				<td><label for="rc_tel" class="rc_tel">연락처</label></td>
-				<td><input type="tel" id="rc_tel" name="rc_tel" required value="${member.m_tel }"/></td>
+				<td><input type="tel" id="rc_tel" name="rc_tel" required value="${member.m_tel }" style="padding-left: 10px;"/></td>
 			</tr>
 				
 			</table>
@@ -464,11 +464,11 @@ input#pay_acc {
 						<div class="wrap-table-shopping-cart">
 							<table class="table-shopping-cart">
 								<tr class="table_head">
-									<th class="column-1">Product</th>
+									<th class="column-1" style="text-align: right;">Product</th>
 									<th class="column-2"></th>
 									<th class="column-3">Price</th>
-									<th class="column-4">Quantity</th>
-									<th class="column-5">Total</th>
+									<th class="column-4" style="text-align: left;">Quantity</th>
+									<th class="column-5" style="text-align: left; width: 200px;">Total</th>
 								</tr>
 								<!-- 장바구니 리스트 -->
 								<c:forEach items="${shoppingCart }" var="shopping">
@@ -513,6 +513,7 @@ input#pay_acc {
 		                <td>
 		                    <label for="pay_by" id="pay_by">결제방법</label>
 		                    <select name="pay_by">
+		                    	<option value="" selected disabled>결제방법</option>
 		                        <option id="bank_acc" value="무통장입금">무통장입금</option>
 		                        <option id="card_acc" value="카드결제" selected>카드결제</option>
 		                    </select>
@@ -522,9 +523,7 @@ input#pay_acc {
 		                <td>
 		                    <!-- 무통장입금일 때만 보이게 할 계좌번호 입력 창 -->
 		                    <label for="bank_account" id="account">계좌번호</label>
-		                    <input type="text" name="pay_acc" id="pay_acc" value="03948-1029358" readonly/>
-		                   <label style="display: inline; outline: none; margin-bottom: 6px; border: none;">은행명</label>
-		                    <input style="display: inline; margin-bottom: 6px; margin-left:13px" value="KB국민" readonly/>
+		                   <input type="text" name="pay_acc" id="pay_acc" value="농협 03948-1029358 이상철"readonly/>
 		                </td>
 		            </tr>
 		            <tr id="cashReceiptInput">
@@ -536,12 +535,8 @@ input#pay_acc {
 		                </td>
 		            </tr>
 		        </table>
-		</div>
-		<div>
 			            
-			<div class="col-sm-10 col-lg-7 col-xl-5 m-lr-auto m-b-50">
-				<div
-					class="bor10 p-lr-40 p-t-30 p-b-40 m-l-63 m-r-40 m-lr-0-xl p-lr-15-sm order">
+				<div class="bor10 p-lr-40 p-t-30 p-b-40 m-l-63 m-r-40 m-lr-0-xl p-lr-15-sm order" style="margin:auto; width:790px;">
 					<h4 class="mtext-109 cl2 p-b-30">총 주문 금액</h4>
 		
 		
@@ -558,8 +553,11 @@ input#pay_acc {
 					<button class="flex-c-m stext-101 cl0 size-116 bg3 bor14 hov-btn3 p-lr-15 trans-04 pointer pay_btn">
 						Pay</button>
 				</div>
-			</div>
-			            
+				</div>
+		<div>
+			<div style="display: flex; justify-content: center;">
+			<div class="col-sm-10 col-lg-7 col-xl-5 m-lr-auto m-b-50">
+			</div>       
 		</div>
 	</form>
 

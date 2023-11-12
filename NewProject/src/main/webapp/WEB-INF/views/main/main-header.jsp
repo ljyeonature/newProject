@@ -5,6 +5,14 @@
 <html>
 <head>
 <script src="../resources/main/jquery/jquery-3.2.1.min.js"></script>
+<script>
+	$(function(){
+		
+	
+		
+	});
+
+</script>
 </head>
 <body>
 	<div class="wrap-menu-desktop">
@@ -86,6 +94,8 @@
 						</script>
 					
 					</c:if>
+					
+					
 				
 				</div>
 		</nav>

@@ -11,7 +11,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Forgot Password</title>
+    <title>비밀번호 찾기</title>
 
     <!-- Custom fonts for this template-->
     <link href="../resources/admin/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -41,24 +41,23 @@
                             <div class="col-lg-6">
                                 <div class="p-5">
                                     <div class="text-center">
-                                        <h1 class="h4 text-gray-900 mb-2">Forgot Your Password?</h1>
-                                        <p class="mb-4">We get it, stuff happens. Just enter your email address below
-                                            and we'll send you a link to reset your password!</p>
+                                        <h1 class="h4 text-gray-900 mb-2">비밀번호를 잊으셨나요?</h1>
+                                        <p class="mb-4">도와드릴게요!<br/>가입하신 이메일을 입력하시면<br/>입력하신 이메일로 인증번호를 보내드려요.</p>
                                     </div>
                                     <form class="user" action="pw_auth">
                                         <div class="form-group">
                                             <input type="email" class="form-control form-control-user"
                                                 id="exampleInputEmail" aria-describedby="emailHelp"
-                                                placeholder="Enter Email Address..." name="m_email">
+                                                placeholder="이메일 주소" name="m_email">
                                         </div>
                                         <input type="submit" class="btn btn-primary btn-user btn-block" value="이메일로 인증번호 받기"/>
                                     </form>
                                     <hr>
                                     <div class="text-center">
-                                        <a class="small" href="join">Create an Account!</a>
+                                        <a class="small" href="join">회원가입</a>
                                     </div>
                                     <div class="text-center">
-                                        <a class="small" href="login">Already have an account? Login!</a>
+                                        <a class="small" href="login">비밀번호가 생각났어요! 로그인하기</a>
                                     </div>
                                 </div>
                             </div>

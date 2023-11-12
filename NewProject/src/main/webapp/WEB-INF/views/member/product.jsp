@@ -57,133 +57,93 @@
 <script>
 
 $(function(){
+	// 페이지 로드 시 세션 스토리지에서 위시리스트 상태 가져오기
+    var wishlistState = JSON.parse(localStorage.getItem('wishlistState')) || {};
+
+    // 클릭 이벤트 핸들러
+    $('.js-addwish-b2, .js-addwish-detail').click(function (e) {
+        e.preventDefault();
+        var selIdProduct = $(this).parent().parent().find('.js-selid-b2').val();
+        var heartImage = $(this).find('img');
+
+        if (wishlistState[selIdProduct]) {
+            // 이미 찜한 경우, 제거
+            $(heartImage).attr('src', $(heartImage).attr('src').replace('heart-02', 'heart-01'));
+            delete wishlistState[selIdProduct];
+            removeItemFromWishlist(selIdProduct);
+            var nameProduct = $(this).parent().parent().find('.js-name-b2').html();
+            swal(nameProduct, "찜 삭제하였습니다", "success");
+        } else {
+            // 찜하지 않은 경우, 추가
+            var nameProduct = $(this).parent().parent().find('.js-name-b2').val();
+            var priceProduct = $(this).parent().parent().find('.js-price-b2').val();
+            var imgProduct = $(this).parent().parent().find('.js-img-b2').val();
+            var param = {
+                m_id: $('#logid').val(),
+                p_selid: selIdProduct,
+                p_name: nameProduct,
+                p_price: priceProduct,
+                p_imgrn: imgProduct
+            };
+            addItemToWishlist(param);
+            wishlistState[selIdProduct] = true;
+            $(heartImage).attr('src', $(heartImage).attr('src').replace('heart-01', 'heart-02'));
+            var nameProduct = $(this).parent().parent().find('.js-name-b2').html();
+            swal(nameProduct, "찜 추가하였습니다", "success");
+        }
+
+        // 세션 스토리지에 업데이트된 위시리스트 상태 저장
+        localStorage.setItem('wishlistState', JSON.stringify(wishlistState));
+    });
+
+    // 페이지 로드 시 위시리스트 상태에 따라 하트 이미지 업데이트
+    $('.js-addwish-b2, .js-addwish-detail').each(function () {
+        var selIdProduct = $(this).parent().parent().find('.js-selid-b2').val();
+        var heartImage = $(this).find('img');
+        if (wishlistState[selIdProduct]) {
+            $(heartImage).attr('src', $(heartImage).attr('src').replace('heart-01', 'heart-02'));
+        }
+    });
+
+    // 실제 위시리스트에 항목 추가
+    function addItemToWishlist(param) {
+        $.ajax({
+            type: 'post',
+            data: param,
+            url: 'product_wishlist',
+            success: function (result) {
+                if (result === "error") {
+                    console.log(result);
+                } else {
+                    //alert(result);
+                }
+            },
+            error: function (err) {
+                console.log(err);
+            }
+        });
+    }
+
+    // 위시리스트에서 항목 제거
+    function removeItemFromWishlist(selId) {
+        $.ajax({
+            type: 'post',
+            data: { p_selid: selId },
+            url: 'delete_wishlist',
+            success: function (result) {
+                if (result === "delete") {
+                    //alert(result);
+                } else if (result === "fail") {
+                    //alert(result);
+                }
+            },
+            error: function (err) {
+                console.log(err);
+            }
+        });
+    }
+
 	
-
-		var m_id = $('#logid').val();
-		//console.log(m_id);
-		var wishlistState = [];
-
-		// Ajax 요청으로 서버에서 찜 목록 및 하트 색깔 정보 가져오기
-		$.ajax({
-		    type: 'post',
-		    data: { m_id: m_id },
-		    url: 'wishlist_all',
-		    success: function (response) {
-		        //console.log(response);
-
-		        // 제이슨 스트링 변환
-		        var data = JSON.stringify(response);
-		        // 다시 제이슨 변환
-		        var wishlistArray = JSON.parse(data);
-		        //console.log(wishlistArray[0].wishstate);
-
-		        wishlistState = wishlistArray;
-		        
-		        console.log(wishlistState);
-
-		        // 각 상품에 대해 화면 업데이트
-		        $('.js-addwish-b2, .js-addwish-detail').each(function (index) {
-		            var selIdProduct = $(this).parent().parent().find('.js-selid-b2').val();
-		            console.log(selIdProduct)
-		            var heartImage = $(this).find('img');
-		            var isWishlistItem = wishlistArray[index].wishstate;
-		            updateHeartColor(selIdProduct, isWishlistItem);
-
-		            if (isWishlistItem) {
-		                // 찜 목록에 있는 경우, 필요한 추가 작업 수행
-		                // 예: 찜 목록에서 제거할 수 있는 버튼 추가 등
-		            }
-		        });
-
-		        // 클릭 이벤트 핸들러 등록
-		        $('.js-addwish-b2, .js-addwish-detail').on('click', function (e) {
-		            e.preventDefault();
-		            var selIdProduct = $(this).parent().parent().find('.js-selid-b2').val();
-		            var heartImage = $(this).find('img');
-
-		            var isWishlistItem = wishlistState.find(item => item.p_selid === selIdProduct);
-
-		            if (isWishlistItem) {
-		                // 이미 찜한 경우, 제거
-		                $(heartImage).attr('src', $(heartImage).attr('src').replace('heart-02', 'heart-01'));
-		                deleteItemFromWishlist(selIdProduct);
-		                var nameProduct = $(this).parent().parent().find('.js-name-b2').html();
-		                swal(nameProduct, "찜 삭제하였습니다", "success");
-		            } else {
-		                // 찜하지 않은 경우, 추가
-		                var nameProduct = $(this).parent().parent().find('.js-name-b2').val();
-		                var priceProduct = $(this).parent().parent().find('.js-price-b2').val();
-		                var imgProduct = $(this).parent().parent().find('.js-img-b2').val();
-		                var param = {
-		                    m_id: m_id,
-		                    p_selid: selIdProduct,
-		                    p_name: nameProduct,
-		                    p_price: priceProduct,
-		                    p_imgrn: imgProduct
-		                };
-		                addItemToWishlist(param);
-		                wishlistState.push({ p_selid: selIdProduct, /* other properties */ });
-		                $(heartImage).attr('src', $(heartImage).attr('src').replace('heart-01', 'heart-02'));
-		                var nameProduct = $(this).parent().parent().find('.js-name-b2').html();
-		                swal(nameProduct, "찜 추가하였습니다", "success");
-		            }
-		        });
-		    },
-		    error: function (err) {
-		        console.log(err);
-		    }
-		}); // ajax
-		
-		 // 실제 위시리스트에 항목 추가
-	    function addItemToWishlist(param) {
-	        $.ajax({
-	            type: 'post',
-	            data: param,
-	            url: 'product_wishlist',
-	            success: function (result) {
-	                if (result === "error") {
-	                    console.log(result);
-	                } else {
-	                    //alert(result);
-	                }
-	            },
-	            error: function (err) {
-	                console.log(err);
-	            }
-	        });
-	    }
-
-	    // 위시리스트에서 항목 제거
-	    function removeItemFromWishlist(selId) {
-	        $.ajax({
-	            type: 'post',
-	            data: { p_selid: selId },
-	            url: 'delete_wishlist',
-	            success: function (result) {
-	                if (result === "delete") {
-	                    //alert(result);
-	                } else if (result === "fail") {
-	                    //alert(result);
-	                }
-	            },
-	            error: function (err) {
-	                console.log(err);
-	            }
-	        });
-	    }
-
-		function updateHeartColor(selId, isWishlistItem) {
-		    // isWishlistItem이 true이면 하트를 색깔 있는 상태로 업데이트,
-		    // false이면 하트를 색깔 없는 상태로 업데이트
-		    var heartImage = $('.js-addwish-b2, .js-addwish-detail').find('img');
-					    
-
-		    if (isWishlistItem && isWishlistItem.wishstate === 1) {
-		        $(heartImage).attr('src', $(heartImage).attr('src').replace('heart-01', 'heart-02'));
-		    } else {
-		        $(heartImage).attr('src', $(heartImage).attr('src').replace('heart-02', 'heart-01'));
-		    }
-		}
 		
 		
 		
@@ -206,67 +166,129 @@ $(function(){
 		/*---------------------------------------------*/
 		
 		// 대분류
-	 	$('.filter-tope-group button').on('click', function(){
-	 		 var fstdivid = $(this).data('filter');
-	 		 var logid = $('#logid').val();
-	 		 $.ajax({
-	 			 type : 'post',
-	 			 data : {fstdivid : fstdivid},
-	 			 dataType :'JSON',
-	 			 url : 'fishAll',
-	 			 success : function(response){
-	 				$('.isotope-grid').empty();
-	 			
+		// 클릭 이벤트 핸들러
+$(document).on('click', '.js-addwish-b2, .js-addwish-detail', function (e) {
+    e.preventDefault();
+    var selIdProduct = $(this).parent().parent().find('.js-selid-b2').val();
+    var heartImage = $(this).find('img');
 
-	 				$.each(response, function(index, item) {
-	 					
-	 					var leftPercentage = (index % 4) * 25; // 0%, 25%, 50%, 75%
-	 				    var topValue = Math.floor(index / 4) * 485;
-	 				   var productHTML = 
-	 					    '<div class="col-sm-6 col-md-4 col-lg-3 p-b-35 isotope-item" style="position: absolute; left: ' + leftPercentage + '%; top: ' + topValue + 'px;">' +
-	 					        '<div class="block2">' +
-	 					            '<div class="block2-pic hov-img0">' +
-	 					                '<img src="../resources/productImages/' + item.p_imgrn + '" alt="IMG-PRODUCT">' +
-	 					                '<a href="product_quickview?p_selid=' + item.p_selid + '" class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1 quickView">Quick View</a>' +
-	 					            '</div>' +
-	 					            '<div class="block2-txt flex-w flex-t p-t-14">' +
-	 					                '<div class="block2-txt-child1 flex-col-l">' +
-	 					                    '<a href="product-detail?m_id=' + logid + '&p_selid=' + item.p_selid + '" class="stext-104 cl4 hov-cl1 trans-04 p-b-6 js-name-b2" data-name="' + item.p_name + '">' + item.p_name + '</a>' +
-	 					                    '<input type="hidden" value="' + logid + '" id="logid"/>' +
-	 					                    '<input type="hidden" value="' + item.p_selid + '" class="js-selid-b2"/>' +
-	 					                    '<input type="hidden" value="' + item.p_name + '" class="js-name-b2" id="p_name"/>' +
-	 					                    '<input type="hidden" value="' + item.p_price + '" id="p_price" class="js-price-b2"/>' +
-	 					                    '<input type="hidden" value="' + item.p_imgrn + '" class="js-img-b2"/>' +
-	 					                    '<span class="stext-105 cl3" id="p_price">' + item.p_price + '원</span>' +
-	 					                '</div>' +
-	 					                '<div class="block2-txt-child2 flex-r p-t-3">' +
-	 					                    '<div class="btn-addwish-b2 dis-block pos-relative js-addwish-b2">' +
-	 					                        '<img class="icon-heart1 dis-block trans-04" src="../resources/main/images/icons/icon-heart-01.png" alt="ICON" id="empty-heart">' +
-	 					                    '</div>' +
-	 					                '</div>' +
-	 					            '</div>' +
-	 					        '</div>' +
-	 					    '</div>';
+    if (wishlistState[selIdProduct]) {
+        // 이미 찜한 경우, 제거
+        $(heartImage).attr('src', $(heartImage).attr('src').replace('heart-02', 'heart-01'));
+        delete wishlistState[selIdProduct];
+        removeItemFromWishlist(selIdProduct);
+        var nameProduct = $(this).parent().parent().find('.js-name-b2').html();
+        swal(nameProduct, "찜 삭제하였습니다", "success");
+    } else {
+        // 찜하지 않은 경우, 추가
+        var nameProduct = $(this).parent().parent().find('.js-name-b2').val();
+        var priceProduct = $(this).parent().parent().find('.js-price-b2').val();
+        var imgProduct = $(this).parent().parent().find('.js-img-b2').val();
+        var param = {
+            m_id: $('#logid').val(),
+            p_selid: selIdProduct,
+            p_name: nameProduct,
+            p_price: priceProduct,
+            p_imgrn: imgProduct
+        };
+        addItemToWishlist(param);
+        wishlistState[selIdProduct] = true;
+        $(heartImage).attr('src', $(heartImage).attr('src').replace('heart-01', 'heart-02'));
+        var nameProduct = $(this).parent().parent().find('.js-name-b2').html();
+        swal(nameProduct, "찜 추가하였습니다", "success");
+    }
 
+    // 세션 스토리지에 업데이트된 위시리스트 상태 저장
+    localStorage.setItem('wishlistState', JSON.stringify(wishlistState));
+});
 
-	 				      // 높이 동적으로 계산하여 설정
-	 				      var currentHeight = $('.isotope-grid').height();
-	 				      var newHeight = topValue + 485; // 높이를 현재 높이와 topValue+485 중 큰 값으로 설정
-	 				      $('.isotope-grid').css("position","relative");
-	 				      $('.isotope-grid').css("height", Math.max(currentHeight, newHeight) + "px");
+// 페이지 로드 시 위시리스트 상태에 따라 하트 이미지 업데이트
+$('.js-addwish-b2, .js-addwish-detail').each(function () {
+    var selIdProduct = $(this).parent().parent().find('.js-selid-b2').val();
+    var heartImage = $(this).find('img');
+    if (wishlistState[selIdProduct]) {
+        $(heartImage).attr('src', $(heartImage).attr('src').replace('heart-01', 'heart-02'));
+    }
+});
 
-	 				    $('.isotope-grid').append(productHTML);
-	 				});
-	 				// each 끝
-	 				 
-	 	            
-	 			 } 
-	 			 //
-	 		 });
-	 		 // ajax
-	 	}); // 클릭 시 - 대분류
+// 동적으로 생성되는 테이블에 위시리스트 상태에 따라 하트 이미지 업데이트
+$(document).on('DOMNodeInserted', '.isotope-grid', function () {
+    updateHeartImages();
+});
+
+// 위시리스트 상태에 따라 동적으로 생성된 하트 이미지 업데이트
+function updateHeartImages() {
+    $('.js-addwish-b2, .js-addwish-detail').each(function () {
+        var selIdProduct = $(this).parent().parent().find('.js-selid-b2').val();
+        var heartImage = $(this).find('img');
+        if (wishlistState[selIdProduct]) {
+            $(heartImage).attr('src', $(heartImage).attr('src').replace('heart-01', 'heart-02'));
+        }
+    });
+}
+
+// 대분류 클릭 시 처리
+$('.filter-tope-group button').on('click', function(){
+    var fstdivid = $(this).data('filter');
+    var logid = $('#logid').val();
+    $.ajax({
+        type : 'post',
+        data : {fstdivid : fstdivid},
+        dataType :'JSON',
+        url : 'fishAll',
+        success : function(response){
+            $('.isotope-grid').empty();
+
+            $.each(response, function(index, item) {
+                var leftPercentage = (index % 4) * 25; // 0%, 25%, 50%, 75%
+                var topValue = Math.floor(index / 4) * 485;
+                var productHTML = 
+                    '<div class="col-sm-6 col-md-4 col-lg-3 p-b-35 isotope-item" style="position: absolute; left: ' + leftPercentage + '%; top: ' + topValue + 'px;">' +
+                        '<div class="block2">' +
+                            '<div class="block2-pic hov-img0">' +
+                                '<img src="../resources/productImages/' + item.p_imgrn + '" alt="IMG-PRODUCT">' +
+                                '<a href="product_quickview?p_selid=' + item.p_selid + '" class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1 quickView">Quick View</a>' +
+                            '</div>' +
+                            '<div class="block2-txt flex-w flex-t p-t-14">' +
+                                '<div class="block2-txt-child1 flex-col-l">' +
+                                    '<a href="product-detail?m_id=' + logid + '&p_selid=' + item.p_selid + '" class="stext-104 cl4 hov-cl1 trans-04 p-b-6 js-name-b2" data-name="' + item.p_name + '">' + item.p_name + '</a>' +
+                                    '<input type="hidden" value="' + logid + '" id="logid"/>' +
+                                    '<input type="hidden" value="' + item.p_selid + '" class="js-selid-b2"/>' +
+                                    '<input type="hidden" value="' + item.p_name + '" class="js-name-b2" id="p_name"/>' +
+                                    '<input type="hidden" value="' + item.p_price + '" id="p_price" class="js-price-b2"/>' +
+                                    '<input type="hidden" value="' + item.p_imgrn + '" class="js-img-b2"/>' +
+                                    '<span class="stext-105 cl3" id="p_price">' + item.p_price + '원</span>' +
+                                '</div>' +
+                                '<div class="block2-txt-child2 flex-r p-t-3">' +
+                                    '<div class="btn-addwish-b2 dis-block pos-relative js-addwish-b2">' +
+                                        '<img class="icon-heart1 dis-block trans-04" src="../resources/main/images/icons/icon-heart-01.png" alt="ICON" id="empty-heart">' +
+                                    '</div>' +
+                                '</div>' +
+                            '</div>' +
+                        '</div>' +
+                    '</div>';
+
+                // 높이 동적으로 계산하여 설정
+                var currentHeight = $('.isotope-grid').height();
+                var newHeight = topValue + 485; // 높이를 현재 높이와 topValue+485 중 큰 값으로 설정
+                $('.isotope-grid').css("position","relative");
+                $('.isotope-grid').css("height", Math.max(currentHeight, newHeight) + "px");
+
+                $('.isotope-grid').append(productHTML);
+            });
+
+            // each 끝
+            // 위시리스트 상태에 따라 동적으로 생성된 하트 이미지 업데이트
+            updateHeartImages();
+        } 
+        //
+    });
+    // ajax
+}); // 클릭 시 - 대분류
+
+	 	
 	    
-	    
+	    /* --------------------------------------------------------------------------------------------------- */
 	    
 	    // 필터링 바
 	    $('.price-link').on('click', function(e){
@@ -274,7 +296,7 @@ $(function(){
 	    	$('.price-link').removeClass('filter-link-active');
 	    	var condition = $(this).data('filter');
 	    	$(this).addClass('filter-link-active');
-	 		 alert(condition)
+	 		 //alert(condition)
 	 		 var logid = $('#logid').val();
 	 		 $.ajax({
 	 			 type : 'post',
@@ -635,7 +657,7 @@ form {
 
 							<ul>
 								<li class="p-b-6"><a href="#"
-									class="filter-link price-link stext-106 trans-04 filter-link-active">
+									class="filter-link price-link stext-106 trans-04 filter-link-active" data-filter="*">
 										All </a></li>
 
 								<li class="p-b-6"><a href="#"
@@ -698,15 +720,15 @@ form {
 							<div class="flex-w p-t-4 m-r--5">
 								<a href="#"
 									class="flex-c-m stext-107 cl6 size-301 bor7 p-lr-15 hov-tag1 trans-04 m-r-5 m-b-5">
-									Fashion </a> <a href="#"
+									Cute </a> <a href="#"
 									class="flex-c-m stext-107 cl6 size-301 bor7 p-lr-15 hov-tag1 trans-04 m-r-5 m-b-5">
-									Lifestyle </a> <a href="#"
+									Nice </a> <a href="#"
 									class="flex-c-m stext-107 cl6 size-301 bor7 p-lr-15 hov-tag1 trans-04 m-r-5 m-b-5">
-									Denim </a> <a href="#"
+									Pretty </a> <a href="#"
 									class="flex-c-m stext-107 cl6 size-301 bor7 p-lr-15 hov-tag1 trans-04 m-r-5 m-b-5">
-									Streetstyle </a> <a href="#"
+									Cool </a> <a href="#"
 									class="flex-c-m stext-107 cl6 size-301 bor7 p-lr-15 hov-tag1 trans-04 m-r-5 m-b-5">
-									Crafts </a>
+									Sensitive </a>
 							</div>
 						</div>
 					</div>
