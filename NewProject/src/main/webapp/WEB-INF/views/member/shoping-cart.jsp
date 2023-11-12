@@ -155,10 +155,7 @@ $(function(){
                         location.reload();
                         // 화면에서 해당 행 제거
                         $(this).closest('tr').remove();
-                    } else {
-                        alert('상품 삭제에 실패하였습니다.');
-                        //swal("", "장바구니에서 삭제되지 않았습니다", "success");
-                    }
+                    } 
                 },
                 error: function () {
                     alert('상품 삭제 중 오류가 발생했습니다.');

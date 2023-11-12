@@ -39,6 +39,56 @@
 	<link rel="stylesheet" type="text/css" href="../resources/main/css/main.css">
 <!--===============================================================================================-->
 <script src="../resources/main/jquery/jquery-3.2.1.min.js"></script>
+<script>
+
+$(function(){
+	 var total = 0;
+     <c:forEach items="${wishList}" var="wish">
+         total += ${wish.p_price};
+     </c:forEach>
+     $('#totalPrice').text('Total: ' + total.toFixed(0));   
+ 
+     
+     
+     // 이미지 클릭 시 위시리스트에서 삭제
+     $('.header-cart-item-img').on('click', function () {
+         // 현재 클릭된 이미지의 부모인 li를 찾아 삭제
+         //console.log(1);
+         var selectedItem = $.trim($(this).next().find('#p_selid').val());
+         console.log(selectedItem);
+        
+
+         if (confirm('위시리스트에서 삭제하시겠습니까?')) {
+             // AJAX를 사용하여 서버에 삭제 요청 보내기
+             $.ajax({
+                 type: 'POST',
+                 url: 'delete_wishlist', // 실제 서버의 삭제 요청을 처리하는 URL로 변경
+                 data: { p_selid: selectedItem },
+                 success: function (response) {
+                     // 서버에서 성공적으로 처리된 경우에만 화면에서 해당 상품 제거
+                     if (response == "delete") {
+                         alert('상품이 성공적으로 삭제되었습니다.');
+                         //swal("", "장바구니에서 삭제되었습니다", "success");
+                         location.reload();
+                         // 화면에서 해당 행 제거
+                         selectedItem.remove();
+                     } else {
+                         alert('상품 삭제에 실패하였습니다.');
+                         //swal("", "장바구니에서 삭제되지 않았습니다", "success");
+                     }
+                 },
+                 error: function () {
+                     alert('상품 삭제 중 오류가 발생했습니다.');
+                 }
+             });
+         }
+
+         // 가격 업데이트
+        /*  updateTotalPrice(); */
+     });
+     
+})
+</script>
 
 </head>
 <body class="animsition">
@@ -62,25 +112,14 @@
 				<ul class="header-cart-wrapitem w-full">
 				<c:forEach items="${wishList}" var="wish">
 					<li class="header-cart-item flex-w flex-t m-b-12">
-							<div class="header-cart-item-img">
+							<div class="header-cart-item-img" id="deleteWish">
 								<img src="../resources/productImages/${wish.p_imgrn }" alt="IMG">
 							</div>
 	
 							<div class="header-cart-item-txt p-t-8">
-							<%-- <c:if test="${not empty sessionScope.logid }">
-								<a href="../member/product-detail?m_id=${sessionScope.logid }&p_selid=${wishList.p_selid }" class="header-cart-item-name m-b-18 hov-cl1 trans-04">
-									${wish.p_name }
-								</a>
-							
-							</c:if>
-							<c:if test="${empty sessionScope.logid }">
-								<a href="main/product-detail?p_selid=${wishList.p_selid }" class="header-cart-item-name m-b-18 hov-cl1 trans-04">
-									${wish.p_name }
-								</a>
-							
-							</c:if> --%>
-							
-							<a href="#" class="header-cart-item-name m-b-18 hov-cl1 trans-04">
+			
+							<input type="hidden" value="${wish.p_selid }" id="p_selid"/>
+							<a href="#" class="header-cart-item-name m-b-18 hov-cl1 trans-04" id="p_name">
 									${wish.p_name }
 								</a>
 	
@@ -95,21 +134,21 @@
 				
 				</ul>
 				
-<%-- 				<div class="w-full">
-					<div class="header-cart-total w-full p-tb-40">
-						Total: $75.00
+				<div class="w-full">
+					<div class="header-cart-total w-full p-tb-40" id="totalPrice">
+						
 					</div>
 
 					<div class="header-cart-buttons flex-w w-full">
 						<a href="shoping-cart?m_id=${sessionScope.logid }" class="flex-c-m stext-101 cl0 size-107 bg3 bor2 hov-btn3 p-lr-15 trans-04 m-r-8 m-b-10">
-							View Cart
+							장바구니
 						</a>
 
-						<a href="shoping-cart.html" class="flex-c-m stext-101 cl0 size-107 bg3 bor2 hov-btn3 p-lr-15 trans-04 m-b-10">
-							Check Out
+						<a href="../member/member-order?m_id=${sessionScope.logid }" class="flex-c-m stext-101 cl0 size-107 bg3 bor2 hov-btn3 p-lr-15 trans-04 m-b-10">
+							결제
 						</a>
 					</div>
-				</div> --%>
+				</div>
 			</div>
 		</div>
 	</div>
@@ -130,6 +169,7 @@
 			});
 		})
 	</script>
+	
 <!--===============================================================================================-->
 	<script src="../resources/main/daterangepicker/moment.min.js"></script>
 	<script src="../resources/main/daterangepicker/daterangepicker.js"></script>
@@ -154,6 +194,7 @@
 		        mainClass: 'mfp-fade'
 		    });
 		});
+		
 	</script>
 <!--===============================================================================================-->
 	<script src="../resources/main/isotope/isotope.pkgd.min.js"></script>

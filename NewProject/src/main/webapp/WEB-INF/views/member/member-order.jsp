@@ -171,7 +171,16 @@ input#pay_acc {
 
     // 페이지 로딩 후 총 합계 업데이트 실행
     updateTotalAmount();
-    
+    var selectedPaymentMethod = $('select[name="pay_by"]').val();
+    // 결제 버튼을 눌렀을 때
+    if(selectedPaymentMethod == "카드결제"){
+	    $('.pay_btn').on('click', function(e){
+	    	//alert(1);
+	    	e.preventDefault();
+	    	iamport();
+		})
+    	
+    } 
    
 	function iamport(){
 		//가맹점 식별코드
@@ -249,6 +258,12 @@ input#pay_acc {
         // 결제 방법이 변경될 때 이벤트 처리
         $('select[name="pay_by"]').change(function () {
             checkPaymentMethod();
+            if($(this).val() === "무통장입금") {
+            	$('.pay_btn').click(function(){
+	            	$('#orderData').submit();
+            		
+            	})
+            }
         });
 
         function checkPaymentMethod() {
@@ -259,9 +274,6 @@ input#pay_acc {
             // 무통장입금인 경우 계좌번호 입력 창 보이게
             if (selectedPaymentMethod === '무통장입금') {
                 $('#bankAccountInput').show();
-                $('.pay_btn').on('click', function(){
-                	$('#orderData').submit();
-            	})
             } else {
                 $('#bankAccountInput').hide();
             }
@@ -271,10 +283,6 @@ input#pay_acc {
 			if (selectedPaymentMethod === '카드결제') {
 				$('#cashReceiptInput').hide();
 				// 결제 버튼을 눌렀을 때
-				$('.pay_btn').on('click', function(e) {
-					e.preventDefault();
-					iamport();
-				});
 				} else {
 					$('#cashReceiptInput').show();
 				}
@@ -513,7 +521,6 @@ input#pay_acc {
 		                <td>
 		                    <label for="pay_by" id="pay_by">결제방법</label>
 		                    <select name="pay_by">
-		                    	<option value="" selected disabled>결제방법</option>
 		                        <option id="bank_acc" value="무통장입금">무통장입금</option>
 		                        <option id="card_acc" value="카드결제" selected>카드결제</option>
 		                    </select>
@@ -546,7 +553,8 @@ input#pay_acc {
 						</div>
 		
 						<div class="size-209 p-t-1">
-							<span id="totalAmount" class="mtext-110 cl2"><input id="cart_total" name="pay_amount" value="0"/></span>
+							<span id="totalAmount" class="mtext-110 cl2">
+							<input id="cart_total" name="pay_amount" value="0"/></span>
 						</div>
 					</div>
 		

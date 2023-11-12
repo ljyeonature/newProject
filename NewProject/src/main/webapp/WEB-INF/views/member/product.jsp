@@ -57,8 +57,36 @@
 <script>
 
 $(function(){
-	// 페이지 로드 시 세션 스토리지에서 위시리스트 상태 가져오기
-    var wishlistState = JSON.parse(localStorage.getItem('wishlistState')) || {};
+	
+
+    // 페이지 로드 시 위시리스트 상태에 따라 하트 이미지 업데이트
+    $('.js-addwish-b2, .js-addwish-detail').each(function () {
+        var selIdProduct = $(this).parent().parent().find('.js-selid-b2').val();
+        var heartImage = $(this).find('img');
+        var m_id = $('#logid').val();
+        $.ajax({
+            type: 'post',
+            data:{m_id : m_id},
+            url: 'wishlist_all',
+            success: function (wishlist) {
+            	//console.log(wishlist);
+            	console.log(selIdProduct)
+            	//console.log(wishlist.includes(selIdProduct))
+            	
+            	  	var isWishlisted = wishlist.some(function(wish) {
+		              console.log(wish)  
+            		  return wish.p_selid === selIdProduct;
+		            });
+                if (isWishlisted ) {
+                    $(heartImage).attr('src', $(heartImage).attr('src').replace('heart-01', 'heart-02'));
+                }
+            
+            },
+            error: function (err) {
+                console.log(err);
+            }
+        });
+    });
 
     // 클릭 이벤트 핸들러
     $('.js-addwish-b2, .js-addwish-detail').click(function (e) {
@@ -66,10 +94,9 @@ $(function(){
         var selIdProduct = $(this).parent().parent().find('.js-selid-b2').val();
         var heartImage = $(this).find('img');
 
-        if (wishlistState[selIdProduct]) {
+        if (isWishlisted) {
             // 이미 찜한 경우, 제거
             $(heartImage).attr('src', $(heartImage).attr('src').replace('heart-02', 'heart-01'));
-            delete wishlistState[selIdProduct];
             removeItemFromWishlist(selIdProduct);
             var nameProduct = $(this).parent().parent().find('.js-name-b2').html();
             swal(nameProduct, "찜 삭제하였습니다", "success");
@@ -86,23 +113,11 @@ $(function(){
                 p_imgrn: imgProduct
             };
             addItemToWishlist(param);
-            wishlistState[selIdProduct] = true;
             $(heartImage).attr('src', $(heartImage).attr('src').replace('heart-01', 'heart-02'));
             var nameProduct = $(this).parent().parent().find('.js-name-b2').html();
             swal(nameProduct, "찜 추가하였습니다", "success");
         }
 
-        // 세션 스토리지에 업데이트된 위시리스트 상태 저장
-        localStorage.setItem('wishlistState', JSON.stringify(wishlistState));
-    });
-
-    // 페이지 로드 시 위시리스트 상태에 따라 하트 이미지 업데이트
-    $('.js-addwish-b2, .js-addwish-detail').each(function () {
-        var selIdProduct = $(this).parent().parent().find('.js-selid-b2').val();
-        var heartImage = $(this).find('img');
-        if (wishlistState[selIdProduct]) {
-            $(heartImage).attr('src', $(heartImage).attr('src').replace('heart-01', 'heart-02'));
-        }
     });
 
     // 실제 위시리스트에 항목 추가
@@ -167,61 +182,14 @@ $(function(){
 		
 		// 대분류
 		// 클릭 이벤트 핸들러
-$(document).on('click', '.js-addwish-b2, .js-addwish-detail', function (e) {
-    e.preventDefault();
-    var selIdProduct = $(this).parent().parent().find('.js-selid-b2').val();
-    var heartImage = $(this).find('img');
 
-    if (wishlistState[selIdProduct]) {
-        // 이미 찜한 경우, 제거
-        $(heartImage).attr('src', $(heartImage).attr('src').replace('heart-02', 'heart-01'));
-        delete wishlistState[selIdProduct];
-        removeItemFromWishlist(selIdProduct);
-        var nameProduct = $(this).parent().parent().find('.js-name-b2').html();
-        swal(nameProduct, "찜 삭제하였습니다", "success");
-    } else {
-        // 찜하지 않은 경우, 추가
-        var nameProduct = $(this).parent().parent().find('.js-name-b2').val();
-        var priceProduct = $(this).parent().parent().find('.js-price-b2').val();
-        var imgProduct = $(this).parent().parent().find('.js-img-b2').val();
-        var param = {
-            m_id: $('#logid').val(),
-            p_selid: selIdProduct,
-            p_name: nameProduct,
-            p_price: priceProduct,
-            p_imgrn: imgProduct
-        };
-        addItemToWishlist(param);
-        wishlistState[selIdProduct] = true;
-        $(heartImage).attr('src', $(heartImage).attr('src').replace('heart-01', 'heart-02'));
-        var nameProduct = $(this).parent().parent().find('.js-name-b2').html();
-        swal(nameProduct, "찜 추가하였습니다", "success");
-    }
-
-    // 세션 스토리지에 업데이트된 위시리스트 상태 저장
-    localStorage.setItem('wishlistState', JSON.stringify(wishlistState));
-});
-
-// 페이지 로드 시 위시리스트 상태에 따라 하트 이미지 업데이트
-$('.js-addwish-b2, .js-addwish-detail').each(function () {
-    var selIdProduct = $(this).parent().parent().find('.js-selid-b2').val();
-    var heartImage = $(this).find('img');
-    if (wishlistState[selIdProduct]) {
-        $(heartImage).attr('src', $(heartImage).attr('src').replace('heart-01', 'heart-02'));
-    }
-});
-
-// 동적으로 생성되는 테이블에 위시리스트 상태에 따라 하트 이미지 업데이트
-$(document).on('DOMNodeInserted', '.isotope-grid', function () {
-    updateHeartImages();
-});
 
 // 위시리스트 상태에 따라 동적으로 생성된 하트 이미지 업데이트
 function updateHeartImages() {
     $('.js-addwish-b2, .js-addwish-detail').each(function () {
         var selIdProduct = $(this).parent().parent().find('.js-selid-b2').val();
         var heartImage = $(this).find('img');
-        if (wishlistState[selIdProduct]) {
+        if (isWishlisted) {
             $(heartImage).attr('src', $(heartImage).attr('src').replace('heart-01', 'heart-02'));
         }
     });
@@ -254,7 +222,7 @@ $('.filter-tope-group button').on('click', function(){
                                     '<a href="product-detail?m_id=' + logid + '&p_selid=' + item.p_selid + '" class="stext-104 cl4 hov-cl1 trans-04 p-b-6 js-name-b2" data-name="' + item.p_name + '">' + item.p_name + '</a>' +
                                     '<input type="hidden" value="' + logid + '" id="logid"/>' +
                                     '<input type="hidden" value="' + item.p_selid + '" class="js-selid-b2"/>' +
-                                    '<input type="hidden" value="' + item.p_name + '" class="js-name-b2" id="p_name"/>' +
+                                    '<input type="hidden" value="' + item.p_name + '" id="p_name" class="js-name-b2" />' +
                                     '<input type="hidden" value="' + item.p_price + '" id="p_price" class="js-price-b2"/>' +
                                     '<input type="hidden" value="' + item.p_imgrn + '" class="js-img-b2"/>' +
                                     '<span class="stext-105 cl3" id="p_price">' + item.p_price + '원</span>' +
@@ -279,7 +247,6 @@ $('.filter-tope-group button').on('click', function(){
 
             // each 끝
             // 위시리스트 상태에 따라 동적으로 생성된 하트 이미지 업데이트
-            updateHeartImages();
         } 
         //
     });
@@ -290,7 +257,7 @@ $('.filter-tope-group button').on('click', function(){
 	    
 	    /* --------------------------------------------------------------------------------------------------- */
 	    
-	    // 필터링 바
+	    // 필터링 바 - 가격
 	    $('.price-link').on('click', function(e){
 	    	e.preventDefault(); 
 	    	$('.price-link').removeClass('filter-link-active');
@@ -347,7 +314,7 @@ $('.filter-tope-group button').on('click', function(){
 	 				    $('.isotope-grid').append(productHTML);
 	 				});
 	 				// each 끝
-	 				 
+	 				updateHeartImages();
 	 	            
 	 			 } 
 	 			 //
@@ -377,6 +344,7 @@ $('.filter-tope-group button').on('click', function(){
 	 					
 	 					var leftPercentage = (index % 4) * 25; // 0%, 25%, 50%, 75%
 	 				    var topValue = Math.floor(index / 4) * 485;
+	 					//console.log(item.p_name)
 	 				   var productHTML = 
 	 					    '<div class="col-sm-6 col-md-4 col-lg-3 p-b-35 isotope-item" style="position: absolute; left: ' + leftPercentage + '%; top: ' + topValue + 'px;">' +
 	 					        '<div class="block2">' +
@@ -414,7 +382,7 @@ $('.filter-tope-group button').on('click', function(){
 	 				});
 	 				// each 끝
 	 				 
-	 	            
+	 				updateHeartImages();
 	 			 } 
 	 			 //
 	 		 });
@@ -657,7 +625,7 @@ form {
 
 							<ul>
 								<li class="p-b-6"><a href="#"
-									class="filter-link price-link stext-106 trans-04 filter-link-active" data-filter="*">
+									class="filter-link price-link stext-106 trans-04 filter-link-active" data-filter="5">
 										All </a></li>
 
 								<li class="p-b-6"><a href="#"

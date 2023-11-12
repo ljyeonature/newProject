@@ -237,7 +237,7 @@ public class MemberController {
 	
 	// qna게시판 목록 조회 =============> wishlist 표시 => 자동 qna로 이동
 	@RequestMapping("/qna")
-	public void board_all(Model model, WishListVO wvo, String sltfilter, String search, @RequestParam String m_id, @RequestParam(defaultValue = "1") int page) {
+	public void board_all(Model model, WishListVO wvo, String sltfilter, String search, @RequestParam(defaultValue = "1") int page) {
 		
 		BoardVO vo = new BoardVO();
 		vo.setSltfilter(sltfilter);
@@ -414,6 +414,7 @@ public class MemberController {
 	@RequestMapping("/delete_wishlist")
 	@ResponseBody
 	public String deleteWishlist(WishListVO vo) {
+		System.out.println(vo.getP_name());
 		int result = memberService.delete_wishlist(vo);
 		System.out.println("delete : " + result);
 		if(result == 1) {
@@ -558,11 +559,10 @@ public class MemberController {
 	{	
 			return api.paymentByImpUid(imp_uid);
 	}
-	
+
 	// 결제 후 결제 정보 저장 / 주문 정보 저장 / 주문 아이템 저장
 	@RequestMapping("/order_do")
-	public String order(OrderVO ovo, @ModelAttribute("oivoList") List<OrderItemVO> oivoList, PayInfoVO pvo, CartVO vo) {
-		System.out.println(ovo.toString());
+	public String order(OrderVO ovo, OrderItemVO oivo, PayInfoVO pvo, CartVO vo) {
 		Calendar cal = Calendar.getInstance();
 		int year = cal.get(Calendar.YEAR);
 		String ym = year + new DecimalFormat("00").format(cal.get(Calendar.MONTH) + 1);
@@ -573,19 +573,13 @@ public class MemberController {
 			subNum += (int)(Math.random() * 10);
 		}
 		String orderId = ymd + "_" + subNum;
+		
 		ovo.setO_id(orderId);
+		oivo.setO_id(orderId);
 		pvo.setO_id(orderId);
 		
-	    for (OrderItemVO orderItem : oivoList) {
-	        // 각각의 OrderItemVO에 대한 처리...
-	    	orderItem.setO_id(orderId);
-	        System.out.println(orderItem.toString());
-	        int insertOrderItem = memberService.insertOrderItem(orderItem);
-	    }
-	    System.out.println(pvo.toString());
-		
-		
 		int insertOrder = memberService.insertOrder(ovo);
+		int insertOrderItem = memberService.insertOrderItem(oivo);
 		int insertPayInfo = memberService.insertPayInfo(pvo);
 		
 		//System.out.println("insertOrder : " + insertOrder);
@@ -598,7 +592,6 @@ public class MemberController {
 		return "redirect:/member/order_search?m_id=" + ovo.getM_id();
 		
 	}
-
 
 	
 }

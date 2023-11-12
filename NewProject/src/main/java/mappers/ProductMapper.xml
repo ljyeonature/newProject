@@ -68,16 +68,16 @@
 	    WHERE
 	    <choose>
 	         <when test="condition == 0">
-            p_price &gt;= 0 AND p_price &lt;= 1000
+            p_price &gt;= 0 AND p_price &lt; 1000
         </when>
         <when test="condition == 1">
-            p_price &gt;= 1000 AND p_price &lt;= 5000
+            p_price &gt;= 1000 AND p_price &lt; 5000
         </when>
         <when test="condition == 2">
-            p_price &gt;= 5000 AND p_price &lt;= 10000
+            p_price &gt;= 5000 AND p_price &lt; 10000
         </when>
         <when test="condition == 3">
-            p_price &gt;= 10000 AND p_price &lt;= 50000
+            p_price &gt;= 10000 AND p_price &lt; 50000
         </when>
         <when test="condition == 4">
             p_price &gt;= 50000

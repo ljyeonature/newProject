@@ -9,47 +9,113 @@
 		INSERT INTO p_product(p_selid, p_name, p_price, p_description, p_care
 		<if test='p_imgn != null'>
 			, p_imgn, p_imgrn, p_imgsz
+			,img1_n, img1_rn, img1_sz,
+	        img2_n, img2_rn, img2_sz,
+	        img3_n, img3_rn, img3_sz,
+	        img4_n, img4_rn, img4_sz,
+	        img5_n, img5_rn, img5_sz,
+	        img6_n, img6_rn, img6_sz
 		</if>
 		)
 		VALUES(#{p_selid}, #{p_name}, #{p_price}, #{p_description}, #{p_care}
 		<if test='p_imgn != null'>
 			, #{p_imgn}, #{p_imgrn}, #{p_imgsz}
+			,#{img1_n}, #{img1_rn}, #{img1_sz},
+	        #{img2_n}, #{img2_rn}, #{img2_sz},
+	        #{img3_n}, #{img3_rn}, #{img3_sz},
+	        #{img4_n}, #{img4_rn}, #{img4_sz},
+	        #{img5_n}, #{img5_rn}, #{img5_sz},
+	        #{img6_n}, #{img6_rn}, #{img6_sz}
 		</if>
 		)
 	</insert>
 	
-	
-	<!-- 상품 이미지 등록 -->
-	<insert id="uploadImage" parameterType="com.java.domain.ImageVO">
-    INSERT INTO image (
-    p_selid,
-        img1_n, img1_rn, img1_sz,
-        img2_n, img2_rn, img2_sz,
-        img3_n, img3_rn, img3_sz,
-        img4_n, img4_rn, img4_sz,
-        img5_n, img5_rn, img5_sz,
-        img6_n, img6_rn, img6_sz,
-        img7_n, img7_rn, img7_sz,
-        img8_n, img8_rn, img8_sz
-    ) VALUES (
-    #{p_selid},
-        #{img1_n}, #{img1_rn}, #{img1_sz},
-        #{img2_n}, #{img2_rn}, #{img2_sz},
-        #{img3_n}, #{img3_rn}, #{img3_sz},
-        #{img4_n}, #{img4_rn}, #{img4_sz},
-        #{img5_n}, #{img5_rn}, #{img5_sz},
-        #{img6_n}, #{img6_rn}, #{img6_sz},
-        #{img7_n}, #{img7_rn}, #{img7_sz},
-        #{img8_n}, #{img8_rn}, #{img8_sz}
-    )
-</insert>
-	
+
 	<!-- product_all에 들어갔을 때 상품 등록 정보 불러오기  -->
 	<select id="product_all" resultType="com.java.domain.ProductVO">
 		SELECT * FROM p_product
-	
+			<if test="search != null">
+				WHERE p_name LIKE CONCAT('%', #{search}, '%')
+				OR p_price LIKE CONCAT('%', #{search}, '%')
+				OR p_description LIKE CONCAT('%', #{search}, '%')
+				OR p_care LIKE CONCAT('%', #{search}, '%')
+
+			</if>
 	</select>
 	
+	<!-- product_all에 들어갔을 때 상품 등록 정보 불러오기  -->
+	<select id="fishAll" resultType="com.java.domain.ProductVO">
+	    SELECT * FROM p_product
+	    WHERE
+	    <choose>
+	        <when test='fstdivid.equals("F")'>
+	            SUBSTRING(p_selid, 1, 1) = #{fstdivid}
+	        </when>
+	        <when test='fstdivid.equals("D")'>
+	            SUBSTRING(p_selid, 1, 1) = #{fstdivid}
+	        </when>
+	        <when test='fstdivid.equals("E")'>
+	            SUBSTRING(p_selid, 1, 1) = #{fstdivid}
+	        </when>
+	        <otherwise>
+	            1=1
+	        </otherwise>
+	    </choose>
+	</select>
+	
+	<select id="priceAll" resultType="com.java.domain.ProductVO">
+	    SELECT * FROM p_product
+	    WHERE
+	    <choose>
+	         <when test="condition == 0">
+            p_price &gt;= 0 AND p_price &lt; 1000
+        </when>
+        <when test="condition == 1">
+            p_price &gt;= 1000 AND p_price &lt; 5000
+        </when>
+        <when test="condition == 2">
+            p_price &gt;= 5000 AND p_price &lt; 10000
+        </when>
+        <when test="condition == 3">
+            p_price &gt;= 10000 AND p_price &lt; 50000
+        </when>
+        <when test="condition == 4">
+            p_price &gt;= 50000
+        </when>
+         <otherwise>
+	            1=1
+	     </otherwise>
+	    </choose>
+	</select>
+	
+	<select id="colorAll" resultType="com.java.domain.ProductVO">
+    	SELECT * FROM p_product p INNER JOIN p_option o
+		ON p.p_selid = o.trddivid
+		WHERE
+		 <choose>
+	        <when test='color.equals("그린")'>
+	           o.o_name LIKE CONCAT('%', '그린', '%')
+	        </when>
+	        <when test='color.equals("오렌지")'>
+	           o.o_name LIKE CONCAT('%', '오렌지', '%')
+	        </when>
+	        <when test='color.equals("옐로우")'>
+	           o.o_name LIKE CONCAT('%', '옐로우', '%')
+	        </when>
+	         <when test='color.equals("스트로베리")'>
+	           o.o_name LIKE CONCAT('%', '스트로베리', '%')
+	        </when>
+	        <when test='color.equals("레드")'>
+	           o.o_name LIKE CONCAT('%', '레드', '%')
+	        </when>
+	        <when test='color.equals("화이트")'>
+	           o.o_name LIKE CONCAT('%', '화이트', '%')
+	        </when>
+	        <otherwise>
+	            1=1
+	        </otherwise>
+	    </choose>
+	</select>
 	
 	<!-- product_resister에 들어갔을 때, 분류 정보 불러오기 -->
 	<select id="selectFstCate" parameterType="com.java.domain.FstDivVO" resultType="com.java.domain.FstDivVO">
@@ -95,6 +161,14 @@
 		WHERE trddiv.TRDDIVID = #{p_selid}
 	</select>
 	
+	<!-- product_stock_res 옵션 정보 불러오기 -->
+   <select id="stock_option" parameterType="com.java.domain.OptionVO" resultType="com.java.domain.OptionVO">
+         SELECT p_option.P_OPTIONID ,p_option.o_name
+      FROM p_option INNER JOIN trddiv 
+      ON p_option.trddivid = trddiv.trddivid
+      WHERE trddiv.TRDDIVID = #{trddivid}
+   </select>
+	
 
 	<!-- 옵션 등록 -->
 	<insert id="insert_option" parameterType="com.java.domain.OptionFinalVO">
@@ -102,15 +176,41 @@
 		INSERT INTO final_op (p_optionID, p_selid) VALUES (#{p_optionID}, #{p_selid})
 	</insert>
 	
+	<!-- 옵션재고 등록 -->
+<!-- <insert id ="insert_stock" parameterType="com.java.domain.OptionFinalVO">
+   		UPDATE FINAL_OP 
+		SET p_stock = #{p_stock}
+		WHERE p_optionID = #{p_optionID};
+   </insert>  -->
+   
+   <update id="update_stock" parameterType="com.java.domain.OptionFinalVO">
+	    UPDATE FINAL_OP 
+	    SET p_stock = #{p_stock}
+	    WHERE p_optionID = #{p_optionID};
+	</update> 
+	
+	<!-- 재고 수정 눌렀을때 재고 내역뜨게 하기 -->
+	<select id="opcollect" parameterType="com.java.domain.OptionFinalVO" resultType="com.java.domain.OptionFinalVO">
+		SELECT fo.p_stock p_stock, fo.p_optionID p_optionID, o.o_name o_name
+		FROM FINAL_OP fo inner join p_option o
+		on fo.p_optionID = o.p_optionID
+		WHERE fo.p_selid = #{p_selid}; 
+	</select>
+	
 
 	<!-- product_all에서 체크박스 누르고 삭제 시 해당 컬럼 내용 삭제하기  -->
    <delete id="deleteProduct" parameterType="com.java.domain.ProductVO">
       DELETE FROM p_product
       WHERE p_selid = #{p_selid}
    </delete>
+   
+    <!-- 제품 등록한거 불러오기  -->
+   <select id="product_optionList" parameterType="com.java.domain.ProductVO" resultType="com.java.domain.ProductVO">
+   	SELECT * FROM P_PRODUCT;
+   </select>
 
    
-      <!-- 상품정보수정 카테고리 로드 *상철 -->
+   <!-- 상품정보수정 카테고리 로드 *상철 -->
    <select id='productView' parameterType="com.java.domain.ProductVO" resultType="com.java.domain.ProductVO">
     SELECT *
     FROM p_product
@@ -120,5 +220,10 @@
 
    </select> 
 
+ 	<!--  주문목록리스트 불러오기  -->
+	<select id="order_all" parameterType="com.java.domain.OrderVO" resultType="com.java.domain.OrderVO">
+		SELECT * FROM o_order WHERE m_id = #{m_id}
+	</select>
+	
 
 </mapper>

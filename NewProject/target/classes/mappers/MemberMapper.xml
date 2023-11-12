@@ -66,7 +66,7 @@
 	</insert>
 	
 	<!-- 해당 m_id의 찜 목록 보이기 -->
-	<select id="wishlist_all" parameterType="com.java.domain.WishListVO" resultType="com.java.domain.WishListVO">
+	<select id="wishlist_all" parameterType="String" resultType="com.java.domain.WishListVO">
 		SELECT * FROM wishlist WHERE m_id=#{m_id}
 	</select>
 	
@@ -78,8 +78,8 @@
 	
 	<!-- 장바구니 추가 -->
 	<insert id="add_to_cart" parameterType="com.java.domain.CartVO">
-		INSERT INTO CART (m_id, cart_cnt, o_name, p_name, p_price, shopping_total) 
-		VALUES (#{m_id}, #{cart_cnt}, #{o_name}, #{p_name}, #{p_price}, #{cart_cnt}*#{p_price})
+		INSERT INTO CART (m_id, cart_cnt, p_optionID, o_name, p_name, p_price, shopping_total) 
+		VALUES (#{m_id}, #{cart_cnt}, #{p_optionID}, #{o_name}, #{p_name}, #{p_price}, #{cart_cnt}*#{p_price})
 	</insert>
 
 	<!-- 장바구니 내역 보이기 -->
@@ -93,33 +93,83 @@
 		WHERE m.m_id = #{m_id};
 	</select>	
 
-	<!-- 찜 중복 확인 -->
+	<!-- 장바구니 중복 확인 -->
 	<select id="alreadyInCartList" parameterType="com.java.domain.CartVO" resultType="int">
 	    SELECT 
 	      COUNT(*)
 	    FROM cart
-	    WHERE p_name = #{p_name}
+	    WHERE o_name = #{o_name} AND m_id=#{m_id}
 	</select>
 	
 	<!-- 장바구니 수량 올리기 -->
 	<update id="plusCartCnt" parameterType="com.java.domain.CartVO">
 		UPDATE cart 
 		SET cart_cnt=#{cart_cnt}, shopping_total=#{cart_cnt}*#{p_price} 
-		WHERE o_name=#{o_name}
+		WHERE o_name=#{o_name} AND m_id=#{m_id}
 	</update>
 	
 	<!-- 장바구니 수량 내리기 -->
 	<update id="minusCartCnt" parameterType="com.java.domain.CartVO">
 		UPDATE cart 
 		SET cart_cnt=#{cart_cnt}, shopping_total=#{cart_cnt}*#{p_price} 
-		WHERE o_name=#{o_name}
+		WHERE o_name=#{o_name} AND m_id=#{m_id}
 	</update>
 	
 	<!-- 장바구니 총합계 -->
 	<select id="cart_total" parameterType="com.java.domain.CartVO" resultType="String">
-		SELECT sum(shopping_total) cart_total FROM cart WHERE m_id=#{m_id};
+		SELECT sum(shopping_total) cart_total FROM cart WHERE m_id=#{m_id}
 	</select>
 	
+	<!-- 장바구니 삭제 : 이미지 클릭 시 삭제 -->
+	<delete id="removeCartItem" parameterType="com.java.domain.CartVO">
+		DELETE FROM cart WHERE o_name=#{o_name}
+	</delete>
+
+	<!-- 세션 아이디에 해당하는 회원 정보 불러오기 : 주문서 -->
+	<select id="member-info" parameterType="com.java.domain.MemberVO" resultType="com.java.domain.MemberVO">
+		SELECT * FROM m_member WHERE m_id=#{m_id}
+	</select>
 	
+	<!-- 주문 내역 넣기 -->
+	<insert id="insertOrder" parameterType="com.java.domain.OrderVO">
+		INSERT INTO o_order (o_id, m_id, o_date, o_status, rc_name, rc_tel, rc_postcode, rc_addr, pay_amount, pay_by) 
+		VALUES 
+		( #{o_id}, #{m_id}, now(), '결제완료', 
+		#{rc_name}, #{rc_tel}, #{rc_postcode}, #{rc_addr}, #{pay_amount}, #{pay_by} )
+	</insert>
+	
+	<!-- 결제 내역 넣기 -->
+	<insert id="insertPayInfo" parameterType="com.java.domain.PayInfoVO">
+		INSERT INTO pay_info (o_id, pay_by, pay_acc, pay_amount, m_name) 
+	    VALUES 
+	    <if test="pay_by == '카드결제'">
+	        (#{o_id}, #{pay_by}, 0 ,#{pay_amount}, #{m_name})
+	    </if>
+	    <if test="pay_by == '무통장입금'">
+	        (#{o_id}, #{pay_by}, #{pay_acc}, #{pay_amount}, #{m_name})    
+	    </if>
+	</insert>
+	
+	<!-- 주문 아이템 넣기 -->
+	<insert id="insertOrderItem" parameterType="com.java.domain.OrderItemVO">
+	    INSERT INTO order_item (o_id, p_optionID, cart_cnt) 
+	    SELECT #{o_id}, p_optionID, cart_cnt FROM cart WHERE m_id = #{m_id}
+	</insert>
+	
+	<!-- 주문 후 장바구니 삭제 -->
+	<delete id="cartAllDelete" parameterType="com.java.domain.CartVO">
+		DELETE FROM cart WHERE m_id = #{m_id}
+	</delete>
+	
+	<!-- 주문 내역 리스트 대분류 별 구매 내역 -->
+	<select id="fstOrder" parameterType="com.java.domain.LogVO" resultType="com.java.domain.LogVO">
+		SELECT f.fstdivname fstdivname, count(*) AS cnt 
+		FROM order_item oi INNER JOIN p_option po ON oi.p_optionID = po.p_optionID 
+		INNER JOIN trddiv t ON po.trddivid = t.trddivid 
+		INNER JOIN snddiv s ON t.snddivid  = s.snddivid 
+		INNER JOIN fstdiv f ON s.fstdivid  = f.fstdivid
+		WHERE SUBSTRING(oi.p_optionID, 1, 1) = f.fstdivid
+		GROUP BY f.fstdivname;
+	</select>
 	
 </mapper>
