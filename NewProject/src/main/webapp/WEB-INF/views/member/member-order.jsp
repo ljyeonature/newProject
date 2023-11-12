@@ -172,12 +172,7 @@ input#pay_acc {
     // 페이지 로딩 후 총 합계 업데이트 실행
     updateTotalAmount();
     
-    // 결제 버튼을 눌렀을 때
-    $('.pay_btn').on('click', function(e){
-    	alert(1);
-    	e.preventDefault();
-    	iamport();
-	})
+   
 	function iamport(){
 		//가맹점 식별코드
 		IMP.init('imp22600537');
@@ -248,7 +243,6 @@ input#pay_acc {
             $("#rc_tel").val(""); // 첫 번째 행 숨기기
         }
         
-        // 결제 방법 : 무통장입금일 경우 계좌번호 입력창 뜨게 하기
           // 초기 설정
         checkPaymentMethod();
 
@@ -260,26 +254,33 @@ input#pay_acc {
         function checkPaymentMethod() {
             // 선택된 결제 방법 가져오기
             var selectedPaymentMethod = $('select[name="pay_by"]').val();
+            var m_id = $('#m_id').val();
 
             // 무통장입금인 경우 계좌번호 입력 창 보이게
             if (selectedPaymentMethod === '무통장입금') {
                 $('#bankAccountInput').show();
+                $('.pay_btn').on('click', function(){
+                	$('#orderData').submit();
+            	})
             } else {
                 $('#bankAccountInput').hide();
             }
 
             // 현금영수증 선택 라디오 버튼 보이게
-            if (selectedPaymentMethod === '카드결제') {
-                $('#cashReceiptInput').hide();
-            } else {
-                $('#cashReceiptInput').show();
-            }
-        }
-        
-        
-        
-  });// 스크립트 끝
-  
+             
+			if (selectedPaymentMethod === '카드결제') {
+				$('#cashReceiptInput').hide();
+				// 결제 버튼을 눌렀을 때
+				$('.pay_btn').on('click', function(e) {
+					e.preventDefault();
+					iamport();
+				});
+				} else {
+					$('#cashReceiptInput').show();
+				}
+		}
+
+	});// 스크립트 끝
 </script>
 
 
@@ -521,7 +522,7 @@ input#pay_acc {
 		                <td>
 		                    <!-- 무통장입금일 때만 보이게 할 계좌번호 입력 창 -->
 		                    <label for="bank_account" id="account">계좌번호</label>
-		                    <input type="text" name="pay_acc" id="pay_acc" />
+		                    <input type="text" name="pay_acc" id="pay_acc" value="03948-1029358"/>
 		                </td>
 		            </tr>
 		            <tr id="cashReceiptInput">

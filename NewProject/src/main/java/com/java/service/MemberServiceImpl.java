@@ -12,6 +12,7 @@ import com.java.domain.MemberVO;
 import com.java.domain.OrderItemVO;
 import com.java.domain.OrderVO;
 import com.java.domain.PayInfoVO;
+import com.java.domain.ProductVO;
 import com.java.domain.WishListVO;
 import com.java.repository.MemberDAO;
 
@@ -214,6 +215,7 @@ public class MemberServiceImpl implements MemberService{
 		List<LogVO> result = memberDAOImpl.fstOrder(vo);
 		return result;
 	}
+
 	
 	
 	

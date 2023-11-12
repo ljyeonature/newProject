@@ -172,5 +172,4 @@
 		GROUP BY f.fstdivname;
 	</select>
 	
-	
 </mapper>

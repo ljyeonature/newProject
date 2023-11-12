@@ -13,6 +13,7 @@ import com.java.domain.MemberVO;
 import com.java.domain.OrderItemVO;
 import com.java.domain.OrderVO;
 import com.java.domain.PayInfoVO;
+import com.java.domain.ProductVO;
 import com.java.domain.WishListVO;
 
 //### (1) 해당 어노테이션 지정
@@ -234,13 +235,11 @@ public class MemberDAOImpl implements MemberDAO{
 	public List<LogVO> fstOrder(LogVO vo){
 		return sqlSession.selectList("org.java.MemberMapper.fstOrder", vo);
 	}
+	
 
 	 
 	
 
-	
-	
-	
-
-
 }
+	
+	

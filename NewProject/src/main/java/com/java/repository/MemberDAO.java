@@ -10,6 +10,7 @@ import com.java.domain.MemberVO;
 import com.java.domain.OrderItemVO;
 import com.java.domain.OrderVO;
 import com.java.domain.PayInfoVO;
+import com.java.domain.ProductVO;
 import com.java.domain.WishListVO;
 
 public interface MemberDAO {
@@ -91,5 +92,7 @@ public interface MemberDAO {
 	public int cartAllDelete(CartVO vo);
 	
 	// 대분류 별 주문
-	public List<LogVO> fstOrder(LogVO vo); 
+	public List<LogVO> fstOrder(LogVO vo);
+	
+	
 }

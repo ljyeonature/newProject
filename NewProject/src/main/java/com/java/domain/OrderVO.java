@@ -15,6 +15,6 @@ public class OrderVO {
 	private String rc_addr;		// 수령자주소	- rc_addr
 	private String pay_amount;	// 주문수량		- pay_amount
 	private String pay_by;		// 주문방법		- pay_by
-	private String product_name; 	//DB엔 없는 제품명 (오더서치용)
+	private String o_name; 	//DB엔 없는 제품명 (오더서치용)
 
 }

@@ -18,8 +18,8 @@ import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -86,18 +86,20 @@ public class MemberController {
 	// 관리자 로그인 : m_rol이 manager인 경우
 	// redirect를 해야 아래 회원 목록을 불러오는 페이지로 갔다 올 수 있음.
 	@RequestMapping("/login_do")
-	public String loginCheck(MemberVO vo, HttpSession session) {
+	public String loginCheck(MemberVO vo, HttpSession session, Model model) {
 		MemberVO result = memberService.loginCheck(vo);
 		//		MemberVO adminResult = memberService.adminCheck(vo);
 		//		System.out.println("admin Controller : " + adminResult);
 		//		System.out.println(result.getM_name());
 		//		System.out.println(result.getM_rol());
 		if (result == null) {
-
+			model.addAttribute("loginError", true);
 			return "member/login";
+			
 		} else if ("manager".equals(result.getM_rol())) {
 			session.setAttribute("logname", result.getM_name());
 			session.setAttribute("logid", result.getM_id());
+			model.addAttribute("loginError", false);
 			return "redirect:/admin/admin-choice";
 
 		} 
@@ -106,6 +108,7 @@ public class MemberController {
 	    	//System.out.println(result);
 	        session.setAttribute("logname", result.getM_name());
 	        session.setAttribute("logid", result.getM_id());
+	        model.addAttribute("loginError", false);
 	        return "redirect:/member/home";
 	    }
 		
@@ -321,9 +324,12 @@ public class MemberController {
 	@Autowired
 	ProductServiceImpl productService;
 	
-	// 상품 보여주기
+	// 상품 보여주기 + 검색
 		@RequestMapping("/product")
-		public void product_all(ProductVO vo, Model model, WishListVO wvo) {
+		public void product_all(ProductVO vo, Model model, WishListVO wvo, String search) {
+			
+			ProductVO pvo = new ProductVO();
+			pvo.setSearch(search);
 
 			model.addAttribute("productAll",productService.product_all(vo));
 			model.addAttribute("wishList", memberService.wishlist_all(wvo));
@@ -534,7 +540,8 @@ public class MemberController {
 	
 	// 결제 후 결제 정보 저장 / 주문 정보 저장 / 주문 아이템 저장
 	@RequestMapping("/order_do")
-	public String order(OrderVO ovo, OrderItemVO oivo, PayInfoVO pvo, CartVO vo) {
+	public String order(OrderVO ovo, @ModelAttribute("oivoList") List<OrderItemVO> oivoList, PayInfoVO pvo, CartVO vo) {
+		System.out.println(ovo.toString());
 		Calendar cal = Calendar.getInstance();
 		int year = cal.get(Calendar.YEAR);
 		String ym = year + new DecimalFormat("00").format(cal.get(Calendar.MONTH) + 1);
@@ -545,13 +552,19 @@ public class MemberController {
 			subNum += (int)(Math.random() * 10);
 		}
 		String orderId = ymd + "_" + subNum;
-		
 		ovo.setO_id(orderId);
-		oivo.setO_id(orderId);
 		pvo.setO_id(orderId);
 		
+	    for (OrderItemVO orderItem : oivoList) {
+	        // 각각의 OrderItemVO에 대한 처리...
+	    	orderItem.setO_id(orderId);
+	        System.out.println(orderItem.toString());
+	        int insertOrderItem = memberService.insertOrderItem(orderItem);
+	    }
+	    System.out.println(pvo.toString());
+		
+		
 		int insertOrder = memberService.insertOrder(ovo);
-		int insertOrderItem = memberService.insertOrderItem(oivo);
 		int insertPayInfo = memberService.insertPayInfo(pvo);
 		
 		//System.out.println("insertOrder : " + insertOrder);
@@ -561,10 +574,9 @@ public class MemberController {
 		// 결제 완료 후 : 장바구니 삭제
 		memberService.cartAllDelete(vo);
 		
-		return "member/my-page/order_search?m_id=" + ovo.getM_id();
+		return "redirect:/member/order_search?m_id=" + ovo.getM_id();
 		
 	}
-	
 
 
 	

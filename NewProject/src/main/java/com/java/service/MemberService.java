@@ -9,6 +9,7 @@ import com.java.domain.MemberVO;
 import com.java.domain.OrderItemVO;
 import com.java.domain.OrderVO;
 import com.java.domain.PayInfoVO;
+import com.java.domain.ProductVO;
 import com.java.domain.WishListVO;
 
 public interface MemberService {
@@ -89,5 +90,7 @@ public interface MemberService {
 	
 	// 대 분류 별 주문
 	public List<LogVO> fstOrder(LogVO vo); 
+	
+	
 		
 }

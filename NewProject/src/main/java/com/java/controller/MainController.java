@@ -9,6 +9,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.java.domain.BoardVO;
 import com.java.domain.OptionVO;
@@ -40,7 +41,10 @@ public class MainController {
 
 	// 상품 페이지
 	@RequestMapping("/product")
-	public void product_all(ProductVO vo, Model model) {
+	public void product_all(ProductVO vo, Model model, String search) {
+		ProductVO pvo = new ProductVO();
+		pvo.setSearch(search);
+		
 		model.addAttribute("productAll",productService.product_all(vo));
 	}
 
@@ -53,6 +57,16 @@ public class MainController {
 		//System.out.println(result.toString());
 		model.addAttribute("productDetail", result);
 		model.addAttribute("productOption", option);
+	}
+	
+	// 대분류 검색 - 물고기
+	@RequestMapping("/fishAll")
+	@ResponseBody
+	public List<ProductVO> fishAll(ProductVO vo, Model model) {
+		System.out.println("alreadyInCartList : "+ vo.toString());
+		List<ProductVO> result = productService.fishAll(vo);
+		System.out.println("alreadyInCartList : "+ result.toString());
+		return result;
 	}
 	
 	// qna게시판 목록 조회

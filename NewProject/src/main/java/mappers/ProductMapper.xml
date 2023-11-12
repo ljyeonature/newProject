@@ -9,60 +9,38 @@
 		INSERT INTO p_product(p_selid, p_name, p_price, p_description, p_care
 		<if test='p_imgn != null'>
 			, p_imgn, p_imgrn, p_imgsz
+			,img1_n, img1_rn, img1_sz,
+	        img2_n, img2_rn, img2_sz,
+	        img3_n, img3_rn, img3_sz,
+	        img4_n, img4_rn, img4_sz,
+	        img5_n, img5_rn, img5_sz,
+	        img6_n, img6_rn, img6_sz
 		</if>
 		)
 		VALUES(#{p_selid}, #{p_name}, #{p_price}, #{p_description}, #{p_care}
 		<if test='p_imgn != null'>
 			, #{p_imgn}, #{p_imgrn}, #{p_imgsz}
+			,#{img1_n}, #{img1_rn}, #{img1_sz},
+	        #{img2_n}, #{img2_rn}, #{img2_sz},
+	        #{img3_n}, #{img3_rn}, #{img3_sz},
+	        #{img4_n}, #{img4_rn}, #{img4_sz},
+	        #{img5_n}, #{img5_rn}, #{img5_sz},
+	        #{img6_n}, #{img6_rn}, #{img6_sz}
 		</if>
 		)
 	</insert>
 	
-	
-	<!-- 상품 이미지 등록 -->
-	<insert id="uploadImage" parameterType="com.java.domain.ImageVO">
-    INSERT INTO image (
-    p_selid,
-        img1_n, img1_rn, img1_sz,
-        img2_n, img2_rn, img2_sz,
-        img3_n, img3_rn, img3_sz,
-        img4_n, img4_rn, img4_sz,
-        img5_n, img5_rn, img5_sz,
-        img6_n, img6_rn, img6_sz,
-        img7_n, img7_rn, img7_sz,
-        img8_n, img8_rn, img8_sz
-    ) VALUES (
-    #{p_selid},
-        #{img1_n}, #{img1_rn}, #{img1_sz},
-        #{img2_n}, #{img2_rn}, #{img2_sz},
-        #{img3_n}, #{img3_rn}, #{img3_sz},
-        #{img4_n}, #{img4_rn}, #{img4_sz},
-        #{img5_n}, #{img5_rn}, #{img5_sz},
-        #{img6_n}, #{img6_rn}, #{img6_sz},
-        #{img7_n}, #{img7_rn}, #{img7_sz},
-        #{img8_n}, #{img8_rn}, #{img8_sz}
-    )
-</insert>
-
 
 	<!-- product_all에 들어갔을 때 상품 등록 정보 불러오기  -->
 	<select id="product_all" resultType="com.java.domain.ProductVO">
 		SELECT * FROM p_product
-		
-		<choose>
-		
-			<when test="search != null">
-				p_name LIKE CONCAT('%', #{search}, '%')
+			<if test="search != null">
+				WHERE p_name LIKE CONCAT('%', #{search}, '%')
 				OR p_price LIKE CONCAT('%', #{search}, '%')
 				OR p_description LIKE CONCAT('%', #{search}, '%')
-				OR p_care LIKE LIKE CONCAT('%', #{search}, '%')
-			</when>
-			<otherwise>
-			WHERE 1 = 1
-			</otherwise>
-		
-		</choose>
-	
+				OR p_care LIKE CONCAT('%', #{search}, '%')
+
+			</if>
 	</select>
 	
 	<!-- product_all에 들어갔을 때 상품 등록 정보 불러오기  -->
@@ -179,7 +157,7 @@
    </select>
 
    
-      <!-- 상품정보수정 카테고리 로드 *상철 -->
+   <!-- 상품정보수정 카테고리 로드 *상철 -->
    <select id='productView' parameterType="com.java.domain.ProductVO" resultType="com.java.domain.ProductVO">
     SELECT *
     FROM p_product
@@ -189,9 +167,10 @@
 
    </select> 
 
- <!--  주문목록리스트 불러오기  -->
-<select id="order_all" parameterType="com.java.domain.OrderVO" resultType="com.java.domain.OrderVO">
-SELECT * FROM o_order WHERE m_id = #{m_id}
-</select>
+ 	<!--  주문목록리스트 불러오기  -->
+	<select id="order_all" parameterType="com.java.domain.OrderVO" resultType="com.java.domain.OrderVO">
+		SELECT * FROM o_order WHERE m_id = #{m_id}
+	</select>
+	
 
 </mapper>

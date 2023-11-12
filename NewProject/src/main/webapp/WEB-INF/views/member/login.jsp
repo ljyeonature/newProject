@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-
+	
 <!DOCTYPE html>
 <html lang="en">
 
@@ -22,6 +22,17 @@
 
   <link rel="stylesheet" href="../resources/join_login/css/style.css">
   <script src="../resources/main/jquery/jquery-3.2.1.min.js"></script>
+  <!-- 로그인 성공/실패 여부에 따라서 오류 메시지를 처리하는 스크립트 -->
+<script th:inline="javascript">
+$(function(){
+    /* 스크립트 내부에서 Thymeleaf 변수를 사용하기 위해 [[...]] 사용 */
+    var loginError = ${loginError};
+	if(loginError) {
+		alert("로그인 정보가 맞지 않습니다.");
+	} 
+	
+})
+</script>
 </head>
 <!-- <script>
         $(document).ready(function(){
@@ -79,7 +90,7 @@ function getCookie(cookieName) {
 }
      </script> -->
 <body>
-	
+
   
   <!--================Login Box Area =================-->
 	<section class="login_box_area section-margin">
@@ -117,6 +128,9 @@ function getCookie(cookieName) {
 			</div>
 		</div>
 	</section>
+
+
+	
 	<!--================End Login Box Area =================-->
 
 

@@ -65,6 +65,7 @@
 	        e.preventDefault();
 	        var selIdProduct = $(this).parent().parent().find('.js-selid-b2').val();
 	        var heartImage = $(this).find('img');
+	        alert(selIdProduct);
 
 	        if (wishlistState[selIdProduct]) {
 	            // 이미 찜한 경우, 제거
@@ -156,38 +157,12 @@
 
 		/*---------------------------------------------*/
 		
-	function appendProduct(product) {
-    const html = `
-        <div class="col-sm-6 col-md-4 col-lg-3 p-b-35 isotope-item">
-            <div class="block2">
-                <div class="block2-pic hov-img0">
-                    <img src="../resources/productImages/${product.p_imgrn}" alt="IMG-PRODUCT">
-                    <a href="product_quickview?p_selid=${product.p_selid}" class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1 quickView">Quick View</a>
-                </div>
-                <div class="block2-txt flex-w flex-t p-t-14">
-                    <div class="block2-txt-child1 flex-col-l ">
-                        <a href="product-detail?m_id=${sessionScope.logid}&p_selid=${product.p_selid}" class="stext-104 cl4 hov-cl1 trans-04 p-b-6" id="p_name">${product.p_name}</a>
-                        <input type="hidden" value="${product.p_selid}" id="p_selid" class="js-selid-b2">
-                        <input type="hidden" value="${product.p_name}" id="p_selid" class="js-name-b2">
-                        <input type="hidden" value="${product.p_price}" id="p_price" class="js-price-b2">
-                        <input type="hidden" value="${product.p_imgrn}" id="p_imgrn" class="js-img-b2">
-                        <span class="stext-105 cl3" id="p_price">${product.p_price}원</span>
-                    </div>
-                    <div class="block2-txt-child2 flex-r p-t-3">
-                        <div class="btn-addwish-b2 dis-block pos-relative js-addwish-b2">
-                            <img class="icon-heart1 dis-block trans-04" src="../resources/main/images/icons/icon-heart-01.png" alt="ICON" id="empty-heart">
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    `;
-    $('.isotope-grid').append(html);
-}
+
 		
 
 	 	$('.filter-tope-group button').on('click', function(){
 	 		 var fstdivid = $(this).data('filter');
+	 		 var logid = $('#logid').val();
 	 		 $.ajax({
 	 			 type : 'post',
 	 			 data : {fstdivid : fstdivid},
@@ -195,10 +170,51 @@
 	 			 url : 'fishAll',
 	 			 success : function(response){
 	 				$('.isotope-grid').empty();
-	 				 for (var i = 0; i < response.length; i++) {
+	 				
+	 				$.each(response, function(index, item) {
+	 					
+	 					var leftPercentage = (index % 4) * 25; // 0%, 25%, 50%, 75%
+	 				    var topValue = Math.floor(index / 4) * 485;
+	 				   var productHTML = 
+	 					    '<div class="col-sm-6 col-md-4 col-lg-3 p-b-35 isotope-item" style="position: absolute; left: ' + leftPercentage + '%; top: ' + topValue + 'px;">' +
+	 					        '<div class="block2">' +
+	 					            '<div class="block2-pic hov-img0">' +
+	 					                '<img src="../resources/productImages/' + item.p_imgrn + '" alt="IMG-PRODUCT">' +
+	 					                '<a href="product_quickview?p_selid=' + item.p_selid + '" class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1 quickView">Quick View</a>' +
+	 					            '</div>' +
+	 					            '<div class="block2-txt flex-w flex-t p-t-14">' +
+	 					                '<div class="block2-txt-child1 flex-col-l">' +
+	 					                    '<a href="product-detail?m_id=' + logid + '&p_selid=' + item.p_selid + '" class="stext-104 cl4 hov-cl1 trans-04 p-b-6 js-name-b2" data-name="' + item.p_name + '">' + item.p_name + '</a>' +
+	 					                    '<input type="hidden" value="' + logid + '" id="logid"/>' +
+	 					                    '<input type="hidden" value="' + item.p_selid + '" class="js-selid-b2"/>' +
+	 					                    '<input type="hidden" value="' + item.p_name + '" class="js-name-b2"/>' +
+	 					                    '<input type="hidden" value="' + item.p_price + '" id="p_price" class="js-price-b2"/>' +
+	 					                    '<input type="hidden" value="' + item.p_imgrn + '" class="js-img-b2"/>' +
+	 					                    '<span class="stext-105 cl3" id="p_price">' + item.p_price + '원</span>' +
+	 					                '</div>' +
+	 					                '<div class="block2-txt-child2 flex-r p-t-3">' +
+	 					                    '<div class="btn-addwish-b2 dis-block pos-relative js-addwish-b2">' +
+	 					                        '<img class="icon-heart1 dis-block trans-04" src="../resources/main/images/icons/icon-heart-01.png" alt="ICON" id="empty-heart">' +
+	 					                    '</div>' +
+	 					                '</div>' +
+	 					            '</div>' +
+	 					        '</div>' +
+	 					    '</div>';
+
+
+	 				      // 높이 동적으로 계산하여 설정
+	 				      var currentHeight = $('.isotope-grid').height();
+	 				      var newHeight = topValue + 485; // 높이를 현재 높이와 topValue+485 중 큰 값으로 설정
+	 				      $('.isotope-grid').css("position","relative");
+	 				      $('.isotope-grid').css("height", Math.max(currentHeight, newHeight) + "px");
+
+	 				    $('.isotope-grid').append(productHTML);
+	 				});
+	 				// each 끝
+	 				 /* for (var i = 0; i < response.length; i++) {
 	 					 console.log(response[i]);
 	 	                appendProduct(response[i]);
-	 	            }
+	 	            } */
 	 			 }
 	 		 }); // ajax
 	 	});// 클릭 시
@@ -206,6 +222,15 @@
 	}); // end
 	
 	</script>
+	
+<style>
+
+form {
+	width: 100%;
+	display : flex;
+}
+
+</style>
 </head>
 <body class="animsition">
 
@@ -326,10 +351,7 @@
 	</c:if>
 	
 	<input type="hidden" value="${sessionScope.logid }" id="logid"/>
-	<input type="hidden" value="${product.p_selid }" id="p_selid" class="js-selid-b2">
-	<input type="hidden" value="${product.p_name }" id="p_selid" class="js-name-b2">
-	<input type="hidden" value="${product.p_price }" id="p_price" class="js-price-b2">
-	<input type="hidden" value="${product.p_imgrn }" id="p_imgrn" class="js-img-b2">
+	
 	
 
 	<!-- Title page -->
@@ -381,12 +403,15 @@
 				<!-- Search product -->
 				<div class="dis-none panel-search w-full p-t-10 p-b-15">
 					<div class="bor8 dis-flex p-l-15">
-						<button class="size-113 flex-c-m fs-16 cl2 hov-cl1 trans-04" id="search_btn">
+					<form>
+						<button class="size-113 flex-c-m fs-16 cl2 hov-cl1 trans-04" id="search_btn" type="submit">
 							<i class="zmdi zmdi-search"></i>
 						</button>
 
 						<input class="mtext-107 cl2 size-114 plh2 p-r-15" type="text"
 							name="search" placeholder="Search">
+					
+					</form>
 					</div>
 				</div>
 
@@ -395,34 +420,34 @@
 					<div
 						class="wrap-filter flex-w bg6 w-full p-lr-40 p-t-27 p-lr-15-sm">
 						<div class="filter-col1 p-r-15 p-b-27">
-							<div class="mtext-102 cl2 p-b-15">Sort By</div>
+							<div class="mtext-102 cl2 p-b-15">대표 물고기</div>
 
 							<ul>
 								<li class="p-b-6"><a href="#"
-									class="filter-link stext-106 trans-04"> Default </a></li>
+									class="filter-link stext-106 trans-04"> 구피 </a></li>
 
 								<li class="p-b-6"><a href="#"
-									class="filter-link stext-106 trans-04"> Popularity </a></li>
+									class="filter-link stext-106 trans-04"> 금붕어 </a></li>
 
 								<li class="p-b-6"><a href="#"
-									class="filter-link stext-106 trans-04"> Average rating </a></li>
+									class="filter-link stext-106 trans-04"> 디스커스 </a></li>
 
 								<li class="p-b-6"><a href="#"
 									class="filter-link stext-106 trans-04 filter-link-active">
-										Newness </a></li>
+										베타 </a></li>
 
 								<li class="p-b-6"><a href="#"
-									class="filter-link stext-106 trans-04"> Price: Low to High
+									class="filter-link stext-106 trans-04"> 가격 낮은 순
 								</a></li>
 
 								<li class="p-b-6"><a href="#"
-									class="filter-link stext-106 trans-04"> Price: High to Low
+									class="filter-link stext-106 trans-04"> 가격 높은 순
 								</a></li>
 							</ul>
 						</div>
 
 						<div class="filter-col2 p-r-15 p-b-27">
-							<div class="mtext-102 cl2 p-b-15">Price</div>
+							<div class="mtext-102 cl2 p-b-15">가격</div>
 
 							<ul>
 								<li class="p-b-6"><a href="#"
@@ -430,46 +455,46 @@
 										All </a></li>
 
 								<li class="p-b-6"><a href="#"
-									class="filter-link stext-106 trans-04"> $0.00 - $50.00 </a></li>
+									class="filter-link stext-106 trans-04"> 0 - 1000 </a></li>
 
 								<li class="p-b-6"><a href="#"
-									class="filter-link stext-106 trans-04"> $50.00 - $100.00 </a></li>
+									class="filter-link stext-106 trans-04"> 1000 - 5000 </a></li>
 
 								<li class="p-b-6"><a href="#"
-									class="filter-link stext-106 trans-04"> $100.00 - $150.00 </a>
+									class="filter-link stext-106 trans-04"> 5000 - 10000 </a>
 								</li>
 
 								<li class="p-b-6"><a href="#"
-									class="filter-link stext-106 trans-04"> $150.00 - $200.00 </a>
+									class="filter-link stext-106 trans-04"> 10000 - 50000 </a>
 								</li>
 
 								<li class="p-b-6"><a href="#"
-									class="filter-link stext-106 trans-04"> $200.00+ </a></li>
+									class="filter-link stext-106 trans-04"> 50000 </a></li>
 							</ul>
 						</div>
 
 						<div class="filter-col3 p-r-15 p-b-27">
-							<div class="mtext-102 cl2 p-b-15">Color</div>
+							<div class="mtext-102 cl2 p-b-15">색깔</div>
 
 							<ul>
 								<li class="p-b-6"><span class="fs-15 lh-12 m-r-6"
-									style="color: #222;"> <i class="zmdi zmdi-circle"></i>
-								</span> <a href="#" class="filter-link stext-106 trans-04"> Black </a>
+									style="color: #1DDB16;"> <i class="zmdi zmdi-circle"></i>
+								</span> <a href="#" class="filter-link stext-106 trans-04"> Green </a>
 								</li>
 
 								<li class="p-b-6"><span class="fs-15 lh-12 m-r-6"
-									style="color: #4272d7;"> <i class="zmdi zmdi-circle"></i>
+									style="color: #FFA500;"> <i class="zmdi zmdi-circle"></i>
 								</span> <a href="#"
 									class="filter-link stext-106 trans-04 filter-link-active">
-										Blue </a></li>
+										Orange </a></li>
 
 								<li class="p-b-6"><span class="fs-15 lh-12 m-r-6"
-									style="color: #b3b3b3;"> <i class="zmdi zmdi-circle"></i>
-								</span> <a href="#" class="filter-link stext-106 trans-04"> Grey </a></li>
+									style="color: #FFE400;"> <i class="zmdi zmdi-circle"></i>
+								</span> <a href="#" class="filter-link stext-106 trans-04"> Yellow </a></li>
 
 								<li class="p-b-6"><span class="fs-15 lh-12 m-r-6"
-									style="color: #00ad5f;"> <i class="zmdi zmdi-circle"></i>
-								</span> <a href="#" class="filter-link stext-106 trans-04"> Green </a>
+									style="color: #FF9090;"> <i class="zmdi zmdi-circle"></i>
+								</span> <a href="#" class="filter-link stext-106 trans-04"> Strawberry </a>
 								</li>
 
 								<li class="p-b-6"><span class="fs-15 lh-12 m-r-6"
@@ -506,7 +531,7 @@
 			
 			
 		<!-- 상품 불러오기 -->
-			<div class="row isotope-grid">
+			<div class="row isotope-grid" >
 			
 			<c:forEach items="${productAll }" var="product">
 			
@@ -520,13 +545,17 @@
 								class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1 quickView">
 								Quick View </a>
 						</div>
-
 						<div class="block2-txt flex-w flex-t p-t-14">
 							<div class="block2-txt-child1 flex-col-l ">
 								<a href="product-detail?m_id=${sessionScope.logid }&p_selid=${product.p_selid }" class="stext-104 cl4 hov-cl1 trans-04 p-b-6" id="p_name">
 									${product.p_name }
 								</a> 
 								
+						<input type="hidden" value="${sessionScope.logid }" id="logid"/>
+						<input type="hidden" value="${product.p_selid }" id="p_selid" class="js-selid-b2">
+						<input type="hidden" value="${product.p_name }" id="p_selid" class="js-name-b2">
+						<input type="hidden" value="${product.p_price }" id="p_price" class="js-price-b2">
+						<input type="hidden" value="${product.p_imgrn }" id="p_imgrn" class="js-img-b2">
 								<span class="stext-105 cl3" id="p_price"> ${product.p_price }원</span>
 							</div>
 
@@ -558,11 +587,11 @@
 			</div>
 	
 			<!-- Load more -->
-			<div class="flex-c-m flex-w w-full p-t-45">
+			<!-- <div class="flex-c-m flex-w w-full p-t-45">
 				<a href="#"
 					class="flex-c-m stext-101 cl5 size-103 bg2 bor1 hov-btn1 p-lr-15 trans-04">
 					Load More </a>
-			</div>
+			</div> -->
 		</div>
 
 
