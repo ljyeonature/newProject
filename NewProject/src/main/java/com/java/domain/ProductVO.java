@@ -23,6 +23,8 @@ public class ProductVO {			// 상품
 	private String fstdivid;		// F / D /E
 	private String search;     		// 검색어
 	
+	private String condition;
+	private String color;
 	
 	private String img1_n;			// 상품이미지파일(업로드용)	- p_imgn
 	private String img1_rn;			// 상품이미지파일(실제파일명)		- p_imgrn

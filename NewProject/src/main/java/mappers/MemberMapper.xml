@@ -66,7 +66,7 @@
 	</insert>
 	
 	<!-- 해당 m_id의 찜 목록 보이기 -->
-	<select id="wishlist_all" parameterType="com.java.domain.WishListVO" resultType="com.java.domain.WishListVO">
+	<select id="wishlist_all" parameterType="String" resultType="com.java.domain.WishListVO">
 		SELECT * FROM wishlist WHERE m_id=#{m_id}
 	</select>
 	

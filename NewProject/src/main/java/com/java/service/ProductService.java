@@ -35,7 +35,10 @@ public interface ProductService {
 	
 	// 대분류 검색 - 물고기
 	public List<ProductVO> fishAll(ProductVO vo);
-	
+
+	// 가격 검색
+	public List<ProductVO> priceAll(ProductVO vo);
+
 	// 상품 상세 정보
 	public ProductVO product_detail(String p_selid);
 	
@@ -80,6 +83,9 @@ public interface ProductService {
 	
 	//주문조회 게시판 목록 불러오기
 	public List<OrderVO> order_all(OrderVO vo);
+
+	// 색깔 검색
+	public List<ProductVO> colorAll(ProductVO vo);
 
 	
 

@@ -38,14 +38,14 @@
 					<div class="col-lg-6">
 						<div class="newpass_form_inner">
 							<h3>인증번호</h3>
-							<form class="row login_form login" action="pw_new" id="contactForm" method="POST">
+							<form class="row login_form login" action="pw_set" id="contactForm" method="POST">
 								<div class="col-md-12 form-group" id="col-md-12">
-									<input type="password" class="form-control" id="m_pass" name="m_pass" placeholder="인증번호를 입력하세요">
+									<input type="text" class="form-control" id="m_pass" name="email_injeung" placeholder="인증번호를 입력하세요">
 								</div>
 								<div class="col-md-12 form-group">
 									<span id=same></span>
 									<button type="submit" id="check" value="확인" class="button button-login w-100">확인</button>
-									<input type="hidden" name="m_email" value="${m_email }">
+									<input type="hidden" name="num" value="${num }">
 								</div>
 							</form>
 						</div>

@@ -46,8 +46,9 @@ public interface MemberService {
 	public int product_wishlist(WishListVO vo);
 	
 	// 해당 ID의 찜 목록 보이기
-	public List<WishListVO> wishlist_all(WishListVO vo);
+	/* public List<WishListVO> wishlist_all(String m_id); */
 	
+	public List<WishListVO> wishlist_all(WishListVO wvo); 
 	
 	// 찜 삭제
 	public int delete_wishlist(WishListVO vo);
@@ -89,7 +90,7 @@ public interface MemberService {
 	public int cartAllDelete(CartVO vo);
 	
 	// 대 분류 별 주문
-	public List<LogVO> fstOrder(LogVO vo); 
+	public List<LogVO> fstOrder(LogVO vo);
 	
 	
 		

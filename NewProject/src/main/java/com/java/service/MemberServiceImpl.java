@@ -113,8 +113,8 @@ public class MemberServiceImpl implements MemberService{
 	
 	// 해당 ID의 찜 목록 보이기
 	@Override
-	public List<WishListVO> wishlist_all(WishListVO vo) {
-		List<WishListVO> result = memberDAOImpl.wishlist_all(vo);
+	public List<WishListVO> wishlist_all(WishListVO wvo) {
+		List<WishListVO> result = memberDAOImpl.wishlist_all(wvo);
 		return result;
 	}
 

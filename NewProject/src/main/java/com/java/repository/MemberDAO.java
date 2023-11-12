@@ -49,7 +49,7 @@ public interface MemberDAO {
 	public int product_wishlist(WishListVO vo);
 	
 	// 해당 ID의 찜 목록 보이기
-	public List<WishListVO> wishlist_all(WishListVO vo);
+	public List<WishListVO> wishlist_all(WishListVO wvo);
 	
 	
 	// 찜 삭제

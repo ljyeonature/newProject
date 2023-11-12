@@ -56,18 +56,18 @@
 
 <script>
 
-	$(function(){
-		 // 페이지 로드 시 세션 스토리지에서 위시리스트 상태 가져오기
-	    var wishlistState = JSON.parse(localStorage.getItem('wishlistState')) || {};
+$(function(){
 
-	    // 클릭 이벤트 핸들러
-	    $('.js-addwish-b2, .js-addwish-detail').click(function (e) {
-	        swal("찜", "로그인 후 이용해주세요", info);
-	        e.preventDefault();
-	    })
+		
+		
+		
+
+	
 	    
 	    // quick-view
 	 /*    $.ajax({
+	$(function(){
+		
 	    	
 	    	type:'post',
 	    	data:{p:selid : }
@@ -79,9 +79,7 @@
 
 		/*---------------------------------------------*/
 		
-
-		
-
+		// 대분류
 	 	$('.filter-tope-group button').on('click', function(){
 	 		 var fstdivid = $(this).data('filter');
 	 		 var logid = $('#logid').val();
@@ -92,31 +90,37 @@
 	 			 url : 'fishAll',
 	 			 success : function(response){
 	 				$('.isotope-grid').empty();
-	 				
+	 			
+
 	 				$.each(response, function(index, item) {
 	 					
 	 					var leftPercentage = (index % 4) * 25; // 0%, 25%, 50%, 75%
 	 				    var topValue = Math.floor(index / 4) * 485;
-	 				    var productHTML = 
-	 				        '<div class="col-sm-6 col-md-4 col-lg-3 p-b-35 isotope-item"  style="position: absolute; left: ' + leftPercentage + '%; top: ' + topValue + 'px;">' +
-	 				            '<div class="block2">' +
-	 				                '<div class="block2-pic hov-img0">' +
-	 				                    '<img src="../resources/productImages/' + item.p_imgrn + '" alt="IMG-PRODUCT">' +
-	 				                    '<a href="product_quickview?p_selid=' + item.p_selid + '" class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1 quickView">Quick View</a>' +
-	 				                '</div>' +
-	 				                '<div class="block2-txt flex-w flex-t p-t-14">' +
-	 				                    '<div class="block2-txt-child1 flex-col-l ">' +
-	 				                        '<a href="product-detail?p_selid=' + item.p_selid + '" class="stext-104 cl4 hov-cl1 trans-04 p-b-6" id="p_name">' + item.p_name + '</a>' +
-	 				                        '<span class="stext-105 cl3" id="p_price">' + item.p_price + '원</span>' +
-	 				                    '</div>' +
-	 				                    '<div class="block2-txt-child2 flex-r p-t-3">' +
-	 				                        '<div class="btn-addwish-b2 dis-block pos-relative js-addwish-b2">' +
-	 				                            '<img class="icon-heart1 dis-block trans-04" src="../resources/main/images/icons/icon-heart-01.png" alt="ICON" id="empty-heart">' +
-	 				                        '</div>' +
-	 				                    '</div>' +
-	 				                '</div>' +
-	 				            '</div>' +
-	 				        '</div>';
+	 				   var productHTML = 
+	 					    '<div class="col-sm-6 col-md-4 col-lg-3 p-b-35 isotope-item" style="position: absolute; left: ' + leftPercentage + '%; top: ' + topValue + 'px;">' +
+	 					        '<div class="block2">' +
+	 					            '<div class="block2-pic hov-img0">' +
+	 					                '<img src="../resources/productImages/' + item.p_imgrn + '" alt="IMG-PRODUCT">' +
+	 					                '<a href="product_quickview?p_selid=' + item.p_selid + '" class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1 quickView">Quick View</a>' +
+	 					            '</div>' +
+	 					            '<div class="block2-txt flex-w flex-t p-t-14">' +
+	 					                '<div class="block2-txt-child1 flex-col-l">' +
+	 					                    '<a href="product-detail?m_id=' + logid + '&p_selid=' + item.p_selid + '" class="stext-104 cl4 hov-cl1 trans-04 p-b-6 js-name-b2" data-name="' + item.p_name + '">' + item.p_name + '</a>' +
+	 					                    '<input type="hidden" value="' + logid + '" id="logid"/>' +
+	 					                    '<input type="hidden" value="' + item.p_selid + '" class="js-selid-b2"/>' +
+	 					                    '<input type="hidden" value="' + item.p_name + '" class="js-name-b2" id="p_name"/>' +
+	 					                    '<input type="hidden" value="' + item.p_price + '" id="p_price" class="js-price-b2"/>' +
+	 					                    '<input type="hidden" value="' + item.p_imgrn + '" class="js-img-b2"/>' +
+	 					                    '<span class="stext-105 cl3" id="p_price">' + item.p_price + '원</span>' +
+	 					                '</div>' +
+	 					                '<div class="block2-txt-child2 flex-r p-t-3">' +
+	 					                    '<div class="btn-addwish-b2 dis-block pos-relative js-addwish-b2">' +
+	 					                        '<img class="icon-heart1 dis-block trans-04" src="../resources/main/images/icons/icon-heart-01.png" alt="ICON" id="empty-heart">' +
+	 					                    '</div>' +
+	 					                '</div>' +
+	 					            '</div>' +
+	 					        '</div>' +
+	 					    '</div>';
 
 
 	 				      // 높이 동적으로 계산하여 설정
@@ -128,15 +132,152 @@
 	 				    $('.isotope-grid').append(productHTML);
 	 				});
 	 				// each 끝
-	 				 /* for (var i = 0; i < response.length; i++) {
-	 					 console.log(response[i]);
-	 	                appendProduct(response[i]);
-	 	            } */
-	 			 }
-	 		 }); // ajax
-	 	});// 클릭 시
+	 				 
+	 	            
+	 			 } 
+	 			 //
+	 		 });
+	 		 // ajax
+	 	}); // 클릭 시 - 대분류
+	    
+	    
+	    
+	    // 필터링 바
+	    $('.price-link').on('click', function(e){
+	    	e.preventDefault(); 
+	    	$('.price-link').removeClass('filter-link-active');
+	    	var condition = $(this).data('filter');
+	    	$(this).addClass('filter-link-active');
+	 		 alert(condition)
+	 		 var logid = $('#logid').val();
+	 		 $.ajax({
+	 			 type : 'post',
+	 			 data : {condition : condition},
+	 			 dataType :'JSON',
+	 			 url : 'priceAll',
+	 			 success : function(response){
+	 			
+	 				$('.isotope-grid').empty();
 
-	}); // end
+	 				$.each(response, function(index, item) {
+	 					
+	 					var leftPercentage = (index % 4) * 25; // 0%, 25%, 50%, 75%
+	 				    var topValue = Math.floor(index / 4) * 485;
+	 				   var productHTML = 
+	 					    '<div class="col-sm-6 col-md-4 col-lg-3 p-b-35 isotope-item" style="position: absolute; left: ' + leftPercentage + '%; top: ' + topValue + 'px;">' +
+	 					        '<div class="block2">' +
+	 					            '<div class="block2-pic hov-img0">' +
+	 					                '<img src="../resources/productImages/' + item.p_imgrn + '" alt="IMG-PRODUCT">' +
+	 					                '<a href="product_quickview?p_selid=' + item.p_selid + '" class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1 quickView">Quick View</a>' +
+	 					            '</div>' +
+	 					            '<div class="block2-txt flex-w flex-t p-t-14">' +
+	 					                '<div class="block2-txt-child1 flex-col-l">' +
+	 					                    '<a href="product-detail?m_id=' + logid + '&p_selid=' + item.p_selid + '" class="stext-104 cl4 hov-cl1 trans-04 p-b-6 js-name-b2" data-name="' + item.p_name + '">' + item.p_name + '</a>' +
+	 					                    '<input type="hidden" value="' + logid + '" id="logid"/>' +
+	 					                    '<input type="hidden" value="' + item.p_selid + '" class="js-selid-b2"/>' +
+	 					                    '<input type="hidden" value="' + item.p_name + '" class="js-name-b2" id="p_name"/>' +
+	 					                    '<input type="hidden" value="' + item.p_price + '" id="p_price" class="js-price-b2"/>' +
+	 					                    '<input type="hidden" value="' + item.p_imgrn + '" class="js-img-b2"/>' +
+	 					                    '<span class="stext-105 cl3" id="p_price">' + item.p_price + '원</span>' +
+	 					                '</div>' +
+	 					                '<div class="block2-txt-child2 flex-r p-t-3">' +
+	 					                    '<div class="btn-addwish-b2 dis-block pos-relative js-addwish-b2">' +
+	 					                        '<img class="icon-heart1 dis-block trans-04" src="../resources/main/images/icons/icon-heart-01.png" alt="ICON" id="empty-heart">' +
+	 					                    '</div>' +
+	 					                '</div>' +
+	 					            '</div>' +
+	 					        '</div>' +
+	 					    '</div>';
+
+
+	 				      // 높이 동적으로 계산하여 설정
+	 				      var currentHeight = $('.isotope-grid').height();
+	 				      var newHeight = topValue + 485; // 높이를 현재 높이와 topValue+485 중 큰 값으로 설정
+	 				      $('.isotope-grid').css("position","relative");
+	 				      $('.isotope-grid').css("height", Math.max(currentHeight, newHeight) + "px");
+
+	 				    $('.isotope-grid').append(productHTML);
+	 				});
+	 				// each 끝
+	 				 
+	 	            
+	 			 } 
+	 			 //
+	 		 });
+	 		 // ajax
+	 	}); // 클릭 시 - 가격
+	 	
+	 	// 컬러
+	 	$('.color-link').on('click', function(e){
+	    	e.preventDefault(); 
+	    	$('.color-link').removeClass('filter-link-active');
+	    	var color = $(this).data('filter');
+	 		//alert(color)
+	    	
+	    	$(this).addClass('filter-link-active');
+	 				$('.isotope-grid').empty();
+	 		 var logid = $('#logid').val();
+	 		 $.ajax({
+	 			 type : 'post',
+	 			 data : {color : color},
+	 			 dataType :'JSON',
+	 			 url : 'colorAll',
+	 			 success : function(response){
+	 			
+
+	 				$.each(response, function(index, item) {
+	 					
+	 					var leftPercentage = (index % 4) * 25; // 0%, 25%, 50%, 75%
+	 				    var topValue = Math.floor(index / 4) * 485;
+	 				   var productHTML = 
+	 					    '<div class="col-sm-6 col-md-4 col-lg-3 p-b-35 isotope-item" style="position: absolute; left: ' + leftPercentage + '%; top: ' + topValue + 'px;">' +
+	 					        '<div class="block2">' +
+	 					            '<div class="block2-pic hov-img0">' +
+	 					                '<img src="../resources/productImages/' + item.p_imgrn + '" alt="IMG-PRODUCT">' +
+	 					                '<a href="product_quickview?p_selid=' + item.p_selid + '" class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1 quickView">Quick View</a>' +
+	 					            '</div>' +
+	 					            '<div class="block2-txt flex-w flex-t p-t-14">' +
+	 					                '<div class="block2-txt-child1 flex-col-l">' +
+	 					                    '<a href="product-detail?m_id=' + logid + '&p_selid=' + item.p_selid + '" class="stext-104 cl4 hov-cl1 trans-04 p-b-6 js-name-b2" data-name="' + item.p_name + '">' + item.p_name + '</a>' +
+	 					                    '<input type="hidden" value="' + logid + '" id="logid"/>' +
+	 					                    '<input type="hidden" value="' + item.p_selid + '" class="js-selid-b2"/>' +
+	 					                    '<input type="hidden" value="' + item.p_name + '" class="js-name-b2" id="p_name"/>' +
+	 					                    '<input type="hidden" value="' + item.p_price + '" id="p_price" class="js-price-b2"/>' +
+	 					                    '<input type="hidden" value="' + item.p_imgrn + '" class="js-img-b2"/>' +
+	 					                    '<span class="stext-105 cl3" id="p_price">' + item.p_price + '원</span>' +
+	 					                '</div>' +
+	 					                '<div class="block2-txt-child2 flex-r p-t-3">' +
+	 					                    '<div class="btn-addwish-b2 dis-block pos-relative js-addwish-b2">' +
+	 					                        '<img class="icon-heart1 dis-block trans-04" src="../resources/main/images/icons/icon-heart-01.png" alt="ICON" id="empty-heart">' +
+	 					                    '</div>' +
+	 					                '</div>' +
+	 					            '</div>' +
+	 					        '</div>' +
+	 					    '</div>';
+
+
+	 				      // 높이 동적으로 계산하여 설정
+	 				      var currentHeight = $('.isotope-grid').height();
+	 				      var newHeight = topValue + 485; // 높이를 현재 높이와 topValue+485 중 큰 값으로 설정
+	 				      $('.isotope-grid').css("position","relative");
+	 				      $('.isotope-grid').css("height", Math.max(currentHeight, newHeight) + "px");
+
+	 				    $('.isotope-grid').append(productHTML);
+	 				});
+	 				// each 끝
+	 				 
+	 	            
+	 			 } 
+	 			 //
+	 		 });
+	 		 // ajax
+	 	}); // 클릭 시 - 컬러
+	    
+	 
+ 
+	
+	});// end
+	
 	
 	</script>
 	
@@ -268,10 +409,7 @@ form {
 	</c:if>
 	
 	<input type="hidden" value="${sessionScope.logid }" id="logid"/>
-	<input type="hidden" value="${product.p_selid }" id="p_selid" class="js-selid-b2">
-	<input type="hidden" value="${product.p_name }" id="p_selid" class="js-name-b2">
-	<input type="hidden" value="${product.p_price }" id="p_price" class="js-price-b2">
-	<input type="hidden" value="${product.p_imgrn }" id="p_imgrn" class="js-img-b2">
+	
 	
 
 	<!-- Title page -->
@@ -339,57 +477,57 @@ form {
 				<div class="dis-none panel-filter w-full p-t-10">
 					<div
 						class="wrap-filter flex-w bg6 w-full p-lr-40 p-t-27 p-lr-15-sm">
-						<div class="filter-col1 p-r-15 p-b-27">
+						<!-- <div class="filter-col1 p-r-15 p-b-27">
 							<div class="mtext-102 cl2 p-b-15">대표 물고기</div>
 
-							<ul>
+							<ul class="fish-set">
 								<li class="p-b-6"><a href="#"
-									class="filter-link stext-106 trans-04"> 구피 </a></li>
+									class="filter-link stext-106 trans-04" data-filter="구피"> 구피 </a></li>
 
 								<li class="p-b-6"><a href="#"
-									class="filter-link stext-106 trans-04"> 금붕어 </a></li>
+									class="filter-link stext-106 trans-04" data-filter="금붕어"> 금붕어 </a></li>
 
 								<li class="p-b-6"><a href="#"
-									class="filter-link stext-106 trans-04"> 디스커스 </a></li>
+									class="filter-link stext-106 trans-04" data-filter="디스커스"> 디스커스 </a></li>
 
 								<li class="p-b-6"><a href="#"
-									class="filter-link stext-106 trans-04 filter-link-active">
+									class="filter-link stext-106 trans-04 filter-link-active" data-filter="베타">
 										베타 </a></li>
 
 								<li class="p-b-6"><a href="#"
-									class="filter-link stext-106 trans-04"> 가격 낮은 순
+									class="filter-link stext-106 trans-04" data-filter="low"> 가격 낮은 순
 								</a></li>
 
 								<li class="p-b-6"><a href="#"
-									class="filter-link stext-106 trans-04"> 가격 높은 순
+									class="filter-link stext-106 trans-04" data-filter="high"> 가격 높은 순
 								</a></li>
 							</ul>
-						</div>
+						</div> -->
 
 						<div class="filter-col2 p-r-15 p-b-27">
 							<div class="mtext-102 cl2 p-b-15">가격</div>
 
 							<ul>
 								<li class="p-b-6"><a href="#"
-									class="filter-link stext-106 trans-04 filter-link-active">
+									class="filter-link price-link stext-106 trans-04 filter-link-active">
 										All </a></li>
 
 								<li class="p-b-6"><a href="#"
-									class="filter-link stext-106 trans-04"> 0 - 1000 </a></li>
+									class="filter-link price-link stext-106 trans-04" data-filter="0"> 0 - 1000 </a></li>
 
 								<li class="p-b-6"><a href="#"
-									class="filter-link stext-106 trans-04"> 1000 - 5000 </a></li>
+									class="filter-link price-link stext-106 trans-04" data-filter="1"> 1000 - 5000 </a></li>
 
 								<li class="p-b-6"><a href="#"
-									class="filter-link stext-106 trans-04"> 5000 - 10000 </a>
+									class="filter-link price-link stext-106 trans-04" data-filter="2"> 5000 - 10000 </a>
 								</li>
 
 								<li class="p-b-6"><a href="#"
-									class="filter-link stext-106 trans-04"> 10000 - 50000 </a>
+									class="filter-link price-link stext-106 trans-04" data-filter="3"> 10000 - 50000 </a>
 								</li>
 
 								<li class="p-b-6"><a href="#"
-									class="filter-link stext-106 trans-04"> 50000 </a></li>
+									class="filter-link price-link stext-106 trans-04" data-filter="4"> 50000 - </a></li>
 							</ul>
 						</div>
 
@@ -399,31 +537,31 @@ form {
 							<ul>
 								<li class="p-b-6"><span class="fs-15 lh-12 m-r-6"
 									style="color: #1DDB16;"> <i class="zmdi zmdi-circle"></i>
-								</span> <a href="#" class="filter-link stext-106 trans-04"> Green </a>
+								</span> <a href="#" class="filter-link color-link stext-106 trans-04 filter-link-active" data-filter="그린"> Green </a>
 								</li>
 
 								<li class="p-b-6"><span class="fs-15 lh-12 m-r-6"
 									style="color: #FFA500;"> <i class="zmdi zmdi-circle"></i>
 								</span> <a href="#"
-									class="filter-link stext-106 trans-04 filter-link-active">
+									class="filter-link stext-106 trans-04" data-filter="오렌지">
 										Orange </a></li>
 
 								<li class="p-b-6"><span class="fs-15 lh-12 m-r-6"
 									style="color: #FFE400;"> <i class="zmdi zmdi-circle"></i>
-								</span> <a href="#" class="filter-link stext-106 trans-04"> Yellow </a></li>
+								</span> <a href="#" class="filter-link color-link stext-106 trans-04" data-filter="옐로우"> Yellow </a></li>
 
 								<li class="p-b-6"><span class="fs-15 lh-12 m-r-6"
 									style="color: #FF9090;"> <i class="zmdi zmdi-circle"></i>
-								</span> <a href="#" class="filter-link stext-106 trans-04"> Strawberry </a>
+								</span> <a href="#" class="filter-link color-link stext-106 trans-04" data-filter="스트로베리"> Strawberry </a>
 								</li>
 
 								<li class="p-b-6"><span class="fs-15 lh-12 m-r-6"
 									style="color: #fa4251;"> <i class="zmdi zmdi-circle"></i>
-								</span> <a href="#" class="filter-link stext-106 trans-04"> Red </a></li>
+								</span> <a href="#" class="filter-link color-link stext-106 trans-04" data-filter="레드"> Red </a></li>
 
 								<li class="p-b-6"><span class="fs-15 lh-12 m-r-6"
 									style="color: #aaa;"> <i class="zmdi zmdi-circle-o"></i>
-								</span> <a href="#" class="filter-link stext-106 trans-04"> White </a>
+								</span> <a href="#" class="filter-link color-link stext-106 trans-04" data-filter="화이트"> White </a>
 								</li>
 							</ul>
 						</div>
@@ -465,13 +603,17 @@ form {
 								class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1 quickView">
 								Quick View </a>
 						</div>
-
 						<div class="block2-txt flex-w flex-t p-t-14">
 							<div class="block2-txt-child1 flex-col-l ">
-								<a href="product-detail?p_selid=${product.p_selid }" class="stext-104 cl4 hov-cl1 trans-04 p-b-6" id="p_name">
+								<a href="product-detail?m_id=${sessionScope.logid }&p_selid=${product.p_selid }" class="stext-104 cl4 hov-cl1 trans-04 p-b-6" id="p_name">
 									${product.p_name }
 								</a> 
 								
+						<input type="hidden" value="${sessionScope.logid }" id="logid"/>
+						<input type="hidden" value="${product.p_selid }" id="p_selid" class="js-selid-b2">
+						<input type="hidden" value="${product.p_name }" id="p_name" class="js-name-b2">
+						<input type="hidden" value="${product.p_price }" id="p_price" class="js-price-b2">
+						<input type="hidden" value="${product.p_imgrn }" id="p_imgrn" class="js-img-b2">
 								<span class="stext-105 cl3" id="p_price"> ${product.p_price }원</span>
 							</div>
 

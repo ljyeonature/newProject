@@ -128,8 +128,8 @@ public class MemberDAOImpl implements MemberDAO{
 	
 	// 해당 ID의 찜 목록 보이기
 	@Override
-	public List<WishListVO> wishlist_all(WishListVO vo) {
-		return sqlSession.selectList("org.java.MemberMapper.wishlist_all", vo);
+	public List<WishListVO> wishlist_all(WishListVO wvo) {
+		return sqlSession.selectList("org.java.MemberMapper.wishlist_all", wvo);
 	}
 
 

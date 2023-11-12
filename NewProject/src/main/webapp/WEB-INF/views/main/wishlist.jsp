@@ -67,7 +67,20 @@
 							</div>
 	
 							<div class="header-cart-item-txt p-t-8">
-								<a href="#" class="header-cart-item-name m-b-18 hov-cl1 trans-04">
+							<%-- <c:if test="${not empty sessionScope.logid }">
+								<a href="../member/product-detail?m_id=${sessionScope.logid }&p_selid=${wishList.p_selid }" class="header-cart-item-name m-b-18 hov-cl1 trans-04">
+									${wish.p_name }
+								</a>
+							
+							</c:if>
+							<c:if test="${empty sessionScope.logid }">
+								<a href="main/product-detail?p_selid=${wishList.p_selid }" class="header-cart-item-name m-b-18 hov-cl1 trans-04">
+									${wish.p_name }
+								</a>
+							
+							</c:if> --%>
+							
+							<a href="#" class="header-cart-item-name m-b-18 hov-cl1 trans-04">
 									${wish.p_name }
 								</a>
 	

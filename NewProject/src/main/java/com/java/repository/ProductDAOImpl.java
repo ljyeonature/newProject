@@ -109,6 +109,20 @@ public class ProductDAOImpl implements ProductDAO{
 		List<ProductVO> result = sqlSession.selectList("org.java.ProductMapper.fishAll", vo);
 		return result;
 	}
+	
+	// 가격 검색 - 가격
+	@Override
+	public List<ProductVO> priceAll(ProductVO vo) {
+		List<ProductVO> result = sqlSession.selectList("org.java.ProductMapper.priceAll", vo);
+		return result;
+	}
+	
+	// 가격 검색 - 가격
+	@Override
+	public List<ProductVO> colorAll(ProductVO vo) {
+		List<ProductVO> result = sqlSession.selectList("org.java.ProductMapper.colorAll", vo);
+		return result;
+	}
 
 	// 상품 상세정보 보기
 	@Override

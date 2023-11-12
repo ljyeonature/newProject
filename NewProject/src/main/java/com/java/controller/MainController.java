@@ -63,9 +63,29 @@ public class MainController {
 	@RequestMapping("/fishAll")
 	@ResponseBody
 	public List<ProductVO> fishAll(ProductVO vo, Model model) {
-		System.out.println("alreadyInCartList : "+ vo.toString());
+		//System.out.println("alreadyInCartList : "+ vo.toString());
 		List<ProductVO> result = productService.fishAll(vo);
-		System.out.println("alreadyInCartList : "+ result.toString());
+		//System.out.println("alreadyInCartList : "+ result.toString());
+		return result;
+	}
+	
+	// 가격 검색 -
+	@RequestMapping("/priceAll")
+	@ResponseBody
+	public List<ProductVO> priceAll(ProductVO vo, Model model) {
+		System.out.println("alreadyInCartList : "+ vo.toString());
+		List<ProductVO> result = productService.priceAll(vo);
+		//System.out.println("alreadyInCartList : "+ result.toString());
+		return result;
+	}
+	
+	// 컬러 검색 -
+	@RequestMapping("/colorAll")
+	@ResponseBody
+	public List<ProductVO> colorAll(ProductVO vo, Model model) {
+		//System.out.println("alreadyInCartList : "+ vo.toString());
+		List<ProductVO> result = productService.colorAll(vo);
+		//System.out.println("alreadyInCartList : "+ result.toString());
 		return result;
 	}
 	

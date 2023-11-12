@@ -156,63 +156,63 @@ public class MemberController {
 		String m_email = (String)request.getParameter("m_email");
 		System.out.println(m_email);
 		MemberVO vo = memberService.selectMember(m_email);
-
+			
 		if(vo != null) {
-			Random r = new Random();
-			int num = r.nextInt(999999); // 랜덤난수설정
+		Random r = new Random();
+		int num = r.nextInt(999999); // 랜덤난수설정
+		
+		if (vo.getM_email().equals(m_email)) {
+			session.setAttribute("m_email", vo.getM_email());
 
-			if (vo.getM_email().equals(m_email)) {
-				session.setAttribute("m_email", vo.getM_email());
+			String setfrom = "AQUICITY@naver.com"; // naver 
+			String tomail = m_email; //받는사람
+			String title = "[AQU I CITY] 비밀번호변경 인증 이메일 입니다"; 
+			String content = System.getProperty("line.separator") + "안녕하세요 회원님" + System.getProperty("line.separator")
+					+ "AQU I CITY 비밀번호찾기(변경) 인증번호는 " + num + " 입니다." + System.getProperty("line.separator"); // 
 
-				String setfrom = "AQUICITY@naver.com"; // naver 
-				String tomail = m_email; //받는사람
-				String title = "[AQU I CITY] 비밀번호변경 인증 이메일 입니다"; 
-				String content = System.getProperty("line.separator") + "안녕하세요 회원님" + System.getProperty("line.separator")
-				+ "AQU I CITY 비밀번호찾기(변경) 인증번호는 " + num + " 입니다." + System.getProperty("line.separator"); // 
+			try {
+				MimeMessage message = mailSender.createMimeMessage();
+				MimeMessageHelper messageHelper = new MimeMessageHelper(message, true, "utf-8");
 
-				try {
-					MimeMessage message = mailSender.createMimeMessage();
-					MimeMessageHelper messageHelper = new MimeMessageHelper(message, true, "utf-8");
+				messageHelper.setFrom(setfrom); 
+				messageHelper.setTo(tomail); 
+				messageHelper.setSubject(title);
+				messageHelper.setText(content); 
 
-					messageHelper.setFrom(setfrom); 
-					messageHelper.setTo(tomail); 
-					messageHelper.setSubject(title);
-					messageHelper.setText(content); 
-
-					mailSender.send(message);
-				} catch (Exception e) {
-					System.out.println(e.getMessage());
-				}
-
-				ModelAndView mv = new ModelAndView();
-				mv.setViewName("member/pw_auth");
-				mv.addObject("num", num);
-				return mv;
-			}else {
-				ModelAndView mv = new ModelAndView();
-				mv.setViewName("member/pw_find");
-				return mv;
+				mailSender.send(message);
+			} catch (Exception e) {
+				System.out.println(e.getMessage());
 			}
+
+			ModelAndView mv = new ModelAndView();
+			mv.setViewName("member/pw_auth");
+			mv.addObject("num", num);
+			return mv;
 		}else {
 			ModelAndView mv = new ModelAndView();
 			mv.setViewName("member/pw_find");
 			return mv;
 		}
-
-	}
-
+		}else {
+			ModelAndView mv = new ModelAndView();
+			mv.setViewName("member/pw_find");
+			return mv;
+		}
+	
+}
+	
 	@RequestMapping(value = "/pw_set", method = RequestMethod.POST)
 	public String pw_set(@RequestParam(value="email_injeung") String email_injeung,
-			@RequestParam(value = "num") String num) throws IOException{
-
-		if(email_injeung.equals(num)) {
-			return "member/pw_new";
-		}
-		else {
-			return "member/pw_find";
-		}
+				@RequestParam(value = "num") String num) throws IOException{
+			
+			if(email_injeung.equals(num)) {
+				return "member/pw_new";
+			}
+			else {
+				return "member/pw_find";
+			}
 	} //이메일 인증번호 확인
-
+	
 	@RequestMapping(value = "/pw_new", method = RequestMethod.POST)
 	public String pw_new(MemberVO vo, HttpSession session) throws IOException{
 		int result = memberService.pwUpdate_M(vo);
@@ -223,7 +223,7 @@ public class MemberController {
 			System.out.println("pw_update"+ result);
 			return "member/pw_new";
 		}
-	}
+}
 	
 	@Autowired
 	BoardServiceImpl boardService;
@@ -237,7 +237,7 @@ public class MemberController {
 	
 	// qna게시판 목록 조회 =============> wishlist 표시 => 자동 qna로 이동
 	@RequestMapping("/qna")
-	public void board_all(Model model, WishListVO wvo, String sltfilter, String search, @RequestParam(defaultValue = "1") int page) {
+	public void board_all(Model model, WishListVO wvo, String sltfilter, String search, @RequestParam String m_id, @RequestParam(defaultValue = "1") int page) {
 		
 		BoardVO vo = new BoardVO();
 		vo.setSltfilter(sltfilter);
@@ -341,9 +341,29 @@ public class MemberController {
 	@RequestMapping("/fishAll")
 	@ResponseBody
 	public List<ProductVO> fishAll(ProductVO vo, Model model) {
-		System.out.println("alreadyInCartList : "+ vo.toString());
+		//System.out.println("alreadyInCartList : "+ vo.toString());
 		List<ProductVO> result = productService.fishAll(vo);
-		System.out.println("alreadyInCartList : "+ result.toString());
+		//System.out.println("alreadyInCartList : "+ result.toString());
+		return result;
+	}
+	
+	// 가격 검색 -
+	@RequestMapping("/priceAll")
+	@ResponseBody
+	public List<ProductVO> priceAll(ProductVO vo, Model model) {
+		//System.out.println("alreadyInCartList : "+ vo.toString());
+		List<ProductVO> result = productService.priceAll(vo);
+		//System.out.println("alreadyInCartList : "+ result.toString());
+		return result;
+	}
+	
+	// 컬러 검색 -
+	@RequestMapping("/colorAll")
+	@ResponseBody
+	public List<ProductVO> colorAll(ProductVO vo, Model model) {
+		//System.out.println("alreadyInCartList : "+ vo.toString());
+		List<ProductVO> result = productService.colorAll(vo);
+		//System.out.println("alreadyInCartList : "+ result.toString());
 		return result;
 	}
 	
@@ -381,12 +401,12 @@ public class MemberController {
 	
 	
 	// 찜 목록 해당 ID 인 경우 찜 목록 보이기 : json으로 보내야 하기 때문에 -> pom.xml에 json 변환 도구 추가
-	@RequestMapping("/wishlist_all")
-	@ResponseBody
-	public List<WishListVO> wishlistAll(WishListVO vo) {
+	@RequestMapping(value = "/wishlist_all", method = RequestMethod.POST)
+    @ResponseBody
+	public List<WishListVO> wishlistAll(@RequestParam String m_id, WishListVO wvo) {
 		//System.out.println(vo.getM_id());
-		List<WishListVO> result = memberService.wishlist_all(vo);
-//		System.out.println(result);
+		List<WishListVO> result = memberService.wishlist_all(wvo);
+		System.out.println(result.toString());
 		return result;
 	}
 	
@@ -407,7 +427,7 @@ public class MemberController {
 	
 	// 상품상세정보 보기
 	@RequestMapping("/product-detail")
-	public void productDetail(Model model, @RequestParam String p_selid, WishListVO wvo) {
+	public void productDetail(Model model, @RequestParam String p_selid, WishListVO wvo, @RequestParam String m_id) {
 //		System.out.println(p_selid);
 		ProductVO result = productService.product_detail(p_selid);
 		List<OptionVO> option = productService.product_option(p_selid);
@@ -444,7 +464,7 @@ public class MemberController {
 	
 	// 장바구니 내역 보이기
 	@RequestMapping("/shoping-cart")
-	public void shoppingCart(CartViewVO vo, Model model, WishListVO wvo, MemberVO mvo) {
+	public void shoppingCart(CartViewVO vo, Model model, WishListVO wvo, MemberVO mvo, @RequestParam String m_id) {
 //		System.out.println(vo.toString());
 		model.addAttribute("shoppingCart",memberService.shopping_cart(vo));
 		model.addAttribute("wishList", memberService.wishlist_all(wvo));

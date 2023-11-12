@@ -45,24 +45,74 @@
 	
 	<!-- product_all에 들어갔을 때 상품 등록 정보 불러오기  -->
 	<select id="fishAll" resultType="com.java.domain.ProductVO">
-    SELECT * FROM p_product
-    WHERE
-    <choose>
-        <when test='fstdivid.equals("F")'>
-            SUBSTRING(p_selid, 1, 1) = #{fstdivid}
-        </when>
-        <when test='fstdivid.equals("D")'>
-            SUBSTRING(p_selid, 1, 1) = #{fstdivid}
-        </when>
-        <when test='fstdivid.equals("E")'>
-            SUBSTRING(p_selid, 1, 1) = #{fstdivid}
-        </when>
-        <otherwise>
-            1=1
-        </otherwise>
-    </choose>
-</select>
+	    SELECT * FROM p_product
+	    WHERE
+	    <choose>
+	        <when test='fstdivid.equals("F")'>
+	            SUBSTRING(p_selid, 1, 1) = #{fstdivid}
+	        </when>
+	        <when test='fstdivid.equals("D")'>
+	            SUBSTRING(p_selid, 1, 1) = #{fstdivid}
+	        </when>
+	        <when test='fstdivid.equals("E")'>
+	            SUBSTRING(p_selid, 1, 1) = #{fstdivid}
+	        </when>
+	        <otherwise>
+	            1=1
+	        </otherwise>
+	    </choose>
+	</select>
 	
+	<select id="priceAll" resultType="com.java.domain.ProductVO">
+	    SELECT * FROM p_product
+	    WHERE
+	    <choose>
+	         <when test="condition == 0">
+            p_price &gt;= 0 AND p_price &lt;= 1000
+        </when>
+        <when test="condition == 1">
+            p_price &gt;= 1000 AND p_price &lt;= 5000
+        </when>
+        <when test="condition == 2">
+            p_price &gt;= 5000 AND p_price &lt;= 10000
+        </when>
+        <when test="condition == 3">
+            p_price &gt;= 10000 AND p_price &lt;= 50000
+        </when>
+        <when test="condition == 4">
+            p_price &gt;= 50000
+        </when>
+	    </choose>
+	</select>
+	
+	<select id="colorAll" resultType="com.java.domain.ProductVO">
+    	SELECT * FROM p_product p INNER JOIN p_option o
+		ON p.p_selid = o.trddivid
+		WHERE
+		 <choose>
+	        <when test='color.equals("그린")'>
+	           o.o_name LIKE CONCAT('%', '그린', '%')
+	        </when>
+	        <when test='color.equals("오렌지")'>
+	           o.o_name LIKE CONCAT('%', '오렌지', '%')
+	        </when>
+	        <when test='color.equals("옐로우")'>
+	           o.o_name LIKE CONCAT('%', '옐로우', '%')
+	        </when>
+	         <when test='color.equals("스트로베리")'>
+	           o.o_name LIKE CONCAT('%', '스트로베리', '%')
+	        </when>
+	        <when test='color.equals("레드")'>
+	           o.o_name LIKE CONCAT('%', '레드', '%')
+	        </when>
+	        <when test='color.equals("화이트")'>
+	           o.o_name LIKE CONCAT('%', '화이트', '%')
+	        </when>
+	        <otherwise>
+	            1=1
+	        </otherwise>
+	    </choose>
+	</select>
 	
 	<!-- product_resister에 들어갔을 때, 분류 정보 불러오기 -->
 	<select id="selectFstCate" parameterType="com.java.domain.FstDivVO" resultType="com.java.domain.FstDivVO">

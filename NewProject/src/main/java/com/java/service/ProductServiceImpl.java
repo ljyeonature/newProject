@@ -177,8 +177,20 @@ public class ProductServiceImpl implements ProductService{
  public List<OrderVO> order_all(OrderVO vo){
 	 List<OrderVO> result = productDAOImpl.order_all(vo);
 	 return result;
- }	
- 
+ }
+
+// 가격 검색
+@Override
+public List<ProductVO> priceAll(ProductVO vo) {
+	List<ProductVO> result = productDAOImpl.priceAll(vo);
+	return result;
+}	
+//가격 검색
+@Override
+public List<ProductVO> colorAll(ProductVO vo) {
+	List<ProductVO> result = productDAOImpl.colorAll(vo);
+	return result;
+} 
  
  
  

@@ -86,6 +86,11 @@ public interface ProductDAO {
 
 	// 주문게시판 리스트 불러오기
 	public List<OrderVO> order_all(OrderVO vo);
+
+	// 가격 검색
+	public List<ProductVO> priceAll(ProductVO vo);
+
+	List<ProductVO> colorAll(ProductVO vo);
 	
 	
 }

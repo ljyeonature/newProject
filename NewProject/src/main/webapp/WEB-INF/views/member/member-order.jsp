@@ -130,7 +130,7 @@ label#account {
 	display : inline-block;
     outline: none;
     border: none;
-    margin-bottom: 30px;
+    margin-bottom: 14px;
 }
 
 input#pay_acc {
@@ -522,7 +522,9 @@ input#pay_acc {
 		                <td>
 		                    <!-- 무통장입금일 때만 보이게 할 계좌번호 입력 창 -->
 		                    <label for="bank_account" id="account">계좌번호</label>
-		                    <input type="text" name="pay_acc" id="pay_acc" value="03948-1029358"/>
+		                    <input type="text" name="pay_acc" id="pay_acc" value="03948-1029358" readonly/>
+		                   <label style="display: inline; outline: none; margin-bottom: 6px; border: none;">은행명</label>
+		                    <input style="display: inline; margin-bottom: 6px; margin-left:13px" value="KB국민" readonly/>
 		                </td>
 		            </tr>
 		            <tr id="cashReceiptInput">
