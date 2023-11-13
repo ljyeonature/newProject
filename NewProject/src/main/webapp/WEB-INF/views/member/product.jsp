@@ -59,6 +59,9 @@
 $(function(){
 	
 
+	
+	var wishlistState = JSON.parse(localStorage.getItem('wishlistState')) || {};
+
     // 페이지 로드 시 위시리스트 상태에 따라 하트 이미지 업데이트
     $('.js-addwish-b2, .js-addwish-detail').each(function () {
         var selIdProduct = $(this).parent().parent().find('.js-selid-b2').val();
@@ -77,7 +80,7 @@ $(function(){
 		              console.log(wish)  
             		  return wish.p_selid === selIdProduct;
 		            });
-                if (isWishlisted ) {
+                if (wishlistState[selIdProduct] ) {
                     $(heartImage).attr('src', $(heartImage).attr('src').replace('heart-01', 'heart-02'));
                 }
             
@@ -91,11 +94,13 @@ $(function(){
     // 클릭 이벤트 핸들러
     $('.js-addwish-b2, .js-addwish-detail').click(function (e) {
         e.preventDefault();
+        //alert(1);
         var selIdProduct = $(this).parent().parent().find('.js-selid-b2').val();
         var heartImage = $(this).find('img');
 
-        if (isWishlisted) {
+        if (wishlistState[selIdProduct]) {
             // 이미 찜한 경우, 제거
+            delete wishlistState[selIdProduct];
             $(heartImage).attr('src', $(heartImage).attr('src').replace('heart-02', 'heart-01'));
             removeItemFromWishlist(selIdProduct);
             var nameProduct = $(this).parent().parent().find('.js-name-b2').html();
@@ -113,10 +118,13 @@ $(function(){
                 p_imgrn: imgProduct
             };
             addItemToWishlist(param);
+            wishlistState[selIdProduct] = true;
             $(heartImage).attr('src', $(heartImage).attr('src').replace('heart-01', 'heart-02'));
             var nameProduct = $(this).parent().parent().find('.js-name-b2').html();
             swal(nameProduct, "찜 추가하였습니다", "success");
         }
+        localStorage.setItem('wishlistState', JSON.stringify(wishlistState));
+        
 
     });
 

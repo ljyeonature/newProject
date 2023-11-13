@@ -40,14 +40,14 @@
 			<hr class="sidebar-divider">
 
 			<!-- Heading -->
-			<div class="sidebar-heading"></div>
+			<!-- <div class="sidebar-heading"></div> -->
 
 			<!-- Nav Item - Pages Collapse Menu -->
-			<li class="nav-item"><a class="nav-link collapsed" href="#"
+			<!-- <li class="nav-item"><a class="nav-link collapsed" href="#"
 				data-toggle="collapse" data-target="#collapseTwo"
 				aria-expanded="true" aria-controls="collapseTwo"> <i
 					class="fas fa-fw fa-cog"></i> <span>주문관리</span>
-			</a> <!-- 주문관리 타래 -->
+			</a> 주문관리 타래
 				<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
 					data-parent="#accordionSidebar">
 					<div class="bg-white py-2 collapse-inner rounded">
@@ -56,8 +56,8 @@
 							class="collapse-item" href="">주문 취소/교환/반품/환불</a>
 
 					</div>
-				</div></li>
-			<hr class="sidebar-divider">
+				</div></li> -->
+			<!-- <hr class="sidebar-divider"> -->
 
 			<!-- Nav Item - Utilities Collapse Menu -->
 			<li class="nav-item"><a class="nav-link collapsed" href="#"
