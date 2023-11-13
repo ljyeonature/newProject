@@ -144,7 +144,7 @@ public class MemberController {
 	public String updateMember(MemberVO vo, @RequestParam("m_id") String m_id)
 	{
 		int result = memberService.update_member(vo);
-		return "redirect:/member/mypage";
+		return "redirect:/member/mypage?m_id=" + m_id;
 	}
 	
 

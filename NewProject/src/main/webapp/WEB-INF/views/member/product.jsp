@@ -207,6 +207,8 @@ function updateHeartImages() {
 $('.filter-tope-group button').on('click', function(){
     var fstdivid = $(this).data('filter');
     var logid = $('#logid').val();
+    var a = $('.btn-addwish-b2');
+    //console.log(a);
     $.ajax({
         type : 'post',
         data : {fstdivid : fstdivid},
@@ -218,12 +220,13 @@ $('.filter-tope-group button').on('click', function(){
             $.each(response, function(index, item) {
                 var leftPercentage = (index % 4) * 25; // 0%, 25%, 50%, 75%
                 var topValue = Math.floor(index / 4) * 485;
+          
                 var productHTML = 
                     '<div class="col-sm-6 col-md-4 col-lg-3 p-b-35 isotope-item" style="position: absolute; left: ' + leftPercentage + '%; top: ' + topValue + 'px;">' +
                         '<div class="block2">' +
                             '<div class="block2-pic hov-img0">' +
                                 '<img src="../resources/productImages/' + item.p_imgrn + '" alt="IMG-PRODUCT">' +
-                                '<a href="product_quickview?p_selid=' + item.p_selid + '" class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1 quickView">Quick View</a>' +
+                                
                             '</div>' +
                             '<div class="block2-txt flex-w flex-t p-t-14">' +
                                 '<div class="block2-txt-child1 flex-col-l">' +
@@ -723,9 +726,9 @@ form {
 					<div class="block2">
 						<div class="block2-pic hov-img0">
 							<img src="../resources/productImages/${product.p_imgrn }" alt="IMG-PRODUCT"> 
-							<a href="product_quickview?p_selid=${product.p_selid }"
+							<%-- <a href="product_quickview?p_selid=${product.p_selid }"
 								class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1 quickView">
-								Quick View </a>
+								Quick View </a> --%>
 						</div>
 						<div class="block2-txt flex-w flex-t p-t-14">
 							<div class="block2-txt-child1 flex-col-l ">
@@ -789,7 +792,7 @@ form {
 	</div>
 
 	<!-- Modal1 -->
-	<div class="wrap-modal1 js-modal1 p-t-60 p-b-20">
+	<%-- <div class="wrap-modal1 js-modal1 p-t-60 p-b-20">
 		<div class="overlay-modal1 js-hide-modal1"></div>
 
 		<div class="container">
@@ -831,17 +834,7 @@ form {
 										</div>
 									</div>
 
-									<div class="item-slick3"
-										data-thumb="../resources/main/images/product-detail-03.jpg">
-										<div class="wrap-pic-w pos-relative">
-											<img src="../resources/main/images/product-detail-03.jpg"
-												alt="IMG-PRODUCT"> <a
-												class="flex-c-m size-108 how-pos1 bor0 fs-16 cl10 bg0 hov-btn3 trans-04"
-												href="../resources/main/images/product-detail-03.jpg"> <i
-												class="fa fa-expand"></i>
-											</a>
-										</div>
-									</div>
+									
 								</div>
 							</div>
 						</div>
@@ -849,8 +842,7 @@ form {
 
 					<div class="col-md-6 col-lg-5 p-b-30">
 						<div class="p-r-50 p-t-5 p-lr-0-lg">
-							<h4 class="mtext-105 cl2 js-name-detail p-b-14">Lightweight
-								Jacket</h4>
+							<h4 class="mtext-105 cl2 js-name-detail p-b-14">${productQuick.p_name }</h4>
 
 							<span class="mtext-106 cl2"> $58.79 </span>
 
@@ -927,7 +919,7 @@ form {
 				</div>
 			</div>
 		</div>
-	</div>
+	</div> --%>
 
 	<!--===============================================================================================-->
 	<script src="../resources/main/vendor/jquery/jquery-3.2.1.min.js"></script>

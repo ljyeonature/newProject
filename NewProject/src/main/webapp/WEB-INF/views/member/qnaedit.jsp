@@ -257,7 +257,7 @@
         </div>					
           </form>  
 
-
+</div>
 
 	<!-- Footer -->
 	<%@include file="../main/main-footer.jsp" %>
