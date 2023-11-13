@@ -297,13 +297,13 @@ $(".js-addcart-detail").on("click", function() {
 
 								<c:if test="${not empty productDetail.img1_rn}">
 									<div class="item-slick2"
-										data-thumb="../resources/productImages/productDetailImages/${productDetail.img1_rn}">
+										data-thumb="../resources/productImages/${productDetail.img1_rn}">
 										<div class="wrap-pic-w pos-relative">
 											<img
-												src="../resources/productImages/productDetailImages/${productDetail.img1_rn}"
+												src="../resources/productImages/${productDetail.img1_rn}"
 												alt="IMG-PRODUCT"> <a
 												class="flex-c-m size-108 how-pos1 bor0 fs-16 cl10 bg0 hov-btn3 trans-04"
-												href="../resources/productImages/productDetailImages/${productDetail.img1_rn}">
+												href="../resources/productImages/${productDetail.img1_rn}">
 												<i class="fa fa-expand"></i>
 											</a>
 										</div>
@@ -312,13 +312,13 @@ $(".js-addcart-detail").on("click", function() {
 								
 								<c:if test="${not empty productDetail.img2_rn}">
 									<div class="item-slick2"
-										data-thumb="../resources/productImages/productDetailImages/${productDetail.img2_rn}">
+										data-thumb="../resources/productImages/${productDetail.img2_rn}">
 										<div class="wrap-pic-w pos-relative">
 											<img
-												src="../resources/productImages/productDetailImages/${productDetail.img2_rn}"
+												src="../resources/productImages/${productDetail.img2_rn}"
 												alt="IMG-PRODUCT"> <a
 												class="flex-c-m size-108 how-pos1 bor0 fs-16 cl10 bg0 hov-btn3 trans-04"
-												href="../resources/productImages/productDetailImages/${productDetail.img2_rn}">
+												href="../resources/productImages/${productDetail.img2_rn}">
 												<i class="fa fa-expand"></i>
 											</a>
 										</div>
@@ -327,13 +327,13 @@ $(".js-addcart-detail").on("click", function() {
 								
 								<c:if test="${not empty productDetail.img3_rn}">
 									<div class="item-slick2"
-										data-thumb="../resources/productImages/productDetailImages/${productDetail.img3_rn}">
+										data-thumb="../resources/productImages/${productDetail.img3_rn}">
 										<div class="wrap-pic-w pos-relative">
 											<img
-												src="../resources/productImages/productDetailImages/${productDetail.img3_rn}"
+												src="../resources/productImages/${productDetail.img3_rn}"
 												alt="IMG-PRODUCT"> <a
 												class="flex-c-m size-108 how-pos1 bor0 fs-16 cl10 bg0 hov-btn3 trans-04"
-												href="../resources/productImages/productDetailImages/${productDetail.img3_rn}">
+												href="../resources/productImages/${productDetail.img3_rn}">
 												<i class="fa fa-expand"></i>
 											</a>
 										</div>
@@ -342,13 +342,13 @@ $(".js-addcart-detail").on("click", function() {
 								
 								<c:if test="${not empty productDetail.img4_rn}">
 									<div class="item-slick2"
-										data-thumb="../resources/productImages/productDetailImages/${productDetail.img4_rn}">
+										data-thumb="../resources/productImages/${productDetail.img4_rn}">
 										<div class="wrap-pic-w pos-relative">
 											<img
-												src="../resources/productImages/productDetailImages/${productDetail.img4_rn}"
+												src="../resources/productImages/${productDetail.img4_rn}"
 												alt="IMG-PRODUCT"> <a
 												class="flex-c-m size-108 how-pos1 bor0 fs-16 cl10 bg0 hov-btn3 trans-04"
-												href="../resources/productImages/productDetailImages/${productDetail.img4_rn}">
+												href="../resources/productImages/${productDetail.img4_rn}">
 												<i class="fa fa-expand"></i>
 											</a>
 										</div>
@@ -357,13 +357,13 @@ $(".js-addcart-detail").on("click", function() {
 								
 								<c:if test="${not empty productDetail.img5_rn}">
 									<div class="item-slick2"
-										data-thumb="../resources/productImages/productDetailImages/${productDetail.img5_rn}">
+										data-thumb="../resources/productImages/${productDetail.img5_rn}">
 										<div class="wrap-pic-w pos-relative">
 											<img
-												src="../resources/productImages/productDetailImages/${productDetail.img5_rn}"
+												src="../resources/productImages/${productDetail.img5_rn}"
 												alt="IMG-PRODUCT"> <a
 												class="flex-c-m size-108 how-pos1 bor0 fs-16 cl10 bg0 hov-btn3 trans-04"
-												href="../resources/productImages/productDetailImages/${productDetail.img5_rn}">
+												href="../resources/productImages/${productDetail.img5_rn}">
 												<i class="fa fa-expand"></i>
 											</a>
 										</div>
@@ -491,7 +491,7 @@ $(".js-addcart-detail").on("click", function() {
 						<div class="tab-pane fade show active" id="description"
 							role="tabpanel">
 							<div class="how-pos2 p-lr-15-md">
-								<p class="stext-102 cl6"><img src="../resources/productImages/productDetailImages/${productDetail.img6_rn }" /></p>
+								<p class="stext-102 cl6"><img src="../resources/main/images/제품 상세정보.png" /></p>
 							</div>
 						</div>
 
