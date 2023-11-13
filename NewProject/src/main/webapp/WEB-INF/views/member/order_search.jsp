@@ -152,6 +152,12 @@
 			</div>
 		</div>
 	</header>
+	
+		<!-- Title page -->
+	<section class="bg-img1 txt-center p-lr-15 p-tb-92"
+		style="background-image: url('../resources/main/images/bg-02.jpg');">
+		<h2 class="ltext-105 cl0 txt-center">My Order</h2>
+	</section>
 
 	<div class="board_wrap">
         <div class="board_title">
@@ -179,7 +185,7 @@
 
             </div>
         </div>
-    <div class="addcontainer">
+<!--     <div class="addcontainer">
         <form>      
             <h2>수령자 정보</h2>
             <div style="display: flex;">
@@ -197,7 +203,7 @@
                 </div>
             
         </form>
-    </div>
+    </div> -->
         
         
 
