@@ -105,7 +105,6 @@
 
 		$('#checkDuplicateButton').click(function(event) {
 			event.preventDefault();
-			/* window.open("valid.jsp?userId="+id,"","width=200, height=150"); */
 
 			$.ajax({
 				type : 'get',
@@ -115,10 +114,8 @@
 				url : 'check_Id',
 				success : function(response) {
 					if (response === "duplicate") {
-						// $("#duplicateMessage").text("이미 사용 중인 아이디입니다.");
 						alert("이미 사용 중인 아이디입니다.")
 					} else if (response === "available") {
-						// $("#duplicateMessage").text("사용 가능한 아이디입니다.");
 						alert("사용 가능한 아이디입니다.")
 					}
 				},

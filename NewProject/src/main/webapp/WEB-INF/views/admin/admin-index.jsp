@@ -30,6 +30,7 @@
 <script>
 
 $(function(){
+	// 대분류
 	var jsonData = ${json}
 	var jsonObject = JSON.stringify(jsonData);
 	var jData = JSON.parse(jsonObject);
@@ -44,26 +45,30 @@ $(function(){
 		valueList.push(d.Count);
 		colorList.push(colorize());
 	}
-			
-			
+	
 	var data = {
-					labels: labelList,
-					datasets: [{
-							backgroundColor: colorList,
-							data : valueList
-					}],
-					options : {
-							title : {
-							display : true,
-							text: '대분류 별 주문회수'
-							}
-					}
+		labels: labelList,
+		datasets: [{
+				backgroundColor: colorList,
+				data : valueList
+		}],
+	
 	};
+	
+	var option = {
+			legend: {
+	            display: true,
+	            position: 'top', // 'top', 'bottom', 'left', 'right' 중 선택
+	            align: 'center' // 범례를 중앙에 배치
+	        }
+				
+	}
 			
 	var ctx1 = document.getElementById('logNameChart').getContext('2d');
 	new Chart(ctx1, {
 		      type: 'pie',
-			  data: data
+			  data: data,
+			  options:option
 	});
 	
 	function colorize() {
@@ -73,7 +78,65 @@ $(function(){
 		var color = 'rgba(' + r + ', ' + g + ', ' + b + ', 0.7)';
 		return color;
 	}
-});
+	
+	
+	var jsonData2 = ${json2}
+	var jsonObject2 = JSON.stringify(jsonData2);
+	var jData2 = JSON.parse(jsonObject2);
+	
+	// 현재 월을 기준으로 최근 6개월의 월 데이터 생성
+	var currentDate = new Date();
+	var labels2 = [];
+	for (var i = 5; i >= 0; i--) {
+	    var currentMonth = new Date(currentDate.getFullYear(), (currentDate.getMonth()+2) - i, 1);
+	    labels2.push(currentMonth.toISOString().split('T')[0].substring(0, 7));
+	}
+	
+	var labelList2 = new Array();
+	var valueList2 = new Array();
+	var colorList2 = new Array();
+	
+	for(var i = 0; i<labels2.length; i++) {
+		var currentLabel = labels2[i];
+		var data = jData2.find(item => item.Month === currentLabel);
+		// var d = jData2[i];
+		if (data) {
+        labelList2.push(data.Month);
+        valueList2.push(data.Total);
+        colorList2.push(colorize());
+	    } else {
+	        labelList2.push(currentLabel);
+	        valueList2.push(0);
+	        colorList2.push(colorize());
+	    }
+	}
+	
+	 var ctx = document.getElementById('myAreaChart').getContext('2d');
+	    var myChart = new Chart(ctx, {
+	        type: 'line',
+	        data: {
+	            labels: labelList2,
+	            datasets: [{
+	                label: '월별 매출',
+	                data: valueList2,
+	                backgroundColor: 'rgba(75, 192, 192, 0.2)', // 채우기 색
+	                borderColor: 'rgba(75, 192, 192, 1)', // 선 색
+	                borderWidth: 1
+	            }]
+	        },
+	        options: {
+	            scales: {
+	                y: {
+	                    beginAtZero: true
+	                }
+	            }
+	        }
+	    });
+	
+	
+	
+	
+}); // end jquery
 
 
 
@@ -139,11 +202,16 @@ $(function(){
 				<div class="col-xl-8 col-lg-7">
 					<div class="card shadow mb-4">
 						<!-- Card Header - Dropdown -->
+					<div
+						class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+						<h6 class="m-0 font-weight-bold text-primary">월별 매출</h6>
 
-						<!-- Card Body -->
+
+					</div>
+					<!-- Card Body -->
 						<div class="card-body">
-							<div class="chart-area">
-								<canvas id="myAreaChart"></canvas>
+							<div class="chart-area" style="width: 100%; margin: auto;">
+								<canvas id="myAreaChart" width="1500" height="450"></canvas>
 							</div>
 						</div>
 					</div>
@@ -157,27 +225,11 @@ $(function(){
 					<div
 						class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
 						<h6 class="m-0 font-weight-bold text-primary">카테고리별 주문 내역</h6>
-						<div class="dropdown no-arrow">
-							<a class="dropdown-toggle" href="#" role="button"
-								id="dropdownMenuLink" data-toggle="dropdown"
-								aria-haspopup="true" aria-expanded="false"> <i
-								class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
-							</a>
-							<div
-								class="dropdown-menu dropdown-menu-right shadow animated--fade-in"
-								aria-labelledby="dropdownMenuLink">
-								<div class="dropdown-header">Dropdown Header:</div>
-								<a class="dropdown-item" href="#">Action</a> <a
-									class="dropdown-item" href="#">Another action</a>
-								<div class="dropdown-divider"></div>
-								<a class="dropdown-item" href="#">Something else here</a>
-							</div>
-						</div>
 					</div>
 					<!-- Card Body -->
-					<div class="card-body">
-						<div class="chart-pie pt-4 pb-2">
-							<canvas id="logNameChart" style="max-width: 450px; max-height: 430px; overflow: hidden;"></canvas>
+					<div class="card-body" style="text-align: center;">
+						<div class="chart-pie pt-7 pb-2" style="display: flex;align-items: center;flex-direction: column-reverse;">
+							<canvas id="logNameChart"></canvas>
 						</div>
 						
 					</div>
@@ -261,11 +313,11 @@ $(function(){
 	<script src="../resources/admin/js/sb-admin-2.min.js"></script>
 
 	<!-- Page level plugins -->
-	<script src="../resources/admin/vendor/chart.js/Chart.min.js"></script>
+	<!-- <script src="../resources/admin/vendor/chart.js/Chart.min.js"></script>
 
-	<!-- Page level custom scripts -->
+	Page level custom scripts
 	<script src="../resources/admin/js/demo/chart-area-demo.js"></script>
-	<script src="../resources/admin/js/demo/chart-pie-demo.js"></script>
+	<script src="../resources/admin/js/demo/chart-pie-demo.js"></script> -->
 </body>
 
 </html>

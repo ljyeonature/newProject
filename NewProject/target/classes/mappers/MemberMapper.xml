@@ -35,7 +35,8 @@
 	<select id='member_point_detail' parameterType="com.java.domain.MemberVO" resultType="com.java.domain.MemberVO">
 		SELECT * FROM m_member WHERE m_id=#{m_id}
 	</select>
-	<!-- 포인트 차감 -->
+	
+	<!-- 포인트 적립 -->
 	<update id='member_point_content' parameterType="com.java.domain.MemberVO">
 		UPDATE m_member SET  m_point=m_point+#{m_point} WHERE m_id=#{m_id}
 	</update>
@@ -57,7 +58,8 @@
 	
 	<!-- 회원 정보 수정 -->
 	<update id="update_member" parameterType="com.java.domain.MemberVO">
-		UPDATE m_member SET m_pass=#{m_pass}, m_name=#{m_name}, m_email=#{m_email}, m_tel=#{m_tel}, m_postcode=#{m_postcode}, m_addr=#{m_addr}  WHERE m_id=#{m_id}
+		UPDATE m_member SET m_pass=#{m_pass}, m_name=#{m_name}, m_email=#{m_email}, 
+		m_tel=#{m_tel}, m_postcode=#{m_postcode}, m_addr=#{m_addr}  WHERE m_id=#{m_id}
 	</update>
 	
 	<!-- 찜 목록 저장 -->
@@ -170,6 +172,22 @@
 		INNER JOIN fstdiv f ON s.fstdivid  = f.fstdivid
 		WHERE SUBSTRING(oi.p_optionID, 1, 1) = f.fstdivid
 		GROUP BY f.fstdivname;
+	</select>
+	
+	<!-- 월별 매출  -->
+	<select id="monthOrder" parameterType="com.java.domain.LogVO2" resultType="com.java.domain.LogVO2">
+	
+		SELECT
+		    DATE_FORMAT(o_date, '%Y-%m') AS month,
+		    SUM(pay_amount) AS total
+		FROM
+		    o_order
+		
+		GROUP BY
+		    month
+		ORDER BY
+		    month
+	
 	</select>
 	
 </mapper>

@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -24,6 +23,7 @@ import com.java.domain.BoardVO;
 import com.java.domain.FstDivVO;
 import com.java.domain.ImageVO;
 import com.java.domain.LogVO;
+import com.java.domain.LogVO2;
 import com.java.domain.MemberVO;
 import com.java.domain.OptionFinalVO;
 import com.java.domain.OptionVO;
@@ -68,15 +68,17 @@ public class AdminController {
 
 	// 관리자 홈에서 회원 정보 불러오기
 	@RequestMapping("/admin-index")
-	public void memeber_dash(MemberVO mvo, Model model, LogVO vo) {
+	public void memeber_dash(MemberVO mvo, Model model, LogVO vo, LogVO2 vo2) {
 		System.out.println("Controller : " + mvo.toString());
 		System.out.println("controller : " + memberService.member_dash(mvo));
 		
+		// 차트 내용 보이기
 		List<LogVO> logNameList = memberService.fstOrder(vo);
+		List<LogVO2> logNameList2 = memberService.monthOrder(vo2);
 		
 		Gson gson = new Gson();
 		JsonArray jArray = new JsonArray();
-		
+		// 대분류 주문
 		Iterator<LogVO> it = logNameList.iterator();
 		while(it.hasNext()) {
 			LogVO curVO = it.next();
@@ -88,10 +90,29 @@ public class AdminController {
 			object.addProperty("Count", cnt);
 			jArray.add(object);
 		}
+		Gson gson2 = new Gson();
+		JsonArray jArray2 = new JsonArray();
+		
+		// 월별 매출
+		Iterator<LogVO2> it2 = logNameList2.iterator();
+		while(it2.hasNext()) {
+			LogVO2 curVO = it2.next();
+			JsonObject object = new JsonObject();
+			String month = curVO.getMonth();
+			double total = Double.parseDouble(curVO.getTotal());
+			
+			object.addProperty("Month", month);
+			object.addProperty("Total", total);
+			jArray2.add(object);
+		}
 		
 		String json = gson.toJson(jArray);
 		System.out.println(json);
 		model.addAttribute("json", json);
+		
+		String json2 = gson2.toJson(jArray2);
+		System.out.println(json2);
+		model.addAttribute("json2", json2);
 
 		model.addAttribute("memberList", memberService.member_dash(mvo));
 
@@ -122,15 +143,13 @@ public class AdminController {
 	}
 
 	//	ajax로 보내면 해당 결과값을 얘가 반환해줘야함
+	
 	@RequestMapping("/member-point-content")
 	@ResponseBody
 	public String member_point_content(MemberVO vo) {
 		int result = memberService.member_point_content(vo);
 		MemberVO point = memberService.member_point_detail(vo);
-		System.out.println("포인트 수정 p_point : " + point.getM_point());
-		System.out.println("포인트 수정 결과: " + result);
 		if(result == 1) {
-			//			return point.getM_point();
 			return point.getM_point();
 		}
 		else {

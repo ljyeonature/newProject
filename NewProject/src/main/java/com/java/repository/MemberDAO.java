@@ -6,6 +6,7 @@ import java.util.List;
 import com.java.domain.CartVO;
 import com.java.domain.CartViewVO;
 import com.java.domain.LogVO;
+import com.java.domain.LogVO2;
 import com.java.domain.MemberVO;
 import com.java.domain.OrderItemVO;
 import com.java.domain.OrderVO;
@@ -93,6 +94,9 @@ public interface MemberDAO {
 	
 	// 대분류 별 주문
 	public List<LogVO> fstOrder(LogVO vo);
+	
+	// 월별 매출
+	public List<LogVO2> monthOrder(LogVO2 vo);
 	
 	
 }

@@ -148,7 +148,6 @@ $(function(){
 	    	$('.price-link').removeClass('filter-link-active');
 	    	var condition = $(this).data('filter');
 	    	$(this).addClass('filter-link-active');
-	 		 alert(condition)
 	 		 var logid = $('#logid').val();
 	 		 $.ajax({
 	 			 type : 'post',
@@ -272,7 +271,30 @@ $(function(){
 	 		 });
 	 		 // ajax
 	 	}); // 클릭 시 - 컬러
-	    
+	 	
+		$('.quickView').click(function(){
+			var p_selid = $(this).data('p_selid')
+			console.log(p_selid)
+			$.ajax({
+	 			type:'post',
+	 			url : 'product_quickview',
+	 			data : {p_selid : p_selid},
+	 			dataType:'json',
+	 			success : function(result){
+	 				 $('.js-modal1 .js-name-detail').text(result.p_name);
+	 			     $('.js-modal1 .mtext-106').text(result.p_price);
+	 			     $('.js-modal1 .item-slick3 img').attr('src', '../resources/productImages/'+result.p_imgrn);
+	 			     $('.js-modal1 .stext-102').text(result.p_name);
+	 			},
+	 			error : function(err){
+	 				console.log(err)
+	 			}
+	 			
+	 			
+	 		}); // ajax 끝
+			
+		})
+	 	 
 	 
  
 	
@@ -428,7 +450,7 @@ form {
 						class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5 how-active1"
 						data-filter="A">All Products</button>
 
-					<button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5" id="F"
+					<button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5"
 						data-filter="F">물고기</button>
 
 					<button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5"
@@ -599,13 +621,13 @@ form {
 					<div class="block2">
 						<div class="block2-pic hov-img0">
 							<img src="../resources/productImages/${product.p_imgrn }" alt="IMG-PRODUCT"> 
-							<a href="product_quickview?p_selid=${product.p_selid }"
+							<a href="product_quickview?p_selid=${product.p_selid }" data-p_selid="${product.p_selid}"
 								class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1 quickView">
 								Quick View </a>
 						</div>
 						<div class="block2-txt flex-w flex-t p-t-14">
 							<div class="block2-txt-child1 flex-col-l ">
-								<a href="product-detail?m_id=${sessionScope.logid }&p_selid=${product.p_selid }" class="stext-104 cl4 hov-cl1 trans-04 p-b-6" id="p_name">
+								<a href="product-detail?m_id=${sessionScope.logid }&p_selid=${product.p_selid }"  class="stext-104 cl4 hov-cl1 trans-04 p-b-6" >
 									${product.p_name }
 								</a> 
 								
@@ -632,10 +654,7 @@ form {
 						</div>
 					</div>
 				</div>
-				
-				
-				
-			
+
 			</c:forEach>
 
 			</div>
@@ -683,12 +702,11 @@ form {
 								<div class="wrap-slick3-arrows flex-sb-m flex-w"></div>
 
 								<div class="slick3 gallery-lb">
-									<div class="item-slick3"
-										data-thumb="../resources/productImages/${productQuick.p_imgrn}">
+									<div class="item-slick3" data-thumb="../resources/productImages/${productQuick.p_imgrn}">
 										<div class="wrap-pic-w pos-relative">
 											<img src="../resources/productImages/${productQuick.p_imgrn}"
-												alt="IMG-PRODUCT"> <a
-												class="flex-c-m size-108 how-pos1 bor0 fs-16 cl10 bg0 hov-btn3 trans-04"
+												alt="IMG-PRODUCT"> 
+												<a class="flex-c-m size-108 how-pos1 bor0 fs-16 cl10 bg0 hov-btn3 trans-04"
 												href="../resources/productImages/${productQuick.p_imgrn}"> <i
 												class="fa fa-expand"></i>
 											</a>
@@ -725,24 +743,20 @@ form {
 
 					<div class="col-md-6 col-lg-5 p-b-30">
 						<div class="p-r-50 p-t-5 p-lr-0-lg">
-							<h4 class="mtext-105 cl2 js-name-detail p-b-14">Lightweight
-								Jacket</h4>
+							<h4 class="mtext-105 cl2 js-name-detail p-b-14">Lightweight Jacket</h4>
 
-							<span class="mtext-106 cl2"> $58.79 </span>
+							<span class="mtext-106 cl2"></span>
 
-							<p class="stext-102 cl3 p-t-23">Nulla eget sem vitae eros
-								pharetra viverra. Nam vitae luctus ligula. Mauris consequat
-								ornare feugiat.</p>
+							<p class="stext-102 cl3 p-t-23"></p>
 
 							<!--  -->
 							<div class="p-t-33">
 								<div class="flex-w flex-r-m p-b-10">
-									<div class="size-203 flex-c-m respon6">Size</div>
+									<div class="size-203 flex-c-m respon6">Option</div>
 
 									<div class="size-204 respon6-next">
 										<div class="rs1-select2 bor8 bg0">
 											<select class="js-select2" name="time">
-												<option>Choose an option</option>
 												<option>Size S</option>
 												<option>Size M</option>
 												<option>Size L</option>

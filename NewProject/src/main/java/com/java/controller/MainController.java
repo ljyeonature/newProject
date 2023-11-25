@@ -51,21 +51,27 @@ public class MainController {
 	// 상품상세정보 보기
 	@RequestMapping("/product-detail")
 	public void product_detail(Model model, @RequestParam String p_selid, WishListVO wvo) {
-		//System.out.println(p_selid);
 		ProductVO result = productService.product_detail(p_selid);
 		List<OptionVO> option = productService.product_option(p_selid);
-		//System.out.println(result.toString());
 		model.addAttribute("productDetail", result);
 		model.addAttribute("productOption", option);
 	}
+	
+	 // quick view 보기
+  
+	@RequestMapping("/product_quickview") 
+	@ResponseBody
+	public ProductVO productQuickview(Model model, @RequestParam String p_selid) { 
+			System.out.println(p_selid);
+			return productService.product_detail(p_selid);
+	}
+
 	
 	// 대분류 검색 - 물고기
 	@RequestMapping("/fishAll")
 	@ResponseBody
 	public List<ProductVO> fishAll(ProductVO vo, Model model) {
-		//System.out.println("alreadyInCartList : "+ vo.toString());
 		List<ProductVO> result = productService.fishAll(vo);
-		//System.out.println("alreadyInCartList : "+ result.toString());
 		return result;
 	}
 	

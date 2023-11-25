@@ -234,22 +234,22 @@ input#pay_acc {
         function showMemberInfo() {
         	 // 회원정보와 동일한 행 숨기기
             $("#addr tr").show(); // 모든 행 보이기
-            $("#rc_name").val($("#logname").val()); // 첫 번째 행 숨기기
-            $("#rc_postcode").val($("#postnum").val()); // 첫 번째 행 숨기기
-            $("#rc_addr").val($("#addr").val()); // 첫 번째 행 숨기기
-            $("#m_email").val($("#email").val()); // 첫 번째 행 숨기기
-            $("#rc_tel").val($("#tel").val()); // 첫 번째 행 숨기기
+            $("#rc_name").val($("#logname").val()); 
+            $("#rc_postcode").val($("#postnum").val()); 
+            $("#rc_addr").val($("#addr").val()); 
+            $("#m_email").val($("#email").val()); 
+            $("#rc_tel").val($("#tel").val()); 
             
         }
 
         // 새로운 배송지일 때 보여줄 함수
         function showNewAddressInfo() {
         	$("#addr tr").show(); // 모든 행 보이기
-            $("#rc_name").val(""); // 첫 번째 행 숨기기
-            $("#rc_postcode").val(""); // 첫 번째 행 숨기기
-            $("#rc_addr").val(""); // 첫 번째 행 숨기기
-            $("#m_email").val(""); // 첫 번째 행 숨기기
-            $("#rc_tel").val(""); // 첫 번째 행 숨기기
+            $("#rc_name").val(""); 
+            $("#rc_postcode").val(""); 
+            $("#rc_addr").val(""); 
+            $("#m_email").val(""); 
+            $("#rc_tel").val(""); 
         }
         
           // 초기 설정

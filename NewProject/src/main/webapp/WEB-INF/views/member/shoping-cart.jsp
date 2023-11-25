@@ -151,7 +151,6 @@ $(function(){
                     // 서버에서 성공적으로 처리된 경우에만 화면에서 해당 상품 제거
                     if (response == "ok") {
                         alert('상품이 성공적으로 삭제되었습니다.');
-                        //swal("", "장바구니에서 삭제되었습니다", "success");
                         location.reload();
                         // 화면에서 해당 행 제거
                         $(this).closest('tr').remove();

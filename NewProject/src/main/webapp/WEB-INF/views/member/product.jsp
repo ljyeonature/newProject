@@ -136,10 +136,7 @@ $(function(){
             url: 'product_wishlist',
             success: function (result) {
                 if (result === "error") {
-                    console.log(result);
-                } else {
-                    //alert(result);
-                }
+                } 
             },
             error: function (err) {
                 console.log(err);
@@ -155,9 +152,7 @@ $(function(){
             url: 'delete_wishlist',
             success: function (result) {
                 if (result === "delete") {
-                    //alert(result);
                 } else if (result === "fail") {
-                    //alert(result);
                 }
             },
             error: function (err) {
@@ -399,7 +394,9 @@ $('.filter-tope-group button').on('click', function(){
 	 		 });
 	 		 // ajax
 	 	}); // 클릭 시 - 컬러
-	    
+	 	
+	 	
+	 	
 	 
  
 	
@@ -726,9 +723,9 @@ form {
 					<div class="block2">
 						<div class="block2-pic hov-img0">
 							<img src="../resources/productImages/${product.p_imgrn }" alt="IMG-PRODUCT"> 
-							<%-- <a href="product_quickview?p_selid=${product.p_selid }"
-								class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1 quickView">
-								Quick View </a> --%>
+							<a href="product_quickview?p_selid=${product.p_selid }"
+								class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1" id="quickView">
+								Quick View </a>
 						</div>
 						<div class="block2-txt flex-w flex-t p-t-14">
 							<div class="block2-txt-child1 flex-col-l ">
@@ -792,7 +789,7 @@ form {
 	</div>
 
 	<!-- Modal1 -->
-	<%-- <div class="wrap-modal1 js-modal1 p-t-60 p-b-20">
+	<div class="wrap-modal1 js-modal1 p-t-60 p-b-20">
 		<div class="overlay-modal1 js-hide-modal1"></div>
 
 		<div class="container">
@@ -919,7 +916,7 @@ form {
 				</div>
 			</div>
 		</div>
-	</div> --%>
+	</div>
 
 	<!--===============================================================================================-->
 	<script src="../resources/main/vendor/jquery/jquery-3.2.1.min.js"></script>

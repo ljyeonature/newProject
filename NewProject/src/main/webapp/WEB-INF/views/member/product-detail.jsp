@@ -85,16 +85,13 @@ $(".js-addcart-detail").on("click", function() {
     
     // 장바구니 중복 확인
     $.ajax({
-    	
     	type:'POST',
     	url : "alreadyInCartList",
     	data : {p_name : productName},
     	success : function(response) {
     		if(response == "ok"){
-    			//alert(response);
     		    swal(nameProduct, "장바구니에 이미 있습니다", "info");
     		} else {
-    			//alert(response);
     			 // 서버로 Ajax 요청 보내기
     		    $.ajax({
     		        type: "POST", // 또는 "GET", 요청 방식에 따라 수정
@@ -104,18 +101,13 @@ $(".js-addcart-detail").on("click", function() {
     		            // 서버에서의 응답 처리
     		            if (response === "success") {
 			    		    swal(nameProduct, "장바구니에 추가되었습니다", "success");
-    		                //alert("제품이 장바구니에 추가되었습니다.");
-    		            } else {
-    		                //alert("장바구니 추가 중 오류가 발생했습니다.");
-    		            }
+    		            } 
     		        },
     		        error: function(err) {
-    		            //console.error("장바구니 추가 중 오류가 발생했습니다.", err);
     		        }
     		    }); // 장바구니 추가
     		}
     	},
-    	
     	error : function(err) {
     		console.log(err);
     	}

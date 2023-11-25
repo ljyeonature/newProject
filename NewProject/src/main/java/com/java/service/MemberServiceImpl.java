@@ -8,11 +8,11 @@ import org.springframework.stereotype.Service;
 import com.java.domain.CartVO;
 import com.java.domain.CartViewVO;
 import com.java.domain.LogVO;
+import com.java.domain.LogVO2;
 import com.java.domain.MemberVO;
 import com.java.domain.OrderItemVO;
 import com.java.domain.OrderVO;
 import com.java.domain.PayInfoVO;
-import com.java.domain.ProductVO;
 import com.java.domain.WishListVO;
 import com.java.repository.MemberDAO;
 
@@ -213,6 +213,13 @@ public class MemberServiceImpl implements MemberService{
 	@Override
 	public List<LogVO> fstOrder(LogVO vo) {
 		List<LogVO> result = memberDAOImpl.fstOrder(vo);
+		return result;
+	}
+	
+	// 월별 매출
+	@Override
+	public List<LogVO2> monthOrder(LogVO2 vo) {
+		List<LogVO2> result = memberDAOImpl.monthOrder(vo);
 		return result;
 	}
 

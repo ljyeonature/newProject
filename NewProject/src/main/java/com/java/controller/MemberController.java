@@ -72,9 +72,7 @@ public class MemberController {
 	@RequestMapping("/check_Id")
 	@ResponseBody
 	public String checkId(MemberVO vo) {
-		//System.out.println(vo.toString());
 		boolean is_Id = memberService.checkId(vo);
-		//System.out.println(is_Id);
 		if(is_Id) {
 			return "duplicate";
 		}else {			
@@ -88,10 +86,6 @@ public class MemberController {
 	@RequestMapping("/login_do")
 	public String loginCheck(MemberVO vo, HttpSession session, Model model, WishListVO wvo) {
 		MemberVO result = memberService.loginCheck(vo);
-		//		MemberVO adminResult = memberService.adminCheck(vo);
-		//		System.out.println("admin Controller : " + adminResult);
-		//		System.out.println(result.getM_name());
-		//		System.out.println(result.getM_rol());
 		if (result == null) {
 			model.addAttribute("loginError", true);
 			return "member/login";
@@ -105,7 +99,6 @@ public class MemberController {
 		} 
 
 	    else {
-	    	//System.out.println(result);
 	        session.setAttribute("logname", result.getM_name());
 	        session.setAttribute("logid", result.getM_id());
 	        model.addAttribute("loginError", false);
@@ -115,7 +108,6 @@ public class MemberController {
 
 	}
 
-	// 아이디 저장하기(로그인시)
 
 
 
@@ -201,6 +193,7 @@ public class MemberController {
 	
 }
 	
+	// 인증번호 확인
 	@RequestMapping(value = "/pw_set", method = RequestMethod.POST)
 	public String pw_set(@RequestParam(value="email_injeung") String email_injeung,
 				@RequestParam(value = "num") String num) throws IOException{
@@ -211,8 +204,9 @@ public class MemberController {
 			else {
 				return "member/pw_find";
 			}
-	} //이메일 인증번호 확인
+	}
 	
+	// 새 비밀번호 설정
 	@RequestMapping(value = "/pw_new", method = RequestMethod.POST)
 	public String pw_new(MemberVO vo, HttpSession session) throws IOException{
 		int result = memberService.pwUpdate_M(vo);
@@ -220,10 +214,9 @@ public class MemberController {
 			return "member/login";
 		}
 		else {
-			System.out.println("pw_update"+ result);
 			return "member/pw_new";
 		}
-}
+	}
 	
 	@Autowired
 	BoardServiceImpl boardService;
@@ -372,9 +365,7 @@ public class MemberController {
 	@RequestMapping("/alreadyInCartList")
 	@ResponseBody
 	public String alreadyInWishList(CartVO vo) {
-//		System.out.println(vo.toString());
 		int result = memberService.alreadyInCartList(vo);
-		//System.out.println("alreadyInCartList : "+result);
 		if(result == 1) {
 			return "ok";
 		}
@@ -442,9 +433,10 @@ public class MemberController {
 	  // quick view 보기
 	  
 	@RequestMapping("/product_quickview") 
-	public void productQuickview(Model model, @RequestParam String p_selid) { 
-			model.addAttribute("productQuick", productService.product_detail(p_selid));
-
+	@ResponseBody
+	public ProductVO productQuickview(Model model, @RequestParam String p_selid) { 
+			
+			return productService.product_detail(p_selid);
 	}
 	 
 	
@@ -581,10 +573,6 @@ public class MemberController {
 		int insertOrder = memberService.insertOrder(ovo);
 		int insertOrderItem = memberService.insertOrderItem(oivo);
 		int insertPayInfo = memberService.insertPayInfo(pvo);
-		
-		//System.out.println("insertOrder : " + insertOrder);
-		//System.out.println("insertPayInfo : " + insertPayInfo);
-		//System.out.println("insertOrderItem : " + insertOrderItem);
 		
 		// 결제 완료 후 : 장바구니 삭제
 		memberService.cartAllDelete(vo);
